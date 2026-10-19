@@ -1,0 +1,1739 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Fire Meets Steel"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "hero",
+        gold: 120,
+        recruit: "Drake Burner, Drake Clasher, Drake Fighter, Drake Glider, Saurian Augur, Saurian Skirmisher",
+        leader: "Gorlack",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "dwarves",
+        gold: 50,
+        recruit: "Gryphon Rider, Gryphon Master",
+        leader: "Thurdakor",
+      },
+      {
+        tag: "map",
+        id: "scenario_10_Fire_Meets_Steel",
+        file: "10_Fire_Meets_Steel.map",
+      },
+      {
+        tag: "unit",
+        id: "Gorlack",
+        type: "Drake Burner",
+        side: 1,
+        x: 29,
+        y: 18,
+        name: _("Gorlack"),
+      },
+      {
+        tag: "unit",
+        id: "u_1",
+        type: "Drake Arbiter",
+        side: 1,
+        x: 29,
+        y: 14,
+      },
+      {
+        tag: "unit",
+        id: "Thurdakor",
+        type: "Dwarvish Berserker",
+        side: 2,
+        x: 11,
+        y: 3,
+        name: _("Thurdakor"),
+      },
+      {
+        tag: "unit",
+        id: "u_2",
+        type: "Dwarvish Dragonguard",
+        side: 2,
+        x: 9,
+        y: 3,
+      },
+      {
+        tag: "unit",
+        id: "u_3",
+        type: "Dwarvish Dragonguard",
+        side: 2,
+        x: 8,
+        y: 1,
+      },
+      {
+        tag: "unit",
+        id: "u_4",
+        type: "Dwarvish Dragonguard",
+        side: 2,
+        x: 12,
+        y: 1,
+      },
+      {
+        tag: "unit",
+        id: "u_5",
+        type: "Dwarvish Dragonguard",
+        side: 2,
+        x: 13,
+        y: 2,
+      },
+      {
+        tag: "unit",
+        id: "u_6",
+        type: "Dwarvish Dragonguard",
+        side: 2,
+        x: 10,
+        y: 4,
+      },
+      {
+        tag: "event",
+        id: "carryover_35",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.8,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_36",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/landscape-mountains-01.webp~CROP(0,0,533,400)"),
+            text: _("A storm of ice fell upon the Sunreach Peaks. The Greatland’s season of cold had come to sojourn the flight. The camp was fortified with great stone works until it resembled an eyrie. Using the ample provisions, the season might be outlasted."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_37",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/landscape-mountains-01.webp~CROP(0,0,533,400)"),
+            text: _("Gorlack secluded himself to a small abode atop the highest peak within sight of camp. There he remained in deep contemplation. Each day, the saurian Zedrix trekked up the peak to bring his dragon sustenance."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_38",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Gorlack,Thurdakor,u_2,u_3,u_4,u_5,u_6",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_39",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 18,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Survive for 18 turns"),
+        defeat: _("Death of Gorlack Death of Arinexis Death of Zedrix"),
+      },
+      {
+        tag: "event",
+        id: "if_2",
+        on: "branch_if_2",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.advances_to",
+            equals: "",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            recall_cost: "$( $this_item.cost * 0.5 )",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_4",
+        on: "branch_if_4",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.level",
+            less_than_or_equal_to: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            recall_cost: "$( $this_item.cost + $this_item.cost * 0.4 * $this_item.experience ^ 2 / $this_item.max_experience ^ 2 )",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_5",
+        on: "branch_if_5",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.level",
+            greater_than: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            recall_cost: "$( $this_item.cost * 0.75 + $this_item.cost * 0.2 * $this_item.experience ^ 2 / $this_item.max_experience ^ 2 )",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_3",
+        on: "branch_if_3",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.advances_to",
+            not_equals: "",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_4",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_5",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recalls_to_correct",
+            kill: "no",
+          },
+          {
+            tag: "foreach",
+            variable: "recalls_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_2",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_3",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "revelation.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "recall",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type_adv_tree%22%3A%22Drake%20Warrior%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "unit_exists",
+                exists: "no",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            role: "fighter_intendant",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "recall",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type_adv_tree%22%3A%22Drake%20Arbiter%2C%20Drake%20Thrasher%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "unit_exists",
+                exists: "no",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            role: "clasher_intendant",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            role: "fighter_intendant",
+            unit: "",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            role: "clasher_intendant",
+            unit: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "gorlack_death",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Gorlack%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("So much left... unfinished..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "resha_death",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Resha%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("Resha!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "arinexis_death",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Arinexis%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("Arinexisss... Your time hass come too sssoon!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "zedrix_death",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Zedrix%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("My dragon, I have failed you..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "turn_end",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "lua_condition",
+                code: "return (wml.variables[turn_number] % 5 == 0)",
+              },
+            ],
+          },
+          {
+            tag: "gold",
+            side: 2,
+            amount: 400,
+          },
+          {
+            tag: "message",
+            speaker: "Thurdakor",
+            text: _("Reinforcements! Send in th’ neist wave!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "$this_item.x",
+            y: "$this_item.y",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "mud-fist.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$this_item.x",
+            y: "$this_item.y",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            moves: 0,
+            attacks_left: 0,
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24this_item.x%22%2C%22y%22%3A%22%24this_item.y%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "holes[$i].filled",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22holes%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%229%22%2C%22y%22%3A%2215%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2211%22%2C%22y%22%3A%2216%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2213%22%2C%22y%22%3A%2214%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2216%22%2C%22y%22%3A%2213%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2215%22%2C%22y%22%3A%2212%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2223%22%2C%22y%22%3A%228%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2225%22%2C%22y%22%3A%226%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2227%22%2C%22y%22%3A%227%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2232%22%2C%22y%22%3A%227%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2232%22%2C%22y%22%3A%225%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "holes",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:add_item",
+                x: "$this_item.x",
+                y: "$this_item.y",
+                item_name: "",
+                image: "scenery%2Ftrapdoor-open.png",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "random",
+                values: "Dwarvish Fighter,Dwarvish Berserker,Dwarvish Thunderer",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$random",
+                side: 2,
+                x: "$this_item.x",
+                y: "$($this_item.y + 1)",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "available_holes.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            recruit: "Dwarvish Fighter, Dwarvish Steelclad, Dwarvish Guardsman, Dwarvish Stalwart, Dwarvish Thunderer, Dwarvish Thunderguard, Dwarvish Ulfserker, Dwarvish Berserker, Dwarvish Runesmith, Gryphon Rider, Gryphon Master",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "available_holes.length",
+            less_than_or_equal_to: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            recruit: "Gryphon Rider, Gryphon Master",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "foreach",
+            variable: "holes",
+            item: "this_item",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_19",
+        on: "branch_if_19",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "available_holes.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            recruit: "Dwarvish Fighter, Dwarvish Steelclad, Dwarvish Guardsman, Dwarvish Stalwart, Dwarvish Thunderer, Dwarvish Thunderguard, Dwarvish Ulfserker, Dwarvish Berserker, Dwarvish Runesmith, Gryphon Rider, Gryphon Master",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_20",
+        on: "branch_if_20",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "available_holes.length",
+            less_than_or_equal_to: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            recruit: "Gryphon Rider, Gryphon Master",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18_1",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "foreach",
+            variable: "holes",
+            item: "this_item",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_19",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_20",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_22",
+        on: "branch_if_22",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "available_holes.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            recruit: "Dwarvish Fighter, Dwarvish Steelclad, Dwarvish Guardsman, Dwarvish Stalwart, Dwarvish Thunderer, Dwarvish Thunderguard, Dwarvish Ulfserker, Dwarvish Berserker, Dwarvish Runesmith, Gryphon Rider, Gryphon Master",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_23",
+        on: "branch_if_23",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "available_holes.length",
+            less_than_or_equal_to: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            recruit: "Gryphon Rider, Gryphon Master",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21_2",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 2,
+          },
+          {
+            tag: "foreach",
+            variable: "holes",
+            item: "this_item",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_22",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_23",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "prerecruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22type%22%3A%22Gryphon%20Rider%2C%20Gryphon%20Master%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "foreach",
+            variable: "holes",
+            item: "this_item",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "0..$($available_holes.length-1)",
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "$unit.id",
+            x: "$available_holes[$random].x",
+            y: "$available_holes[$random].y",
+            to_x: "$available_holes[$random].x",
+            to_y: "$available_holes[$random].y",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "$unit.id",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 1,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 2,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "Gorlack",
+            x: 27,
+            y: 19,
+            to_x: 26,
+            to_y: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "Zedrix",
+            x: 28,
+            y: 18,
+            to_x: 27,
+            to_y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:put_to_recall_list",
+            id: "Arinexis",
+            filter: "%7B%22tag%22%3A%22put_to_recall_list%22%2C%22attributes%22%3A%7B%22id%22%3A%22Arinexis%22%7D%2C%22children%22%3A%5B%5D%7D",
+            heal: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            shroud: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("I sssee now you are not Shek’kahan. I sssaw as I wished to sssee."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("As have I..."),
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("What do you mean?"),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("As a fledgling long ago... I strayed far from the Eyrie of Vladnir, lost in dreams of glorious things to be. From a cave nearby I heard cries. My friend Resha had happened upon a dishonored rogue hiding within. It sought her death to keep secret its presence there. It had cornered her."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("I thought myself invulnerable, the hero in my own tale. I charged at the beast, striking with bare claws, spitting feeble sparks. With one swipe I was sent to the ground, bleeding."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("My body froze me as it readied to flee... The desire to flee was overwhelming... Flee... abandon Resha to die..."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("The agonizing guilt of that last thought— <i>Leave my friend to die.</i> It reignited my heart with an unfamiliar passion. I would do anything to save my friend. I felt the whole world around me burning for the means to save her."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("That is when I felt it beneath my right wing. A clasher’s spear, broken a reach beneath the head. It had not been there when I entered the cave. It was there now."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("The rogue turned to finish Resha. I threw myself upon it with all my hate. The spear I ran deep into its cold heart."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("Ever since have I trusted absolutely in the fire that saved my friend... Ever since have I fled the fear that drove me toward such vile cowardice."),
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("You shunned Resha’s fears too."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("Breathing in her fears could chill my heart to cowardice."),
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("Yet her heart was brave. Her fear for you made it ssso."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("...... It did."),
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("Your fear for her made you brave."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("A discarded spear made me brave."),
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("That ssspear was your means to sssave your friend. It appeared <b>as</b> you feared for her. Because you did."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("............"),
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "horn-signals/horn-1.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 4500,
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knalgan_theme.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "frantic.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "casualties_of_war.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Arinexis",
+            unit: "Arinexis",
+            x: 29,
+            y: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Arinexis",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Arinexis",
+            text: _("Come ssswiftly! Deep dwellers emerge!"),
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            shroud: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 2000,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "horn-signals/horn-3.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 1,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "nw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 4000,
+          },
+          {
+            tag: "message",
+            speaker: "Thurdakor",
+            text: _("Sae whit hae we ’ere? Dragons... Sae mony dragons mah een cannae hawp whit thay’re seeing."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Thurdakor",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Arinexis",
+            text: _("It ssspeaksss but I hear no words... deep dwellers mussssst be drunken."),
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("It sssaid “dragons” and... <i>sssssomething</i> about dragons."),
+          },
+          {
+            tag: "message",
+            speaker: "Thurdakor",
+            text: _("A’ richt, noo ye listen tae me, dragons. Ah cannae hae ye juist standing aroond th’ hail winter dumping yer ye-ken-whit oan th’ frozen slopes, whilk, come spring, wull mak’ fur a stowed oot Knalgan gusher, if ye ken whit ah mean."),
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "horn-signals/horn-4.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 4500,
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("I do not grasp the words you speak. Use fewer of them with less haste."),
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "horn-signals/horn-5.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "Thurdakor",
+            text: _("Noo juist whit in th’ fiendish skies ‘boon is that suppose tae mean?! Ah wull hae ye ken—"),
+          },
+          {
+            tag: "message",
+            speaker: "Arinexis",
+            text: _("Your hornblower ssspews notesss over your words!"),
+          },
+          {
+            tag: "message",
+            speaker: "Thurdakor",
+            text: _("Juist dingy him, he hud awfy much tae dram."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("If you depart now no harm will come to you."),
+          },
+          {
+            tag: "message",
+            speaker: "Thurdakor",
+            text: _("Weel that is it then, wee jimmies. Ye a’ saw how ah tried tae be reasonable. Bit thare is na reasoning wi’ dragons. Thay ainlie ken th’ bite o’ oor axes."),
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "horn-signals/horn-7.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 4500,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "turn_refresh",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Thurdakor",
+            text: _("Whit urr ye waiting fur, how come urr ye laddies nae attacking?! Wait, mibbie ah didnae gie th’ order... A’richt lads, attack!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 4,
+            y: 20,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("‘ BAK NEKST SPRING ’"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thurdakor%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Thurdakor",
+            text: _("Whit’s this? How did ye git a’ th’ wey ower ’ere?"),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "$unit.id",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.hitpoints",
+                value: 1,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_32",
+        on: "branch_if_32",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "hole.x",
+            equals: "$null",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "hole",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22include_borders%22%3A%22no%22%2C%22terrain%22%3A%22Aa%2CHa%2CMs%22%2C%22variable%22%3A%22hole%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_33",
+        on: "branch_if_33",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "resha.id",
+            not_equals: "$null",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "resha",
+            x: "$hole.x",
+            y: "$hole.y",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_34",
+        on: "branch_if_34",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "resha.id",
+            equals: "$null",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Gorlack",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "nw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("Behold what ends you have wrought. You can no easier cast us off these peaks than we could pull you from the deep."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("I offer you this pact. All the peaks are our domain. For our metal works, so too are the soils within them. The vast under world beneath these we shall not violate. Both of us may hunt the lowlands so long as one takes not the other as game."),
+          },
+          {
+            tag: "message",
+            speaker: "Thurdakor",
+            text: _("Nae sure ah like the sound o’ this deal."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("It is the best you will have. We covet the soil as little as you do the clouds. We shall find no better neighbors than each other."),
+          },
+          {
+            tag: "message",
+            speaker: "Thurdakor",
+            text: _("Yer nae easy tae haggle with, dragon."),
+          },
+          {
+            tag: "message",
+            speaker: "Thurdakor",
+            text: _("Sae be it, a deal we hae. Ah wull even set free mah wee pet dragon fur ye."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "loc",
+            kill: "no",
+            id: "Thurdakor",
+          },
+          {
+            tag: "hook",
+            name: "command:store_reachable_locations",
+            variable: "hole",
+            filter: "%7B%22tag%22%3A%22store_reachable_locations%22%2C%22attributes%22%3A%7B%22range%22%3A%22movement%22%2C%22moves%22%3A%22max%22%2C%22variable%22%3A%22hole%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thurdakor%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Aa%2CHa%2CMs%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D",
+            moves: "max",
+            range: "movement",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_32",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            id: "Thurdakor",
+            x: "$hole.x",
+            y: "$hole.y",
+            raw: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$hole.x",
+            y: "$hole.y",
+            item_name: "",
+            image: "scenery%2Ftrapdoor-open.png",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            id: "Thurdakor",
+            x: "$loc.x",
+            y: "$loc.y",
+            raw: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_33",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_34",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Resha",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "loc",
+            kill: "no",
+            id: "Gorlack",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            id: "Resha",
+            x: "$loc.x",
+            y: "$loc.y",
+            raw: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Resha",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Gorlack",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "nw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Resha",
+            text: _("Gorlack, it seems no cave can keep us!"),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("<i>Resha...</i>"),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("<span size='large'>_ Resha!</span>"),
+          },
+          {
+            tag: "message",
+            speaker: "Thurdakor",
+            text: _("Well, that is it fur me, back doon th’ shute."),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            id: "Thurdakor",
+            x: "$hole.x",
+            y: "$hole.y",
+            raw: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "mud-fist.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$hole.x",
+            y: "$hole.y",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "message",
+            speaker: "Resha",
+            text: _("The deep dwellers hewed through my tomb of broken stone to uncover me. I was to be their captive in the underworld forever. Kept as a curio to frighten their hatchlings from straying to the above. By your pact with them, I was freed."),
+          },
+          {
+            tag: "message",
+            speaker: "Resha",
+            text: _("My friend, I am once again in your debt."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("Nay, Resha, it is I that owes you."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("Come, we have much to prepare for."),
+          },
+        ],
+      },
+    ],
+  },
+]

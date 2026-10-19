@@ -1,0 +1,1785 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Swamp of Esten"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Haldric",
+        gold: 140,
+        leader: "Prince_Haldric",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "cult",
+        gold: 120,
+        recruit: "Vampire Bat, Walking Corpse, Dark Adept",
+        leader: "Cleon",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "cult",
+        gold: 170,
+        recruit: "Dark Adept, Necrophage, Ghost, Skeleton, Skeleton Archer, Blood Bat, Soulless, Giant Mudcrawler",
+        leader: "Lollyra",
+      },
+      {
+        tag: "side",
+        id: 4,
+        team_name: "cult",
+        gold: 170,
+        recruit: "Dark Adept, Necrophage, Ghost, Skeleton, Skeleton Archer, Blood Bat, Soulless, Giant Mudcrawler",
+        leader: "Clurka",
+      },
+      {
+        tag: "map",
+        id: "scenario_04a_The_Swamp_of_Esten",
+        file: "04a_The_Swamp_of_Esten.map",
+      },
+      {
+        tag: "unit",
+        id: "Prince_Haldric",
+        type: "Noble Commander",
+        side: 1,
+        x: 3,
+        y: 9,
+        name: _("Prince Haldric"),
+      },
+      {
+        tag: "unit",
+        id: "Cleon",
+        type: "Dark Sorcerer",
+        side: 2,
+        x: 24,
+        y: 3,
+        name: _("Cleon"),
+      },
+      {
+        tag: "unit",
+        id: "Lollyra",
+        type: "Dark Sorcerer",
+        side: 3,
+        x: 30,
+        y: 23,
+        name: _("Lollyra"),
+      },
+      {
+        tag: "unit",
+        id: "Clurka",
+        type: "Dark Sorcerer",
+        side: 4,
+        x: 14,
+        y: 37,
+        name: _("Clurka"),
+      },
+      {
+        tag: "event",
+        id: "carryover_42",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_43",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "underground.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/trow_story_04-Fall_of_Eldaric.jpg"),
+            text: _("So it came to pass that Prince Haldric was forced from his home, never to return. With the help of his father’s noble sacrifice he has escaped through the southern pass. Haldric has left the lands of his home, and before him stretches the vast expanse of the southern kingdoms of his people."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_44",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/trow_story_04a-The_Swamp_of_Esten.jpg"),
+            text: _("The river road follows the Isle’s greatest river to the southeast. This road leads to the Isle’s second largest city, Clearwater Port. It would likely have been the Isle’s largest city save for the events of the Wesfolk War. The Lich-Lords befouled much of the land around the river during the course of a great battle. Now the swamp is home to a Wesfolk-imitating cult."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_45",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Prince_Haldric,Cleon,Lollyra,Clurka,u_1,u_2,u_3,u_4,u_5,u_6,Minister_Edren,u_7,u_8,u_9,u_10,u_11,u_12,Minister_Edren,u_13,u_14,u_15,u_16,u_17,u_18,Minister_Edren,u_19,u_20,u_21,u_22,u_23,u_24,Sir_Ruddry",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_46",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 36,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat all enemy leaders"),
+        defeat: _("Death of Prince Haldric Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "wanderer.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Prince%20Haldric%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("I can’t be finished yet... I still have so much more to do."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22King%20Eldaric%20IV%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("It is not yet my time! No!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Jessene%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! I’ll not go so easil—"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Outlaw%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Bah! I’m not dying today! <i>Poof</i>! (<i>The Lady Outlaw vanishes in a puff of smoke.</i>)"),
+          },
+          {
+            tag: "set_variable",
+            name: "have_lady",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "lady_store",
+            kill: "yes",
+            id: "Lady Outlaw",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Burin%20the%20Lost%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("Fool of a boy. I never should have followed him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ruddry%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Hail the Kings, may their bloodlines continue beyond my time!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ladoc%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("For Land and Lord, I sacrifice all!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Minister%20Edren%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("May the Lords of Light protect us all."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lord%20Typhon%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("Without him the bottoms of our ships will be completely vulnerable..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 34,
+            y: 12,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 19,
+            y: 5,
+            item_name: "",
+            image: "scenery%2Ftemple1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 30,
+            y: 10,
+            item_name: "",
+            image: "scenery%2Ftemple1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 34,
+            y: 36,
+            item_name: "",
+            image: "scenery%2Ftemple1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 26,
+            item_name: "",
+            image: "scenery%2Ftemple1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 5,
+            y: 12,
+            item_name: "",
+            image: "scenery%2Ftemple1.png",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Giant Scorpion",
+            side: 2,
+            x: 25,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Giant Scorpion",
+            side: 3,
+            x: 31,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Giant Scorpion",
+            side: 4,
+            x: 16,
+            y: 34,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Giant Scorpion",
+            side: 2,
+            x: 12,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_4",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Giant Scorpion",
+            side: 3,
+            x: 31,
+            y: 30,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_5",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Giant Scorpion",
+            side: 4,
+            x: 8,
+            y: 33,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_6",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Lady Outlaw",
+            unit: "Lady Outlaw",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Burin the Lost",
+            unit: "Burin the Lost",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("With great trepidation, Prince Haldric leads his refugee band into the Swamp of Esten. In the center of that very swamp a shroud of fog descends over young Prince Haldric."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("I have a very bad feeling about this. This awful swamp and its crazy cult... Before these troubles started we used to have to clear the swamp every spring and fall."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("I suppose with the rampaging bands of murderous orcs roaming about that hasn’t been done in a while."),
+          },
+          {
+            tag: "message",
+            speaker: "Burin the Lost",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("I miss the orcs... We go all this way, and (<i>sniff</i>) what a lovely smell we have discovered."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Outlaw",
+            text: _("This is too quiet. I don’t like this one bit, not one bit at all."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Wait, I think I hear something... To arms!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "possible_scorpion_locs.length",
+            greater_than_or_equal_to: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "scorpion_loc_i",
+            values: "0..$|($|possible_scorpion_locs.length - 1)",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "spawn_x",
+            value: "$|possible_scorpion_locs[$|scorpion_loc_i].x",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "spawn_y",
+            value: "$|possible_scorpion_locs[$|scorpion_loc_i].y",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: "$|spawn_x",
+            y: "$|spawn_y",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "new_turn",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "player_vision_edge",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Wwf%2CG*%2CR*%22%2C%22variable%22%3A%22player_vision_edge%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_vision%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22visible%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_adjacent_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_vision%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22visible%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "search_radius",
+            value: 5,
+          },
+          {
+            tag: "while",
+            test: "wml_condition_tree('tree=%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22possible_scorpion_locs.length%22%2C%22less_than%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22search_radius%22%2C%22less_than%22%3A%2220%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D')",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_locations",
+                variable: "temp",
+                filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%2C%22radius%22%3A%22%24%7Csearch_radius%22%2C%22variable%22%3A%22temp%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+              {
+                tag: "hook",
+                name: "command:store_locations",
+                variable: "possible_scorpion_locs",
+                filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22temp%22%2C%22variable%22%3A%22possible_scorpion_locs%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22player_vision_edge%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_15",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "search_radius",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22x%22%3A%2213%22%2C%22y%22%3A%226%22%2C%22radius%22%3A%224%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22x%22%3A%2210%22%2C%22y%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22x%22%3A%2228%22%2C%22y%22%3A%2233%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22triggered_scorpion_locs%22%2C%22radius%22%3A%224%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "triggered_scorpion_locs",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22triggered_scorpion_locs%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22x%22%3A%2213%22%2C%22y%22%3A%226%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22x%22%3A%2210%22%2C%22y%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22x%22%3A%2228%22%2C%22y%22%3A%2233%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%2C%22radius%22%3A%224%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22triggered_scorpion_locs%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 4,
+            y: 11,
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Careful, you don’t know what’s lurking in there!"),
+          },
+          {
+            tag: "spawn",
+            id: "Minister_Edren",
+            type: "White Mage",
+            side: 1,
+            x: 4,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Minister_Edren",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Minister_Edren",
+          },
+          {
+            tag: "message",
+            speaker: "Minister Edren",
+            text: _("Back you vile— Oh, sorry, I thought you were undead. When are those goofs in Clearwater Port going to clear the swamp again?"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-mad.webp",
+            text: _("Maybe they’ll clear it some time after the APOCALYPSE is OVER!"),
+          },
+          {
+            tag: "message",
+            speaker: "Minister Edren",
+            text: _("Oooh! I take it you wouldn’t mind if I helped out?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 33,
+            y: 35,
+          },
+          {
+            tag: "message",
+            text: _("Hey, there’s somebody hidden in the temple. Ack! Hold there!"),
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Vampire Bat",
+            side: 2,
+            x: 33,
+            y: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_7",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Walking Corpse",
+            side: 3,
+            x: 33,
+            y: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_8",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Walking Corpse",
+            side: 4,
+            x: 33,
+            y: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_9",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 18,
+            y: 4,
+          },
+          {
+            tag: "message",
+            text: _("Hey, there’s somebody hidden in the temple. Ack! Hold there!"),
+          },
+          {
+            tag: "spawn",
+            id: "u_10",
+            type: "Vampire Bat",
+            side: 2,
+            x: 18,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_10",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_10",
+          },
+          {
+            tag: "spawn",
+            id: "u_11",
+            type: "Walking Corpse",
+            side: 3,
+            x: 18,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_11",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_11",
+          },
+          {
+            tag: "spawn",
+            id: "u_12",
+            type: "Walking Corpse",
+            side: 4,
+            x: 18,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_12",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_12",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 0,
+            y: 25,
+          },
+          {
+            tag: "set_variable",
+            name: "amount_gold",
+            value: 50,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You retrieve $amount_gold pieces of gold."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 50,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 29,
+            y: 9,
+          },
+          {
+            tag: "set_variable",
+            name: "amount_gold",
+            value: 50,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You retrieve $amount_gold pieces of gold."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 50,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "random",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 0,
+            y: 25,
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Careful, you don’t know what’s lurking in there!"),
+          },
+          {
+            tag: "spawn",
+            id: "Minister_Edren",
+            type: "White Mage",
+            side: 1,
+            x: 0,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Minister_Edren",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Minister_Edren",
+          },
+          {
+            tag: "message",
+            speaker: "Minister Edren",
+            text: _("Back you vile— Oh, sorry, I thought you were undead. When are those goofs in Clearwater Port going to clear the swamp again?"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-mad.webp",
+            text: _("Maybe they’ll clear it some time after the APOCALYPSE is OVER!"),
+          },
+          {
+            tag: "message",
+            speaker: "Minister Edren",
+            text: _("Oooh! I take it you wouldn’t mind if I helped out?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 33,
+            y: 35,
+          },
+          {
+            tag: "message",
+            text: _("Hey, there’s somebody hidden in the temple. Ack! Hold there!"),
+          },
+          {
+            tag: "spawn",
+            id: "u_13",
+            type: "Vampire Bat",
+            side: 2,
+            x: 33,
+            y: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_13",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_13",
+          },
+          {
+            tag: "spawn",
+            id: "u_14",
+            type: "Walking Corpse",
+            side: 3,
+            x: 33,
+            y: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_14",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_14",
+          },
+          {
+            tag: "spawn",
+            id: "u_15",
+            type: "Walking Corpse",
+            side: 4,
+            x: 33,
+            y: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_15",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_15",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 4,
+            y: 11,
+          },
+          {
+            tag: "message",
+            text: _("Hey, there’s somebody hidden in the temple. Ack! Hold there!"),
+          },
+          {
+            tag: "spawn",
+            id: "u_16",
+            type: "Vampire Bat",
+            side: 2,
+            x: 4,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_16",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_16",
+          },
+          {
+            tag: "spawn",
+            id: "u_17",
+            type: "Walking Corpse",
+            side: 3,
+            x: 4,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_17",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_17",
+          },
+          {
+            tag: "spawn",
+            id: "u_18",
+            type: "Walking Corpse",
+            side: 4,
+            x: 4,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_18",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_18",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 18,
+            y: 4,
+          },
+          {
+            tag: "set_variable",
+            name: "amount_gold",
+            value: 50,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You retrieve $amount_gold pieces of gold."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 50,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 29,
+            y: 9,
+          },
+          {
+            tag: "set_variable",
+            name: "amount_gold",
+            value: 50,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You retrieve $amount_gold pieces of gold."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 50,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_23",
+        on: "branch_if_23",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "random",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 18,
+            y: 4,
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Careful, you don’t know what’s lurking in there!"),
+          },
+          {
+            tag: "spawn",
+            id: "Minister_Edren",
+            type: "White Mage",
+            side: 1,
+            x: 18,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Minister_Edren",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Minister_Edren",
+          },
+          {
+            tag: "message",
+            speaker: "Minister Edren",
+            text: _("Back you vile— Oh, sorry, I thought you were undead. When are those goofs in Clearwater Port going to clear the swamp again?"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-mad.webp",
+            text: _("Maybe they’ll clear it some time after the APOCALYPSE is OVER!"),
+          },
+          {
+            tag: "message",
+            speaker: "Minister Edren",
+            text: _("Oooh! I take it you wouldn’t mind if I helped out?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 33,
+            y: 35,
+          },
+          {
+            tag: "message",
+            text: _("Hey, there’s somebody hidden in the temple. Ack! Hold there!"),
+          },
+          {
+            tag: "spawn",
+            id: "u_19",
+            type: "Vampire Bat",
+            side: 2,
+            x: 33,
+            y: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_19",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_19",
+          },
+          {
+            tag: "spawn",
+            id: "u_20",
+            type: "Walking Corpse",
+            side: 3,
+            x: 33,
+            y: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_20",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_20",
+          },
+          {
+            tag: "spawn",
+            id: "u_21",
+            type: "Walking Corpse",
+            side: 4,
+            x: 33,
+            y: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_21",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_21",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 0,
+            y: 25,
+          },
+          {
+            tag: "message",
+            text: _("Hey, there’s somebody hidden in the temple. Ack! Hold there!"),
+          },
+          {
+            tag: "spawn",
+            id: "u_22",
+            type: "Vampire Bat",
+            side: 2,
+            x: 0,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_22",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_22",
+          },
+          {
+            tag: "spawn",
+            id: "u_23",
+            type: "Walking Corpse",
+            side: 3,
+            x: 0,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_23",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_23",
+          },
+          {
+            tag: "spawn",
+            id: "u_24",
+            type: "Walking Corpse",
+            side: 4,
+            x: 0,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_24",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_24",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 4,
+            y: 11,
+          },
+          {
+            tag: "set_variable",
+            name: "amount_gold",
+            value: 50,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You retrieve $amount_gold pieces of gold."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 50,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 29,
+            y: 9,
+          },
+          {
+            tag: "set_variable",
+            name: "amount_gold",
+            value: 50,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You retrieve $amount_gold pieces of gold."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 50,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_29",
+        on: "branch_if_29",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "random",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "1..3",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_23",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_29",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 33,
+            y: 11,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "scenery/signpost.png",
+            text: _("East — The Oldwood Forest. Enter at Your Own Risk!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lollyra%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Lollyra",
+            text: _("May I live forever in Undeath!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Clurka%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Clurka",
+            text: _("Ohh! To be risen again!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_38",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Cleon%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Cleon",
+            text: _("A prayer for life immortal!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_39",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "horse-canter.wav",
+          },
+          {
+            tag: "spawn",
+            id: "Sir_Ruddry",
+            type: "Knight",
+            side: 1,
+            x: 34,
+            y: 34,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Sir_Ruddry",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Sir_Ruddry",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Sir Ruddry",
+            x: 29,
+            y: 32,
+          },
+          {
+            tag: "message",
+            speaker: "Sir Ruddry",
+            text: _("I don’t know who you are, but you can’t continue down this road! There is a horde of those orcs bigger than any army I’ve ever seen just down the road!"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("I’m Haldric; my father was King Eldaric IV in the lands northwest of here. Soldier, have you deserted your post?"),
+          },
+          {
+            tag: "message",
+            speaker: "Sir Ruddry",
+            text: _("No, Sir! I’m the sole survivor of the Clearwater Port expeditionary force. Trust me, you can’t continue down this road, Sir. Especially with the refugees, you’ll be slaughtered."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Tell me, does Clearwater Port still stand? Is the port free?"),
+          },
+          {
+            tag: "message",
+            speaker: "Sir Ruddry",
+            text: _("As far as I know, Sir. We have a large army, and they were pressing all able-bodied men and boys into service when I left. That orcish army is huge, but they haven’t met the main body of our forces yet."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Well, we can’t go back, and the road ahead is blocked. I guess we’ll have to risk it and go through the Oldwood forest, then make a break for Clearwater Port."),
+          },
+          {
+            tag: "message",
+            speaker: "Burin the Lost",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("Oh great, now a forest... I should have stayed at home and taken my chances with the orcs!"),
+          },
+          {
+            tag: "message",
+            speaker: "Sir Ruddry",
+            text: _("Sir, if you don’t mind, I’ll go with you."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Outlaw",
+            text: _("On we go..."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "last_done",
+            value: "River",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_41",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("We have run out of time... We’ll be trapped in this swamp when winter arrives!"),
+          },
+        ],
+      },
+    ],
+  },
+]

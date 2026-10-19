@@ -1,0 +1,895 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Mages and Drakes"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "northern_alliance",
+        gold: 100,
+        recruit: "Dwarvish Fighter,Dwarvish Thunderer,Dwarvish Guardsman,Dwarvish Scout,Dwarvish Ulfserker,",
+        leader: "Aiglondur",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "drakes",
+        gold: 300,
+        recruit: "Drake Fighter,Drake Burner",
+        leader: "Glashal",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "northern_alliance",
+        gold: 80,
+        recruit: "Mage",
+        leader: "Master_Perrin",
+      },
+      {
+        tag: "map",
+        id: "scenario_05_Mages_and_Drakes",
+        file: "05_Mages_and_Drakes.map",
+      },
+      {
+        tag: "unit",
+        id: "Aiglondur",
+        type: "Dwarvish Fighter",
+        side: 1,
+        x: 8,
+        y: 16,
+        name: _("Aiglondur"),
+      },
+      {
+        tag: "unit",
+        id: "Glashal",
+        type: "Drake Flameheart",
+        side: 2,
+        x: 40,
+        y: 19,
+        name: _("Glashal"),
+      },
+      {
+        tag: "unit",
+        id: "Master_Perrin",
+        type: "Arch Mage",
+        side: 3,
+        x: 17,
+        y: 7,
+        name: _("Master Perrin"),
+      },
+      {
+        tag: "event",
+        id: "carryover_23",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.9,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_24",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Aiglondur,Glashal,Master_Perrin,Ratheln",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_25",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 30,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat Glashal"),
+        defeat: _("Death of Aiglondur or Angarthing Death of Master Perrin or Ratheln Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Aiglondur",
+            object: "%7B%22id%22%3A%22side_traits_1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%2C%7B%22applyTo%22%3A%22max_experience%22%2C%22increase%22%3A%22-20%25%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Glashal",
+            object: "%7B%22id%22%3A%22side_traits_2%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increaseDamage%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Master_Perrin",
+            object: "%7B%22id%22%3A%22side_traits_3%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%2C%7B%22applyTo%22%3A%22max_experience%22%2C%22increase%22%3A%22-20%25%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "legends_of_the_north.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "traveling_minstrels.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "nunc_dimittis.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Drake%20Glider%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Drake Glider",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Drake Glider",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Drake%20Arbiter%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Drake Arbiter",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Drake Arbiter",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Drake Warrior",
+            side: 2,
+            x: 37,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Fire Drake",
+            side: 2,
+            x: 38,
+            y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Drake Fighter",
+            side: 2,
+            x: 40,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Drake Clasher",
+            side: 2,
+            x: 35,
+            y: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "Preceptor",
+            type: "Red Mage",
+            side: 3,
+            x: 14,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Preceptor",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Mage",
+            side: 3,
+            x: 14,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Drake Warrior",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_12",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Fire Drake",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_13",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Drake Fighter",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_14",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Drake Clasher",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_15",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            type: "Gryphon Rider",
+            unit: "",
+            x: 8,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Angarthing",
+            unit: "Angarthing",
+            x: 7,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 1,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "spawn",
+            id: "Ratheln",
+            type: "Red Mage",
+            side: 3,
+            x: 5,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Ratheln",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Ratheln",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Ratheln",
+            x: 12,
+            y: 12,
+          },
+          {
+            tag: "message",
+            speaker: "Preceptor",
+            text: _("Master Perrin! Ratheln returns from the High Pass, with a company of dwarves. They look well-armed, and march in battle array."),
+          },
+          {
+            tag: "message",
+            speaker: "Master Perrin",
+            text: _("Help, if we are fortunate. Hail! You on the road! Who comes bearing arms into our valley?"),
+          },
+          {
+            tag: "message",
+            speaker: "Glashal",
+            text: _("‘Our’ valley, says Master Perrin. The arrogance of these mages is intolerable."),
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("A delegation of the Northern Alliance, traveling east. I believe we’ve found a friend of yours in the High Pass."),
+          },
+          {
+            tag: "message",
+            speaker: "Ratheln",
+            text: _("They can help us, Master Perrin."),
+          },
+          {
+            tag: "message",
+            speaker: "Master Perrin",
+            text: _("Well met, then. My students and I journeyed here to study the nest of drakes in the cliffs near the valley’s end."),
+          },
+          {
+            tag: "message",
+            speaker: "Master Perrin",
+            text: _("Unfortunately, they’ve proven uncooperative. The brutes attacked us several times, and show no sign of stopping. I fear that they mean to kill us all!"),
+          },
+          {
+            tag: "message",
+            speaker: "Glashal",
+            text: _("No more shall I suffer your cuts and needles. Long have you Prey harried us. I call a Hunt upon your kind, men and dwarves alike. None will leave this valley alive."),
+          },
+          {
+            tag: "message",
+            speaker: "Angarthing",
+            text: _("Harrumph. I wonder who is truly at fault here."),
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("We must fight or we will all be slain. Axes up!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Ratheln%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Master%20Perrin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Master Perrin",
+            text: _("Aaarrgh! This expedition was a terrible idea..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Glashal%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_unit_hidden",
+            id: "Glashal",
+            hidden: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "cutscene_retreating_enemies",
+            kill: "no",
+            side: 2,
+          },
+          {
+            tag: "foreach",
+            variable: "cutscene_retreating_enemies",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:scenario_move",
+                id: "$this_item.id",
+                x: 45,
+                y: "$($this_item.y)",
+                raw: "yes",
+              },
+              {
+                tag: "hook",
+                name: "command:kill_unit",
+                unit: "$this_item.id",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Master Perrin",
+            text: _("We’re grateful for your assistance, dwarves. Although I am sorry things came to blows — there is little left for us to study. The drakes are dead, and their castle is even more decrepit than it was before."),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Angarthing",
+            x: 36,
+            y: 19,
+          },
+          {
+            tag: "message",
+            speaker: "Angarthing",
+            text: _("Hmm. This stonework is of dwarvish make. But long-abandoned and fallen into disrepair... by the decay, since even before the drakes came. There are orc-arrows embedded in the walls..."),
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("I’ve a grim feeling about this. Knalga once suffered greatly at the hands of orcs. Kal Kartha is smaller by half, and not nigh as war-like."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Master Perrin",
+            text: _("You have helped us; it is our duty to help you. Ratheln, it was your quick-thinking that brought Aiglondur here. If the dwarves allow it, will you accompany them in their journey east?"),
+          },
+          {
+            tag: "message",
+            speaker: "Ratheln",
+            text: _("I will."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Ratheln",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.side",
+                value: 1,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("I am grateful."),
+          },
+          {
+            tag: "message",
+            speaker: "Master Perrin",
+            text: _("Then go safely and return swiftly. The rest of us shall make our retreat back to Alduin."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Aiglondur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("I fall!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Angarthing%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("Oh no! Without a loremaster we cannot complete our mission!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Ratheln%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Ratheln",
+            text: _("Aaarrgh! What will become of my students back home..."),
+          },
+        ],
+      },
+    ],
+  },
+]

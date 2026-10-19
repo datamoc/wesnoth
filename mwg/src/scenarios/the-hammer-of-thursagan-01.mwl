@@ -1,0 +1,655 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("At the East Gate"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "northern_alliance",
+        gold: 100,
+        recruit: "Dwarvish Fighter,Dwarvish Thunderer,Dwarvish Guardsman,Dwarvish Scout,Dwarvish Ulfserker,",
+        leader: "Aiglondur",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 200,
+        recruit: "Orcish Assassin,Orcish Archer",
+        leader: "Bashnark",
+      },
+      {
+        tag: "map",
+        id: "scenario_01_At_the_East_Gate",
+        file: "01_At_the_East_Gate.map",
+      },
+      {
+        tag: "unit",
+        id: "Aiglondur",
+        type: "Dwarvish Fighter",
+        side: 1,
+        x: 4,
+        y: 14,
+        name: _("Aiglondur"),
+      },
+      {
+        tag: "unit",
+        id: "Bashnark",
+        type: "Orcish Warrior",
+        side: 2,
+        x: 40,
+        y: 24,
+        name: _("Bashnark"),
+      },
+      {
+        tag: "event",
+        id: "carryover_18",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.9,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_19",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "northerners.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("In the first few years after the founding of the Northern Alliance, the dwarves of Knalga and the human population of Dwarven Doors were fully preoccupied with rebuilding what had been broken by the long orcish occupation. But soon enough they prospered once again. The dwarves began mining their past for inspiration to rebuild Knalga even greater than before, and began also reaching out for contact with their scattered kinfolk."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_20",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("But the threat from hostile orcs, wild men, and remnant undead was not yet ended. The dwarves kept strong guards on the approaches to Knalga. In the year 550 after the founding of Wesnoth, the captain of the East Gate received a warning that a small band of rogue orcs had been sighted."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_21",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Aiglondur,Bashnark",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_22",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 35,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat Bashnark"),
+        defeat: _("Death of Aiglondur Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Aiglondur",
+            object: "%7B%22id%22%3A%22side_traits_1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%2C%7B%22applyTo%22%3A%22max_experience%22%2C%22increase%22%3A%22-20%25%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Bashnark",
+            object: "%7B%22id%22%3A%22side_traits_2%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increaseDamage%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "northerners.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knalgan_theme.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader2",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Orcish%20Grunt%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Orcish Grunt",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Orcish Grunt",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Wolf%20Rider%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Wolf Rider",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Wolf Rider",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_10",
+        on: "branch_if_10",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Orcish Grunt",
+            side: 2,
+            x: 35,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_11",
+        on: "branch_if_11",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Orcish Slayer",
+            side: 2,
+            x: 39,
+            y: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Orcish Grunt",
+            side: 2,
+            x: 40,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Orcish Crossbowman",
+            side: 2,
+            x: 38,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 29,
+            y: 7,
+            item_name: "",
+            image: "items%2Fdwarven-keep-tile.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 25,
+            item_name: "",
+            image: "items%2Fdwarven-keep-tile.png",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Orcish Grunt",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_10",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Orcish Slayer",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_11",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Orcish Grunt",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_12",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Orcish Crossbowman",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_13",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 7,
+            y: 14,
+            item_name: "",
+            image: "units%2Fdwarves%2Flord-se-hammer-defend1.png~GS()~CS(15%2C15%2C15)~SCALE_SHARP(100%2C100)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 16,
+            item_name: "",
+            image: "units%2Fdwarves%2Flord-se-hammer3.png~GS()~CS(15%2C15%2C15)~SCALE_SHARP(100%2C100)",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Aiglondur",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("<i>Up axes!</i> We will be the Northern Alliance’s arm today, and kill or scatter these invaders."),
+          },
+          {
+            tag: "message",
+            speaker: "Bashnark",
+            text: _("We are the true orcs, not the weaklings who ally with human-worms and stinky-midgets like you. Come out of your hole and fight us or we will burn your fields to ash!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "cutscene_retreating_enemies",
+            kill: "no",
+            side: 2,
+          },
+          {
+            tag: "foreach",
+            variable: "cutscene_retreating_enemies",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:scenario_move",
+                id: "$this_item.id",
+                x: 41,
+                y: "$($this_item.y)",
+                raw: "yes",
+              },
+              {
+                tag: "hook",
+                name: "command:kill_unit",
+                unit: "$this_item.id",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("What is this? Their vanquished leader wears a cloak-pin of dwarvish make. And it bears a loremaster’s emblem."),
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("The maker’s mark is strange to me. We had best consult the lord Hamel."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Bashnark%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Rarrrggh..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Aiglondur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("I fall!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

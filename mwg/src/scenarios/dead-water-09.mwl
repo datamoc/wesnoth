@@ -1,0 +1,830 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Mage"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good guys",
+        gold: 160,
+        recruit: "Merman Citizen, Merman Fighter, Merman Hunter, Mermaid Initiate",
+        leader: "Kai_Krellis",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "bad guys",
+      },
+      {
+        tag: "map",
+        id: "scenario_09_The_Mage",
+        file: "The_Mage.map",
+      },
+      {
+        tag: "unit",
+        id: "Kai_Krellis",
+        type: "Merman Child King",
+        side: 1,
+        x: 4,
+        y: 22,
+        name: _("Kai Krellis"),
+      },
+      {
+        tag: "event",
+        id: "carryover_14",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "avoid,7,4,0,10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_15",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("The party traveled back to the mainland and followed the shore further north. Kai Krellis had much to think about. First, what Tyegëa had revealed about his ancestry gave him questions he could not answer. Second, he was nervous about the task ahead. He felt confidence in his people but feared paying too great a price in dead and wounded to pass Tyegëa’s test. He felt sometimes angry at Tyegëa for sending him on this extra journey, and sometimes grateful that she was willing to help at all."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_16",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("After several days, the smell of the swamp was just becoming noticeable when they found a small ruined castle in the right place to be the one Tyegëa had mentioned. Night was falling, and it was very dark beneath the trees, but Krellis was in a hurry, now that the end of their journey was in sight. He decided to go ashore and try to find the mage immediately."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_17",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kai_Krellis,Caladon",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_18",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 20,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Find Caladon the mage Move a merfolk unit to Caladon’s shack and talk to him You can also visit Caladon with Keshan You can also visit Caladon with Inky"),
+        defeat: _("Death of Kai Krellis Death of Cylanna Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "revelation.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Cylanna",
+            unit: "Cylanna",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Gwabbo",
+            unit: "Gwabbo",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Teeloa",
+            unit: "Teeloa",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Keshan",
+            unit: "Keshan",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Inky",
+            unit: "Inky",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Tyegea",
+            unit: "Tyegea",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Friendly Bat",
+            unit: "Friendly Bat",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Undead Bat",
+            unit: "Undead Bat",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Fearsome Bat",
+            unit: "Fearsome Bat",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 8,
+            y: 5,
+            item_name: "",
+            image: "scenery%2Ftemple1.png",
+          },
+          {
+            tag: "spawn",
+            id: "Caladon",
+            type: "Silver Mage",
+            side: 1,
+            x: 7,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Caladon",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Caladon",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "Caladon_stored",
+            kill: "yes",
+            id: "Caladon",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Giant Spider",
+            side: 2,
+            x: 16,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Giant Spider",
+            side: 2,
+            x: 1,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_0",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22include_borders%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%228%22%2C%22y%22%3A%225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Qx*%2CW*%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22K*%22%2C%22radius%22%3A%228%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_2",
+            value: 10,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_2",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_0",
+                variable: "_mwg_random_pick_1",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_2",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("I do not much care for the look of this area. The darkness seems to hang beneath the trees, unnaturally dense."),
+          },
+          {
+            tag: "message",
+            speaker: "Teeloa",
+            text: _("I just heard a splash. I think something’s out there."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Let us find the mage quickly and leave."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_city_falls.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_6",
+        on: "branch_if_6",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "chasm_hex.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "location_found",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_5",
+        on: "branch_if_5",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "time_of_day",
+            equals: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "bats",
+            kill: "no",
+          },
+          {
+            tag: "foreach",
+            variable: "bats",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "distance",
+                value: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "location_found",
+                value: "no",
+                mode: "value",
+              },
+              {
+                tag: "while",
+                test: "wml_condition_tree('tree=%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22location_found%22%2C%22equals%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22distance%22%2C%22less_than_equal_to%22%3A%2299%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D')",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "chasm_hex",
+                    filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Qx*%22%2C%22variable%22%3A%22chasm_hex%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24this_item.x%22%2C%22y%22%3A%22%24this_item.y%22%2C%22radius%22%3A%22%24distance%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_6",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_dynamic",
+                    variable: "distance",
+                    value: 1,
+                    mode: "add",
+                  },
+                ],
+              },
+              {
+                tag: "hook",
+                name: "command:kill_unit",
+                unit: "$this_item.id",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_7",
+        on: "branch_if_7",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "time_of_day",
+            equals: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22time_of_day%22%2C%22equals%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "chasm_hexes",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22chasm_hexes%22%2C%22terrain%22%3A%22Qx*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22x%22%3A%2210%22%2C%22y%22%3A%2221%22%2C%22radius%22%3A%225%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "chasm_hexes",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "random",
+                values: "Vampire Bat",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$random",
+                side: 2,
+                x: "$this_item.x",
+                y: "$this_item.y",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_8",
+        on: "branch_if_8",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Teeloa",
+            text: _("Hey, that cavern is full of bats! I HATE those things."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("I hope there aren’t any more bats in there."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "time_of_day",
+            value: "$turn_number",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "time_of_day",
+            value: 6,
+            mode: "modulo",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_5",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_7",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_8",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 7,
+            y: 4,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22Neep%2C%20neep%2C%20neep!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22unstore_unit%22%2C%22attributes%22%3A%7B%22variable%22%3A%22Caladon_stored%22%2C%22find_vacant%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Caladon%22%2C%22message%22%3A%22Another%20of%20these%20ACCURSED%20bats!%20BEGONE!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22animate_unit%22%2C%22attributes%22%3A%7B%22flag%22%3A%22attack%22%2C%22hits%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Caladon%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22primary_attack%22%2C%22attributes%22%3A%7B%22range%22%3A%22ranged%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22facing%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22sound%22%2C%22attributes%22%3A%7B%22name%22%3A%22bat-flapping.wav%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22floating_text%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%2C%22text%22%3A%22%3Cspan%20color%3D'red'%3E_%20SHRIEK!%3C%2Fspan%3E%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22move_unit%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%2C%22to_x%22%3A%2210%22%2C%22to_y%22%3A%226%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22move_unit%22%2C%22attributes%22%3A%7B%22id%22%3A%22Caladon%22%2C%22to_x%22%3A%228%22%2C%22to_y%22%3A%225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22delay%22%2C%22attributes%22%3A%7B%22time%22%3A%22400%22%2C%22accelerate%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22store_unit%22%2C%22attributes%22%3A%7B%22variable%22%3A%22Caladon_stored%22%2C%22kill%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Caladon%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Cylanna%22%2C%22message%22%3A%22Caladon%20does%20not%20seem%20to%20be%20very%20happy%20about%20the%20bat%20infestation.%20_%20He%20might%20be%20more%20welcoming%20of%20one%20of%20our%20people.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Kai%20Krellis%22%2C%22message%22%3A%22Let%E2%80%99s%20go%2C%20men!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22label%22%2C%22attributes%22%3A%7B%22x%22%3A%228%22%2C%22y%22%3A%225%22%2C%22text%22%3A%22Caladon%E2%80%99s%20shack%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22Caladon_discovered%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22show_objectives%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Neep, neep, neep!"),
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "Caladon_stored",
+          },
+          {
+            tag: "message",
+            speaker: "Caladon",
+            text: _("Another of these ACCURSED bats! BEGONE!"),
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "bat-flapping.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            id: "",
+            x: "$x1",
+            y: "$y1",
+            raw: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Caladon",
+            x: 7,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 400,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "Caladon_stored",
+            kill: "yes",
+            id: "Caladon",
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("Caladon does not seem to be very happy about the bat infestation. _ He might be more welcoming of one of our people."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Let’s go, men!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "Caladon_discovered",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 7,
+            y: 4,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22unstore_unit%22%2C%22attributes%22%3A%7B%22variable%22%3A%22Caladon_stored%22%2C%22find_vacant%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Caladon%22%2C%22message%22%3A%22What%20kind%20of%20abomination%20is%20THAT!%3F!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22animate_unit%22%2C%22attributes%22%3A%7B%22flag%22%3A%22attack%22%2C%22hits%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Caladon%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22primary_attack%22%2C%22attributes%22%3A%7B%22range%22%3A%22melee%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22facing%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22move_unit%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%2C%22to_x%22%3A%228%22%2C%22to_y%22%3A%226%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22move_unit%22%2C%22attributes%22%3A%7B%22id%22%3A%22Caladon%22%2C%22to_x%22%3A%228%22%2C%22to_y%22%3A%225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22delay%22%2C%22attributes%22%3A%7B%22time%22%3A%22400%22%2C%22accelerate%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22store_unit%22%2C%22attributes%22%3A%7B%22variable%22%3A%22Caladon_stored%22%2C%22kill%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Caladon%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Cylanna%22%2C%22message%22%3A%22It%20appears%20that%20Caladon%20does%20not%20want%20to%20deal%20with%20the%20undead.%20_%20He%20might%20be%20more%20welcoming%20of%20one%20of%20our%20people.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Kai%20Krellis%22%2C%22message%22%3A%22Let%E2%80%99s%20go%2C%20men!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22label%22%2C%22attributes%22%3A%7B%22x%22%3A%228%22%2C%22y%22%3A%225%22%2C%22text%22%3A%22Caladon%E2%80%99s%20shack%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22Caladon_discovered%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22show_objectives%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "Caladon_stored",
+          },
+          {
+            tag: "message",
+            speaker: "Caladon",
+            text: _("What kind of abomination is THAT!?!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            id: "",
+            x: "$x1",
+            y: "$y1",
+            raw: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Caladon",
+            x: 7,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 400,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "Caladon_stored",
+            kill: "yes",
+            id: "Caladon",
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("It appears that Caladon does not want to deal with the undead. _ He might be more welcoming of one of our people."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Let’s go, men!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "Caladon_discovered",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 7,
+            y: 4,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22unstore_unit%22%2C%22attributes%22%3A%7B%22variable%22%3A%22Caladon_stored%22%2C%22find_vacant%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22have_unit%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%2C%22id%22%3A%22Keshan%2CInky%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22have_unit%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%2C%22id%22%3A%22Keshan%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22There%20is%20somebody%20here.%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22Gllllbbbg!%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Caladon%22%2C%22message%22%3A%22Whoa%20there!%20BACK%20off%20or%20else!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Kai%20Krellis%22%2C%22message%22%3A%22Do%20not%20worry%20about%20him.%20He%20is%20friendly.%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22Hey%2C%20I%20found%20somebody!%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Kai%20Krellis%22%2C%22message%22%3A%22You%20must%20be%20Caladon.%20We%20are%20glad%20to%20see%20you.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Caladon%22%2C%22message%22%3A%22I%20am%20Caladon.%20Am%20I%20glad%20to%20see%20YOU%3F%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Kai%20Krellis%22%2C%22message%22%3A%22I%20am%20Kai%20Krellis%20of%20Jotha.%20I%20am%20seeking%20a%20flaming%20sword%2C%20and%20I%20am%20told%20you%20know%20where%20to%20find%20it.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Caladon%22%2C%22message%22%3A%22Ha!%20A%20MERman%20wants%20the%20Flaming%20Sword%20of%20AGNOVON!%20Why%20would%20YOU%20be%20able%20to%20get%20it%20when%20so%20many%20others%20could%20NOT%3F%20Although%20you%20do%20have%20an%20impressive%20collection%20of%20allies%20there.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Kai%20Krellis%22%2C%22message%22%3A%22Whether%20I%20can%20succeed%20or%20not%2C%20I%20must%20try.%20Will%20you%20help%20me%20find%20it%3F%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Caladon%22%2C%22message%22%3A%22I%20will%20show%20you%20EXACTLY%20where%20it%20is%2C%20but%20knowing%20where%20to%20FIND%20it%20isn%E2%80%99t%20the%20hard%20part.%20Oh%2C%20no!%20You%20will%20see%2C%20my%20fine%20merman%2C%20you%20will%20see.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Cylanna%22%2C%22message%22%3A%22We%20would%20be%20very%20grateful%20if%20you%20would%20guide%20us.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Caladon%22%2C%22message%22%3A%22I%20would%20be%20HAPPY%20to%20guide%20such%20a%20pretty%20mermaid%20AND%20her%20friends.%20Follow%20me%20everybody!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22scorp%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22time_of_day%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22Caladon_stored%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22Caladon_discovered%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22endlevel%22%2C%22attributes%22%3A%7B%22result%22%3A%22victory%22%2C%22bonus%22%3A%22yes%22%2C%22carryover_add%22%3A%22yes%22%2C%22carryover_percentage%22%3A%2240%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "Caladon_stored",
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("You must be Caladon. We are glad to see you."),
+          },
+          {
+            tag: "message",
+            speaker: "Caladon",
+            text: _("I am Caladon. Am I glad to see YOU?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("I am Kai Krellis of Jotha. I am seeking a flaming sword, and I am told you know where to find it."),
+          },
+          {
+            tag: "message",
+            speaker: "Caladon",
+            text: _("Ha! A MERman wants the Flaming Sword of AGNOVON! Why would YOU be able to get it when so many others could NOT? Although you do have an impressive collection of allies there."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Whether I can succeed or not, I must try. Will you help me find it?"),
+          },
+          {
+            tag: "message",
+            speaker: "Caladon",
+            text: _("I will show you EXACTLY where it is, but knowing where to FIND it isn’t the hard part. Oh, no! You will see, my fine merman, you will see."),
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("We would be very grateful if you would guide us."),
+          },
+          {
+            tag: "message",
+            speaker: "Caladon",
+            text: _("I would be HAPPY to guide such a pretty mermaid AND her friends. Follow me everybody!"),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Cylanna%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Cylanna! I need you!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Tyegëa will never forgive me. We are lost."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kai%20Krellis%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("We are lost without our king!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

@@ -1,0 +1,1628 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Isle of the Damned"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "elves",
+        gold: 0,
+        leader: "Konrad",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "undead",
+        gold: 50,
+        recruit: "Skeleton,Vampire Bat,Ghost,Dark Adept,Chocobone",
+        leader: "Haf-Mal",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "undead",
+        gold: 50,
+        recruit: "Skeleton,Skeleton Archer,Walking Corpse,Vampire Bat,Ghost,Dark Adept",
+        leader: "Jarmal-Gorg",
+      },
+      {
+        tag: "map",
+        id: "scenario_05b_Isle_of_the_Damned",
+        file: "05b_Isle_of_the_Damned.map",
+      },
+      {
+        tag: "unit",
+        id: "Konrad",
+        type: "Commander",
+        side: 1,
+        x: 29,
+        y: 12,
+        name: _("Konrad"),
+      },
+      {
+        tag: "unit",
+        id: "Haf-Mal",
+        type: "Lich",
+        side: 2,
+        x: 3,
+        y: 31,
+        name: _("Haf-Mal"),
+      },
+      {
+        tag: "unit",
+        id: "Jarmal-Gorg",
+        type: "Lich",
+        side: 3,
+        x: 8,
+        y: 7,
+        name: _("Jarmal-Gorg"),
+      },
+      {
+        tag: "unit",
+        id: "u_1",
+        type: "Elvish Fighter",
+        side: 1,
+        x: 29,
+        y: 12,
+      },
+      {
+        tag: "event",
+        id: "carryover_37",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_38",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("But the voyage did not go as smoothly as had been hoped. A storm blew up and bore down on the ship. Though all hands were on deck working desperately, a sudden gust of wind flung Konrad overboard as he attempted to secure the sails..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_39",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("The merfolk finally saved Konrad from the sea, but were unable to get him back to the ship. By dint of great effort they reached a nearby island..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_40",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Konrad,Haf-Mal,Jarmal-Gorg,Kalba,Gnaba,Delurin,Xakae,u_2,u_3,Moremirmu,Xakae,u_4,u_5,Moremirmu,Moremirmu,Xakae,u_6,u_7,Xakae,u_8,u_9,Moremirmu,Moremirmu,Xakae,u_10,u_11",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_41",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 26,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Resist until the end of the turns Defeat all enemy leaders"),
+        defeat: _("Death of Konrad"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "elvish-theme.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "nunc_dimittis.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "silvan_sanctuary.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "weight_of_revenge.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "hidden_advisor",
+            kill: "no",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "via_isle_of_the_damned",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 13,
+            item_name: "",
+            image: "scenery%2Ftemple-cracked1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 10,
+            y: 17,
+            item_name: "",
+            image: "scenery%2Ftemple-cracked2.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 9,
+            y: 15,
+            item_name: "",
+            image: "scenery%2Ftemple-cracked3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:store_side",
+            side: 1,
+            variable: "side",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "isle_damned_starting_gold",
+            value: "$side.gold",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            gold: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "Elvish Fighter,Elvish Archer,Elvish Shaman,Elvish Scout,Mage,Horseman",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "allow",
+            types: "Thug,Poacher,Footpad",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "iotd_recall_store",
+            kill: "yes",
+            side: 1,
+            not_id: "Konrad",
+          },
+          {
+            tag: "spawn",
+            id: "Kalba",
+            type: "Merman Fighter",
+            side: 1,
+            x: 26,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Kalba",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Kalba",
+          },
+          {
+            tag: "spawn",
+            id: "Gnaba",
+            type: "Merman Fighter",
+            side: 1,
+            x: 30,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Gnaba",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Gnaba",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Konrad",
+            portrait: "portraits/konrad-elvish-concerned.webp",
+            text: _("Whew, I survived. But now where am I? Is this island inhabited?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalba",
+            text: _("We have heard only the worst things about this place, my lord. It is said that the legions of the undead have come here in great numbers and devastated the island into an ugly wasteland."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            portrait: "portraits/konrad-elvish-concerned.webp",
+            text: _("Let’s hope these rumors are not true! I have none of my men or gold with me! How could I defend myself?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalba",
+            text: _("There are still some bands of humans hiding on the island, my lord. If you recruit some of them to help, we might have some hope of holding off the undead hordes!"),
+          },
+          {
+            tag: "spawn",
+            id: "Delurin",
+            type: "Outlaw",
+            side: 1,
+            x: 19,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Delurin",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Delurin",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Delurin",
+            x: 20,
+            y: 11,
+          },
+          {
+            tag: "message",
+            speaker: "Delurin",
+            text: _("Maybe we can make a deal! Help us defeat those evil creatures! You may use our gold reserves to lead us!"),
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            gold: 100,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You receive 100 pieces of gold!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("There are some ancient temples to the southwest; I wonder what might be inside them!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 8,
+            y: 14,
+          },
+          {
+            tag: "message",
+            text: _("The temple seems to be empty."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 9,
+            y: 16,
+          },
+          {
+            tag: "message",
+            text: _("Looks like there is somebody hidden in the temple."),
+          },
+          {
+            tag: "spawn",
+            id: "Xakae",
+            type: "Revenant",
+            side: 2,
+            x: 9,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Xakae",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Xakae",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Walking Corpse",
+            side: 2,
+            x: 9,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Walking Corpse",
+            side: 2,
+            x: 9,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_3",
+          },
+          {
+            tag: "message",
+            speaker: "Xakae",
+            text: _("Surprise! Searching for magi, and all I get is these foul humans!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 10,
+            y: 12,
+          },
+          {
+            tag: "message",
+            text: _("Looks like there is somebody hidden in the temple."),
+          },
+          {
+            tag: "spawn",
+            id: "Moremirmu",
+            type: "White Mage",
+            side: 1,
+            x: 10,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Moremirmu",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Moremirmu",
+          },
+          {
+            tag: "set_variable",
+            name: "moremirmu",
+            value: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Moremirmu",
+            text: _("I was hiding in this holy place, planning how to defeat the evil undead. Now with your help, I can destroy them."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Join us, wise one. We welcome your aid!"),
+          },
+          {
+            tag: "message",
+            speaker: "Moremirmu",
+            text: _("If we eradicate the undead blight on these islands, I will surely go with you. Otherwise, I plan to finish my task here before moving on."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 8,
+            y: 14,
+          },
+          {
+            tag: "message",
+            text: _("Looks like there is somebody hidden in the temple."),
+          },
+          {
+            tag: "spawn",
+            id: "Xakae",
+            type: "Revenant",
+            side: 2,
+            x: 8,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Xakae",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Xakae",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Walking Corpse",
+            side: 2,
+            x: 8,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_4",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Walking Corpse",
+            side: 2,
+            x: 8,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_5",
+          },
+          {
+            tag: "message",
+            speaker: "Xakae",
+            text: _("Surprise! Searching for magi, and all I get is these foul humans!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 9,
+            y: 16,
+          },
+          {
+            tag: "message",
+            text: _("The temple seems to be empty."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 10,
+            y: 12,
+          },
+          {
+            tag: "message",
+            text: _("Looks like there is somebody hidden in the temple."),
+          },
+          {
+            tag: "spawn",
+            id: "Moremirmu",
+            type: "White Mage",
+            side: 1,
+            x: 10,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Moremirmu",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Moremirmu",
+          },
+          {
+            tag: "set_variable",
+            name: "moremirmu",
+            value: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Moremirmu",
+            text: _("I was hiding in this holy place, planning how to defeat the evil undead. Now with your help, I can destroy them."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Join us, wise one. We welcome your aid!"),
+          },
+          {
+            tag: "message",
+            speaker: "Moremirmu",
+            text: _("If we eradicate the undead blight on these islands, I will surely go with you. Otherwise, I plan to finish my task here before moving on."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 8,
+            y: 14,
+          },
+          {
+            tag: "message",
+            text: _("The temple seems to be empty."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 9,
+            y: 16,
+          },
+          {
+            tag: "message",
+            text: _("Looks like there is somebody hidden in the temple."),
+          },
+          {
+            tag: "spawn",
+            id: "Moremirmu",
+            type: "White Mage",
+            side: 1,
+            x: 9,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Moremirmu",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Moremirmu",
+          },
+          {
+            tag: "set_variable",
+            name: "moremirmu",
+            value: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Moremirmu",
+            text: _("I was hiding in this holy place, planning how to defeat the evil undead. Now with your help, I can destroy them."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Join us, wise one. We welcome your aid!"),
+          },
+          {
+            tag: "message",
+            speaker: "Moremirmu",
+            text: _("If we eradicate the undead blight on these islands, I will surely go with you. Otherwise, I plan to finish my task here before moving on."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 10,
+            y: 12,
+          },
+          {
+            tag: "message",
+            text: _("Looks like there is somebody hidden in the temple."),
+          },
+          {
+            tag: "spawn",
+            id: "Xakae",
+            type: "Revenant",
+            side: 2,
+            x: 10,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Xakae",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Xakae",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Walking Corpse",
+            side: 2,
+            x: 10,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_6",
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Walking Corpse",
+            side: 2,
+            x: 10,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_7",
+          },
+          {
+            tag: "message",
+            speaker: "Xakae",
+            text: _("Surprise! Searching for magi, and all I get is these foul humans!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 8,
+            y: 14,
+          },
+          {
+            tag: "message",
+            text: _("Looks like there is somebody hidden in the temple."),
+          },
+          {
+            tag: "spawn",
+            id: "Xakae",
+            type: "Revenant",
+            side: 2,
+            x: 8,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Xakae",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Xakae",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Walking Corpse",
+            side: 2,
+            x: 8,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_8",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Walking Corpse",
+            side: 2,
+            x: 8,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_9",
+          },
+          {
+            tag: "message",
+            speaker: "Xakae",
+            text: _("Surprise! Searching for magi, and all I get is these foul humans!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 9,
+            y: 16,
+          },
+          {
+            tag: "message",
+            text: _("Looks like there is somebody hidden in the temple."),
+          },
+          {
+            tag: "spawn",
+            id: "Moremirmu",
+            type: "White Mage",
+            side: 1,
+            x: 9,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Moremirmu",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Moremirmu",
+          },
+          {
+            tag: "set_variable",
+            name: "moremirmu",
+            value: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Moremirmu",
+            text: _("I was hiding in this holy place, planning how to defeat the evil undead. Now with your help, I can destroy them."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Join us, wise one. We welcome your aid!"),
+          },
+          {
+            tag: "message",
+            speaker: "Moremirmu",
+            text: _("If we eradicate the undead blight on these islands, I will surely go with you. Otherwise, I plan to finish my task here before moving on."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 10,
+            y: 12,
+          },
+          {
+            tag: "message",
+            text: _("The temple seems to be empty."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 8,
+            y: 14,
+          },
+          {
+            tag: "message",
+            text: _("Looks like there is somebody hidden in the temple."),
+          },
+          {
+            tag: "spawn",
+            id: "Moremirmu",
+            type: "White Mage",
+            side: 1,
+            x: 8,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Moremirmu",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Moremirmu",
+          },
+          {
+            tag: "set_variable",
+            name: "moremirmu",
+            value: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Moremirmu",
+            text: _("I was hiding in this holy place, planning how to defeat the evil undead. Now with your help, I can destroy them."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Join us, wise one. We welcome your aid!"),
+          },
+          {
+            tag: "message",
+            speaker: "Moremirmu",
+            text: _("If we eradicate the undead blight on these islands, I will surely go with you. Otherwise, I plan to finish my task here before moving on."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 9,
+            y: 16,
+          },
+          {
+            tag: "message",
+            text: _("The temple seems to be empty."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 10,
+            y: 12,
+          },
+          {
+            tag: "message",
+            text: _("Looks like there is somebody hidden in the temple."),
+          },
+          {
+            tag: "spawn",
+            id: "Xakae",
+            type: "Revenant",
+            side: 2,
+            x: 10,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Xakae",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Xakae",
+          },
+          {
+            tag: "spawn",
+            id: "u_10",
+            type: "Walking Corpse",
+            side: 2,
+            x: 10,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_10",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_10",
+          },
+          {
+            tag: "spawn",
+            id: "u_11",
+            type: "Walking Corpse",
+            side: 2,
+            x: 10,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_11",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_11",
+          },
+          {
+            tag: "message",
+            speaker: "Xakae",
+            text: _("Surprise! Searching for magi, and all I get is these foul humans!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "1..6",
+          },
+          {
+            tag: "switch",
+            variable: "random",
+            children: [
+              {
+                tag: "case",
+                equals: 6,
+              },
+              {
+                tag: "case",
+                equals: 5,
+              },
+              {
+                tag: "case",
+                equals: 4,
+              },
+              {
+                tag: "case",
+                equals: 3,
+              },
+              {
+                tag: "case",
+                equals: 2,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Moremirmu%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Moremirmu",
+            text: _("Fight on against the undead without me, friends!"),
+          },
+          {
+            tag: "set_variable",
+            name: "moremirmu",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_25",
+        on: "branch_if_25",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "moremirmu",
+            equals: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Moremirmu",
+            text: _("Together we have vanquished the foul undead! Come, I will join you on your noble quest."),
+          },
+          {
+            tag: "set_variable",
+            name: "moremirmu",
+            value: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Konrad",
+            portrait: "portraits/konrad-elvish-glad.webp",
+            text: _("We have wrested control of the island from the evil undead! Now all we have to do is wait for the ship to arrive, so we can make our way to Elensefar!"),
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "ambient/ship.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "32,6;31,6;30,7;29,6;28,6;27,6;26,7",
+            radius: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 27,
+            y: 8,
+            item_name: "",
+            image: "scenery%2Fgalleon.png~RC(magenta%3Ered)~FL()",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "hidden_advisor",
+            x: 27,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:set_unit_hidden",
+            hidden: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Advisor",
+            text: _("Thank goodness we have found you, sir! Come aboard quickly, we shall take you away from this horrible island!"),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_25",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "victory_dance",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_27",
+        on: "branch_if_27",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "moremirmu",
+            equals: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Moremirmu",
+            text: _("Thank you for your assistance here, brothers. I will stay to continue resisting the foul undead. May fate be with you in your noble quest, and may we meet again some day!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "ambient/ship.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "32,6;31,6;30,7;29,6;28,6;27,6;26,7",
+            radius: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 27,
+            y: 8,
+            item_name: "",
+            image: "scenery%2Fgalleon.png~RC(magenta%3Ered)~FL()",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "hidden_advisor",
+            x: 27,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:set_unit_hidden",
+            hidden: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Advisor",
+            text: _("Thank goodness we have found you, sir! Come aboard quickly, we shall take you away from this horrible island!"),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("It’s a shame complete victory could not be ours, but thank goodness I am rescued! On to Elensefar!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_27",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "victory_dance",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "victory_dance",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You regain your lost troops and $isle_damned_starting_gold gold!"),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_30",
+        on: "branch_if_30",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "moremirmu",
+            equals: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Moremirmu",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_31",
+        on: "branch_if_31",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "delfador_store.id",
+            equals: "Delfador",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "delfador_store",
+            x: "recall",
+            y: "recall",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "foreach",
+            variable: "iotd_recall_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_30",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            gold: "$isle_damned_starting_gold",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "allow",
+            types: "Elvish Fighter,Elvish Archer,Elvish Shaman,Elvish Scout,Mage,Horseman",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "Thug,Poacher,Footpad",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_31",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Konrad%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("We are vanquished, for I have been defeated!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Li'sar%22%2C%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I can’t believe it should end like this!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Argh! I am finished!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! This is the end! We have been defeated!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Warven%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("At least I die an honorable death."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "have_warven",
+            value: "no",
+            mode: "value",
+          },
+        ],
+      },
+    ],
+  },
+]

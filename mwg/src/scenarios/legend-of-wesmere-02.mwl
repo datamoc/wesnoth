@@ -1,0 +1,1421 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Hostile Mountains"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "player",
+        gold: 180,
+        leader: "Kalenz",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "null",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "player,trolls",
+        gold: 120,
+        leader: "Olurf",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "trolls",
+        gold: 240,
+        recruit: "Troll Whelp, Troll, Troll Rocklobber",
+        leader: "Grugl",
+      },
+      {
+        tag: "map",
+        id: "scenario_02_Hostile_Mountains",
+        file: "campaigns/Legend_of_Wesmere/maps/02_Hostile_Mountains.map",
+      },
+      {
+        tag: "unit",
+        id: "Kalenz",
+        type: "Elvish Fighter",
+        side: 1,
+        x: 21,
+        y: 7,
+        name: _("Kalenz"),
+      },
+      {
+        tag: "unit",
+        id: "Landar",
+        type: "Elvish Archer",
+        side: 0,
+        x: 19,
+        y: 3,
+      },
+      {
+        tag: "unit",
+        id: "Olurf",
+        type: "Dwarvish Steelclad",
+        side: 3,
+        x: 16,
+        y: 18,
+        name: _("Olurf"),
+      },
+      {
+        tag: "unit",
+        id: "Grugl",
+        type: "Great Troll",
+        side: 4,
+        x: 1,
+        y: 32,
+        name: _("Grugl"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_2",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_43",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_44",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Kalenz and his band broke out of the orcish encirclement, only to discover that the country on the direct route to the Ka’lian was already swarming with orcs. The raid on Kalenz’s home, it seemed, had been but one small part of a great migration south. There was no choice but to make a detour through territory the elves would rather have avoided..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_45",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kalenz,Landar,Olurf,Grugl",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_46",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 32,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Kalenz or Landar must reach the signpost Defeat Grugl"),
+        defeat: _("Death of Kalenz Death of Landar Death of Olurf Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "side_recall_filter_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            recall_filter: "%7B%22tag%22%3A%22filter_recall%22%2C%22attributes%22%3A%7B%22type_adv_tree%22%3A%22Elvish%20Fighter%2C%20Elvish%20Archer%2C%20Elvish%20Scout%22%7D%2C%22children%22%3A%5B%5D%2C%22gettext%22%3A%5B%5D%2C%22location%22%3A%7B%22file%22%3A%22C%3A%5C%5CUsers%5C%5Cmiche%5C%5Cdev%5C%5Cwesnoth-1.19.27%5C%5Cdata%5C%5Ccampaigns%5C%5CLegend_of_Wesmere%5C%5Cscenarios%5C%5Cchapter1%5C%5C02_Hostile_Mountains.cfg%22%2C%22line%22%3A382%2C%22column%22%3A1%7D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Kalenz",
+            object: "%7B%22id%22%3A%22side_traits_1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22movement%22%2C%22increase%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A%22-5%25%22%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_recall_filter_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            recall_filter: "%7B%22tag%22%3A%22filter_recall%22%2C%22attributes%22%3A%7B%22race%22%3A%22dwarf%22%7D%2C%22children%22%3A%5B%5D%2C%22gettext%22%3A%5B%5D%2C%22location%22%3A%7B%22file%22%3A%22C%3A%5C%5CUsers%5C%5Cmiche%5C%5Cdev%5C%5Cwesnoth-1.19.27%5C%5Cdata%5C%5Ccampaigns%5C%5CLegend_of_Wesmere%5C%5Cscenarios%5C%5Cchapter1%5C%5C02_Hostile_Mountains.cfg%22%2C%22line%22%3A570%2C%22column%22%3A1%7D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Olurf",
+            object: "%7B%22id%22%3A%22side_traits_3%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increaseDamage%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "northern_mountains.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "traveling_minstrels.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "legends_of_the_north.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knalgan_theme.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 4,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Anduilas",
+            unit: "Anduilas",
+            x: 20,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Arkildur",
+            unit: "Arkildur",
+            x: 19,
+            y: 5,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_10",
+        on: "branch_if_10",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "offended_by_elves",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            team_name: "dwarves",
+            user_team_name: "Enemies",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "dwarves_defend_their_territory",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_11",
+        on: "branch_if_11",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "offended_by_elves",
+            not_equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            team_name: "player",
+            user_team_name: "Player",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "dwarves_kill_trolls",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 4,
+            x: "19-23,18-29,16-29,15-29,13-29,11-29,10-29,9-29,6-29,7-29,9-29,12-29,14-29,17-29,18-29,19-29,21-29,22-29,23-29,22-29,21-29",
+            y: "9,10,11,12-14,15-16,17-18,19,20,21,22,23,24,25,26,27-28,29,30-31,32-35,36,37-38,39",
+          },
+          {
+            tag: "message",
+            text: _("Those stinking trolls ha’ stepped on <i>our</i> land!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_10",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_11",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "olurf_side.team_name",
+            equals: "player",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            team_name: "dwarves",
+            user_team_name: "Enemies",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "dwarves_defend_their_territory",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "olurf_side.team_name",
+            not_equals: "player",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            team_name: "trolls",
+            user_team_name: "Enemies",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "dwarves_kill_elves",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: "1,2",
+            x: "19-23,18-29,16-29,15-29,13-29,11-29,10-29,9-29,6-29,7-29,9-29,12-29,14-29,17-29,18-29,19-29,21-29,22-29,23-29,22-29,21-29",
+            y: "9,10,11,12-14,15-16,17-18,19,20,21,22,23,24,25,26,27-28,29,30-31,32-35,36,37-38,39",
+          },
+          {
+            tag: "message",
+            text: _("Those lying elves have stepped on <i>our</i> land!"),
+          },
+          {
+            tag: "message",
+            text: _("Fight to subdue, and do not kill unless you must. We have foes enough as it is without making blood enemies of these dwarves."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_side",
+            side: 3,
+            variable: "olurf_side",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_13",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_14",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "offended_by_elves",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "dwarves_watch_the_show",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "delete",
+            path: "goal[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "try_delete",
+            path: "stage[retreat_to_olurfs_land]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "try_delete",
+            path: "aspect[avoid].facet[stay_in_own_land]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "try_delete",
+            path: "aspect[recruitment_instructions].facet[always]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "add",
+            path: "aspect[recruitment_instructions].facet[]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "add",
+            path: "aspect[avoid].facet[]",
+          },
+          {
+            tag: "message",
+            text: _("It should be rare sport to watch this... Just be sure not to trespass on our land."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "dwarves_kill_elves",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "delete",
+            path: "goal[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "try_delete",
+            path: "stage[retreat_to_olurfs_land]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "try_delete",
+            path: "aspect[avoid].facet[stay_in_own_land]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "try_delete",
+            path: "aspect[recruitment_instructions].facet[always]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "add",
+            path: "goal[]",
+            goal_kind: "goal",
+            goal_value: 1.5,
+          },
+          {
+            tag: "message",
+            text: _("Up axes, and death to elves!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "dwarves_kill_trolls",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "delete",
+            path: "goal[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "try_delete",
+            path: "stage[retreat_to_olurfs_land]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "try_delete",
+            path: "aspect[avoid].facet[stay_in_own_land]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "try_delete",
+            path: "aspect[recruitment_instructions].facet[always]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "add",
+            path: "goal[]",
+            goal_kind: "goal",
+            goal_value: 1.5,
+          },
+          {
+            tag: "message",
+            text: _("Up axes, and death to trolls!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "dwarves_kill_elves_and_trolls",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "delete",
+            path: "goal[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "try_delete",
+            path: "stage[retreat_to_olurfs_land]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "try_delete",
+            path: "aspect[avoid].facet[stay_in_own_land]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "try_delete",
+            path: "aspect[recruitment_instructions].facet[always]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "add",
+            path: "goal[]",
+            goal_kind: "goal",
+            goal_value: 1.5,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "add",
+            path: "goal[]",
+            goal_kind: "goal",
+            goal_value: 1.5,
+          },
+          {
+            tag: "message",
+            text: _("Up axes, and kill all the interlopers!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "dwarves_defend_their_territory",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "delete",
+            path: "goal[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "try_delete",
+            path: "stage[retreat_to_olurfs_land]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "try_delete",
+            path: "aspect[avoid].facet[stay_in_own_land]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "try_delete",
+            path: "aspect[recruitment_instructions].facet[always]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "add",
+            path: "aspect[avoid].facet[]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "add",
+            path: "goal[]",
+            goal_kind: "goal",
+            goal_value: 1.5,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "add",
+            path: "stage[0]",
+          },
+          {
+            tag: "message",
+            text: _("Defend our bounds! Slay all who trespass them!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "scenario_end",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            text: _("I had hoped to avoid these paths... The eastern way is through dwarvish territory and is shorter. I pray the dwarves will grant us safe passage, since the other path is through troll territory..."),
+          },
+          {
+            tag: "message",
+            text: _("Not even in yer dreams, elf. These are dwarvish lands, and troubles we want no part of nip at yer heels. Get out and stay out!"),
+          },
+          {
+            tag: "message",
+            text: _("Our troubles will be yours, too, whether either of us wills it or not. The orcs have come down from the north like a flood; if we squabble among ourselves they will feast on our discord."),
+          },
+          {
+            tag: "message",
+            text: _("Bah. More smooth words and trickery, by my beard. We know yer kind... and who needs yer help anyway, weaklings? Leave now, or feel my axe! That same kiss of steel will greet all intruders. Anyone who sets foot on the eastern bank o’ this river will rue the day he was born!"),
+          },
+          {
+            tag: "message",
+            text: _("I cannot see how trolls could be any less friendly."),
+          },
+          {
+            tag: "message",
+            text: _("Hmm... Perhaps the dwarves’ intransigence can serve our purpose. Onwards, and no matter what you do, do <i>not</i> step on the eastern bank of the river!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 17,
+            y: 36,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 18,
+            y: 37,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 18,
+            y: 37,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 18,
+            y: 37,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 18,
+            y: 37,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 18,
+            y: 37,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 18,
+            y: 37,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 18,
+            y: 37,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 18,
+            y: 37,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 18,
+            y: 37,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 18,
+            y: 37,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "dwarves_watch_the_show",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "set_variable",
+            name: "killed_by_elves",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22race%22%3A%22troll%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22race%22%3A%22elf%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "killed_by_elves",
+            value: 1,
+            mode: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "scenario_end",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "if_27",
+        on: "branch_if_27",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "killed_by_elves",
+            greater_than: 3,
+          },
+          {
+            tag: "message",
+            text: _("Crazy elves! But at least they felled a few trolls before they left."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_28",
+        on: "branch_if_28",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "killed_by_elves",
+            less_than_or_equal_to: 3,
+          },
+          {
+            tag: "message",
+            text: _("Crazy elves!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 17,
+            y: 36,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22We%20made%20it.%20Onwards%20to%20Wesmere!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22killed_by_elves%22%2C%22greater_than%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22id%22%3A%22Olurf%22%2C%22message%22%3A%22Crazy%20elves!%20But%20at%20least%20they%20felled%20a%20few%20trolls%20before%20they%20left.%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22id%22%3A%22Olurf%22%2C%22message%22%3A%22Crazy%20elves!%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22endlevel%22%2C%22attributes%22%3A%7B%22result%22%3A%22victory%22%2C%22bonus%22%3A%22yes%22%2C%22carryover_add%22%3A%22yes%22%2C%22carryover_percentage%22%3A%2240%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("We made it. Onwards to Wesmere!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_27",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_28",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_30",
+        on: "branch_if_30",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "killed_by_elves",
+            greater_than: 3,
+          },
+          {
+            tag: "message",
+            text: _("Crazy elves! But at least they felled a few trolls before they left."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_31",
+        on: "branch_if_31",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "killed_by_elves",
+            less_than_or_equal_to: 3,
+          },
+          {
+            tag: "message",
+            text: _("Crazy elves!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Grugl%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22race%22%3A%22dwarf%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Urgh! Grugl tried to eat dwarves, but choked on their sharp nasty axes."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("We made it. Onwards to Wesmere!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_30",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_31",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_33",
+        on: "branch_if_33",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "killed_by_elves",
+            greater_than: 3,
+          },
+          {
+            tag: "message",
+            text: _("Crazy elves! But at least they felled a few trolls before they left."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_34",
+        on: "branch_if_34",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "killed_by_elves",
+            less_than_or_equal_to: 3,
+          },
+          {
+            tag: "message",
+            text: _("Crazy elves!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Grugl%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22race%22%3A%22elf%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Urgh! Grugl wanted tasty elf-meat, but choked on their nasty pointy spears!"),
+          },
+          {
+            tag: "message",
+            text: _("We made it. Onwards to Wesmere!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_33",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_34",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I am defeated. Now the orcs will destroy us!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Landar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Farewell, Kalenz!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Nooo! We cannot continue without Landar!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Cleodil%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I’m sorry I failed you, Kalenz... my beloved..."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Nooo! Cleodil! Without you I cannot go on!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_38",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Olurf%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I go to join my sires in the Halls of Death"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("I cannot fight the orcs alone! It’s all over!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_39",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Uradredia%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Our cause is lost. With Uradredia gone, the North Elves will no longer fight!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Galtrid%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("I cannot fight the orcs alone! It’s all over!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_41",
+        on: "last_breath",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_wml%22%2C%22attributes%22%3A%7B%22upkeep%22%3A%22loyal%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_side%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22allied_with%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22has_unit%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%2CLandar%2CCleodil%2COlurf%2CUradredia%2CGaltrid%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I grieve that I have failed you, my lord Kalenz..."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Farewell $unit.name. Your loyal service won’t be forgotten."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "$unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_42",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            text: _("Oh, no! We are too late..."),
+          },
+        ],
+      },
+    ],
+  },
+]

@@ -1,0 +1,1124 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Elves’ Last Stand"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "player",
+        gold: 600,
+        leader: "Kalenz",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "null",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "null",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "human",
+        team_name: "player",
+        gold: 300,
+      },
+      {
+        tag: "side",
+        id: 5,
+        controller: "null",
+      },
+      {
+        tag: "side",
+        id: 6,
+        controller: "null",
+      },
+      {
+        tag: "side",
+        id: 7,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 1720,
+      },
+      {
+        tag: "map",
+        id: "scenario_07_Elves_Last_Stand",
+        file: "campaigns/Legend_of_Wesmere/maps/Kalian.map",
+      },
+      {
+        tag: "unit",
+        id: "Kalenz",
+        type: "Elvish Captain",
+        side: 1,
+        x: 45,
+        y: 20,
+        name: _("Kalenz"),
+      },
+      {
+        tag: "unit",
+        id: "Landar",
+        type: "Elvish Ranger",
+        side: 0,
+        x: 44,
+        y: 34,
+      },
+      {
+        tag: "unit",
+        id: "Cleodil",
+        type: "Elvish Shyde",
+        side: 0,
+        x: 46,
+        y: 27,
+      },
+      {
+        tag: "unit",
+        id: "Galtrid",
+        type: "Elvish Captain",
+        side: 0,
+        x: 32,
+        y: 31,
+      },
+      {
+        tag: "unit",
+        id: "El_Isomithir",
+        type: "Elvish Hero",
+        side: 0,
+        x: 28,
+        y: 31,
+      },
+      {
+        tag: "unit",
+        id: "Eradion",
+        type: "Elvish Marshal",
+        side: 0,
+        x: 6,
+        y: 35,
+      },
+      {
+        tag: "unit",
+        id: "Mordrum",
+        type: "Naga Myrmidon",
+        side: 0,
+        x: 5,
+        y: 3,
+      },
+      {
+        tag: "unit",
+        id: "Urug-Pir",
+        type: "Orcish Warlord",
+        side: 0,
+        x: 5,
+        y: 22,
+      },
+      {
+        tag: "unit",
+        id: "Truugl",
+        type: "Great Troll",
+        side: 0,
+        x: 25,
+        y: 6,
+      },
+      {
+        tag: "event",
+        id: "hide_side_2",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_5",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 5,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_6",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 6,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_46",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_47",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("The journey back to Wesmere was surprisingly uneventful, the orcs having apparently withdrawn to regroup after their defeats. Kalenz and his band returned just in time..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_48",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kalenz,Landar,Cleodil",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_49",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 25,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("You must own the field and be capable of overwhelming your opponents. (Player(s) own more than 25 units while the foes’ numbers fall below 15.) Defeat all enemy leaders."),
+        defeat: _("Death of Kalenz Death of Landar Death of Cleodil Death of Galtrid Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "side_recall_filter_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            recall_filter: "%7B%22tag%22%3A%22filter_recall%22%2C%22attributes%22%3A%7B%22type_adv_tree%22%3A%22Elvish%20Fighter%2C%20Elvish%20Archer%2C%20Elvish%20Scout%22%7D%2C%22children%22%3A%5B%5D%2C%22gettext%22%3A%5B%5D%2C%22location%22%3A%7B%22file%22%3A%22C%3A%5C%5CUsers%5C%5Cmiche%5C%5Cdev%5C%5Cwesnoth-1.19.27%5C%5Cdata%5C%5Ccampaigns%5C%5CLegend_of_Wesmere%5C%5Cscenarios%5C%5Cchapter2%5C%5C07_Elves_Last_Stand.cfg%22%2C%22line%22%3A1559%2C%22column%22%3A1%7D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Kalenz",
+            object: "%7B%22id%22%3A%22side_traits_1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22movement%22%2C%22increase%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A%22-5%25%22%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "elvish-theme.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_city_falls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "silvan_sanctuary.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "wanderer.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "siege_of_laurelmor.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "heroes_rite.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "casualties_of_war.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:terrain_mask",
+            x: 1,
+            y: 1,
+            mask: "_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Kme%2C%20Cme%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Cme%2C%20Cme%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Kte%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Cte%2C%20Cte%2C%20Cte%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Cte%2C%20Cte%2C%20Cte%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ke%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ce%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ce%2C%20Ce%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ce%2C%20Ke%2C%20Ce%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Rp%5EDr%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ce%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ce%2C%20Ce%2C%20Ce%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ce%2C%20Ce%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ce%2C%20Ke%2C%20Ce%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ce%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ce%2C%20Ke%2C%20Ce%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ce%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A",
+            border: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_time_of_day",
+            variable: "time_of_day",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_time_of_day",
+            variable: "time_of_day",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_time_of_day",
+            variable: "time_of_day",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_time_of_day",
+            variable: "time_of_day",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_time_of_day",
+            variable: "time_of_day",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "loyals",
+            kill: "no",
+          },
+          {
+            tag: "foreach",
+            variable: "loyals",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:recall_unit",
+                id: "$this_item.id",
+                unit: "$this_item.id",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 4,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 7,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "turn_number",
+                greater_than: 1,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            text: _("The orcs are not defeated, and our troops and supplies are exhausted. This is the end!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            text: _("The orcs have pushed us back to the Ka’lian. There is no way out. We must win here!"),
+          },
+          {
+            tag: "message",
+            text: _("This is our final stand. If they take the Ka’lian, all is lost!"),
+          },
+          {
+            tag: "message",
+            text: _("Galtrid, speak not of defeat. Elvenkind shall rise! Our enemies shall perish in blood and fire!"),
+          },
+          {
+            tag: "message",
+            text: _("It is a dark day indeed when elves must steel themselves with dreams of slaughter."),
+          },
+          {
+            tag: "message",
+            text: _("We’ll crush those weak elves and I’ll get da stone!"),
+          },
+          {
+            tag: "message",
+            text: _("These are hardened orc and troll veterans. Men, prepare for a long, difficult fight..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 7,
+          },
+          {
+            tag: "message",
+            text: _("Those dwarves must still be protecting our gold — on their land."),
+          },
+          {
+            tag: "message",
+            text: _("Yes, it seems we must defend the Kalian alone."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "olurf",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            text: _("Did ye think we’d let you have all the fun wi’ the orcs by yerselves?"),
+          },
+          {
+            tag: "message",
+            text: _("You did, we’ve already driven them from the forest. You barely caught up in time to chase them into the hills."),
+          },
+          {
+            tag: "message",
+            text: _("Diplomacy, Landar. We do need to pursue the orcs into the mountains, and an army of dwarves will be welcome companions."),
+          },
+          {
+            tag: "message",
+            text: _("It’s not much of an army he is bringing with him, though."),
+          },
+          {
+            tag: "message",
+            text: _("Not much of an army? These are dwarves with mighty axes, each worth three of you and your silly plinking bows!"),
+          },
+          {
+            tag: "message",
+            text: _("Olurf, is that all the dwarves you could find? Was the gold not enough?"),
+          },
+          {
+            tag: "message",
+            text: _("They are no’ fighting for gold, they’re here for the fun. I’d ha’ brought a lot more if my men ha’ all kept quiet about helping elves! But the rest o’ my clan should join us in a few days."),
+          },
+          {
+            tag: "message",
+            text: _("In a few days? That’s too late! We want our gold back!"),
+          },
+          {
+            tag: "message",
+            text: _("Sure, minus expenses."),
+          },
+          {
+            tag: "message",
+            text: _("What expenses?"),
+          },
+          {
+            tag: "message",
+            text: _("It’s an ancient dwarvish custom to buy the warriors a few drinks before the battle... So minus expenses that’s about even."),
+          },
+          {
+            tag: "message",
+            text: _("That explains why they are so reckless in battle..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "scenario_end",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "set_variable",
+            name: "olurf_entry.x",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "olurf_entry.y",
+            value: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "olurf",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31",
+        on: "scenario_end",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "message",
+            text: _("At last! The orcs are defeated."),
+          },
+          {
+            tag: "spawn",
+            id: "Pirorr",
+            type: "Orcish Warrior",
+            side: 7,
+            x: 0,
+            y: 42,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Pirorr",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Pirorr",
+            x: 0,
+            y: 40,
+          },
+          {
+            tag: "message",
+            text: _("The elves have beaten us and they did not use da stone. Maybe they don’t have it? Great Chief will not like bad news!"),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Pirorr",
+          },
+          {
+            tag: "message",
+            text: _("Kalenz, we are again in your debt. You returned just in time."),
+          },
+          {
+            tag: "message",
+            text: _("And we have what’s left of the elvish treasury with us!"),
+          },
+          {
+            tag: "message",
+            text: _("Perhaps the gold will give our words more weight with the Council."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Kalenz_ has returned any remaining gold into the elvish treasury. You will start the next scenario with a preset amount."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Landar_ has returned any remaining gold into the elvish treasury. You will start the next scenario with a preset amount."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Truugl%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Aargh! I should have stayed in the mountains instead of joining the orcs!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mordrum%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Orcs, death is all you will find in this forest!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Urug-Pir%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I die without getting da stone?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Eradion%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            text: _("Be grateful, tree-shagger, for I have spared you the pain of seeing your precious citadel burned and razed."),
+          },
+          {
+            tag: "message",
+            text: _("Galtrid, my friend. Do not let my death be in vain. Destroy these foul orcs, and sing for me in the green woods when we have won."),
+          },
+          {
+            tag: "message",
+            text: _("We shall avenge you tenfold!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Eradion",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Eradion%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Dead he is. Too quick. His screams were sweet."),
+          },
+          {
+            tag: "message",
+            text: _("Let us pursue the orc who murdered $unit.name|!"),
+          },
+          {
+            tag: "message",
+            text: _("No, don’t leave your formation. An elf was slain by beast. What does it matter which beast it was? We must kill them all."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "scenario_end",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_38",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I am defeated. Now the orcs will destroy us!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_39",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Landar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Farewell, Kalenz!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Nooo! We cannot continue without Landar!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Cleodil%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I’m sorry I failed you, Kalenz... my beloved..."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Nooo! Cleodil! Without you I cannot go on!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_41",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Olurf%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I go to join my sires in the Halls of Death"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("I cannot fight the orcs alone! It’s all over!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_42",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Uradredia%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Our cause is lost. With Uradredia gone, the North Elves will no longer fight!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_43",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Galtrid%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("I cannot fight the orcs alone! It’s all over!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_44",
+        on: "last_breath",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_wml%22%2C%22attributes%22%3A%7B%22upkeep%22%3A%22loyal%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_side%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22allied_with%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22has_unit%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%2CLandar%2CCleodil%2COlurf%2CUradredia%2CGaltrid%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I grieve that I have failed you, my lord Kalenz..."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Farewell $unit.name. Your loyal service won’t be forgotten."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "$unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_45",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            text: _("Oh, no! We are too late..."),
+          },
+        ],
+      },
+    ],
+  },
+]

@@ -1,0 +1,778 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Uncharted Islands"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good guys",
+        gold: 200,
+        recruit: "Merman Citizen, Merman Fighter, Merman Hunter, Mermaid Initiate",
+        leader: "Kai_Krellis",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "pets",
+        gold: 300,
+        recruit: "Vampire Bat, Blood Bat, Cuttle Fish, Water Serpent, Tentacle of the Deep",
+        leader: "Growloff",
+      },
+      {
+        tag: "map",
+        id: "scenario_06_Uncharted_Islands",
+        file: "Uncharted_Islands.map",
+      },
+      {
+        tag: "unit",
+        id: "Kai_Krellis",
+        type: "Merman Child King",
+        side: 1,
+        x: 30,
+        y: 12,
+        name: _("Kai Krellis"),
+      },
+      {
+        tag: "unit",
+        id: "Growloff",
+        type: "Ranger",
+        side: 2,
+        x: 5,
+        y: 4,
+        name: _("Growloff"),
+      },
+      {
+        tag: "event",
+        id: "carryover_20",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_21",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Now the merfolk had no choice but to travel through the open ocean, which they knew was more dangerous than shallow water. After a few days, they found some islands in their path. The infirm and young among the refugees needed a break from travel; Cylanna only vaguely remembered them, but thought they might be safe."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_22",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kai_Krellis,Growloff,Inky",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_23",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 27,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat enemy leader"),
+        defeat: _("Death of Kai Krellis Death of Cylanna Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_villages_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_village_owner",
+            side: 2,
+            cells: "0,1",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Tentacle%20of%20the%20Deep%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Tentacle of the Deep",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Tentacle of the Deep",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Blood%20Bat%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Blood Bat",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Blood Bat",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Vampire%20Bat%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Vampire Bat",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Vampire Bat",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Cuttle%20Fish%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Cuttle Fish",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Cuttle Fish",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Sea%20Serpent%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Sea Serpent",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Sea Serpent",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "vengeful.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "frantic.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Cylanna",
+            unit: "Cylanna",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Gwabbo",
+            unit: "Gwabbo",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Teeloa",
+            unit: "Teeloa",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Keshan",
+            unit: "Keshan",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Inky",
+            unit: "Inky",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Tyegea",
+            unit: "Tyegea",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Friendly Bat",
+            unit: "Friendly Bat",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Undead Bat",
+            unit: "Undead Bat",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Fearsome Bat",
+            unit: "Fearsome Bat",
+          },
+          {
+            tag: "spawn",
+            id: "pet",
+            type: "Cuttle Fish",
+            side: 2,
+            x: 5,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "pet",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Tentacle of the Deep",
+            side: 2,
+            x: 5,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Tentacle of the Deep",
+            side: 2,
+            x: 6,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Tentacle of the Deep",
+            side: 2,
+            x: 7,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Tentacle of the Deep",
+            side: 2,
+            x: 6,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Uh oh. There is someone else here. Hey! He is being attacked by a cuttlefish!"),
+          },
+          {
+            tag: "message",
+            speaker: "Growloff",
+            text: _("Look my pet, here’s a yummy treat!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Or...is he <i>talking</i> to it?!"),
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("It is worse than that. I think <i>we</i> are the treat!"),
+          },
+          {
+            tag: "message",
+            speaker: "Growloff",
+            text: _("Who is ready for a merfolk snack?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Brace yourselves."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "recruit",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Sea%20Serpent%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Oh no! Look what he has frisking at his heels now. And I thought the cuttlefish was bad!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Growloff",
+            text: _("You killed my pet! You’ll pay for that!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Growloff%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            hitpoints: 1,
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Growloff%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Growloff",
+          },
+          {
+            tag: "message",
+            speaker: "Growloff",
+            text: _("Don’t kill me!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("But you attacked us with these monsters."),
+          },
+          {
+            tag: "message",
+            speaker: "Growloff",
+            text: _("They are my friends. I’ve been so lonely here...and you killed so many of my friends. They could be your friends too. Spare me, and I’ll give you my favorite cuttlefish. His name is Inky."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("I do not want a dangerous beast like that!"),
+          },
+          {
+            tag: "message",
+            speaker: "Growloff",
+            text: _("But he’s tame! Really! He understands dozens of commands. He’ll do what you tell him. He’s a really nice fish."),
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("Maybe we could use a pet sea monster."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Very well. I will take the cuttlefish. But do not trouble us again, or I shall kill you and all the rest of your pets."),
+          },
+          {
+            tag: "message",
+            speaker: "Growloff",
+            text: _("Of course, of course. I promise! I never wanted to hurt you nice people anyway."),
+          },
+          {
+            tag: "spawn",
+            id: "Inky",
+            type: "Cuttle Fish",
+            side: 1,
+            x: 5,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Inky",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Inky",
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Right. Tell me how to control this thing."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Cylanna%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Cylanna! I need you!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kai%20Krellis%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("We are lost without our king!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

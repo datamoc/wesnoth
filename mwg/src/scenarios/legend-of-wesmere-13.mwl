@@ -1,0 +1,261 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("News from the Front"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "player",
+        share_vision: "all",
+        leader: "Kalenz",
+      },
+      {
+        tag: "map",
+        id: "scenario_13_News_from_the_Front",
+        file: "campaigns/Legend_of_Wesmere/maps/10_Cliffs_of_Thoria.map",
+      },
+      {
+        tag: "unit",
+        id: "Kalenz",
+        type: "Elvish Captain",
+        side: 1,
+        x: 11,
+        y: 0,
+        name: _("Kalenz"),
+      },
+      {
+        tag: "event",
+        id: "carryover_5",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_6",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("With Crelanu’s book in hand, Kalenz and his band began the long journey south to the Ka’lian..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_7",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kalenz",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_8",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _(""),
+        defeat: _(""),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_recall_filter_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            recall_filter: "%7B%22tag%22%3A%22filter_recall%22%2C%22attributes%22%3A%7B%22type_adv_tree%22%3A%22Elvish%20Fighter%2C%20Elvish%20Archer%2C%20Elvish%20Scout%22%7D%2C%22children%22%3A%5B%5D%2C%22gettext%22%3A%5B%5D%2C%22location%22%3A%7B%22file%22%3A%22C%3A%5C%5CUsers%5C%5Cmiche%5C%5Cdev%5C%5Cwesnoth-1.19.27%5C%5Cdata%5C%5Ccampaigns%5C%5CLegend_of_Wesmere%5C%5Cscenarios%5C%5Cchapter4%5C%5C13_News_from_the_Front.cfg%22%2C%22line%22%3A738%2C%22column%22%3A1%7D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Kalenz",
+            object: "%7B%22id%22%3A%22side_traits_1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22movement%22%2C%22increase%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A%22-5%25%22%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_deep_path.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "loyals",
+            kill: "no",
+          },
+          {
+            tag: "foreach",
+            variable: "loyals",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:recall_unit",
+                id: "$this_item.id",
+                unit: "$this_item.id",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Oh, no, I forgot my dose of Crelanu’s invisibility philter. I’ll go back and get it. I’ll catch up with you later!"),
+          },
+          {
+            tag: "message",
+            text: _("Maybe some of my dwarves can escort you..."),
+          },
+          {
+            tag: "message",
+            text: _("Go, Landar, but be careful. We need you."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "landar_store",
+            kill: "yes",
+            id: "Landar",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Some weeks later, as Kalenz and his companions were working their way southwards from the high peaks of the Heart Mountains into its foothills..."),
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "horse-canter.wav",
+          },
+          {
+            tag: "spawn",
+            id: "Eonihar",
+            type: "Elvish Scout",
+            side: 1,
+            x: 14,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Eonihar",
+          },
+          {
+            tag: "message",
+            text: _("At last I have found you, alive and well! We need you back at once! The orcs have attacked the humans."),
+          },
+          {
+            tag: "message",
+            text: _("This means we are safe for the time being, no?"),
+          },
+          {
+            tag: "message",
+            text: _("What’s more, King Haldric is dead. His successor wants to renew the treaty of alliance and has asked for our help."),
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "landar_store",
+            x: 10,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Landar",
+            x: 13,
+            y: 0,
+          },
+          {
+            tag: "message",
+            text: _("How convenient! Now they need our help, they come running!"),
+          },
+          {
+            tag: "message",
+            text: _("Landar! You’re back! All is well?"),
+          },
+          {
+            tag: "message",
+            text: _("Yes, I have the philter of invisibility."),
+          },
+          {
+            tag: "message",
+            text: _("We face a difficult choice. I know humans did not help us when the orcs attacked, but the orcs are everybody’s enemy. When humans fall, we’ll be next."),
+          },
+          {
+            tag: "message",
+            text: _("The orcish forces are encamped south of the Great River, and have surrounded the fortified human settlement at Tath. The humans are sending all their forces there. We need to decide whether we will help them or not."),
+          },
+          {
+            tag: "message",
+            text: _("Go tell the council and the human king that we will be there! Now, let’s hurry!"),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Eonihar",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+    ],
+  },
+]

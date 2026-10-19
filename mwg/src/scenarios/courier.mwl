@@ -1,0 +1,134 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Courier"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        gold: 20,
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        gold: 0,
+      },
+      {
+        tag: "map",
+        id: "tutorial",
+        file: "campaigns/Heir_To_The_Throne_Classic/maps/00_Tutorial_part_1.map",
+      },
+      {
+        tag: "unit",
+        id: "courier",
+        type: "Elvish Scout",
+        side: 1,
+        x: 20,
+        y: 6,
+      },
+      {
+        tag: "unit",
+        id: "guard-road",
+        type: "Orcish Grunt",
+        side: 2,
+        x: 15,
+        y: 4,
+      },
+      {
+        tag: "unit",
+        id: "guard-ford",
+        type: "Orcish Grunt",
+        side: 2,
+        x: 13,
+        y: 6,
+      },
+      {
+        tag: "unit",
+        id: "guard-village",
+        type: "Orcish Grunt",
+        side: 2,
+        x: 16,
+        y: 8,
+      },
+      {
+        tag: "event",
+        id: "briefing",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: _("Elvish Scout"),
+            portrait: "portraits/elves/scout.webp",
+            text: _("Carry the dispatch to the elven village before the orcs close the road."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "picket",
+        on: "moveto",
+        unit: "courier",
+        x: 13,
+        y: 5,
+        children: [
+          {
+            tag: "message",
+            speaker: _("Orcish Grunt"),
+            portrait: "portraits/orcs/grunt.webp",
+            text: _("Halt. The road to the village is closed."),
+          },
+          {
+            tag: "message",
+            speaker: _("Elvish Scout"),
+            portrait: "portraits/elves/scout.webp",
+            text: _("Then I will take the long way round."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "delivery",
+        on: "moveto",
+        unit: "courier",
+        x: 10,
+        y: 3,
+        children: [
+          {
+            tag: "message",
+            speaker: _("Elvish Scout"),
+            portrait: "portraits/elves/scout.webp",
+            text: _("The dispatch is delivered. The village is warned."),
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        children: [
+          {
+            tag: "victory",
+            side: 1,
+            condition: "unit_at",
+            type: "Elvish Scout",
+            x: 10,
+            y: 3,
+          },
+          {
+            tag: "defeat",
+            side: 1,
+            condition: "units_dead",
+            side_filter: 1,
+          },
+          {
+            tag: "defeat",
+            side: 1,
+            condition: "turns_elapsed",
+            turns: 4,
+          },
+        ],
+      },
+    ],
+  },
+]

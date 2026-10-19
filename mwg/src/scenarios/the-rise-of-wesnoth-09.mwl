@@ -1,0 +1,1006 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Fallen Lich Point"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Haldric",
+        gold: 200,
+        leader: "Prince_Haldric",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "orcs",
+        gold: 250,
+        recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Wolf Rider, Orcish Crossbowman, Goblin Knight, Orcish Slayer, Goblin Spearman",
+        leader: "Ut_Tan-Grilg",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "orcs",
+        gold: 250,
+        recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Wolf Rider, Orcish Crossbowman, Orcish Warrior, Goblin Pillager, Goblin Spearman",
+        leader: "Tan-Pulk",
+      },
+      {
+        tag: "side",
+        id: 4,
+        team_name: "undead",
+        gold: 130,
+        recruit: "Skeleton, Skeleton Archer, Ghost, Ghoul, Walking Corpse",
+        leader: "Lich-Lord_Caror",
+      },
+      {
+        tag: "side",
+        id: 5,
+        team_name: "yetis",
+        gold: 0,
+      },
+      {
+        tag: "map",
+        id: "scenario_09_Fallen_Lich_Point",
+        file: "09_Fallen_Lich_Point.map",
+      },
+      {
+        tag: "unit",
+        id: "Prince_Haldric",
+        type: "Noble Commander",
+        side: 1,
+        x: 33,
+        y: 24,
+        name: _("Prince Haldric"),
+      },
+      {
+        tag: "unit",
+        id: "Ut_Tan-Grilg",
+        type: "Orcish Warlord",
+        side: 2,
+        x: 4,
+        y: 11,
+        name: _("Ut’Tan-Grilg"),
+      },
+      {
+        tag: "unit",
+        id: "Tan-Pulk",
+        type: "Orcish Warlord",
+        side: 3,
+        x: 25,
+        y: 6,
+        name: _("Tan-Pulk"),
+      },
+      {
+        tag: "unit",
+        id: "Lich-Lord_Caror",
+        type: "Lich",
+        side: 4,
+        x: 12,
+        y: 36,
+        name: _("Lich-Lord Caror"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_5",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 5,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_28",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 1.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: 0.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_29",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Prince_Haldric,Ut_Tan-Grilg,Tan-Pulk,Lich-Lord_Caror,u_1,u_2,u_3,u_4,u_5,u_6,Rarlg,Raul-Rarlg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_30",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 33,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Kill the lich to get his book Haldric enters Southbay’s sewer Defeat all enemy leaders<span foreground='white'><small> _(early finish bonus)</small></span>"),
+        defeat: _("Death of Prince Haldric Death of Lady Jessene Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "leader_status_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:petrify",
+            id: "Lich-Lord_Caror",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "breaking_the_chains.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Prince%20Haldric%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("I can’t be finished yet... I still have so much more to do."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22King%20Eldaric%20IV%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("It is not yet my time! No!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Jessene%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! I’ll not go so easil—"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Outlaw%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Bah! I’m not dying today! <i>Poof</i>! (<i>The Lady Outlaw vanishes in a puff of smoke.</i>)"),
+          },
+          {
+            tag: "set_variable",
+            name: "have_lady",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "lady_store",
+            kill: "yes",
+            id: "Lady Outlaw",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Burin%20the%20Lost%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("Fool of a boy. I never should have followed him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ruddry%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Hail the Kings, may their bloodlines continue beyond my time!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ladoc%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("For Land and Lord, I sacrifice all!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Minister%20Edren%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("May the Lords of Light protect us all."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lord%20Typhon%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("Without him the bottoms of our ships will be completely vulnerable..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 25,
+            y: 1,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 14,
+            y: 8,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 14,
+            y: 30,
+            item_name: "",
+            image: "scenery%2Fmonolith4.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 15,
+            y: 9,
+            item_name: "",
+            image: "scenery%2Fmine-abandoned.png",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Bone Shooter",
+            side: 4,
+            x: 11,
+            y: 34,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Bone Shooter",
+            side: 4,
+            x: 12,
+            y: 36,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Bone Shooter",
+            side: 4,
+            x: 10,
+            y: 36,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Revenant",
+            side: 4,
+            x: 12,
+            y: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_4",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Revenant",
+            side: 4,
+            x: 11,
+            y: 36,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_5",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Revenant",
+            side: 4,
+            x: 10,
+            y: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_6",
+          },
+          {
+            tag: "set_variable",
+            name: "lich_free",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "have_book",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:set_unit_hidden",
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Tan-Pulk",
+            text: _("Da big bosses said we’d be in da city by winter. Bosses wrong, human-worms still there, and I’m a tinkin—"),
+          },
+          {
+            tag: "message",
+            speaker: "Ut'Tan-Grilg",
+            text: _("Wait! I see a ship! Humans is coming! Smash ’em good!"),
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "ambient/ship.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 34,
+            y: 26,
+            item_name: "",
+            image: "units%2Ftransport%2Ftransport-galleon.png~RC(magenta%3Ered)",
+          },
+          {
+            tag: "hook",
+            name: "command:set_unit_hidden",
+            hidden: "no",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Prince Haldric has arrived at Fallen Lich Point, to retrieve Lich-Lord Caror’s Book of Fire and Darkness, and flee into the sewers of Southbay."),
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Lady Jessene",
+            unit: "Lady Jessene",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Burin the Lost",
+            unit: "Burin the Lost",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sir Ruddry",
+            unit: "Sir Ruddry",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sir Ladoc",
+            unit: "Sir Ladoc",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Minister Edren",
+            unit: "Minister Edren",
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Well, let’s un-petrify that lich and take his book, then get into the sewers. Umm, what language would that book be in?"),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("Some pep talk. The book will probably be in the Old Wesfolk tongue."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Ohh."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("Just get the book, I think I should be able to translate it."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Then, into Southbay’s sewer."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("Right."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "12-17",
+            y: "28-33",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_18",
+        on: "branch_if_18",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "lich_free",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_19",
+        on: "branch_if_19",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "lich_free",
+            not_equals: "",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("The Lich-Lord is already free."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 13,
+            y: 29,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("This monolith was erected by me, ― (<i>chipped away</i>), First Mage of the good people of the Green Isle. By its power, the Lich-Lord is bound in stone. To end the spell, a noble of the line of kings should utter the following..."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_18",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_19",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 24,
+            y: 0,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("NW — Southbay."),
+          },
+          {
+            tag: "message",
+            text: _("More like ‘NW — Every orc on the Isle’. Hmph!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 14,
+            y: 8,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: "14-26",
+            y: "15-24",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 5,
+            hidden: "no",
+          },
+          {
+            tag: "spawn",
+            id: "Rarlg",
+            type: "Yeti",
+            side: 5,
+            x: 11,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Rarlg",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Rarlg",
+          },
+          {
+            tag: "message",
+            speaker: "Rarlg",
+            text: _("Rarlg — argh, a raul-rarlg!"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("Oh my!"),
+          },
+          {
+            tag: "message",
+            speaker: "Ut'Tan-Grilg",
+            text: _("Oh my!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tan-Pulk",
+            text: _("Oh my!"),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("And he brought a friend."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Rarlg",
+          },
+          {
+            tag: "spawn",
+            id: "Raul-Rarlg",
+            type: "Yeti",
+            side: 5,
+            x: 14,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Raul-Rarlg",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Raul-Rarlg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lich-Lord%20Caror%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Lich-Lord Caror",
+            text: _("So close. So close."),
+          },
+          {
+            tag: "message",
+            text: _("I found the book in what was left of his robes! Let’s get out of here!"),
+          },
+          {
+            tag: "set_variable",
+            name: "have_book",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("We have the book and the orcs are out of our way. Let’s get out of here!"),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "scenario_end",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("I can hear their reinforcements coming! We’re trapped! All is lost!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 13,
+            y: 7,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "scenery/signpost.png",
+            text: _("Sewer — Danger Keep Out!"),
+          },
+        ],
+      },
+    ],
+  },
+]

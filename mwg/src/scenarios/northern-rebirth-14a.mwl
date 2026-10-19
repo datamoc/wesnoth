@@ -1,0 +1,344 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Epilogue"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "alliance",
+        recruit: "Thug,Poacher,Spearman,Bowman,Dwarvish Ulfserker",
+        leader: "Tallin",
+      },
+      {
+        tag: "map",
+        id: "scenario_14a_Epilogue",
+        file: "14a_Epilogue.map",
+      },
+      {
+        tag: "unit",
+        id: "Tallin",
+        type: "Lieutenant",
+        side: 1,
+        x: 14,
+        y: 10,
+        name: _("Tallin"),
+      },
+      {
+        tag: "event",
+        id: "carryover_4",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_5",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("After the feast had wound down, everyone gathered in the conquered castle to decide on their course of action."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_6",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Tallin",
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _(""),
+        defeat: _(""),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "battle-epic.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_0",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Gg%2CGs%5EFp%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_2",
+            value: 12,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_2",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_0",
+                variable: "_mwg_random_pick_1",
+              },
+              {
+                tag: "hook",
+                name: "command:add_item",
+                x: "$random_placement_location.x",
+                y: "$random_placement_location.y",
+                item_name: "",
+                image: "scenery%2Foak-leaning.png",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_2",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Abhai",
+            unit: "Abhai",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Camerin",
+            unit: "Camerin",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Father Morvin",
+            unit: "Father Morvin",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sister Thera",
+            unit: "Sister Thera",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Krash",
+            unit: "Krash",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Elenia",
+            unit: "Elenia",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Eryssa",
+            unit: "Eryssa",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Stalrag",
+            unit: "Stalrag",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Ro'Sothian",
+            unit: "Ro'Sothian",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Ro'Arthian",
+            unit: "Ro'Arthian",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Hamel",
+            unit: "Hamel",
+          },
+          {
+            tag: "message",
+            text: _("So, Rakshas has been defeated and all the armies that he had gathered have been crushed. This relieves a blight on our land — but if we do not address the causes of the blight, we could be in for trouble later."),
+          },
+          {
+            tag: "message",
+            text: _("How is that, Tallin?"),
+          },
+          {
+            tag: "message",
+            text: _("Rakshas was but a symptom. The ill is the nature of the orcs themselves."),
+          },
+          {
+            tag: "message",
+            text: _("The orcs are exceedingly numerous and warlike. While they squabble among themselves, their warlike nature turns upon itself, and they are no threat; but when a strong warlord like Rakshas arises among them, their battle-lust becomes a plague upon their neighbors."),
+          },
+          {
+            tag: "message",
+            text: _("Exactly."),
+          },
+          {
+            tag: "message",
+            text: _("Aye. And we dinna’ just want to keep the orcs from ruling the Northlands; we want to make the Northlands a safe place for all the kindred races to trade, travel and live in peace. We must also ensure that no isolated bands of orcs, trolls, ogres or any other creatures will be roving around preying on innocent people."),
+          },
+          {
+            tag: "message",
+            text: _("A worthy and difficult task. Does anybody have any ideas?"),
+          },
+          {
+            tag: "message",
+            text: _("I do have a suggestion."),
+          },
+          {
+            tag: "message",
+            text: _("The orcs are too hardy and fast-breeding to be exterminated, even if we could bring ourselves to stomach an attempt at slaughtering them all. Therefore, we must find a way to make them part of our solution."),
+          },
+          {
+            tag: "message",
+            text: _("I propose the creation of a neutral council of warders, composed of humans, dwarves, elves, drakes, trolls or anyone else who wishes to join, no matter what race they come from — even orcs."),
+          },
+          {
+            tag: "message",
+            text: _("This body would not claim sovereignty over any peoples or lands, but exist only to suppress warfare and raiding in the lands south and east of the Great Ocean, north of Wesnoth and west of the elvish forests."),
+          },
+          {
+            tag: "message",
+            text: _("The first task of the warders would be to go to each orcish tribe and make a treaty with them that they will not be attacked if they refrain from attacking others."),
+          },
+          {
+            tag: "message",
+            text: _("The orcs have just experienced a crushing defeat; it shouldn’t be too hard to get them to agree. In the future, if they should renege on their treaties, and threaten the peace of the North, then the army maintained by the warders would crush them."),
+          },
+          {
+            tag: "message",
+            text: _("That is the basic outline of my proposal. Shall the Council of Warders declare itself?"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Hearing the words of the wise mage, the whole assembly erupted with cries of approval."),
+          },
+          {
+            tag: "message",
+            text: _("Fitting!"),
+          },
+          {
+            tag: "message",
+            speaker: "Supporter",
+            text: _("Great!"),
+          },
+          {
+            tag: "message",
+            text: _("Smart!"),
+          },
+          {
+            tag: "message",
+            text: _("Sounds like fun."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Rising to his feet, Hamel raised his hands and waited for the clamor to die down."),
+          },
+          {
+            tag: "message",
+            text: _("Over time, Tallin has proved himself to be a wise, courageous and capable leader. He is respected by humans, elves and dwarves alike. I therefore propose that Tallin be made the first head of the Council of Warders."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Once again, all assembled erupted into thunderous approval. The tumult lasted for some time and at long last Tallin rose to his feet and held up his hands for quiet."),
+          },
+          {
+            tag: "message",
+            text: _("I thank everyone for the love and honor bestowed upon me. In honor of that love I accept this responsibility."),
+          },
+          {
+            tag: "message",
+            text: _("No one leader will make the Warders a success; we will need the help of all of you."),
+          },
+          {
+            tag: "message",
+            text: _("Father Morvin, this whole plan is your idea. Would you and your wife be willing to stand by my side and support me?"),
+          },
+          {
+            tag: "message",
+            text: _("Gladly, Tallin. We will stand with the Warders till the end of days if need be."),
+          },
+          {
+            tag: "message",
+            text: _("Ro’Arthian and Ro’Sothian, you two have also been of staunch allies. As per our agreement, you may return to Highbrook Pass, and I will see to it that guards are posted at both ends barring any who seek to enter without your leave, on pain of death."),
+          },
+          {
+            tag: "message",
+            text: _("Thank you, Tallin. Our old bones are weary of being animated long past their time. Now we will finally be able to rest in peace. However, as we have fought hard for this respite, we shall not allow our effort go to waste. When the Northlands are in direst need of us, we shall rise once again."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("In time, Knalga’s caverns were restored and became a busy and prosperous home to many dwarves. Under the protection of the Northern Alliance, people of all races began coming, as they did before, from all corners of the known — and unknown — world to trade with the Dwarves of Knalga."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Thus, from a small, enslaved community, the people of Dwarven Doors — by their fortitude, valor, and wisdom — brought the Northlands out of the darkness and restored them to their former glory."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+    ],
+  },
+]

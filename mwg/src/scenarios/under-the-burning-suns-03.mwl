@@ -1,0 +1,3149 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("A Stirring in the Night"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        gold: 200,
+        recruit: "Quenoth Fighter,Tauroch Rider,Quenoth Scout,Quenoth Mystic",
+        leader: "Kaleh",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        gold: 180,
+        recruit: "Skeleton,Skeleton Archer,Skeleton Rider",
+        leader: "Azkotep",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        gold: 180,
+        recruit: "Vampire Bat,Ghoul,Ghost,Walking Corpse",
+        leader: "Ystara",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        recruit: "Orcish Grunt, Orcish Archer, Goblin Spearman, Orcish Assassin",
+      },
+      {
+        tag: "map",
+        id: "scenario_03_Stirring_in_the_Night",
+        file: "campaigns/Under_the_Burning_Suns/maps/03_A_Stirring_in_the_Night.map",
+      },
+      {
+        tag: "unit",
+        id: "Kaleh",
+        type: "Quenoth Youth",
+        side: 1,
+        x: 6,
+        y: 16,
+      },
+      {
+        tag: "unit",
+        id: "Azkotep",
+        type: "Lich",
+        side: 2,
+        x: 21,
+        y: 24,
+        name: _("Azkotep"),
+      },
+      {
+        tag: "unit",
+        id: "Ystara",
+        type: "Death Knight",
+        side: 3,
+        x: 23,
+        y: 6,
+        name: _("Ystara"),
+      },
+      {
+        tag: "event",
+        id: "carryover_86",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,,,0,10,%7B%22side%22%3A3%7D;goal,,,0,20,%7B%22id%22%3A%5B%22Grak%22%5D%7D;goal,,,0,10,%7B%22side%22%3A2%7D;goal,,,0,20,%7B%22id%22%3A%5B%22Zur%22%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_87",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Chapter 3: As we continued north through the desert, the looming hills and mountains promised blessed relief from the seemingly never-ending sand. Soon we got to the end of the foothills, and we decided to rest there for the night. As tired as I was of marching across the sand, I felt strangely afraid. I had lived my entire life in the sands; they were my home, and the rocky hills and white glistening mountaintops seemed foreign and foreboding."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_88",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("I worried if I was doing the right thing, leading my people to strange lands. Despite Eloh’s promises, I was not as confident as Zhul was that it would all end well. Looking back I thought it strange that I was the one that Eloh showed herself to. I was never particularly devout, always worried more about day to day matters than the other-worldly ones. But who was I to question a god?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_89",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("That night, as I slept, I dreamt again, for the first time since that first fateful night. Eloh came to me again, and this time she appeared in a vision as a beautiful glowing figure, as bright as the suns. She said <i>“Have courage, for though soon you shall go through a time of darkness, all your trials shall be richly rewarded in the end. You must go under the northern mountains, not over them. You will find the ruins of an ancient watch tower made of black obsidian in the desert by the edge of the hills. By that tower you will find the entrance to the tunnels you seek. Follow the smooth ancient tunnel down under the mountains and when you again see the sky and my suns, I shall contact you. But beware those who lurk in the darkness, they hide from my light, and must not be trusted. I have no power in the dark, so you are my hand of justice. Punish the non-believers. Go now, and fear not the dark.”</i> And again, just like before, I was woken up by a shout in the night."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_90",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kaleh,Azkotep,Ystara",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_91",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 12,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Survive until dawn Defeat all undead leaders Defeat all undead leaders Defeat Possessed Garak Defeat Azkotep Defeat Ystara"),
+        defeat: _("Death of Kaleh Death of Nym Death of Garak Death of Zhul You lose control (even temporarily) of more than 6 villages"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "frantic.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_deep_path.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_king_is_dead.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "siege_of_laurelmor.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Nym",
+            unit: "Nym",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Elyssa",
+            unit: "Elyssa",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Zhul",
+            unit: "Zhul",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Garak",
+            unit: "Garak",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Dust Devil",
+            unit: "Dust Devil",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 14,
+            y: 10,
+            item_name: "",
+            image: "halo%2Ffire-aura.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 16,
+            y: 15,
+            item_name: "",
+            image: "halo%2Ffire-aura.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 13,
+            y: 20,
+            item_name: "",
+            image: "halo%2Ffire-aura.png",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "sneak_up",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "defiant_death",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "set_variable",
+            name: "casualties_count",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:set_time_area",
+            area: "%7B%22tag%22%3A%22time_area%22%2C%22attributes%22%3A%7B%22x%22%3A%2214%2C16%2C13%22%2C%22y%22%3A%2210%2C15%2C20%22%2C%22id%22%3A%22campfires%22%2C%22radius%22%3A%222%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dawn%22%2C%22name%22%3A%22The%20Long%20Dark%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fafter-the-fall%2F15longdark4.png~BLIT(misc%2Ftod-bright.png)%22%2C%22red%22%3A%22-25%22%2C%22green%22%3A%22-15%22%2C%22blue%22%3A%220%22%2C%22sound%22%3A%22ambient%2Fmorning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Skeleton Rider",
+            side: 2,
+            x: 19,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Skeleton Rider",
+            side: 2,
+            x: 20,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Necrophage",
+            side: 3,
+            x: 21,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Necrophage",
+            side: 3,
+            x: 22,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "spawn",
+            id: "Zur",
+            type: "Revenant",
+            side: 2,
+            x: 19,
+            y: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Zur",
+          },
+          {
+            tag: "spawn",
+            id: "Grak",
+            type: "Wraith",
+            side: 3,
+            x: 21,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Grak",
+          },
+          {
+            tag: "hook",
+            name: "command:unit_overlay",
+            id: "Grak,Zur",
+            image: "misc/loyal-icon.png~GS()",
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Kaleh, wake up! Sentries report movement in the sands!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Orcs?"),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("I don’t..."),
+          },
+          {
+            tag: "message",
+            speaker: "Azkotep",
+            text: _("We meet again, Ystara."),
+          },
+          {
+            tag: "message",
+            speaker: "Ystara",
+            text: _("You think you can take me, Azkotep?"),
+          },
+          {
+            tag: "message",
+            speaker: "Azkotep",
+            text: _("My champion, Zur shall slice you to shreds like the puny adept you once were."),
+          },
+          {
+            tag: "message",
+            speaker: "Ystara",
+            text: _("You always were an arrogant little bastard. Grak will swallow your soul, or what’s left of it."),
+          },
+          {
+            tag: "message",
+            speaker: "Azkotep",
+            text: _("You spurned me once and I will make you pay. To battle, my minions! Become my wrath!"),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("... think so. You really know how to pick a campsite, Kaleh."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Where did they come from? I swear those castles weren’t there at sunset."),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("Many strange things can happen during the long dark. But despite their wraith-like forms, I have no doubt that their cold steel can still bite flesh."),
+          },
+          {
+            tag: "message",
+            speaker: "Elyssa",
+            text: _("Like I haven’t killed enough undead recently. Why can’t these creeps just stay dead?"),
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("Our encampment is out of the direct line of attack, so we should be somewhat safe, at least."),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("But if the battle spills around our people will be slaughtered by the undead hordes!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("There’s no way we can escape the battle in time. We must protect the camp from the undead."),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("I fear that if we lose more than half of the tents we will not have the strength to go on. Garak, wake your men. We must hold off the undead until dawn."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("To arms my people, to arms!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_6",
+        on: "branch_if_6",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "random",
+            less_than: "$rally_chance",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "rally_chance",
+            value: 3,
+            mode: "sub",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:store_villages",
+            variable: "tents",
+          },
+          {
+            tag: "set_variable",
+            name: "rally_chance",
+            value: 45,
+          },
+          {
+            tag: "foreach",
+            variable: "tents",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "random",
+                values: "0..100",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "random",
+                value: "$this_item.y",
+                mode: "sub",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_6",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            type: "Quenoth Scout",
+            unit: "",
+            x: 16,
+            y: 14,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "capture",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_capturer_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%2C3%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            portrait: "portraits/nym_moody.webp",
+            text: _("They’re raising the corpses of our fallen! What a horrible fate!"),
+          },
+          {
+            tag: "message",
+            speaker: "Elyssa",
+            text: _("Then we shall have to give them a proper cremation."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_villages",
+            variable: "camps",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "elven_camps",
+            value: "$camps.length",
+            mode: "value",
+          },
+          {
+            tag: "foreach",
+            variable: "camps",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variables",
+                payload: "%7B%22name%22%3A%22camp_event%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22name%22%3A%22capture%22%2C%22first_time_only%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%2C3%2C4%22%2C%22x%22%3A%22%24this_item.x%22%2C%22y%22%3A%22%24this_item.y%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22unit.side%22%2C%22not_equals%22%3A%224%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22random%22%2C%22rand%22%3A%22Walking%20Corpse%2CSoulless%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22unit%22%2C%22attributes%22%3A%7B%22side%22%3A%22%24%7Cunit.side%22%2C%22type%22%3A%22%24%7Crandom%22%2C%22x%22%3A%22%24%7Cx1%22%2C%22y%22%3A%22%24%7Cy1%22%2C%22generate_name%22%3A%22yes%22%2C%22random_traits%22%3A%22no%22%2C%22random_gender%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22gold%22%2C%22attributes%22%3A%7B%22amount%22%3A%2220%22%2C%22side%22%3A%22%24%7Cunit.side%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22elven_camps%22%2C%22sub%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22elven_camps%22%2C%22equals%22%3A%225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Kaleh%22%2C%22message%22%3A%22Too%20many%20of%20our%20people%20have%20been%20killed.%20We%20will%20surely%20be%20overwhelmed%20by%20the%20undead%20now.%20All%20is%20lost!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22endlevel%22%2C%22attributes%22%3A%7B%22result%22%3A%22defeat%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%2C3%2C4%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "min_experience",
+            value: "$(floor($unit.max_experience * 0.5))",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "$min_experience..$($unit.max_experience - 1)",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unit.experience",
+            value: "$random",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "unit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("These champions... I will challenge them. Zhul, bless my weapons with light of Eloh."),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("Garak, but the suns..."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("You will not do any such thing, anyone trying to fight these creeps singlehanded will surely die. We need you, we will not make it without you."),
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("I had a dream this night Kaleh, full of gloom and darkness. My journey will end here one way or another."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("No! That’s not true, our future is what we make of it, stay behind for this fight and..."),
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("And what? You’ll help me become a coward? I lived long, I’m not afraid of the end, just let me give it some meaning."),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("I bless you with the light that will come, I bless you with the memory and the promise. Lay down your shield, champion, and let your blade shine in the dark."),
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22Garak_vow%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%7D%2C%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Garak",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.id",
+            equals: "Garak",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "challenged",
+            value: "$second_unit.id",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "second_unit.id",
+            equals: "Garak",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "challenged",
+            value: "$unit.id",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.id",
+            not_equals: "Garak",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_14",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "garak_killed_zur",
+            equals: "no",
+          },
+          {
+            tag: "message",
+            speaker: "Grak",
+            text: _("Foolish mortal... For daring to challenge me, I’ll devour your soul and torment it for all eternity..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "garak_killed_zur",
+            not_equals: "no",
+          },
+          {
+            tag: "message",
+            speaker: "Grak",
+            text: _("So you destroyed Zur... Come mortal, let’s cross our blades... It’s time for you to take his place..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Grak%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "garak_killed_grak",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "challenged",
+            equals: "Grak",
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("You there! Creep! Stand and face me, shade! I challenge you!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_21",
+        on: "branch_if_21",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "garak_killed_grak",
+            equals: "no",
+          },
+          {
+            tag: "message",
+            speaker: "Zur",
+            text: _("Puny elf... Time to die..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_22",
+        on: "branch_if_22",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "garak_killed_grak",
+            not_equals: "no",
+          },
+          {
+            tag: "message",
+            speaker: "Zur",
+            text: _("Grak was weak... But still you deserve respect... Meet my axe and take his place..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Zur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "garak_killed_zur",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_20",
+        on: "branch_if_20",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "challenged",
+            equals: "Zur",
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("You there! Pile of bones! I challenge you, stand and face me!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_21",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_22",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_19",
+        on: "branch_if_19",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "challenged",
+            not_equals: "Grak",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_20",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "attack",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Garak%2CGrak%2CZur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_defender_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22id%22%3A%22Garak%2CGrak%2CZur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_12",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_13",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_15",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_19",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Garak%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22id%22%3A%22Grak%2CZur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "$second_unit.id",
+            text: _("And so it ends... Your champion is dead, elves... Come join him..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Garak%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22id%22%3A%22Grak%2CZur%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Where is Garak? Has anybody seen him?"),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("I saw him jumping into deep darkness pursuing a group of enemies. Let’s hope nothing happened to him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "azkotep",
+            kill: "no",
+            id: "Azkotep",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "ystara",
+            kill: "no",
+            id: "Ystara",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_28",
+        on: "branch_if_28",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "lich_lord.id",
+            equals: "Azkotep",
+          },
+          {
+            tag: "message",
+            speaker: "$lich_lord.id",
+            text: _("No! This contest is not over yet, Ystara. I shall show you a taste of my true power."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_29",
+        on: "branch_if_29",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "lich_lord.id",
+            not_equals: "Azkotep",
+          },
+          {
+            tag: "message",
+            speaker: "$lich_lord.id",
+            text: _("No! This contest is not over yet, Azkotep. I shall show you a taste of my true power."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "lich_lord_fails_possession",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "ElvishGarak",
+            kill: "no",
+            id: "Garak",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_28",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_29",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "$lich_lord.id",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Garak",
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("Eloh protect us, what has he done?"),
+          },
+          {
+            tag: "message",
+            speaker: "Possessed Garak",
+            text: _("I live again! I can feel!"),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Possessed Garak",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "ElvishGarak",
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("I will... not... yield... I defeated... your... champion... I... will... overcome... you..."),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Garak",
+          },
+          {
+            tag: "message",
+            speaker: "Possessed Garak",
+            text: _("No, fool! Stop!"),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Possessed Garak",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "ElvishGarak",
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("The dark lord... is no more..."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Garak collapses to the ground with his own blade sticking from his chest."),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Garak",
+          },
+          {
+            tag: "message",
+            speaker: "$other_lord.id",
+            text: _("No! How dare you? I shall have my vengeance upon you for spoiling this contest! Darkness shall reign until I have triumphed!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "defiant_death",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%2C4%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%222%2C3%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "turn_number",
+                less_than: 12,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "Walking Corpse,Soulless",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$random",
+            side: "$second_unit.side",
+            x: "$unit.x",
+            y: "$unit.y",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "casualties_count",
+            value: 1,
+            mode: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_32",
+        on: "branch_if_32",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.side",
+            equals: "$lich_lord.side",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "this_item",
+            x: "$coords.x",
+            y: "$coords.y",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31",
+        on: "create_garak_minions",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "coords",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22coords%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Possessed%20Garak%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "undead_casualties",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_32",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33",
+        on: "garak_gloats",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Possessed Garak",
+            text: _("Hahaha...!"),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("Eloh protect us, what is happening?"),
+          },
+          {
+            tag: "message",
+            speaker: "Possessed Garak",
+            text: _("I live again! I can feel!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Garak?"),
+          },
+          {
+            tag: "message",
+            speaker: "Possessed Garak",
+            text: _("Hahaha! Your puny friend is no more. With his body I shall crush you all. Arise again my minions and feast in the slaughter!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "place_corrupted_garak",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Garak",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            shroud: "yes",
+            reset_maps: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "create_garak_minions",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "garak_gloats",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "lich_lord_possesses_garak",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "$lich_lord.id",
+            text: _("No, I shall have my revenge. I shall show you that darkness is strongest just before dawn. Death and decay, grant me my vengeance!"),
+          },
+          {
+            tag: "message",
+            speaker: "$other_lord.id",
+            text: _("In this I shall support you, the darkness will not lift until one of us is victorious."),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "$lich_lord.id",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "place_corrupted_garak",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "lich_lord_resuscitates_inside_garak",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "place_corrupted_garak",
+          },
+          {
+            tag: "message",
+            speaker: "Possessed Garak",
+            text: _("I told you, I will be back, you fools! Now I shall have my vengeance upon you all. Darkness shall reign until I have triumphed!"),
+          },
+          {
+            tag: "message",
+            speaker: "$other_lord.id",
+            text: _("In this I shall support you, the darkness shall not lift until one of us is victorious."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_38",
+        on: "branch_if_38",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "azkotep_is_dead",
+            equals: "no",
+          },
+          {
+            tag: "condition",
+            variable: "ystara_is_dead",
+            equals: "no",
+          },
+          {
+            tag: "condition",
+            variable: "garak_killed_grak",
+            equals: "yes",
+          },
+          {
+            tag: "condition",
+            variable: "garak_killed_zur",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22lich_lord%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22ystara%22%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22other_lord%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22azkotep%22%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "event_to_fire",
+            value: "lich_lord_fails_possession",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_39",
+        on: "branch_if_39",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "azkotep_is_dead",
+            equals: "no",
+          },
+          {
+            tag: "condition",
+            variable: "ystara_is_dead",
+            equals: "no",
+          },
+          {
+            tag: "condition",
+            variable: "garak_killed_grak",
+            equals: "yes",
+          },
+          {
+            tag: "condition",
+            variable: "garak_killed_zur",
+            equals: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22lich_lord%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22azkotep%22%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22other_lord%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22ystara%22%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "event_to_fire",
+            value: "lich_lord_possesses_garak",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_40",
+        on: "branch_if_40",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "azkotep_is_dead",
+            equals: "no",
+          },
+          {
+            tag: "condition",
+            variable: "ystara_is_dead",
+            equals: "no",
+          },
+          {
+            tag: "condition",
+            variable: "garak_killed_grak",
+            equals: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22lich_lord%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22ystara%22%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22other_lord%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22azkotep%22%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "event_to_fire",
+            value: "lich_lord_possesses_garak",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_41",
+        on: "branch_if_41",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "azkotep_is_dead",
+            equals: "no",
+          },
+          {
+            tag: "condition",
+            variable: "ystara_is_dead",
+            equals: "yes",
+          },
+          {
+            tag: "condition",
+            variable: "garak_killed_grak",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22lich_lord%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22ystara%22%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22other_lord%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22azkotep%22%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "event_to_fire",
+            value: "lich_lord_fails_possession",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_42",
+        on: "branch_if_42",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "azkotep_is_dead",
+            equals: "no",
+          },
+          {
+            tag: "condition",
+            variable: "ystara_is_dead",
+            equals: "yes",
+          },
+          {
+            tag: "condition",
+            variable: "garak_killed_grak",
+            equals: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22lich_lord%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22ystara%22%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22other_lord%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22azkotep%22%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "event_to_fire",
+            value: "lich_lord_resuscitates_inside_garak",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_43",
+        on: "branch_if_43",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "azkotep_is_dead",
+            equals: "yes",
+          },
+          {
+            tag: "condition",
+            variable: "ystara_is_dead",
+            equals: "no",
+          },
+          {
+            tag: "condition",
+            variable: "garak_killed_zur",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22lich_lord%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22azkotep%22%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22other_lord%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22ystara%22%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "event_to_fire",
+            value: "lich_lord_fails_possession",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_44",
+        on: "branch_if_44",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "azkotep_is_dead",
+            equals: "yes",
+          },
+          {
+            tag: "condition",
+            variable: "ystara_is_dead",
+            equals: "no",
+          },
+          {
+            tag: "condition",
+            variable: "garak_killed_zur",
+            equals: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22lich_lord%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22azkotep%22%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22other_lord%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22ystara%22%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "event_to_fire",
+            value: "lich_lord_resuscitates_inside_garak",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 12,
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Look, dawn is nigh, our salvation is almost at hand. Even the long dark can’t last forever, and with the light of the sun the undead power wanes and their dark magics unravel."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "event_to_fire",
+            value: "",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_38",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_39",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_40",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_41",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_42",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_43",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_44",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "$event_to_fire",
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            portrait: "portraits/nym_moody.webp",
+            text: _("Maybe I spoke too soon. Curse Uria, he has even blotted out the stars, all is darkness. Kaleh, our course is clear, we must destroy that abomination."),
+          },
+          {
+            tag: "hook",
+            name: "command:modify_turns",
+            value: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_46",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: "$ambush_turn",
+          },
+          {
+            tag: "spawn",
+            id: "Ganthos",
+            type: "Orcish Ruler",
+            side: 4,
+            x: 2,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Ganthos",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Wolf Rider",
+            side: 4,
+            x: 1,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Wolf Rider",
+            side: 4,
+            x: 2,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Orcish Archer",
+            side: 4,
+            x: 0,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Orcish Archer",
+            side: 4,
+            x: 2,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Orcish Assassin",
+            side: 4,
+            x: 1,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+          {
+            tag: "spawn",
+            id: "u_10",
+            type: "Orcish Assassin",
+            side: 4,
+            x: 3,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_10",
+          },
+          {
+            tag: "spawn",
+            id: "u_11",
+            type: "Orcish Warrior",
+            side: 4,
+            x: 2,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_11",
+          },
+          {
+            tag: "spawn",
+            id: "u_12",
+            type: "Orcish Warrior",
+            side: 4,
+            x: 4,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_12",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            gold: 100,
+            income: 25,
+          },
+          {
+            tag: "message",
+            speaker: "Ganthos",
+            text: _("What’s this on our borders? Stinkin’ elves and more undead? We’ll teach them a lesson they won’t soon forget. Attack!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("If those raiders capture any of our encampments, I fear our people’s fate will be just as bad as if it was captured by the undead."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_47",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: "$ambush_turn",
+          },
+          {
+            tag: "spawn",
+            id: "Elven_Scout",
+            type: "Quenoth Scout",
+            side: 1,
+            x: 0,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Elven_Scout",
+          },
+          {
+            tag: "message",
+            speaker: "Elven Scout",
+            text: _("Orcs... Not far behind me... From the hills..."),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Elven Scout",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_45",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "ambush_turn",
+            values: "6..8",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "ambush_turn",
+            value: 2,
+            mode: "sub",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_49",
+        on: "branch_if_49",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "second_unit.side",
+            equals: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Ganthos",
+            text: _("You got me, elf... But you won’t be so lucky with the tribes of the hills... (<i>Cough</i>)"),
+          },
+          {
+            tag: "message",
+            speaker: "Ganthos",
+            text: _("I deeply regret... I won’t be able to see that..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_50",
+        on: "branch_if_50",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "second_unit.side",
+            not_equals: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Ganthos",
+            text: _("Killed by a dead creep... (<i>Cough</i>)"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_52",
+        on: "branch_if_52",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.side",
+            equals: 1,
+          },
+          {
+            tag: "message",
+            text: _("It’s some sort of a map. I think I recognize some of those hills ahead on it."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("And these look like camps and patrol routes. A lot of camps and patrol routes. Kaleh, do you think we could sneak up between them?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Difficult, but worth a try I guess. But first we must try to survive this mess."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Right, sorry. Damn creeps."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "sneak_up",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_53",
+        on: "branch_if_53",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.side",
+            not_equals: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("And now we’ll never know what was on that parchment. Shame."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_51",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: "$x1",
+            y: "$y1",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_52",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_53",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_48",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Ganthos%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_49",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_50",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "items%2Fparchment.png",
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Look, he dropped something! I wonder what it is..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_55",
+        on: "branch_if_55",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.id",
+            equals: "Azkotep",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "other_creep",
+            value: "Ystara",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "azkotep_is_dead",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_56",
+        on: "branch_if_56",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.id",
+            not_equals: "Azkotep",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "other_creep",
+            value: "Azkotep",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "ystara_is_dead",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_57",
+        on: "branch_if_57",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            greater_than: 11,
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Finally. It is over."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "garak_eulogy",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "count_final_camps",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_54",
+        on: "last_breath",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Azkotep%2CYstara%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_55",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_56",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_57",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_58",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Possessed%20Garak%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Finally. It is over."),
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            hitpoints: 1,
+            unit_name: "Garak",
+            variation: "defeated",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Possessed%20Garak%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Possessed Garak",
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("He’s... he’s still breathing!"),
+          },
+          {
+            tag: "message",
+            speaker: "Possessed Garak",
+            text: _("Protect the boy for me Zhul, (<i>cough</i>) I go to a better place."),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Possessed Garak",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "garak_eulogy",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "count_final_camps",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_59",
+        on: "garak_eulogy",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("From the sands he came, to the sands he will return. We remember and honor his sacrifice, and I vow that his death will not be in vain."),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("Goodbye, old friend. May Eloh shine her light eternal upon you."),
+          },
+          {
+            tag: "message",
+            speaker: "Elyssa",
+            text: _("He was as brave and valiant a fighter as I have ever seen in my travels."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            portrait: "portraits/nym_moody.webp",
+            text: _("He was a bastard at times... But... but why did he have to die? It... it just doesn’t make sense."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_61",
+        on: "branch_if_61",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "elven_camps",
+            equals: 12,
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("Miraculously, all of our encampments survived the night."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Though we saved almost all our people this time, we won’t always be so lucky. While elves who have fought with you in the past will gladly return, if the numbers of our people dwindle, it’s going to become more and more costly to recruit new warriors. It would be wise to stockpile gold against this eventuality."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_63",
+        on: "branch_if_63",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "elven_camps",
+            greater_than: 8,
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Though we saved almost all our people this time, we won’t always be so lucky. While elves who have fought with you in the past will gladly return, as the numbers of our people dwindle, it’s going to become more and more costly to recruit new warriors. It would be wise to stockpile gold against this eventuality."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_66",
+        on: "branch_if_66",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "recruit_cost_extra",
+            greater_than: 10,
+          },
+          {
+            tag: "set_variable",
+            name: "recruit_cost_extra",
+            value: 10,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_65",
+        on: "branch_if_65",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "elven_camps",
+            greater_than: 6,
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("We have suffered losses, but we are not broken yet. We have saved most of our people tonight. But while elves who have fought with you in the past will gladly return, as the numbers of our people dwindle, it’s going to become more and more costly to recruit new warriors. It would be wise to stockpile gold against this eventuality."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "num",
+            value: "$recruit_cost_extra",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "recruit_cost_extra",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_66",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "Quenoth Fighter$num,Tauroch Rider$num,Quenoth Scout$num,Quenoth Mystic$num",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "num",
+            value: "$recruit_cost_extra",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "allow",
+            types: "Quenoth Fighter$num,Tauroch Rider$num,Quenoth Scout$num,Quenoth Mystic$num",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_68",
+        on: "branch_if_68",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "recruit_cost_extra",
+            greater_than: 10,
+          },
+          {
+            tag: "set_variable",
+            name: "recruit_cost_extra",
+            value: 10,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_67",
+        on: "branch_if_67",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "elven_camps",
+            less_than_or_equal_to: 6,
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("We have suffered grievous losses, but we are not broken yet. Long will this slaughter be remembered by our people. Where was Eloh during the darkness? And I’m afraid that while elves who have fought with you in the past will gladly return, as the numbers of our people dwindle, it’s going to become more and more costly to recruit new warriors. It would be wise to stockpile gold against this eventuality."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "num",
+            value: "$recruit_cost_extra",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "recruit_cost_extra",
+            value: 2,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_68",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "Quenoth Fighter$num,Tauroch Rider$num,Quenoth Scout$num,Quenoth Mystic$num",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "num",
+            value: "$recruit_cost_extra",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "allow",
+            types: "Quenoth Fighter$num,Tauroch Rider$num,Quenoth Scout$num,Quenoth Mystic$num",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_64",
+        on: "branch_if_64",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "elven_camps",
+            less_than_or_equal_to: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_65",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_67",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_62",
+        on: "branch_if_62",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "elven_camps",
+            not_equals: 12,
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("Well, only $elven_camps encampments remain, but we will survive."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Yes, but at what cost?"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_63",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_64",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_60",
+        on: "count_final_camps",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_61",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_62",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("All this death and destruction. What were those shades arguing over? Was this all just some sort of demented game?"),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("The lords of the dead are powerful and twisted indeed. Only Eloh knows the truth of what happened tonight."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("I don’t want to be here tomorrow night to find out. The hills to the north are close. Let’s be far away before another nightfall."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_69",
+        on: "scenario_end",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_70",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kaleh%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I’m too young to die. What will happen to my people?"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_71",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Nym%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/nym_moody.webp",
+            text: _("Save me, Kaleh, I’m dying..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_72",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Zhul%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Eloh protect us, I have fallen."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_73",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Garak%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Aaargh! Curse you!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_75",
+        on: "branch_if_75",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ally_race",
+            equals: "dwarf",
+          },
+          {
+            tag: "message",
+            text: _("I go now to join my forefathers..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_76",
+        on: "branch_if_76",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ally_race",
+            not_equals: "dwarf",
+          },
+          {
+            tag: "message",
+            text: _("No, $unit.name can’t die now!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_77",
+        on: "branch_if_77",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ally_must_live",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Without his guidance, how can we escape from these infernal caves? We are lost without him!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_78",
+        on: "branch_if_78",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ally_must_live",
+            not_equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("He was a brave warrior and a true ally. He will be missed."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_74",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Grog%2CNog%2CRogrimir%2CJarl%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_75",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_76",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_77",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_78",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_79",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Esanoo%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Farewell Nym, I go to the sea god. You elves must go on without me."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            portrait: "portraits/nym_moody.webp",
+            text: _("Farewell Esanoo. You were my favorite of the merfolk."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_80",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kromph%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Aaurrgghh!!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_81",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Elyssa%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("This can’t be the end, I have too much left to see."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("How could we have let her die? I’ve never seen fire magic like that before. She will be sorely missed."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_82",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recall_to_correct",
+            kill: "no",
+            side: "1, 2",
+          },
+          {
+            tag: "foreach",
+            variable: "recall_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit_type",
+                variable: "utbs_unit_type",
+                types: "$this_item.type",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                recall_cost: "$($utbs_unit_type.cost*0.70)",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_83",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recall_to_correct",
+            kill: "no",
+            side: "1, 2",
+          },
+          {
+            tag: "foreach",
+            variable: "recall_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit_type",
+                variable: "utbs_unit_type",
+                types: "$this_item.type",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                recall_cost: "$($utbs_unit_type.cost*0.55)",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_84",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recall_to_correct",
+            kill: "no",
+            side: "1, 2",
+          },
+          {
+            tag: "foreach",
+            variable: "recall_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit_type",
+                variable: "utbs_unit_type",
+                types: "$this_item.type",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                recall_cost: "$($utbs_unit_type.cost*0.40)",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_85",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recall_to_correct",
+            kill: "no",
+            side: "1, 2",
+          },
+          {
+            tag: "foreach",
+            variable: "recall_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit_type",
+                variable: "utbs_unit_type",
+                types: "$this_item.type",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                recall_cost: "$($utbs_unit_type.cost*0.40)",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]

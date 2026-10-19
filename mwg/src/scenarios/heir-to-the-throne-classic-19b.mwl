@@ -1,0 +1,861 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Swamp Of Dread"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "elves",
+        gold: 200,
+        leader: "Konrad",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "undead",
+        gold: 80,
+        recruit: "Walking Corpse",
+        leader: "Clarustus",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "undead",
+        gold: 100,
+        recruit: "Ghost,Skeleton,Walking Corpse",
+        leader: "Merlunius",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "undead",
+        gold: 140,
+        recruit: "Wraith,Vampire Bat,Skeleton",
+        leader: "Aimucasur",
+      },
+      {
+        tag: "side",
+        id: 5,
+        controller: "ai",
+        team_name: "undead",
+        gold: 80,
+        recruit: "Skeleton,Walking Corpse,Ghoul",
+        leader: "Secadius",
+      },
+      {
+        tag: "side",
+        id: 6,
+        controller: "ai",
+        team_name: "undead",
+        gold: 100,
+        recruit: "Skeleton Archer,Walking Corpse,Ghost",
+        leader: "Dafeis",
+      },
+      {
+        tag: "map",
+        id: "scenario_19b_Swamp_Of_Dread",
+        file: "19b_Swamp_Of_Dread.map",
+      },
+      {
+        tag: "unit",
+        id: "Konrad",
+        type: "Commander",
+        side: 1,
+        x: 4,
+        y: 4,
+        name: _("Konrad"),
+      },
+      {
+        tag: "unit",
+        id: "Clarustus",
+        type: "Death Knight",
+        side: 2,
+        x: 30,
+        y: 4,
+        name: _("Clarustus"),
+      },
+      {
+        tag: "unit",
+        id: "Merlunius",
+        type: "Death Knight",
+        side: 3,
+        x: 28,
+        y: 17,
+        name: _("Merlunius"),
+      },
+      {
+        tag: "unit",
+        id: "Aimucasur",
+        type: "Lich",
+        side: 4,
+        x: 29,
+        y: 28,
+        name: _("Aimucasur"),
+      },
+      {
+        tag: "unit",
+        id: "Secadius",
+        type: "Death Knight",
+        side: 5,
+        x: 7,
+        y: 29,
+        name: _("Secadius"),
+      },
+      {
+        tag: "unit",
+        id: "Dafeis",
+        type: "Death Knight",
+        side: 6,
+        x: 13,
+        y: 18,
+        name: _("Dafeis"),
+      },
+      {
+        tag: "event",
+        id: "carryover_27",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 1.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: 0.0,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_28",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Konrad,Clarustus,Merlunius,Aimucasur,Secadius,Dafeis",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_29",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 30,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat the Lich-Lord Aimucasur Defeat all Death Knights first Defeat the Lich-Lord Aimucasur"),
+        defeat: _("Death of Konrad Death of Delfador Death of Li’sar Death of Kalenz Turns run out Death of Konrad Death of Delfador Death of Li’sar Death of Kalenz Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knalgan_theme.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "underground.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "siege_of_laurelmor.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "suspense.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Konrad%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("We are vanquished, for I have been defeated!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Li'sar%22%2C%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I can’t believe it should end like this!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Argh! I am finished!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! This is the end! We have been defeated!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Warven%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("At least I die an honorable death."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "have_warven",
+            value: "no",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 4,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 5,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 6,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "A_Choice_Was_Made",
+            value: "b",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Delfador",
+            portrait: "portraits/delfador-mentoring.webp",
+            text: _("This land is cursed. Liches have existed here for ages, luring adventurers and soldiers to their deaths and amassing great armies and fortunes."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            portrait: "portraits/konrad-human-concerned.webp",
+            text: _("Look there! The swamp is infested with all manner of skeletons, corpses, and worse. I hope I have made a wise choice in taking this path."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("These Death Knights appear to be minions enslaved by the Lich-Lord. This one must be particularly powerful, since Death Knights are usually strong-willed spirits on their own."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("I believe we can destroy the master and release the minions. There is much fighting to be done before we can pass through these swamps in peace. May our bones not join these fallen warriors who now oppose us."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_18_opt0",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22void_armor%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "void_armor",
+            side: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_18_opt1",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "if_18",
+        on: "branch_if_18",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "armor_taken",
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "$unit.id|",
+                portrait: "wesnoth-icon.png",
+                text: _(""),
+              },
+              {
+                tag: "choice",
+                text: _("Yes"),
+                event: "if_18_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("No"),
+                event: "if_18_opt1",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "$temp_armor_x",
+            y: "$temp_armor_y",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_18",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24armored_knight%22%2C%22type%22%3A%22Death%20Knight%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("The Death Knight explodes into a cloud of dust as it is eradicated. Its armor, however, drops to the ground and remains intact. The heavy black steel is polished to a mirror shine."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("Delfador... that breastplate... how did it end up here?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Its owner was surely a famous warrior in life. I wonder who it was. That plate must have a powerful enchantment to have resisted centuries of decay. Choose wisely who will bear it."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "temp_armor_x",
+            value: "$x1",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "temp_armor_y",
+            value: "$y1",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$temp_armor_x",
+            y: "$temp_armor_y",
+            item_name: "",
+            image: "items%2Farmor-golden.png",
+          },
+          {
+            tag: "set_variable",
+            name: "armor_taken",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "armored_knight",
+            values: "Clarustus,Merlunius,Secadius,Dafeis",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "set_variable",
+            name: "dk_kill_count",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_21",
+        on: "branch_if_21",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "dk_kill_count",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("As the last of its generals falls, an ear-splitting screech escapes from the lich. It is clear that controlling such powerful spirits has drained it significantly, and it is seething in anger towards you."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "Lich_store",
+            kill: "no",
+            type: "Lich",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "Lich_store.hitpoints",
+            value: 0.4,
+            mode: "multiply",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "Lich_store",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Death%20Knight%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "dk_kill_count",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_21",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_23",
+        on: "branch_if_23",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "dk_kill_count",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("A final blow destroys the lich, releasing a small shock wave of energy outwards. A giant cloud of dust billows out as the remnants of the lich’s once-mortal body disintegrate for the last time."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_24",
+        on: "branch_if_24",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "dk_kill_count",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("A final blow destroys the lich, releasing a small shock wave of energy outwards. The last of his minions silently falls like a puppet with its strings cut. A cloud of dust billows outwards as the remnants of the lich’s once-mortal body disintegrate for the last time."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_25",
+        on: "branch_if_25",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "dk_kill_count",
+            not_equals: "",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("A final blow destroys the lich, releasing a small shock wave of energy outwards. His minions fall like puppets with their strings cut. A cloud of dust billows out as the remnants of the lich’s once-mortal body disintegrate for the last time."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Lich%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22type%22%3A%22Death%20Knight%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_23",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_24",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_25",
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Aimucasur’s lordship over this cursed ground is broken."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Aimucasur? So you know of this Lich-Lord? Did you know him? Was he a powerful mage?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            portrait: "portraits/delfador-mentoring.webp",
+            text: _("Yes, very powerful. I was not certain of his identity at first, but it is certain now. He lived centuries ago... he appears in our histories, a former headmaster on Alduin. He was reported to have disappeared, and now we know what happened to him."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("He was just someone who couldn’t handle the power given to him."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("You would do well to learn the lesson he did not."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("Move along, Elf, unless you enjoy making camp in this slimy bog. I, for one, do not!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Indeed..."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("Listen, you whose eyes are fair but hide a vacuum, do you not think I know what power does to one’s soul? What evils a person is capable of when truth and righteousness are but scrolls that can be rewritten when a queen grows tired of them?"),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("I spent my entire childhood listening to my mother give orders and command armies around. I hid in the throne room as a little girl as she met with her generals. I now know she was having people killed... entire towns of people killed!"),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("I became my mother’s most trusted aide-de-camp. I was sent to quiet the worst of the rebellion. Of course they fought back. I never knew who these people were or why they fought my mother. Konrad, you are lucky. You do not know what Wesnoth has been like these past many years. There is no peace. I have never known peace."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("I do know the cup of bitterness poured out on Wesnoth by your mother, child. The land has been torn apart. The elves know this. The orcs know this. Undead can feel it. Large armies of men march across the plains hunting each other, and when no men remain, outsiders will claim Wesnoth as their home."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            portrait: "portraits/konrad-human-mad.webp",
+            text: _("Enough! I can listen to no more of this. Li’sar, you may want to end your mother’s rule, but I will end her life as she ended the life of my father and my brothers. Asheviere’s masterwork of treachery will end, and it will end by my blade!"),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "victory",
+        once: true,
+      },
+    ],
+  },
+]

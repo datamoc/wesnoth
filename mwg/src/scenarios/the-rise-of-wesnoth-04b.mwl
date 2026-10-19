@@ -1,0 +1,894 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Midlands"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Haldric",
+        gold: 140,
+        leader: "Prince_Haldric",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "orcs",
+        gold: 100,
+        recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Wolf Rider, Goblin Spearman",
+        leader: "Tan-Vrodis",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "orcs",
+        gold: 140,
+        recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Wolf Rider, Orcish Crossbowman, Goblin Spearman",
+        leader: "Tan-Bok",
+      },
+      {
+        tag: "side",
+        id: 4,
+        team_name: "orcs",
+        gold: 140,
+        recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Wolf Rider, Orcish Warrior, Goblin Spearman",
+        leader: "Tan-Hogar",
+      },
+      {
+        tag: "map",
+        id: "scenario_04b_The_Midlands",
+        file: "04b_The_Midlands.map",
+      },
+      {
+        tag: "unit",
+        id: "Prince_Haldric",
+        type: "Noble Commander",
+        side: 1,
+        x: 31,
+        y: 7,
+        name: _("Prince Haldric"),
+      },
+      {
+        tag: "unit",
+        id: "Tan-Vrodis",
+        type: "Orcish Warrior",
+        side: 2,
+        x: 10,
+        y: 3,
+        name: _("Tan-Vrodis"),
+      },
+      {
+        tag: "unit",
+        id: "Tan-Bok",
+        type: "Orcish Warlord",
+        side: 3,
+        x: 11,
+        y: 28,
+        name: _("Tan-Bok"),
+      },
+      {
+        tag: "unit",
+        id: "Tan-Hogar",
+        type: "Orcish Warlord",
+        side: 4,
+        x: 31,
+        y: 31,
+        name: _("Tan-Hogar"),
+      },
+      {
+        tag: "event",
+        id: "carryover_24",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.75,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: 0.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_25",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "underground.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/trow_story_04-Fall_of_Eldaric.jpg"),
+            text: _("So it came to pass that Prince Haldric was forced from his home, never to return. With the help of his father’s noble sacrifice he has escaped through the southern pass. Haldric has left the lands of his home, and before him stretches the vast expanse of the southern kingdoms of his people."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_26",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/trow_story_04b-The_Midlands.webp"),
+            text: _("To the southwest lay the Midlands. These were prosperous kingdoms, nestled between hill and forest. These had been the breadbasket of the Green Isle, exporting lumber and gemstones as well. The Midland kingdoms fed the city of Southbay, the largest city on the Isle. The coming of the orcs threatened to lay waste to all this."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_27",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Prince_Haldric,Tan-Vrodis,Tan-Bok,Tan-Hogar,Grilg,u_1,u_2,Vrogar,u_3,u_4,Sir_Ladoc",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_28",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 33,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat all enemy leaders"),
+        defeat: _("Death of Prince Haldric Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "wanderer.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Prince%20Haldric%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("I can’t be finished yet... I still have so much more to do."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22King%20Eldaric%20IV%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("It is not yet my time! No!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Jessene%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! I’ll not go so easil—"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Outlaw%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Bah! I’m not dying today! <i>Poof</i>! (<i>The Lady Outlaw vanishes in a puff of smoke.</i>)"),
+          },
+          {
+            tag: "set_variable",
+            name: "have_lady",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "lady_store",
+            kill: "yes",
+            id: "Lady Outlaw",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Burin%20the%20Lost%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("Fool of a boy. I never should have followed him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ruddry%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Hail the Kings, may their bloodlines continue beyond my time!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ladoc%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("For Land and Lord, I sacrifice all!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Minister%20Edren%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("May the Lords of Light protect us all."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lord%20Typhon%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("Without him the bottoms of our ships will be completely vulnerable..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 31,
+            y: 22,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 18,
+            y: 15,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Lady Outlaw",
+            unit: "Lady Outlaw",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Burin the Lost",
+            unit: "Burin the Lost",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Prince Haldric leads his refugee band into the Midlands and smoke is in the air."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-annoyed.webp",
+            text: _("It is as we suspected, the orcs have sacked the Midlands. This is not a civilized way to fight a war! Look there, there are still orcs about... To arms!"),
+          },
+          {
+            tag: "message",
+            speaker: "Burin the Lost",
+            text: _("All right! Charge!"),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Outlaw",
+            text: _("Feel my wrath, you orcish scum!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tan-Vrodis",
+            text: _("HUMANS... I see humans!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tan-Bok",
+            text: _("Ha, Hogar! You said we wouldn’t see any action this far back from the front."),
+          },
+          {
+            tag: "message",
+            speaker: "Tan-Hogar",
+            text: _("Shut yer mouth! Let’s just get ’em."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 30,
+            y: 21,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "scenery/signpost.png",
+            text: _("SE — The Oldwood. Enter at Your Own Risk!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 17,
+            y: 14,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "scenery/signpost.png",
+            text: _("SW — Southbay."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "new_turn",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "Grilg",
+            type: "Goblin Knight",
+            side: 3,
+            x: 11,
+            y: 36,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Grilg",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Grilg",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Wolf Rider",
+            side: 3,
+            x: 10,
+            y: 37,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Wolf Rider",
+            side: 3,
+            x: 12,
+            y: 37,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_2",
+          },
+          {
+            tag: "message",
+            speaker: "Grilg",
+            text: _("What? More humans here? Get them!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_defender_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22id%22%3A%22Tan-Bok%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "new_turn",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "Vrogar",
+            type: "Orcish Slayer",
+            side: 4,
+            x: 35,
+            y: 36,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Vrogar",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Vrogar",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Orcish Assassin",
+            side: 4,
+            x: 34,
+            y: 37,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Orcish Assassin",
+            side: 4,
+            x: 36,
+            y: 37,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_4",
+          },
+          {
+            tag: "message",
+            speaker: "Vrogar",
+            text: _("They’re attacking the Chief! Kill the meat before it gets any farther!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_defender_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22id%22%3A%22Tan-Hogar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Tan-Bok%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Tan-Hogar",
+            text: _("Better him than me! Reserves!"),
+          },
+          {
+            tag: "gold",
+            side: 4,
+            amount: 80,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Tan-Hogar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Tan-Bok",
+            text: _("Hogar was a fool! Reserves!"),
+          },
+          {
+            tag: "gold",
+            side: 3,
+            amount: 80,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "horse-canter.wav",
+          },
+          {
+            tag: "spawn",
+            id: "Sir_Ladoc",
+            type: "Knight",
+            side: 1,
+            x: 39,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Sir_Ladoc",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Sir_Ladoc",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Sir Ladoc",
+            x: 34,
+            y: 14,
+          },
+          {
+            tag: "message",
+            speaker: "Sir Ladoc",
+            text: _("Hold there! You cannot pass. You’ve already stumbled on the orcish rear guard. The main body of their forces is on the road to Southbay. It is an army of nightmarish size."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("I’m Haldric, my father was King Eldaric IV in the lands northwest of here. Soldier, aren’t you on the wrong side of the lines?"),
+          },
+          {
+            tag: "message",
+            speaker: "Sir Ladoc",
+            text: _("They overran my post. I got hit on the head pretty good. When I came to the orcish army had already passed my position."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Tell me, how fares Southbay?"),
+          },
+          {
+            tag: "message",
+            speaker: "Sir Ladoc",
+            text: _("Southbay won’t fall without one hell of a fight, sir. They’ll stand to the last! I only wish I was there!"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Well, we can’t go back, and the road ahead is blocked... I guess we’ll have to risk it and go through the Oldwood forest, then make a break for Clearwater Port."),
+          },
+          {
+            tag: "message",
+            speaker: "Burin the Lost",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("Oh great, now a forest. I should have stayed at home and taken my chances with the orcs!"),
+          },
+          {
+            tag: "message",
+            speaker: "Sir Ladoc",
+            text: _("Sir, if you don’t mind, I’ll go with you."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Outlaw",
+            text: _("On we go..."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "last_done",
+            value: "Midlands",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("We have run out of time... We’ll be trapped in the midlands when winter comes!"),
+          },
+        ],
+      },
+    ],
+  },
+]

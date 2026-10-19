@@ -1,0 +1,3258 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Across the Harsh Sands"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        gold: 200,
+        recruit: "Quenoth Fighter,Tauroch Rider,Quenoth Scout,Quenoth Mystic",
+        leader: "Kaleh",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "bandits",
+        gold: 0,
+        recruit: "Bandit,Thug,Poacher,Footpad,Outlaw",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "monsters",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "undead",
+        gold: 0,
+        recruit: "Skeleton,Skeleton Archer,Ghost,Walking Corpse,Ghoul",
+      },
+      {
+        tag: "map",
+        id: "scenario_02_Across_the_Harsh_Sands",
+        file: "campaigns/Under_the_Burning_Suns/maps/02_Across_the_Harsh_Sands.map",
+      },
+      {
+        tag: "unit",
+        id: "Kaleh",
+        type: "Quenoth Youth",
+        side: 1,
+        x: 10,
+        y: 71,
+      },
+      {
+        tag: "event",
+        id: "carryover_70",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,,,0,3,%7B%22side%22%3A1%7D;goal,20,8,0,10;goal,,,0,40,%7B%22side%22%3A1%7D;goal,,,0,2,%7B%22side%22%3A2%7D;goal,,,0,3,%7B%22side%22%3A1%7D;goal,,,0,1,%7B%22side%22%3A2%7D;goal,,,0,1,%7B%22side%22%3A3%7D;goal,33,26,0,1",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_71",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Chapter 2: When I was fifteen I went on my first raid, against an orcish incursion to the west. A large band of orcs under some new banner had come out of the northern foothills and were rampaging across the sands, killing anything they could get their filthy hands on."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_72",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Sneaking amongst the dunes we crept up to their camp and ambushed them at dawn. To a young boy the fighting was overwhelming: crashing blades, blood, battle cries, friend and foe struggling back and forth. The orcs rallied around their leader, their greater numbers countering our superior skill at combat. It was my father who finally fought his way to the foul orc leader and slew him on the bloodstained sand. The surviving orcs broke and fled from the battlefield, to be hunted down and slain as individuals and small groups by our trackers. It seemed a glorious victory, and I hardly noticed our elven brethren lying dead in the sand."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_73",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("I was giddy on the journey back home, my heart pumping with elation and pride. I had fought my first battle; now I was a man like my father. Then one night during the long dark a harsh wind came up, moaning and howling around our tents. By dawn it had only gotten worse; I wondered if some dark god was trying to avenge the massacre of the orcs. I’d seen sandstorms before, but I had never experienced one like this. I hid in my tent praying to Eloh as if my life depended on it. The air grew thick with sand, and everything grew dark and hazy..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_74",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("The next thing I remember, someone was bending over me shaking me awake. I was half buried in sand, and I felt weak but alive. Our equipment was scattered across the dunes or buried in the sand. Looking around I only saw a few of my companions, who were digging in the sand, fervently hoping to find other survivors. I dug furiously at the sand with my bare hands and yelled until I was hoarse, but try as I might, I could not find my father. They told me he had been swallowed by the sand, but I would not be consoled. In one instant my world crumbled; I never looked at the sands quite the same way again. I learned that day that the desert can be fickle and fierce, and death is always lurking just over the horizon."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_75",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Now I journeyed out again across the sands, but this time it was not just myself, but my entire people that I had to protect. They were depending on my judgment, and I was only too aware of the weight on my narrow shoulders. Thinking of the last time we had gone out in force, I made a silent prayer to my father to watch over us. There was nowhere to go but north."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_76",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kaleh",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_77",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 58,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Kaleh must reach the northern edge of the desert Defeat outlaw leader"),
+        defeat: _("Death of Kaleh Death of Nym Death of Garak Death of Zhul Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "wanderer.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "battle.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "set_variable",
+            name: "dehydration_loss",
+            value: 5,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "dehydrating_units",
+            kill: "no",
+            side: "$side_number",
+            not_type: "Dust Devil",
+          },
+          {
+            tag: "foreach",
+            variable: "dehydrating_units",
+            item: "this_item",
+            index: "i",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_5",
+        on: "branch_if_5",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            condition: "hook",
+            hook: "predicate:variable_compare",
+            variable: "hydrating_units[$i].status.dehydrated",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "dehydration_effect",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_6",
+        on: "branch_if_6",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            condition: "hook",
+            hook: "predicate:variable_compare",
+            variable: "hydrating_units[$i].gender",
+            equals: "female",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_7",
+        on: "branch_if_7",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "hydrating_units[$i].gender",
+            not_equals: "female",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "hydrating_units",
+            kill: "no",
+            side: "$side_number",
+          },
+          {
+            tag: "foreach",
+            variable: "hydrating_units",
+            item: "this_item",
+            index: "i",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_5",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24hydrating_units%5B%24i%5D.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+                id: "$hydrating_units[$i].id",
+                status_dehydrated: "no",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_6",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_7",
+              },
+              {
+                tag: "hook",
+                name: "command:remove_object",
+                object_id: "dehydration_overlay",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_9",
+        on: "branch_if_9",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "side_number",
+            equals: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 1,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.status.dehydration_slowed_by_healer",
+                value: "no",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_9",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "advance",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_advance_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22status%22%3A%22dehydrated%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unit.status.dehydrated",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "unit",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "dehydration_overlay",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22status%22%3A%22dehydrated%22%7D%2C%22children%22%3A%5B%5D%7D",
+            status_dehydrated: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22status%22%3A%22dehydration_slowed_by_healer%22%7D%2C%22children%22%3A%5B%5D%7D",
+            status_dehydration_slowed_by_healer: "no",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Nym",
+            unit: "Nym",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Garak",
+            unit: "Garak",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Zhul",
+            unit: "Zhul",
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: "18-22,19-21,20",
+            ys: "8-9,7,10",
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: "-1-7",
+            ys: "65-73",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("I have crossed these sands long ago, when I was a youth, and we went on a great raid against a foul necromancer who was hiding out in one of the ruins, creating an army of undead. It was a nasty battle, especially after nightfall, but all his magics couldn’t save him when we cut off his head. Ah, those were the days..."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Do you remember anything about these sands?"),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 21,
+            y: 8,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "portraits/garak.webp",
+            text: _("Do you see that brown spot sticking up on the northern horizon? That’s Pinnacle Rock. It’s the highest land for miles around, and has a spring at its base, or did the last time I camped there. If we make it to Pinnacle Rock we will be just a few miles from the edge of the mountains."),
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("But between here and there is a particularly barren stretch of the sands, with only a few oases and watering holes. Luckily I think there used to be an old caravan route leading north, which went from oasis to oasis. The oases aren’t easy to find but occasionally the sands blow away, revealing old stone roads that lead from oasis to oasis. Once the path must have formed a great thoroughfare for commerce."),
+          },
+          {
+            tag: "hook",
+            name: "command:place_shroud",
+            side: 1,
+            xs: "18-22,19-21,20",
+            ys: "8-9,7,10",
+            radius: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("I believe that there was once a great empire in these lands, long ago, before the sands came."),
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("I’ve seen the ancient remains of stone castles and markers in the sands. The paths of the ancients may serve us yet again. If we follow the paths from oasis to oasis, we may be able to survive the thirst and heat of the desert. But there are worse dangers in these sands than thirst, we must be wary and scout our way carefully."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Unfortunately, because of our hasty flight from our village, we are short on water-skins and rations. We’ll have enough if we move quickly and eat as little as possible, but we won’t last long in the wastes if we can’t find more sources of water. As it is, between the heat of the day and the cold of the night, this journey will be hard on our people."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("During the daytime (Dawn, Morning, Midday, Afternoon, and Dusk) at the beginning of each your turns, every unit in a sand, road, rubble or sand dune hex will suffer from thirst. Each turn of thirst reduces a unit’s attack damage and causes $dehydration_loss hitpoints of damage. Healers can prevent dehydration from becoming worse, but cannot heal it. Only by refreshing at an oasis (any water hex) at the start of your turn will your units regain full attack strength."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Kaleh, be careful you don’t recruit too many guards to go with us. I doubt we’re going to find any other villages out in the sands, so the income that we have right now is all we’re going to get. Remember that as our people get more experienced they often require more support, so we don’t want to run out of supplies halfway across the desert."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Well, the sooner we reach Pinnacle Rock, the better. Onwards!"),
+          },
+          {
+            tag: "set_variable",
+            name: "max_ghosts",
+            value: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "ghosts_to_kill",
+            value: "$(ceil($($max_ghosts / 3.0)))",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "scorpions_spotted",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2229%22%2C%22y%22%3A%2262%22%2C%22radius%22%3A%228%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_wml%22%2C%22attributes%22%3A%7B%22usage%22%3A%22scout%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Wait. I think I spotted something ahead of us..."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("What? I don’t see a thing."),
+          },
+          {
+            tag: "message",
+            text: _("See those shining speckles ahead? Scorpions. Large. Whole nest of them."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22unit_type_table%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22split%22%2C%22attributes%22%3A%7B%22list%22%3A%22Sand%20Scuttler%22%2C%22key%22%3A%22type%22%2C%22separator%22%3A%22%2C%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "unit_type_table_i",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_0",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2229%22%2C%22y%22%3A%2262%22%2C%22radius%22%3A%222%22%2C%22include_borders%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_2",
+            value: 7,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_2",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_0",
+                variable: "_mwg_random_pick_1",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$unit_type_table[$unit_type_table_i].type",
+                side: 3,
+                x: "$random_placement_location.x",
+                y: "$random_placement_location.y",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "unit_type_table_i",
+                value: "$(($unit_type_table_i + 1) % $unit_type_table.length)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_2",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("Do you want us to fight? We can still avoid them, but they are between us and the next oasis."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "scorpion_ambush",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2229%22%2C%22y%22%3A%2262%22%2C%22radius%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_wml%22%2C%22attributes%22%3A%7B%22usage%22%3A%22scout%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Scorpions! We must have stumbled across a nest of them."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22unit_type_table%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22split%22%2C%22attributes%22%3A%7B%22list%22%3A%22Sand%20Scuttler%22%2C%22key%22%3A%22type%22%2C%22separator%22%3A%22%2C%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "unit_type_table_i",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_3",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2229%22%2C%22y%22%3A%2262%22%2C%22radius%22%3A%222%22%2C%22include_borders%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_5",
+            value: 7,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_5",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_3",
+                variable: "_mwg_random_pick_4",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$unit_type_table[$unit_type_table_i].type",
+                side: 3,
+                x: "$random_placement_location.x",
+                y: "$random_placement_location.y",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "unit_type_table_i",
+                value: "$(($unit_type_table_i + 1) % $unit_type_table.length)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_5",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            condition: "hook",
+            hook: "predicate:variable_compare",
+            variable: "hydrating_units[$i].status.dehydrated",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "dehydration_effect",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            condition: "hook",
+            hook: "predicate:variable_compare",
+            variable: "hydrating_units[$i].gender",
+            equals: "female",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "hydrating_units[$i].gender",
+            not_equals: "female",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "take_traveler_ring_opt0",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22Travelring%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Travelring",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "hydrating_units",
+            kill: "no",
+          },
+          {
+            tag: "foreach",
+            variable: "hydrating_units",
+            item: "this_item",
+            index: "i",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_15",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24hydrating_units%5B%24i%5D.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+                id: "$hydrating_units[$i].id",
+                status_dehydrated: "no",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_16",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_17",
+              },
+              {
+                tag: "hook",
+                name: "command:remove_object",
+                object_id: "dehydration_overlay",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "take_traveler_ring_opt1",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "take_traveler_ring",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22type%22%3A%22Dust%20Devil%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22ring_loc%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                text: _("Should I take this ring?"),
+              },
+              {
+                tag: "choice",
+                text: _("Yes, I’ll take it."),
+                event: "take_traveler_ring_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("No, I think someone else should wear it."),
+                event: "take_traveler_ring_opt1",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Sand%20Scuttler%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "unit_exists",
+                exists: "no",
+                type: "Sand Scuttler",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "items%2Fring-white.png",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("The scorpions were devouring some poor person’s body. There doesn’t seem to be much of him left, but wait— What’s this? It looks like a tiny gold ring. I think I see elvish runes on the inside, but I can barely make them out. This seems to be a ring of travel! Those who wear it will not suffer from thirst or hunger, nor cold, nor heat. I’ve heard tales of such magical items, and we can certainly use it now."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("One unit wearing this ring is immune to any damage caused during the day by the heat of the desert."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "ring_loc",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%2C%22variable%22%3A%22ring_loc%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "26-37",
+            y: "54-64",
+          },
+          {
+            tag: "message",
+            text: _("Look, an oasis! Its refreshing water will allow our people to regain strength and rest safely on the grass during the heat of the day."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%226%22%2C%22y%22%3A%2260%22%2C%22radius%22%3A%224%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("It’s a pack of Wandering Scarabs! They must’ve been burrowed under the sand."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22unit_type_table%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22split%22%2C%22attributes%22%3A%7B%22list%22%3A%22Wandering%20Scarab%22%2C%22key%22%3A%22type%22%2C%22separator%22%3A%22%2C%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "unit_type_table_i",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_6",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%226%22%2C%22y%22%3A%2260%22%2C%22radius%22%3A%222%22%2C%22include_borders%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_8",
+            value: 4,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_8",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_6",
+                variable: "_mwg_random_pick_7",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$unit_type_table[$unit_type_table_i].type",
+                side: 3,
+                x: "$random_placement_location.x",
+                y: "$random_placement_location.y",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "unit_type_table_i",
+                value: "$(($unit_type_table_i + 1) % $unit_type_table.length)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_8",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 3,
+            ai_type: "zone_guardian",
+            action: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22role%22%3A%22Hunting%20Ogre%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22x%22%3A%2217%22%2C%22y%22%3A%2249%22%2C%22radius%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Hunting Ogre",
+            text: _("Fresh meat!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ogres_spotted",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2217%22%2C%22y%22%3A%2249%22%2C%22radius%22%3A%228%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_wml%22%2C%22attributes%22%3A%7B%22usage%22%3A%22scout%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22unit_type_table%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22split%22%2C%22attributes%22%3A%7B%22list%22%3A%22Ogre%2COgre%2CYoung%20Ogre%2CYoung%20Ogre%2CYoung%20Ogre%22%2C%22key%22%3A%22type%22%2C%22separator%22%3A%22%2C%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "unit_type_table_i",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_9",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2217%22%2C%22y%22%3A%2249%22%2C%22radius%22%3A%223%22%2C%22include_borders%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_11",
+            value: 5,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_11",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_9",
+                variable: "_mwg_random_pick_10",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$unit_type_table[$unit_type_table_i].type",
+                side: 3,
+                x: "$random_placement_location.x",
+                y: "$random_placement_location.y",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "unit_type_table_i",
+                value: "$(($unit_type_table_i + 1) % $unit_type_table.length)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_11",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "ogres_killed",
+            value: 0,
+          },
+          {
+            tag: "message",
+            text: _("Shh... ogres ahead. Behind that dune there, we have to pass them if we want to reach the next oasis."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("No chance to sneak around?"),
+          },
+          {
+            tag: "message",
+            text: _("We would have to cover extra distance in difficult terrain. If you want to bypass them I suggest going straight north in the hopes of finding an oasis there."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ogre_ambush",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2217%22%2C%22y%22%3A%2249%22%2C%22radius%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_wml%22%2C%22attributes%22%3A%7B%22usage%22%3A%22scout%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22unit_type_table%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22split%22%2C%22attributes%22%3A%7B%22list%22%3A%22Ogre%2COgre%2CYoung%20Ogre%2CYoung%20Ogre%2CYoung%20Ogre%22%2C%22key%22%3A%22type%22%2C%22separator%22%3A%22%2C%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "unit_type_table_i",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_12",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2217%22%2C%22y%22%3A%2249%22%2C%22radius%22%3A%223%22%2C%22include_borders%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_14",
+            value: 5,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_14",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_12",
+                variable: "_mwg_random_pick_13",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$unit_type_table[$unit_type_table_i].type",
+                side: 3,
+                x: "$random_placement_location.x",
+                y: "$random_placement_location.y",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "unit_type_table_i",
+                value: "$(($unit_type_table_i + 1) % $unit_type_table.length)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_14",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "ogres_killed",
+            value: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Ogre ambush!"),
+          },
+          {
+            tag: "message",
+            text: _("Fresh meat!"),
+          },
+          {
+            tag: "message",
+            text: _("Ugh, they smell as bad as they look. And they’re huge! Well, the bigger they are, the harder they fall."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22role%22%3A%22Hunting%20Ogre%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "items%2Fpotion-grey.png",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("That’s the last of them. This looks like a hunting party, they must have a camp around here somewhere."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Hey! Look there, they dropped something... A stone bottle, sealed. I wonder what’s inside..."),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("Nym! No! Don’t open—"),
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Too late. And it’s just sand inside. Not worth... Whoa! What’s happening?!"),
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("It’s a dust devil, but I have never seen one so small before."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "locs_around_nym",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22locs_around_nym%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%2C%22radius%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_unit_hidden",
+            id: "Dust Devil",
+            hidden: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "dust_devil_path.x",
+            value: "$stored_dust_devil.x",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "dust_devil_path.y",
+            value: "$stored_dust_devil.y",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "dust_devil_retpath.x",
+            value: "$stored_dust_devil.x",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "dust_devil_retpath.y",
+            value: "$stored_dust_devil.y",
+            mode: "value",
+          },
+          {
+            tag: "foreach",
+            variable: "locs_around_nym",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "dust_devil_path.x",
+                value: "$dust_devil_path.x|,$this_item.x",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "dust_devil_path.y",
+                value: "$dust_devil_path.y|,$this_item.y",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "dust_devil_retpath.x",
+                value: "$this_item.x|,$dust_devil_retpath.x|",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "dust_devil_retpath.y",
+                value: "$this_item.y|,$dust_devil_retpath.y|",
+                mode: "value",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_unit_hidden",
+            id: "Dust Devil",
+            hidden: "no",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("It seems to like you, looks like you just got yourself a pet."),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("Girl, I told you not to open it. Let’s go, I’d really like to get to an oasis soon."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "mobilize_black_hand_bandits",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "bandits_mobilized",
+                equals: "no",
+              },
+              {
+                tag: "have_unit",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "bandits",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "bandits",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "bandits_mobilized",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22race%22%3A%22ogre%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "mobilize_black_hand_bandits",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_25",
+        on: "branch_if_25",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ogres_killed",
+            equals: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "mobilize_black_hand_bandits",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_26",
+        on: "branch_if_26",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ogres_killed",
+            not_equals: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "ogres_killed",
+            value: 1,
+            mode: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22race%22%3A%22ogre%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_25",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_26",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "0-19",
+            y: "39-53",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "random_placement_locations",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22x%22%3A%226%22%2C%22y%22%3A%2243%22%2C%22radius%22%3A%223%22%2C%22variable%22%3A%22random_placement_locations%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "trappers",
+            value: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "thugs",
+            value: 4,
+          },
+          {
+            tag: "set_variable",
+            name: "poachers",
+            value: 4,
+          },
+          {
+            tag: "set_variable",
+            name: "bandits",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_repeat_0",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_repeat_0",
+                less_than: "$trappers",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "random",
+                values: "0..$($random_placement_locations.length - 1)",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "random_placement_x",
+                value: "$random_placement_locations[$random].x",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "random_placement_y",
+                value: "$random_placement_locations[$random].y",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_repeat_0",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_repeat_1",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_repeat_1",
+                less_than: "$thugs",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "random",
+                values: "0..$($random_placement_locations.length - 1)",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "random_placement_x",
+                value: "$random_placement_locations[$random].x",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "random_placement_y",
+                value: "$random_placement_locations[$random].y",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_repeat_1",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_repeat_2",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_repeat_2",
+                less_than: "$poachers",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "random",
+                values: "0..$($random_placement_locations.length - 1)",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "random_placement_x",
+                value: "$random_placement_locations[$random].x",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "random_placement_y",
+                value: "$random_placement_locations[$random].y",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_repeat_2",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_repeat_3",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_repeat_3",
+                less_than: "$bandits",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "random",
+                values: "0..$($random_placement_locations.length - 1)",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "random_placement_x",
+                value: "$random_placement_locations[$random].x",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "random_placement_y",
+                value: "$random_placement_locations[$random].y",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_repeat_3",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22role%22%3A%22ElyssaUndead%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "0-27,28-38",
+            y: "22-35,13-20",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "random_placement_locations",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24(%24x1%20%2B%207)%22%2C%22y%22%3A%22%24(%24y1%20-%201)%22%2C%22radius%22%3A%223%22%2C%22variable%22%3A%22random_placement_locations%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "skeletons",
+            value: 2,
+          },
+          {
+            tag: "set_variable",
+            name: "archers",
+            value: 4,
+          },
+          {
+            tag: "set_variable",
+            name: "shooters",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "revenants",
+            value: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "0..$($random_placement_locations.length - 1)",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "random_placement_x",
+            value: "$random_placement_locations[$random].x",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "random_placement_y",
+            value: "$random_placement_locations[$random].y",
+            mode: "value",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_repeat_4",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_repeat_4",
+                less_than: "$skeletons",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "random",
+                values: "0..$($random_placement_locations.length - 1)",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "random_placement_x",
+                value: "$random_placement_locations[$random].x",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "random_placement_y",
+                value: "$random_placement_locations[$random].y",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_repeat_4",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_repeat_5",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_repeat_5",
+                less_than: "$archers",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "random",
+                values: "0..$($random_placement_locations.length - 1)",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "random_placement_x",
+                value: "$random_placement_locations[$random].x",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "random_placement_y",
+                value: "$random_placement_locations[$random].y",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_repeat_5",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_repeat_6",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_repeat_6",
+                less_than: "$revenants",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "random",
+                values: "0..$($random_placement_locations.length - 1)",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "random_placement_x",
+                value: "$random_placement_locations[$random].x",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "random_placement_y",
+                value: "$random_placement_locations[$random].y",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_repeat_6",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_repeat_7",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_repeat_7",
+                less_than: "$shooters",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "random",
+                values: "0..$($random_placement_locations.length - 1)",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "random_placement_x",
+                value: "$random_placement_locations[$random].x",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "random_placement_y",
+                value: "$random_placement_locations[$random].y",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_repeat_7",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Elyssa",
+            text: _("Back, you fiends! Or I’ll kill you a second time!"),
+          },
+          {
+            tag: "message",
+            speaker: "Go'hag",
+            text: _("You have defied our master for the last time. Now you shall die!"),
+          },
+          {
+            tag: "message",
+            speaker: "Elyssa",
+            text: _("Stupid undead, they never listen. Then have a taste of my flame!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("She looks like she’s in trouble. We should help her."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "24-39",
+            y: "21-32",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_32",
+        on: "branch_if_32",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.type",
+            equals: "Dust Devil",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22unit.type%22%2C%22equals%22%3A%22Flesh%20Golem%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "explorer",
+            kill: "no",
+            id: "Nym",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_33",
+        on: "branch_if_33",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22unit.type%22%2C%22equals%22%3A%22Dust%20Devil%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22unit.type%22%2C%22equals%22%3A%22Flesh%20Golem%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "explorer",
+            kill: "no",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            y: "0-19",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "items%2Forcish-flag2.png",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "scenery/signpost.png",
+            text: _("This land belongs to the Black Hand. Trespass and you will die."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_32",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_33",
+          },
+          {
+            tag: "message",
+            speaker: "$explorer.id",
+            text: _("Bandits. If they get in our way, they’re going to be sorry."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("There’s no way we can get all our people safely across the desert with outlaws harassing us. We must defeat them before we can continue."),
+          },
+          {
+            tag: "message",
+            speaker: "$explorer.id",
+            text: _("Did you see that? I think I just saw someone disappear behind that dune over there. I think we’re being watched. I suspect there are more of these bandits lurking in these dunes than we originally thought."),
+          },
+          {
+            tag: "spawn",
+            id: "Thorn",
+            type: "Outlaw",
+            side: 2,
+            x: 21,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Thorn",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            gold: 200,
+            income: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_35",
+        on: "branch_if_35",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.type",
+            equals: "Dust Devil",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22unit.type%22%2C%22equals%22%3A%22Flesh%20Golem%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "explorer",
+            kill: "no",
+            id: "Nym",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_36",
+        on: "branch_if_36",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22unit.type%22%2C%22equals%22%3A%22Dust%20Devil%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22unit.type%22%2C%22equals%22%3A%22Flesh%20Golem%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "explorer",
+            kill: "no",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "8-12",
+            y: "12-18",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Dd",
+            cells: "9,13;9,14;10,14;10,15;10,16;11,14;11,15",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_35",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_36",
+          },
+          {
+            tag: "message",
+            speaker: "$explorer.id",
+            text: _("Dang. I was sure I saw an oasis here. Must have been a mirage. I’ve been out in the sand for too long."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_38",
+        on: "branch_if_38",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.type",
+            equals: "Dust Devil",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22unit.type%22%2C%22equals%22%3A%22Flesh%20Golem%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "explorer",
+            kill: "no",
+            id: "Nym",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_39",
+        on: "branch_if_39",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22unit.type%22%2C%22equals%22%3A%22Dust%20Devil%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22unit.type%22%2C%22equals%22%3A%22Flesh%20Golem%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "explorer",
+            kill: "no",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "13-28",
+            y: "0-13",
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "20,7",
+            radius: 3,
+            multiturn: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_38",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_39",
+          },
+          {
+            tag: "message",
+            speaker: "$explorer.id",
+            text: _("So, the outlaws have made a base around Pinnacle Rock. It’s a good location, but we will drive them from it all the same."),
+          },
+          {
+            tag: "hook",
+            name: "command:reset_fog",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "take_holy_water_opt0",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22PureWater%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "PureWater",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "take_holy_water_opt1",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "take_holy_water",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "$x1",
+            y: "$y1",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%2C%22id%22%3A%22take_holy_water%22%2C%22delayed_variable_substitution%22%3A%22no%22%2C%22first_time_only%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22Should%20I%20take%20the%20holy%20water%3F%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22option%22%2C%22attributes%22%3A%7B%22label%22%3A%22Yes%2C%20I%E2%80%99ll%20take%20it.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22command%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22object%22%2C%22attributes%22%3A%7B%22id%22%3A%22PureWater%22%2C%22name%22%3A%22Holy%20Water%22%2C%22image%22%3A%22items%2Fholy-water.png%22%2C%22description%22%3A%22This%20water%20will%20make%20your%20melee%20weapons%20%3Ci%3Earcane%3C%2Fi%3E%2C%20and%20thus%20especially%20powerful%20against%20the%20undead.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22attack%22%2C%22range%22%3A%22melee%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22set_specials%22%2C%22attributes%22%3A%7B%22mode%22%3A%22append%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22damage_type%22%2C%22attributes%22%3A%7B%22id%22%3A%22arcane_damage%22%2C%22name%22%3A%22arcane%22%2C%22description%22%3A%22This%20attack%20combines%20the%20arcane%20type%20with%20the%20type%20of%20weapon%20used%20so%20that%20resistance%20to%20the%20arcane%20type%20does%20not%20penalize%20the%20user.%22%2C%22special_note%22%3A%22This%20unit%20can%20use%20the%20arcane%20type%20when%20the%20opponent%20is%20particularly%20sensitive%20to%20it%20in%20relation%20to%20the%20weapon%20on%20which%20it%20is%20applied.%22%2C%22alternative_type%22%3A%22arcane%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22remove_item%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22remove_event%22%2C%22attributes%22%3A%7B%22id%22%3A%22take_holy_water%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22option%22%2C%22attributes%22%3A%7B%22label%22%3A%22No%2C%20I%20think%20someone%20else%20should%20take%20it.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22command%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22allow_undo%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                text: _("Should I take the holy water?"),
+              },
+              {
+                tag: "choice",
+                text: _("Yes, I’ll take it."),
+                event: "take_holy_water_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("No, I think someone else should take it."),
+                event: "take_holy_water_opt1",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thorn%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I surrender! I mean we surrender. Just please don’t kill me."),
+          },
+          {
+            tag: "message",
+            text: _("Please, have mercy on us. We’re just trying to survive in this horrible land."),
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "items%2Fholy-water.png",
+          },
+          {
+            tag: "message",
+            text: _("Here, take this vial of holy water. You’ll need it with all the undead around."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("I will take this vial, in exchange for your life. But leave these lands, and never darken our path again. Or I will show you no mercy."),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("It’s Holy Water. When anointed on a weapon it makes it deadly to magical creatures. Vials such as these are rare and valuable. We should choose carefully who will use it."),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22animate%22%3A%22no%22%2C%22fire_event%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_41",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            y: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_42",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_43",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("We’ve run out of provisions and our people are exhausted. We’ve taken too long crossing the desert, I fear we shall never reach the other side."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_44",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "set_variable",
+            name: "ghosts_already_spawned",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "ghosts_killed",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_46",
+        on: "branch_if_46",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ghost_spawn_locs.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "ghosts_per_unit",
+            value: "$($ghost_spawn_locs.length / 3)",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "ghosts_per_turn",
+            value: "$(($turn_number / 21) + 2)",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "ghost_limit",
+            value: "$($max_ghosts - $ghosts_already_spawned)",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "ghosts",
+            value: "$(min([$ghosts_per_unit, $ghosts_per_turn, $ghost_limit]))",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "0..$($ghost_spawn_locs.length - 1)",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "spawn",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22spawn%22%2C%22terrain%22%3A%22Hd%5E*%2C%20Dd%5E*%2C%20Ds%5E*%2C%20Rr%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24ghost_spawn_locs%5B%24random%5D.x%22%2C%22y%22%3A%22%24ghost_spawn_locs%5B%24random%5D.y%22%2C%22radius%22%3A%228%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_repeat_8",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_repeat_8",
+                less_than: "$ghosts",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "random",
+                values: "0..$($spawn.length - 1)",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "ghosts_already_spawned",
+                value: 1,
+                mode: "add",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_repeat_8",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "ghosts_talk",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_45",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "ghosts_already_spawned",
+                less_than: "$max_ghosts",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "ghost_spawn_locs",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22ghost_spawn_locs%22%2C%22terrain%22%3A%22Hd%5E*%2C%20Dd%5E*%2C%20Ds%5E*%2C%20Rr%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_adjacent_location%22%2C%22attributes%22%3A%7B%22count%22%3A%225%2C6%22%2C%22adjacent%22%3A%22n%2Cne%2Cse%2Cs%2Csw%2Cnw%22%2C%22terrain%22%3A%22Hd%5E*%2C%20Dd%5E*%2C%20Ds%5E*%2C%20Rr%5E*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_46",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_47",
+        on: "ghosts_talk",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("The sands are haunted with the spirits of tortured souls long since dead. At dusk they rise again, and during the Long Dark they can be particularly nasty. They disappear again at dawn, but personally I prefer the heat of the day to the horrors of the night."),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("The combination of the heat of the day and the rising undead make dusk a particularly dangerous time of day."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_49",
+        on: "branch_if_49",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ghosts_killed",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "ghosts_killed",
+            value: 1,
+            mode: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_50",
+        on: "branch_if_50",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ghosts_killed",
+            not_equals: "",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "ghosts_already_spawned",
+            value: "$max_ghosts",
+            mode: "value",
+          },
+          {
+            tag: "set_variable",
+            name: "ghosts_killed",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "ghosts_leave",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_48",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22role%22%3A%22LostSoul%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_49",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_50",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_52",
+        on: "ghosts_talk",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("You come and rise again, spirits? Have we not defeated you before?"),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("These lost souls cannot hold onto anything but memories of lives long gone. They will rise to plague us again, night after night."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_53",
+        on: "ghosts_leave",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Flee, you craven spirits, and leave us in peace!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_51",
+        on: "ghosts_leave",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("What happened? The undead spirits all just disappeared."),
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("These spirits are weak. They seek to prey on the helpless, but when they encounter strong resistance they flee."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_54",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kaleh%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I’m too young to die. What will happen to my people?"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_55",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Nym%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/nym_moody.webp",
+            text: _("Save me, Kaleh, I’m dying..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_56",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Zhul%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Eloh protect us, I have fallen."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_57",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Garak%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Aaargh! Curse you!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_59",
+        on: "branch_if_59",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ally_race",
+            equals: "dwarf",
+          },
+          {
+            tag: "message",
+            text: _("I go now to join my forefathers..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_60",
+        on: "branch_if_60",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ally_race",
+            not_equals: "dwarf",
+          },
+          {
+            tag: "message",
+            text: _("No, $unit.name can’t die now!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_61",
+        on: "branch_if_61",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ally_must_live",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Without his guidance, how can we escape from these infernal caves? We are lost without him!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_62",
+        on: "branch_if_62",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ally_must_live",
+            not_equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("He was a brave warrior and a true ally. He will be missed."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_58",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Grog%2CNog%2CRogrimir%2CJarl%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_59",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_60",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_61",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_62",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_63",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Esanoo%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Farewell Nym, I go to the sea god. You elves must go on without me."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            portrait: "portraits/nym_moody.webp",
+            text: _("Farewell Esanoo. You were my favorite of the merfolk."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_64",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kromph%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Aaurrgghh!!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_65",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Elyssa%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("This can’t be the end, I have too much left to see."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("How could we have let her die? I’ve never seen fire magic like that before. She will be sorely missed."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_66",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recall_to_correct",
+            kill: "no",
+            side: "1, 2",
+          },
+          {
+            tag: "foreach",
+            variable: "recall_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit_type",
+                variable: "utbs_unit_type",
+                types: "$this_item.type",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                recall_cost: "$($utbs_unit_type.cost*0.70)",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_67",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recall_to_correct",
+            kill: "no",
+            side: "1, 2",
+          },
+          {
+            tag: "foreach",
+            variable: "recall_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit_type",
+                variable: "utbs_unit_type",
+                types: "$this_item.type",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                recall_cost: "$($utbs_unit_type.cost*0.60)",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_68",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recall_to_correct",
+            kill: "no",
+            side: "1, 2",
+          },
+          {
+            tag: "foreach",
+            variable: "recall_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit_type",
+                variable: "utbs_unit_type",
+                types: "$this_item.type",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                recall_cost: "$($utbs_unit_type.cost*0.50)",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_69",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recall_to_correct",
+            kill: "no",
+            side: "1, 2",
+          },
+          {
+            tag: "foreach",
+            variable: "recall_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit_type",
+                variable: "utbs_unit_type",
+                types: "$this_item.type",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                recall_cost: "$($utbs_unit_type.cost*0.50)",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]

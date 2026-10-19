@@ -1,0 +1,2462 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Stolen Gold"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "alliance",
+        gold: 200,
+        recruit: "Thug,Poacher,Spearman,Bowman,Gryphon,Dwarvish Fighter,Dwarvish Thunderer,Dwarvish Ulfserker,Dwarvish Scout,Footpad",
+        leader: "Tallin",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "trolls",
+        gold: 600,
+        recruit: "Troll Whelp,Troll,Troll Rocklobber",
+        leader: "Tor",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "trolls",
+        gold: 600,
+        recruit: "Troll Whelp,Troll,Troll Rocklobber",
+        leader: "Bor",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "trolls",
+        gold: 600,
+        recruit: "Troll Whelp,Troll,Troll Rocklobber",
+        leader: "Oof",
+      },
+      {
+        tag: "side",
+        id: 5,
+        controller: "ai",
+        team_name: "trolls",
+        gold: 600,
+        recruit: "Troll Whelp,Troll,Troll Rocklobber",
+        leader: "Glu",
+      },
+      {
+        tag: "side",
+        id: 6,
+        controller: "ai",
+        team_name: "alliance",
+        gold: 200,
+        recruit: "Elvish Fighter,Elvish Archer,Elvish Shaman,Elvish Scout",
+      },
+      {
+        tag: "side",
+        id: 7,
+        controller: "human",
+        team_name: "alliance",
+        gold: 200,
+        recruit: "Drake Fighter,Drake Glider,Drake Burner,Drake Clasher",
+      },
+      {
+        tag: "map",
+        id: "scenario_10a_Stolen_Gold",
+        file: "10a_Stolen_Gold.map",
+      },
+      {
+        tag: "unit",
+        id: "Tallin",
+        type: "Peasant",
+        side: 1,
+        x: 15,
+        y: 15,
+        name: _("Tallin"),
+      },
+      {
+        tag: "unit",
+        id: "Tor",
+        type: "Troll Warrior",
+        side: 2,
+        x: 3,
+        y: 3,
+        name: _("Tor"),
+      },
+      {
+        tag: "unit",
+        id: "Bor",
+        type: "Troll Hero",
+        side: 3,
+        x: 27,
+        y: 3,
+        name: _("Bor"),
+      },
+      {
+        tag: "unit",
+        id: "Oof",
+        type: "Troll Rocklobber",
+        side: 4,
+        x: 26,
+        y: 28,
+        name: _("Oof"),
+      },
+      {
+        tag: "unit",
+        id: "Glu",
+        type: "Troll Hero",
+        side: 5,
+        x: 4,
+        y: 28,
+        name: _("Glu"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_6",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 6,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_7",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 7,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_27",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 1.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: -5.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,,,0,500,%7B%22id%22%3A%5B%22Tallin%22%5D%7D;goal,,,0,500,%7B%22id%22%3A%5B%22Tallin%22%5D%7D;goal,,,0,500,%7B%22id%22%3A%5B%22Tallin%22%5D%7D;goal,,,0,500,%7B%22id%22%3A%5B%22Tallin%22%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_28",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Puzzled by the presence of trolls so close to the dwarvish defenses, the party quickly made their way back to Knalga."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_29",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Upon arriving there something seemed to be wrong. Instead of being boisterously hailed by the dwarves as before, they were met by silent guards with downcast eyes."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_30",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Fearing the worst, Tallin rushed to find Hamel."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_31",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Tallin.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Hamel, what is wrong?! Why is everyone acting so strangely?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_32",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Hamel.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ We are deeply ashamed of ourselves, Tallin. We ha’ failed the trust that ye gave us."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_33",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Tallin.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ What do you mean?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_34",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Hamel.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Yer gold, Tallin, we failed to protect it."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_35",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Tallin.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ My gold!? Why, what happened? Start from the beginning."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_36",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Hamel.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ No sooner had ye left then the orcs once again launched a massive assault."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_37",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Hamel.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Such a massive and fierce assault it was that we had to call upon all our reserves. When that proved insufficient, we had nae other choice then to call some dwarves off the other defenses."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_38",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Hamel.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ It was a ploy. Nae sooner than we ha’ thinned the ranks of the northern defenders, a small force of trolls smashed through the defenses and made their way straight for your gold."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_39",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Hamel.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ We beat them back, but not before they made off with your entire stock of gold."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_40",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Hamel.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ I am sorry, Tallin, we did all that we could. I would we could ha’ done more."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_41",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Tallin.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Oh no! Rakshas will raise many troops with that gold!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_42",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Hamel.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Aye. Well I ken it, Tallin."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_43",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "eryssa_hostile",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Eryssa.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ See, you wretched human! At least now you will appreciate the generosity of the elves."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_44",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "eryssa_hostile",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Arthian.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Shut up, you little snot! If it wasn’t for you we wouldn’t have lost our gold in the first place!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_45",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "eryssa_hostile",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Eryssa.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ I wasn’t talking to you, lich! Learn to keep your mouth shut."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_46",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "eryssa_hostile",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Hamel.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Who is this annoying chit?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_47",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "eryssa_hostile",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Tallin.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ This is the famous and benevolent Princess Eryssa, in whose rescue we sacrificed many lives and <i>much</i> gold."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_48",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "eryssa_hostile",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Eryssa.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ That’s it! I have had enough from you worthless rabble. I will soon send a rider with the promised gold, and in the meantime, I’m leaving!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_49",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "eryssa_hostile",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Arthian.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Begone and good riddance, brat!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_50",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "eryssa_hostile",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Tallin.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Back to the issue of the stolen gold, were you able to pursue the trolls?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_51",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "eryssa_hostile",
+            equals: "no",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Tallin.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Were you able to pursue them?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_52",
+        on: "start",
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22eryssa_hostile%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22eryssa_hostile%22%2C%22equals%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Tallin.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ This isn’t looking good. Not only do we fail to get the Princess but now we lost all of our gold! Seriously Hamel, I don’t know if we’re gonna make it."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_53",
+        on: "start",
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22eryssa_hostile%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22eryssa_hostile%22%2C%22equals%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Hamel.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Don’t give in to despair, Tallin. At least you prevented the orcs from getting the ransom money."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_54",
+        on: "start",
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22eryssa_hostile%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22eryssa_hostile%22%2C%22equals%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Tallin.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Yeah, they ran off with all the rest of our gold instead."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_55",
+        on: "start",
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22eryssa_hostile%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22eryssa_hostile%22%2C%22equals%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Hamel.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Snap out of it Tallin! We are not in control of fate. We will do all we can to the best of our ability and leave the results to the gods."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_56",
+        on: "start",
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22eryssa_hostile%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22eryssa_hostile%22%2C%22equals%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Tallin.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ You’re right, Hamel, sorry. Were you able to pursue the trolls?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_57",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Hamel.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Och, we tried, Tallin, but with the orcs still pressing our southern defenses and trolls trying to break through everywhere, we simply ha’ not the power."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_58",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Tallin.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ How long ago did the trolls make off with the gold?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_59",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Hamel.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ It couldna’ ha’ been more than a day now."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_60",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Tallin.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Then we shall pursue them. Even if we don’t catch them then we might be able to hit Rakshas before he has had a chance to put that gold to good use."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_61",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Tallin.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Hamel, rally the dwarves and prepare to make an all-out offensive against the orcs. It’s time to give them some of their own."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_62",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Tallin.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ We will follow the trail of the trolls; it should lead us back to Rakshas."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_63",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "eryssa_hostile",
+            equals: "no",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Tallin.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Eryssa, what news of the elves?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_64",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "eryssa_hostile",
+            equals: "no",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Eryssa.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Our gryphons have reached them. They are no more than a few days march from us."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_65",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "eryssa_hostile",
+            equals: "no",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Eryssa.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ I will send another message to them asking them to send out scouts to locate the trolls who took your gold. Mayhap the elves will be able to get between the trolls and their allies."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_66",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "eryssa_hostile",
+            not_equals: "no",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Hamel.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ It is well thought. May the Bright Gods be with you."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_67",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Tallin.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ So it shall be. Hamel, when I make contact with the orcs I’ll send you a message. When you get it, come at all speed. It is near time for the battle that will decide all."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_68",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Hamel.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ The axes and hammers o’ every dwarf thirst for the blood of the orcs!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_69",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/Tallin.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ All right, let’s move out, people!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_70",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Thus the party set off to the northern tunnels to pursue the trolls."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_71",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("They met but light resistance all along the trail of the trolls, which they quickly overcame."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_72",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Soon, the trail began to lead east, and then south. A few hours later the party emerged from the tunnels into dawn’s early light."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_73",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Tallin,Tor,Bor,Oof,Glu,Singe,Bak_man",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_74",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 36,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Resist for as long as you can Defeat the enemy leaders Defeat the enemy leaders Resist for as long as you can Help Tallin defeat the enemy leaders Help Tallin defeat the enemy leaders"),
+        defeat: _("Death of Tallin Death of Ro’Arthian Death of Ro’Sothian Death of Eryssa Turns run out Death of Tallin Death of Ro’Arthian Death of Ro’Sothian Death of Eryssa Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "northerners.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "frantic.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "casualties_of_war.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_3",
+        on: "branch_if_3",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "eryssa_hostile",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Eryssa",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_3",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Father Morvin",
+            unit: "Father Morvin",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sister Thera",
+            unit: "Sister Thera",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Ro'Arthian",
+            unit: "Ro'Arthian",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Ro'Sothian",
+            unit: "Ro'Sothian",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Upon emerging from the tunnels, the party found themselves surrounded."),
+          },
+          {
+            tag: "message",
+            speaker: "Tor",
+            text: _("Haha, suckers! We got you now!"),
+          },
+          {
+            tag: "message",
+            speaker: "Bor",
+            text: _("Hahaha! They walked right into our trap."),
+          },
+          {
+            tag: "message",
+            speaker: "Glu",
+            text: _("And we have already sent the gold ahead to the Master!"),
+          },
+          {
+            tag: "message",
+            speaker: "Oof",
+            text: _("Now let’s make mush out of these puny creatures!"),
+          },
+          {
+            tag: "message",
+            speaker: "Supporter",
+            text: _("Oh no, we are surrounded!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Courage shall be the harder, heart the keener, and our spirit greater as our strength lessens. Kill them all!"),
+          },
+          {
+            tag: "message",
+            speaker: "Camerin",
+            text: _("Yeeahhh! I like it!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                id: "Krash",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Krash",
+            text: _("(<i>Sniff sniff</i>)"),
+          },
+          {
+            tag: "message",
+            speaker: "Camerin",
+            text: _("What’s up big guy?"),
+          },
+          {
+            tag: "message",
+            speaker: "Krash",
+            text: _("(<i>Flap flap flap</i>)"),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "krash_flies_away",
+            kill: "yes",
+            id: "Krash",
+          },
+          {
+            tag: "set_variable",
+            name: "krash_flies_away.side",
+            value: 7,
+          },
+          {
+            tag: "set_variable",
+            name: "krash_flies_away.x",
+            value: 3,
+          },
+          {
+            tag: "set_variable",
+            name: "krash_flies_away.y",
+            value: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "krash_flies_away.canrecruit",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "message",
+            speaker: "Supporter",
+            text: _("Hey! Where is he going?"),
+          },
+          {
+            tag: "message",
+            speaker: "Camerin",
+            text: _("Krash man, you’re gonna miss all the fun!"),
+          },
+          {
+            tag: "message",
+            speaker: "Father Morvin",
+            text: _("I think he has decided that it is time to part ways with us."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Such a fierce yet gentle creature. He will be sorely missed."),
+          },
+          {
+            tag: "message",
+            speaker: "Sister Thera",
+            text: _("Farewell, Krash, may the Lords of Light guide your path."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 7,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "krash_flies_away.length",
+                equals: 1,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 7,
+            hidden: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "krash_flies_away",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_unit_overlay",
+            id: "Krash",
+            image: "misc/loyal-icon.png",
+          },
+          {
+            tag: "hook",
+            name: "command:unit_overlay",
+            id: "Krash",
+            image: "misc/leader-expendable.png",
+          },
+          {
+            tag: "spawn",
+            id: "Singe",
+            type: "Drake Burner",
+            side: 7,
+            x: 2,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Singe",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Singe",
+          },
+          {
+            tag: "spawn",
+            id: "Bak_man",
+            type: "Drake Fighter",
+            side: 7,
+            x: 2,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Bak_man",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Bak_man",
+          },
+          {
+            tag: "message",
+            speaker: "Sister Thera",
+            text: _("Hey! Look who’s back!"),
+          },
+          {
+            tag: "message",
+            speaker: "Supporter",
+            text: _("And look, he brought his friends too!"),
+          },
+          {
+            tag: "message",
+            speaker: "Bak'man",
+            text: _("GRRRR!"),
+          },
+          {
+            tag: "message",
+            speaker: "Singe",
+            text: _("ROOAARRR!!"),
+          },
+          {
+            tag: "message",
+            speaker: "Krash",
+            text: _("Hurry, friends, let’s set up camp!"),
+          },
+          {
+            tag: "message",
+            speaker: "Camerin",
+            text: _("Yeah, man! I knew we could count on you!"),
+          },
+          {
+            tag: "message",
+            speaker: "Father Morvin",
+            text: _("Hmmm, he must have smelled the scent of other drakes and gone to them to convince them to help us."),
+          },
+          {
+            tag: "message",
+            speaker: "Sister Thera",
+            text: _("Awww, what a darling!"),
+          },
+          {
+            tag: "message",
+            speaker: "Supporter",
+            text: _("Tell that to the trolls."),
+          },
+          {
+            tag: "message",
+            text: _("What?! Drakes?! Fire! Aagghh!"),
+          },
+          {
+            tag: "message",
+            text: _("Shut your mouth, you coward!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Ke",
+            cells: "2,14",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Ce",
+            cells: "2,13;2,15;1,14;3,14;3,13",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7_opt0",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Bor",
+            text: _("You are a fool, human! We shall crush and destroy you!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "must_kill_enemies",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7_opt1",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 18,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                id: "Eryssa",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 6,
+            hidden: "no",
+          },
+          {
+            tag: "spawn",
+            id: "Hidel",
+            type: "Elvish Marshal",
+            side: 6,
+            x: 29,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Hidel",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Hidel",
+            x: 27,
+            y: 14,
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Elvish Fighter",
+            side: 6,
+            x: 29,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "",
+            x: 29,
+            y: 13,
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Elvish Fighter",
+            side: 6,
+            x: 29,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "",
+            x: 29,
+            y: 12,
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Elvish Archer",
+            side: 6,
+            x: 29,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "",
+            x: 29,
+            y: 15,
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Elvish Shaman",
+            side: 6,
+            x: 29,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "",
+            x: 29,
+            y: 14,
+          },
+          {
+            tag: "message",
+            speaker: "Hidel",
+            text: _("Your Highness! We have finally found you!"),
+          },
+          {
+            tag: "message",
+            speaker: "Eryssa",
+            text: _("Good work, Hidel! How do your forces march?"),
+          },
+          {
+            tag: "message",
+            speaker: "Hidel",
+            text: _("They are all here, my lady! Hand picked by your father — the finest and bravest elvish troops in the entire Northlands. We will follow you to the end of the world if need be."),
+          },
+          {
+            tag: "message",
+            speaker: "Eryssa",
+            text: _("Very good. Our first task is to give brave Tallin here full support."),
+          },
+          {
+            tag: "message",
+            speaker: "Hidel",
+            text: _("With pleasure! Quickly, set up a base!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Ke",
+            cells: "27,14",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Ce",
+            cells: "27,13;27,15;28,15;26,15;26,14",
+          },
+          {
+            tag: "message",
+            text: _("Oh no! Those blasted elves have joined forces with the humans! This is hopeless! Flee! Flee!"),
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "Tallin",
+                text: _("Hmmm, should we let the trolls run away or should we finish them now?"),
+              },
+              {
+                tag: "choice",
+                text: _("Hey! Stand your ground, you cowards!"),
+                event: "ev_7_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("Haha! Look at them run!"),
+                event: "ev_7_opt1",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8_opt0",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Bor",
+            text: _("You are a fool, human! We will crush and destroy you!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "must_kill_enemies",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8_opt1",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 18,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "eryssa_hostile",
+                equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "elvish_money",
+          },
+          {
+            tag: "message",
+            text: _("Oh no! The elves have given the humans a hoard of gold! This is hopeless! Flee! Flee!"),
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "Tallin",
+                text: _("Hmmm, should we let the trolls run away or should we finish them now?"),
+              },
+              {
+                tag: "choice",
+                text: _("Hey! Stand your ground, you cowards!"),
+                event: "ev_8_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("Haha! Look at them run!"),
+                event: "ev_8_opt1",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "elvish_money",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "Himadrin",
+            type: "Elvish Outrider",
+            side: 6,
+            x: 27,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Himadrin",
+          },
+          {
+            tag: "message",
+            speaker: "Himadrin",
+            text: _("Which one of you rabble is Tallin?"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("I am."),
+          },
+          {
+            tag: "message",
+            speaker: "Himadrin",
+            text: _("Princess Eryssa sends you this gold along with the order to stay clear of any Northern Elf if you know what’s good for you."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Why? What did I ever do to the Northern Elves?"),
+          },
+          {
+            tag: "message",
+            speaker: "Himadrin",
+            text: _("The ill treatment that she received while in your care is an insult to every Northern Elf. Consequently if you, or any of your henchmen show your face around us ever again, you will be shot on sight."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 1500,
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Tell the Princess to get off her high horse and stop acting like such a priss!"),
+          },
+          {
+            tag: "message",
+            speaker: "Himadrin",
+            text: _("You dare insult our princess!"),
+          },
+          {
+            tag: "message",
+            speaker: "Ro'Arthian",
+            text: _("You better get lost, elf, before we kill you."),
+          },
+          {
+            tag: "message",
+            speaker: "Himadrin",
+            text: _("This insult will forever be remembered by the Northern Elves! The day will soon come when your race shall regret your folly!"),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Himadrin",
+          },
+          {
+            tag: "message",
+            speaker: "Camerin",
+            text: _("Pff, elves. What a bunch of stuck-up snots!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            greater_than_or_equal_to: 18,
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Phew, they are defeated at last."),
+          },
+          {
+            tag: "message",
+            speaker: "Eryssa",
+            text: _("Hidel, let me introduce to you my savior: Tallin."),
+          },
+          {
+            tag: "message",
+            speaker: "Hidel",
+            text: _("It is an honor to meet you, Tallin."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("The honor is mine, sir."),
+          },
+          {
+            tag: "message",
+            speaker: "Hidel",
+            text: _("We have heard much of your intelligence and courage. The number of humans over the centuries who have earned the respect and admiration of the Northern Elves are extremely few, but let it be known that you are one of them."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("I am honored, sir, and I hope that I will live up to the trust that the Northern Elves have bestowed upon me."),
+          },
+          {
+            tag: "message",
+            speaker: "Hidel",
+            text: _("I am sure you will, Tallin. The trust of the elves is seldom misplaced."),
+          },
+          {
+            tag: "message",
+            speaker: "Ro'Arthian",
+            text: _("If you lot are quite finished exchanging pleasantries..."),
+          },
+          {
+            tag: "message",
+            speaker: "Ro'Sothian",
+            text: _("(<i>Snicker</i>)"),
+          },
+          {
+            tag: "message",
+            speaker: "Ro'Arthian",
+            text: _("... the road ahead is clear and I am eager to blast some more orcs. Shall we proceed?"),
+          },
+          {
+            tag: "message",
+            speaker: "Camerin",
+            text: _("Yeah, let’s get on with it!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Right. Onward, men!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            less_than: 18,
+          },
+          {
+            tag: "spawn",
+            id: "Hidel",
+            type: "Elvish Marshal",
+            side: 6,
+            x: 29,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Hidel",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Hidel",
+            x: 27,
+            y: 14,
+          },
+          {
+            tag: "spawn",
+            id: "Sisal",
+            type: "Elvish Avenger",
+            side: 6,
+            x: 29,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Sisal",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Sisal",
+            x: 27,
+            y: 13,
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Elvish Fighter",
+            side: 6,
+            x: 29,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "",
+            x: 29,
+            y: 12,
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Elvish Archer",
+            side: 6,
+            x: 29,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "",
+            x: 29,
+            y: 15,
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Elvish Shaman",
+            side: 6,
+            x: 29,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "",
+            x: 29,
+            y: 14,
+          },
+          {
+            tag: "message",
+            speaker: "Hidel",
+            text: _("Your Highness! We have finally found you! Thank the Bright Gods you are free! Your father had originally sent us to rescue you."),
+          },
+          {
+            tag: "message",
+            speaker: "Eryssa",
+            text: _("Yes, or so I have heard. You honor me, but this brave man reached the mark before you."),
+          },
+          {
+            tag: "message",
+            speaker: "Hidel",
+            text: _("You must be the famous Tallin."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("At your service."),
+          },
+          {
+            tag: "message",
+            speaker: "Hidel",
+            text: _("We have heard much of your intelligence and courage. The number of humans over the centuries who have earned the respect and admiration of the Northern Elves are extremely few, but you are one of them."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("I am honored, sir, and I hope that I will live up to the trust that the Northern Elves have bestowed upon me."),
+          },
+          {
+            tag: "message",
+            speaker: "Hidel",
+            text: _("I am sure you will, Tallin. The trust of the elves is seldom misplaced. Also know that the Northern Enclaves will always be open to you."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Thank you, sir."),
+          },
+          {
+            tag: "message",
+            speaker: "Eryssa",
+            text: _("What is the status of our troops, Hidel?"),
+          },
+          {
+            tag: "message",
+            speaker: "Hidel",
+            text: _("They are all here, my lady! Hand picked by your father — the finest and bravest elvish troops in the entire Northlands."),
+          },
+          {
+            tag: "message",
+            speaker: "Eryssa",
+            text: _("Excellent! We shall assist Tallin to the fullest in crushing the orcish host. Not only are we in debt to him but by doing so we will be serving our cause as well as we serve his."),
+          },
+          {
+            tag: "message",
+            speaker: "Hidel",
+            text: _("As you wish, my lady."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Very well, people. The road ahead is clear, onward to victory!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                id: "Eryssa",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_12",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_13",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "eryssa_hostile",
+                equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "elvish_money",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Tallin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Argh! I am finished, but our campaign must... not end... crush... our... enemies... and... save... our... people..."),
+          },
+          {
+            tag: "message",
+            speaker: "Supporter",
+            text: _("No, Tallin, we can’t do it without you!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Camerin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Camerin",
+            text: _("What... how can this happen?"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("He was stark raving mad, but I am sure going to miss him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Krash%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Krash",
+            text: _("(<i>Roars in pain</i>)"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Krash!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Krash%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Father Morvin",
+            text: _("It’s no good, Tallin, he is gone."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("You wretched monsters! You are going to pay for this!"),
+          },
+          {
+            tag: "message",
+            speaker: "Camerin",
+            text: _("Awww, I liked that guy!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Elenia%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Elenia",
+            text: _("Alas! My wanderings have come to an end."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Blast it! We have lost a valuable ally!"),
+          },
+          {
+            tag: "message",
+            speaker: "Sister Thera",
+            text: _("Farewell Elenia. May you find peace in your final journey."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "last_breath",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sister%20Thera%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:find_respawn_point",
+            variable: "respawn_point",
+            respawn_near: "Tallin",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "$unit.id",
+            x: "$respawn_point.x",
+            y: "$respawn_point.y",
+            to_x: "$respawn_point.x",
+            to_y: "$respawn_point.y",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: "$respawn_point.x",
+            y: "$respawn_point.y",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: "full",
+            animate: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "last_breath",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Father%20Morvin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:find_respawn_point",
+            variable: "respawn_point",
+            respawn_near: "Tallin",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "$unit.id",
+            x: "$respawn_point.x",
+            y: "$respawn_point.y",
+            to_x: "$respawn_point.x",
+            to_y: "$respawn_point.y",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: "$respawn_point.x",
+            y: "$respawn_point.y",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: "full",
+            animate: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Stalrag%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Stalrag",
+            text: _("Farewell, my friends. I now go to join my fallen brothers."),
+          },
+          {
+            tag: "message",
+            speaker: "Shinsplitter",
+            text: _("No, Stalrag! Without you what will become of the Shinsplitters?"),
+          },
+          {
+            tag: "message",
+            speaker: "Stalrag",
+            text: _("Shinsplitters... join Tallin... He is your new... leader... trust... and... serve... him... as... you... have... served... me."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Your death shall not go unavenged, brave Stalrag. DEATH TO THE ORCS!!"),
+          },
+          {
+            tag: "message",
+            speaker: "Shinsplitter",
+            text: _("DIE, YOU FOUL SCUM!!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Ro'Sothian%2CRo'Arthian%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            text: _("I have had enough! Come on brother, let’s get outta here."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Ro'Sothian%2CRo'Arthian%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Dang it! They’re gone, and the creatures they control are leaving too. Without them, this is hopeless."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Eryssa%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Eryssa",
+            text: _("Alas, you must continue your mission without me!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("How could this happen? We can’t possibly go on without her..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22role%22%3A%22Supporter%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]

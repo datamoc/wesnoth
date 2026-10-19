@@ -1,0 +1,822 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Bounty Hunters"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "player",
+        gold: 340,
+        leader: "Kalenz",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "null",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "null",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "null",
+      },
+      {
+        tag: "side",
+        id: 5,
+        controller: "ai",
+        team_name: "Liz",
+        gold: 440,
+        recruit: "Saurian Augur, Saurian Skirmisher, Saurian Ambusher, Saurian Oracle, Saurian Soothsayer, Saurian Flanker",
+        leader: "Huurgh",
+      },
+      {
+        tag: "side",
+        id: 6,
+        controller: "ai",
+        team_name: "Liz",
+        gold: 460,
+        recruit: "Saurian Augur, Saurian Skirmisher, Saurian Ambusher, Saurian Oracle, Saurian Soothsayer, Saurian Flanker",
+        leader: "Shhar",
+      },
+      {
+        tag: "side",
+        id: 7,
+        controller: "ai",
+        team_name: "creatures",
+      },
+      {
+        tag: "map",
+        id: "scenario_09_Bounty_Hunters",
+        file: "campaigns/Legend_of_Wesmere/maps/09_Bounty_Hunters.map",
+      },
+      {
+        tag: "unit",
+        id: "Kalenz",
+        type: "Elvish Captain",
+        side: 1,
+        x: 22,
+        y: 33,
+        name: _("Kalenz"),
+      },
+      {
+        tag: "unit",
+        id: "Landar",
+        type: "Elvish Ranger",
+        side: 0,
+        x: 13,
+        y: 32,
+      },
+      {
+        tag: "unit",
+        id: "Olurf",
+        type: "Dwarvish Steelclad",
+        side: 0,
+        x: 17,
+        y: 30,
+      },
+      {
+        tag: "unit",
+        id: "Cleodil",
+        type: "Elvish Shyde",
+        side: 0,
+        x: 17,
+        y: 32,
+      },
+      {
+        tag: "unit",
+        id: "Huurgh",
+        type: "Saurian Flanker",
+        side: 5,
+        x: 2,
+        y: 28,
+        name: _("Huurgh"),
+      },
+      {
+        tag: "unit",
+        id: "Shhar",
+        type: "Saurian Oracle",
+        side: 6,
+        x: 34,
+        y: 27,
+        name: _("Shhar"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_2",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_7",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 7,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_15",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 1.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: -100.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "avoid,0,0,0,10;avoid,0,1,0,10;avoid,0,2,0,10;avoid,0,3,0,10;avoid,1,0,0,10;avoid,1,1,0,10;avoid,1,2,0,10;avoid,1,3,0,10;avoid,2,0,0,10;avoid,2,1,0,10;avoid,2,2,0,10;avoid,2,3,0,10;avoid,3,0,0,10;avoid,3,1,0,10;avoid,3,2,0,10;avoid,3,3,0,10;avoid,4,0,0,10;avoid,4,1,0,10;avoid,4,2,0,10;avoid,4,3,0,10;avoid,5,0,0,10;avoid,5,1,0,10;avoid,5,2,0,10;avoid,5,3,0,10;avoid,6,0,0,10;avoid,6,1,0,10;avoid,6,2,0,10;avoid,6,3,0,10;avoid,7,0,0,10;avoid,7,1,0,10;avoid,7,2,0,10;avoid,7,3,0,10;avoid,8,0,0,10;avoid,8,1,0,10;avoid,8,2,0,10;avoid,8,3,0,10;avoid,9,0,0,10;avoid,9,1,0,10;avoid,9,2,0,10;avoid,9,3,0,10;avoid,10,0,0,10;avoid,10,1,0,10;avoid,10,2,0,10;avoid,10,3,0,10;avoid,11,0,0,10;avoid,11,1,0,10;avoid,11,2,0,10;avoid,11,3,0,10;avoid,12,0,0,10;avoid,12,1,0,10;avoid,12,2,0,10;avoid,12,3,0,10;avoid,13,0,0,10;avoid,13,1,0,10;avoid,13,2,0,10;avoid,13,3,0,10;avoid,14,0,0,10;avoid,14,1,0,10;avoid,14,2,0,10;avoid,14,3,0,10;avoid,15,0,0,10;avoid,15,1,0,10;avoid,15,2,0,10;avoid,15,3,0,10;avoid,16,0,0,10;avoid,16,1,0,10;avoid,16,2,0,10;avoid,16,3,0,10;avoid,17,0,0,10;avoid,17,1,0,10;avoid,17,2,0,10;avoid,17,3,0,10;avoid,18,0,0,10;avoid,18,1,0,10;avoid,18,2,0,10;avoid,18,3,0,10;avoid,19,0,0,10;avoid,19,1,0,10;avoid,19,2,0,10;avoid,19,3,0,10;avoid,20,0,0,10;avoid,20,1,0,10;avoid,20,2,0,10;avoid,20,3,0,10;avoid,21,0,0,10;avoid,21,1,0,10;avoid,21,2,0,10;avoid,21,3,0,10;avoid,22,0,0,10;avoid,22,1,0,10;avoid,22,2,0,10;avoid,22,3,0,10;avoid,23,0,0,10;avoid,23,1,0,10;avoid,23,2,0,10;avoid,23,3,0,10;avoid,24,0,0,10;avoid,24,1,0,10;avoid,24,2,0,10;avoid,24,3,0,10;avoid,25,0,0,10;avoid,25,1,0,10;avoid,25,2,0,10;avoid,25,3,0,10;avoid,26,0,0,10;avoid,26,1,0,10;avoid,26,2,0,10;avoid,26,3,0,10;avoid,27,0,0,10;avoid,27,1,0,10;avoid,27,2,0,10;avoid,27,3,0,10;avoid,28,0,0,10;avoid,28,1,0,10;avoid,28,2,0,10;avoid,28,3,0,10;avoid,29,0,0,10;avoid,29,1,0,10;avoid,29,2,0,10;avoid,29,3,0,10;avoid,30,0,0,10;avoid,30,1,0,10;avoid,30,2,0,10;avoid,30,3,0,10;avoid,31,0,0,10;avoid,31,1,0,10;avoid,31,2,0,10;avoid,31,3,0,10;avoid,32,0,0,10;avoid,32,1,0,10;avoid,32,2,0,10;avoid,32,3,0,10;avoid,33,0,0,10;avoid,33,1,0,10;avoid,33,2,0,10;avoid,33,3,0,10;avoid,34,0,0,10;avoid,34,1,0,10;avoid,34,2,0,10;avoid,34,3,0,10;avoid,35,0,0,10;avoid,35,1,0,10;avoid,35,2,0,10;avoid,35,3,0,10;avoid,36,0,0,10;avoid,36,1,0,10;avoid,36,2,0,10;avoid,36,3,0,10;avoid,0,4,0,10;avoid,1,4,0,10;avoid,2,4,0,10;avoid,3,4,0,10;avoid,4,4,0,10;avoid,5,4,0,10;avoid,6,4,0,10;avoid,7,4,0,10;avoid,8,4,0,10;avoid,9,4,0,10;avoid,10,4,0,10;avoid,11,4,0,10;avoid,12,4,0,10;avoid,13,4,0,10;avoid,14,4,0,10;avoid,15,4,0,10;avoid,16,4,0,10;avoid,20,4,0,10;avoid,21,4,0,10;avoid,22,4,0,10;avoid,23,4,0,10;avoid,24,4,0,10;avoid,25,4,0,10;avoid,26,4,0,10;avoid,27,4,0,10;avoid,28,4,0,10;avoid,29,4,0,10;avoid,30,4,0,10;avoid,31,4,0,10;avoid,32,4,0,10;avoid,33,4,0,10;avoid,34,4,0,10;avoid,35,4,0,10;avoid,36,4,0,10;avoid,0,5,0,10;avoid,1,5,0,10;avoid,2,5,0,10;avoid,3,5,0,10;avoid,4,5,0,10;avoid,22,5,0,10;avoid,23,5,0,10;avoid,24,5,0,10;avoid,25,5,0,10;avoid,26,5,0,10;avoid,27,5,0,10;avoid,28,5,0,10;avoid,29,5,0,10;avoid,30,5,0,10;avoid,31,5,0,10;avoid,32,5,0,10;avoid,33,5,0,10;avoid,34,5,0,10;avoid,35,5,0,10;avoid,36,5,0,10;avoid,0,6,0,10;avoid,1,6,0,10;avoid,2,6,0,10;avoid,27,6,0,10;avoid,28,6,0,10;avoid,29,6,0,10;avoid,30,6,0,10;avoid,31,6,0,10;avoid,32,6,0,10;avoid,33,6,0,10;avoid,34,6,0,10;avoid,35,6,0,10;avoid,36,6,0,10;avoid,33,7,0,10;avoid,34,7,0,10;avoid,35,7,0,10;avoid,36,7,0,10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_16",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Believing that Wesmere’s seeming safety might prove a costly illusion, Kalenz, Landar and Olurf left enough troops and resources to guard it strongly before starting off on the long and dangerous trip to the great mage of Thoria. They would soon find that peril was closer than they had reckoned."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_17",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kalenz,Landar,Cleodil,Huurgh,Shhar",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_18",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 28,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Kalenz crosses the river"),
+        defeat: _("Death of Kalenz Death of Landar Death of Cleodil Death of Olurf Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "side_recall_filter_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            recall_filter: "%7B%22tag%22%3A%22filter_recall%22%2C%22attributes%22%3A%7B%22type_adv_tree%22%3A%22Elvish%20Fighter%2C%20Elvish%20Archer%2C%20Elvish%20Scout%22%7D%2C%22children%22%3A%5B%5D%2C%22gettext%22%3A%5B%5D%2C%22location%22%3A%7B%22file%22%3A%22C%3A%5C%5CUsers%5C%5Cmiche%5C%5Cdev%5C%5Cwesnoth-1.19.27%5C%5Cdata%5C%5Ccampaigns%5C%5CLegend_of_Wesmere%5C%5Cscenarios%5C%5Cchapter3%5C%5C09_Bounty_Hunters.cfg%22%2C%22line%22%3A957%2C%22column%22%3A1%7D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Kalenz",
+            object: "%7B%22id%22%3A%22side_traits_1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22movement%22%2C%22increase%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A%22-5%25%22%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "traveling_minstrels.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "breaking_the_chains.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "battle.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "l3_store_kalenz",
+            kill: "yes",
+            side: 1,
+            not_id: "Cleodil",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "loyals",
+            kill: "no",
+          },
+          {
+            tag: "foreach",
+            variable: "loyals",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:recall_unit",
+                id: "$this_item.id",
+                unit: "$this_item.id",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Yess! It’s the elves who stole our gold! The bounty is mine!"),
+          },
+          {
+            tag: "message",
+            text: _("I saw them first, fool! The bounty is all mine."),
+          },
+          {
+            tag: "message",
+            text: _("What are they talking about?"),
+          },
+          {
+            tag: "message",
+            text: _("It would seem the saurians put a bounty on our heads for having the effrontery to take our gold back after they stole it. Are you interested?"),
+          },
+          {
+            tag: "message",
+            text: _("No, but my axe is interested in some saurian heads! They ha’ been too friendly with the orcs for my liking!"),
+          },
+          {
+            tag: "message",
+            text: _("Remember, we are here on a mission. We will fight these saurians if we must, but our mission is to get to Thoria."),
+          },
+          {
+            tag: "message",
+            text: _("They are far too numerous to risk battle with. Let’s cross the river!"),
+          },
+          {
+            tag: "message",
+            text: _("We can outrun them in the woods and mountains beyond the north shore. But crossing the river without a bridge? We dwarves know water is a very dangerous thing!"),
+          },
+          {
+            tag: "message",
+            text: _("Indeed, this river is, I believe, Arkan-Thoria. There are fell legends about it. Maybe they are but children’s tales... Still, be very careful when you cross it."),
+          },
+          {
+            tag: "message",
+            text: _("You speak my thought, Cleodil. Close in behind me; I’ll guard you from harm myself. Look to your weapons as we cross, all! And be wary."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Before Kalenz left the Ka’lian he had ordered $left_behind_kalenz to stay and guard it."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: "0-36,0-16,20-36,0-4,22-36,0-2,27-36,34-36",
+            y: "0-3,4,4,5,5,6,6,7",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22command%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22We%20made%20it.%20Onwards%20to%20Thoria!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22id%22%3A%22Olurf%22%2C%22message%22%3A%22At%20last!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22id%22%3A%22Landar%22%2C%22message%22%3A%22We%E2%80%99ll%20need%20to%20settle%20things%20with%20these%20saurians%20once%20and%20for%20all!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22id%22%3A%22Cleodil%22%2C%22message%22%3A%22Hasn%E2%80%99t%20enough%20blood%20been%20shed%3F%20I%20think%20we%20can%20compose%20matters%20with%20them%20after%20the%20threat%20of%20the%20orcs%20has%20been%20met.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22endlevel%22%2C%22attributes%22%3A%7B%22result%22%3A%22victory%22%2C%22bonus%22%3A%22yes%22%2C%22carryover_add%22%3A%22yes%22%2C%22carryover_percentage%22%3A%2240%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("We made it. Onwards to Thoria!"),
+          },
+          {
+            tag: "message",
+            text: _("At last!"),
+          },
+          {
+            tag: "message",
+            text: _("We’ll need to settle things with these saurians once and for all!"),
+          },
+          {
+            tag: "message",
+            text: _("Hasn’t enough blood been shed? I think we can compose matters with them after the threat of the orcs has been met."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: "1,2,3,4",
+            x: "0-36",
+            y: "7-10",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_0",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2232%22%2C%22y%22%3A%229%22%2C%22radius%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_2",
+            value: 1,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_2",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_0",
+                variable: "_mwg_random_pick_1",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_2",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("The legends are true! Sea creatures are upon us!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Sealurr",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_3",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%223%22%2C%22y%22%3A%2210%22%2C%22radius%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_5",
+            value: 1,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_5",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_3",
+                variable: "_mwg_random_pick_4",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_5",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("They are coming at us from all sides!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Kallub",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_6",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%223%22%2C%22y%22%3A%2211%22%2C%22radius%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_8",
+            value: 1,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_8",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_6",
+                variable: "_mwg_random_pick_7",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_8",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Watch for the serpent!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Scardeep",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_9",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2216%22%2C%22y%22%3A%228%22%2C%22radius%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_11",
+            value: 1,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_11",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_9",
+                variable: "_mwg_random_pick_10",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_11",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Kalimar",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I am defeated. Now the orcs will destroy us!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Landar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Farewell, Kalenz!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Nooo! We cannot continue without Landar!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Cleodil%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I’m sorry I failed you, Kalenz... my beloved..."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Nooo! Cleodil! Without you I cannot go on!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Olurf%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I go to join my sires in the Halls of Death"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("I cannot fight the orcs alone! It’s all over!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Uradredia%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Our cause is lost. With Uradredia gone, the North Elves will no longer fight!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Galtrid%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("I cannot fight the orcs alone! It’s all over!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "last_breath",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_wml%22%2C%22attributes%22%3A%7B%22upkeep%22%3A%22loyal%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_side%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22allied_with%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22has_unit%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%2CLandar%2CCleodil%2COlurf%2CUradredia%2CGaltrid%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I grieve that I have failed you, my lord Kalenz..."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Farewell $unit.name. Your loyal service won’t be forgotten."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "$unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            text: _("Oh, no! We are too late..."),
+          },
+        ],
+      },
+    ],
+  },
+]

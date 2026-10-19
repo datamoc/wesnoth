@@ -1,0 +1,809 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Wolf Coast"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good guys",
+        gold: 110,
+        recruit: "Merman Citizen, Merman Fighter, Merman Hunter, Mermaid Initiate",
+        leader: "Kai_Krellis",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "bad guys",
+        gold: 200,
+        recruit: "Wolf Rider, Goblin Knight, Goblin Pillager",
+        leader: "Gashnok",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+      },
+      {
+        tag: "map",
+        id: "scenario_03_Wolf_Coast",
+        file: "Wolf_Coast.map",
+      },
+      {
+        tag: "unit",
+        id: "Kai_Krellis",
+        type: "Merman Child King",
+        side: 1,
+        x: 8,
+        y: 22,
+        name: _("Kai Krellis"),
+      },
+      {
+        tag: "unit",
+        id: "Gashnok",
+        type: "Goblin Knight",
+        side: 2,
+        x: 14,
+        y: 4,
+        name: _("Gashnok"),
+      },
+      {
+        tag: "event",
+        id: "carryover_23",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_24",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Distrustful of the open ocean, Kai Krellis led his people up the coast."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_25",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("They had only just begun their trek when they encountered wolves who had gotten wind of the battle. Many of the wolves were ridden by goblins. The orcs of Tirigaz, chastened by Kai Laudiss’s victory, might have decided not to bother the merfolk, but these goblins were bandits and outcasts even to their own kind."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_26",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kai_Krellis,Gashnok",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_27",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 19,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat enemy leader"),
+        defeat: _("Death of Kai Krellis Death of Cylanna Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "traveling_minstrels.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Cylanna",
+            unit: "Cylanna",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Gwabbo",
+            unit: "Gwabbo",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Teeloa",
+            unit: "Teeloa",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Keshan",
+            unit: "Keshan",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Inky",
+            unit: "Inky",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Tyegea",
+            unit: "Tyegea",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Friendly Bat",
+            unit: "Friendly Bat",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Undead Bat",
+            unit: "Undead Bat",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Fearsome Bat",
+            unit: "Fearsome Bat",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Wolf",
+            side: 3,
+            x: 19,
+            y: 23,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Wolf",
+            side: 3,
+            x: 19,
+            y: 24,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Goblin%20Knight%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Goblin Knight",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Goblin Knight",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Goblin%20Pillager%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Goblin Pillager",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Goblin Pillager",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "Vrunt",
+            type: "Goblin Knight",
+            side: 2,
+            x: 14,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Vrunt",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Gashnok",
+            text: _("Smells like lots of death in the south near that merman town. Hey, Vrunt, you think the wolves like eatin’ merfish?"),
+          },
+          {
+            tag: "message",
+            speaker: "Vrunt",
+            text: _("Talking or not, fish are fish. Wolves’ll probably love them. Besides, look there! Some fresh ones are coming our way!"),
+          },
+          {
+            tag: "message",
+            speaker: "Gashnok",
+            text: _("They look mighty good to me. Might even have a taste later, myself. Let’s get ’em, boys!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Beware, people!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_11",
+        on: "branch_if_11",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "get_trident",
+            not_equals: "done",
+          },
+          {
+            tag: "message",
+            text: _("Neep, neep!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Someone go find out what is exciting the bat."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 19,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_11",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 3,
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Great Wolf",
+            side: 3,
+            x: 19,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("I wonder why such a strangely colored wolf emerged from the forest over there."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13_opt0",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "get_trident",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13_opt1",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "get_trident",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22trident1%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "trident1",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "get_trident",
+            value: "done",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17_opt0",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "get_trident",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17_opt1",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "get_trident",
+            not_equals: "done",
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                text: _(""),
+              },
+              {
+                tag: "choice",
+                text: _("Let me have that trident. I want to control lightning!"),
+                event: "if_17_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("I’ll just leave that trident where it is."),
+                event: "if_17_opt1",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_18",
+        on: "branch_if_18",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "get_trident",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22trident1%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "trident1",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "get_trident",
+            value: "done",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_19",
+        on: "branch_if_19",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "get_trident",
+            not_equals: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 19,
+            y: 16,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%2C%22first_time_only%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22get_trident%22%2C%22not_equals%22%3A%22done%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22option%22%2C%22attributes%22%3A%7B%22label%22%3A%22Let%20me%20have%20that%20trident.%20I%20want%20to%20control%20lightning!%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22command%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22get_trident%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22option%22%2C%22attributes%22%3A%7B%22label%22%3A%22I%E2%80%99ll%20just%20leave%20that%20trident%20where%20it%20is.%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22get_trident%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22object%22%2C%22attributes%22%3A%7B%22id%22%3A%22trident1%22%2C%22name%22%3A%22Storm%20Trident%22%2C%22image%22%3A%22items%2Fstorm-trident.png%22%2C%22duration%22%3A%22forever%22%2C%22description%22%3A%22This%20trident%20gives%20merfolk%20the%20power%20to%20throw%20lightning%20at%20their%20enemies.%22%2C%22silent%22%3A%22yes%22%2C%22cannot_use_message%22%3A%22Only%20merfolk%20can%20use%20this%20item.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22race%22%3A%22merman%22%2C%22x%22%3A%2220%22%2C%22y%22%3A%2217%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22remove_item%22%2C%22attributes%22%3A%7B%22x%22%3A%2220%22%2C%22y%22%3A%2217%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22new_attack%22%2C%22name%22%3A%22storm%20trident%22%2C%22description%22%3A%22storm%20trident%22%2C%22icon%22%3A%22attacks%2Flightning.png%22%2C%22type%22%3A%22fire%22%2C%22range%22%3A%22ranged%22%2C%22damage%22%3A%2214%22%2C%22number%22%3A%222%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22specials%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22chance_to_hit%22%2C%22attributes%22%3A%7B%22id%22%3A%22magical%22%2C%22name%22%3A%22magical%22%2C%22description%22%3A%22This%20attack%20always%20has%20a%2070%25%20chance%20to%20hit%20regardless%20of%20the%20defensive%20ability%20of%20the%20unit%20being%20attacked.%22%2C%22special_note%22%3A%22This%20unit%20has%20magical%20attacks%2C%20which%20always%20have%20a%20high%20chance%20of%20hitting%20an%20opponent.%22%2C%22value%22%3A%2270%22%2C%22cumulative%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22overlay%22%2C%22add%22%3A%22overlays%2Fstorm-trident-icon.png%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22new_animation%22%2C%22id%22%3A%22storm%20trident_1%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_anim%22%2C%22attributes%22%3A%7B%22missile_start_time%22%3A%22-250%22%2C%22attack_sound_start_time%22%3A%22-200%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22name%22%3A%22storm%20trident%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22missile_frame%22%2C%22attributes%22%3A%7B%22halo%22%3A%22halo%2Flightning-bolt-1-%5B1~4%5D.png%3A100%22%2C%22halo_y%22%3A%22-125%22%2C%22offset%22%3A%221.0%22%2C%22auto_vflip%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%22hits%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%22hits%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning-miss.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22new_animation%22%2C%22id%22%3A%22storm%20trident_2%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_anim%22%2C%22attributes%22%3A%7B%22missile_start_time%22%3A%22-250%22%2C%22attack_sound_start_time%22%3A%22-200%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22name%22%3A%22storm%20trident%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22missile_frame%22%2C%22attributes%22%3A%7B%22halo%22%3A%22halo%2Flightning-bolt-2-%5B1~4%5D.png%3A100%22%2C%22halo_y%22%3A%22-125%22%2C%22offset%22%3A%221.0%22%2C%22auto_vflip%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%22hits%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%22hits%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning-miss.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22new_animation%22%2C%22id%22%3A%22storm%20trident_3%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_anim%22%2C%22attributes%22%3A%7B%22missile_start_time%22%3A%22-250%22%2C%22attack_sound_start_time%22%3A%22-200%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22name%22%3A%22storm%20trident%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22missile_frame%22%2C%22attributes%22%3A%7B%22halo%22%3A%22halo%2Flightning-bolt-3-%5B1~4%5D.png%3A100%22%2C%22halo_y%22%3A%22-125%22%2C%22offset%22%3A%221.0%22%2C%22auto_vflip%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%22hits%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%22hits%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning-miss.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22get_trident%22%2C%22value%22%3A%22done%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22allow_undo%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_18",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_19",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "get_trident",
+            not_equals: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 19,
+            y: 16,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%2C%22first_time_only%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22There%20is%20something%20sticking%20out%20of%20the%20mud%20here.%20Ah!%20I%20got%20it.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22item%22%2C%22attributes%22%3A%7B%22x%22%3A%2220%22%2C%22y%22%3A%2217%22%2C%22image%22%3A%22items%2Fstorm-trident.png%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Cylanna%22%2C%22message%22%3A%22I%20know%20what%20that%20is.%20It%E2%80%99s%20a%20storm%20trident.%20It%20is%20supposed%20to%20let%20you%20control%20the%20lightning.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22narrator%22%2C%22message%22%3A%22The%20trident%20is%2014%C3%972%2C%20magical%2C%20ranged%2C%20with%20%3Ci%3Efire%3C%2Fi%3E%20damage.%22%2C%22image%22%3A%22wesnoth-icon.png%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22option%22%2C%22attributes%22%3A%7B%22label%22%3A%22That%20sounds%20great!%20I%E2%80%99ll%20take%20it.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22command%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22get_trident%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22option%22%2C%22attributes%22%3A%7B%22label%22%3A%22That%20sounds%20frightening.%20Let%20someone%20else%20have%20it.%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22get_trident%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22object%22%2C%22attributes%22%3A%7B%22id%22%3A%22trident1%22%2C%22name%22%3A%22Storm%20Trident%22%2C%22image%22%3A%22items%2Fstorm-trident.png%22%2C%22duration%22%3A%22forever%22%2C%22description%22%3A%22This%20trident%20gives%20merfolk%20the%20power%20to%20throw%20lightning%20at%20their%20enemies.%22%2C%22silent%22%3A%22yes%22%2C%22cannot_use_message%22%3A%22Only%20merfolk%20can%20use%20this%20item.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22race%22%3A%22merman%22%2C%22x%22%3A%2220%22%2C%22y%22%3A%2217%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22remove_item%22%2C%22attributes%22%3A%7B%22x%22%3A%2220%22%2C%22y%22%3A%2217%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22new_attack%22%2C%22name%22%3A%22storm%20trident%22%2C%22description%22%3A%22storm%20trident%22%2C%22icon%22%3A%22attacks%2Flightning.png%22%2C%22type%22%3A%22fire%22%2C%22range%22%3A%22ranged%22%2C%22damage%22%3A%2214%22%2C%22number%22%3A%222%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22specials%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22chance_to_hit%22%2C%22attributes%22%3A%7B%22id%22%3A%22magical%22%2C%22name%22%3A%22magical%22%2C%22description%22%3A%22This%20attack%20always%20has%20a%2070%25%20chance%20to%20hit%20regardless%20of%20the%20defensive%20ability%20of%20the%20unit%20being%20attacked.%22%2C%22special_note%22%3A%22This%20unit%20has%20magical%20attacks%2C%20which%20always%20have%20a%20high%20chance%20of%20hitting%20an%20opponent.%22%2C%22value%22%3A%2270%22%2C%22cumulative%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22overlay%22%2C%22add%22%3A%22overlays%2Fstorm-trident-icon.png%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22new_animation%22%2C%22id%22%3A%22storm%20trident_1%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_anim%22%2C%22attributes%22%3A%7B%22missile_start_time%22%3A%22-250%22%2C%22attack_sound_start_time%22%3A%22-200%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22name%22%3A%22storm%20trident%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22missile_frame%22%2C%22attributes%22%3A%7B%22halo%22%3A%22halo%2Flightning-bolt-1-%5B1~4%5D.png%3A100%22%2C%22halo_y%22%3A%22-125%22%2C%22offset%22%3A%221.0%22%2C%22auto_vflip%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%22hits%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%22hits%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning-miss.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22new_animation%22%2C%22id%22%3A%22storm%20trident_2%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_anim%22%2C%22attributes%22%3A%7B%22missile_start_time%22%3A%22-250%22%2C%22attack_sound_start_time%22%3A%22-200%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22name%22%3A%22storm%20trident%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22missile_frame%22%2C%22attributes%22%3A%7B%22halo%22%3A%22halo%2Flightning-bolt-2-%5B1~4%5D.png%3A100%22%2C%22halo_y%22%3A%22-125%22%2C%22offset%22%3A%221.0%22%2C%22auto_vflip%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%22hits%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%22hits%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning-miss.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22new_animation%22%2C%22id%22%3A%22storm%20trident_3%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_anim%22%2C%22attributes%22%3A%7B%22missile_start_time%22%3A%22-250%22%2C%22attack_sound_start_time%22%3A%22-200%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22name%22%3A%22storm%20trident%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22missile_frame%22%2C%22attributes%22%3A%7B%22halo%22%3A%22halo%2Flightning-bolt-3-%5B1~4%5D.png%3A100%22%2C%22halo_y%22%3A%22-125%22%2C%22offset%22%3A%221.0%22%2C%22auto_vflip%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%22hits%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%22hits%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning-miss.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22get_trident%22%2C%22value%22%3A%22done%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22allow_undo%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%2C%22first_time_only%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%2220%22%2C%22y%22%3A%2217%22%2C%22side%22%3A%221%22%2C%22race%22%3A%22merman%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22get_trident%22%2C%22not_equals%22%3A%22done%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22option%22%2C%22attributes%22%3A%7B%22label%22%3A%22Let%20me%20have%20that%20trident.%20I%20want%20to%20control%20lightning!%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22command%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22get_trident%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22option%22%2C%22attributes%22%3A%7B%22label%22%3A%22I%E2%80%99ll%20just%20leave%20that%20trident%20where%20it%20is.%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22get_trident%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22object%22%2C%22attributes%22%3A%7B%22id%22%3A%22trident1%22%2C%22name%22%3A%22Storm%20Trident%22%2C%22image%22%3A%22items%2Fstorm-trident.png%22%2C%22duration%22%3A%22forever%22%2C%22description%22%3A%22This%20trident%20gives%20merfolk%20the%20power%20to%20throw%20lightning%20at%20their%20enemies.%22%2C%22silent%22%3A%22yes%22%2C%22cannot_use_message%22%3A%22Only%20merfolk%20can%20use%20this%20item.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22race%22%3A%22merman%22%2C%22x%22%3A%2220%22%2C%22y%22%3A%2217%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22remove_item%22%2C%22attributes%22%3A%7B%22x%22%3A%2220%22%2C%22y%22%3A%2217%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22new_attack%22%2C%22name%22%3A%22storm%20trident%22%2C%22description%22%3A%22storm%20trident%22%2C%22icon%22%3A%22attacks%2Flightning.png%22%2C%22type%22%3A%22fire%22%2C%22range%22%3A%22ranged%22%2C%22damage%22%3A%2214%22%2C%22number%22%3A%222%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22specials%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22chance_to_hit%22%2C%22attributes%22%3A%7B%22id%22%3A%22magical%22%2C%22name%22%3A%22magical%22%2C%22description%22%3A%22This%20attack%20always%20has%20a%2070%25%20chance%20to%20hit%20regardless%20of%20the%20defensive%20ability%20of%20the%20unit%20being%20attacked.%22%2C%22special_note%22%3A%22This%20unit%20has%20magical%20attacks%2C%20which%20always%20have%20a%20high%20chance%20of%20hitting%20an%20opponent.%22%2C%22value%22%3A%2270%22%2C%22cumulative%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22overlay%22%2C%22add%22%3A%22overlays%2Fstorm-trident-icon.png%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22new_animation%22%2C%22id%22%3A%22storm%20trident_1%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_anim%22%2C%22attributes%22%3A%7B%22missile_start_time%22%3A%22-250%22%2C%22attack_sound_start_time%22%3A%22-200%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22name%22%3A%22storm%20trident%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22missile_frame%22%2C%22attributes%22%3A%7B%22halo%22%3A%22halo%2Flightning-bolt-1-%5B1~4%5D.png%3A100%22%2C%22halo_y%22%3A%22-125%22%2C%22offset%22%3A%221.0%22%2C%22auto_vflip%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%22hits%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%22hits%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning-miss.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22new_animation%22%2C%22id%22%3A%22storm%20trident_2%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_anim%22%2C%22attributes%22%3A%7B%22missile_start_time%22%3A%22-250%22%2C%22attack_sound_start_time%22%3A%22-200%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22name%22%3A%22storm%20trident%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22missile_frame%22%2C%22attributes%22%3A%7B%22halo%22%3A%22halo%2Flightning-bolt-2-%5B1~4%5D.png%3A100%22%2C%22halo_y%22%3A%22-125%22%2C%22offset%22%3A%221.0%22%2C%22auto_vflip%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%22hits%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%22hits%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning-miss.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22new_animation%22%2C%22id%22%3A%22storm%20trident_3%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_anim%22%2C%22attributes%22%3A%7B%22missile_start_time%22%3A%22-250%22%2C%22attack_sound_start_time%22%3A%22-200%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22name%22%3A%22storm%20trident%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22missile_frame%22%2C%22attributes%22%3A%7B%22halo%22%3A%22halo%2Flightning-bolt-3-%5B1~4%5D.png%3A100%22%2C%22halo_y%22%3A%22-125%22%2C%22offset%22%3A%221.0%22%2C%22auto_vflip%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%22hits%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%22hits%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22attack_sound_frame%22%2C%22attributes%22%3A%7B%22sound%22%3A%22lightning-miss.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22get_trident%22%2C%22value%22%3A%22done%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22allow_undo%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("There is something sticking out of the mud here. Ah! I got it."),
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 20,
+            y: 17,
+            item_name: "",
+            image: "items%2Fstorm-trident.png",
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("I know what that is. It’s a storm trident. It is supposed to let you control the lightning."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("The trident is 14×2, magical, ranged, with <i>fire</i> damage."),
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                text: _(""),
+              },
+              {
+                tag: "choice",
+                text: _("That sounds great! I’ll take it."),
+                event: "ev_13_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("That sounds frightening. Let someone else have it."),
+                event: "ev_13_opt1",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_14",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_15",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Cylanna%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Cylanna! I need you!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kai%20Krellis%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("We are lost without our king!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

@@ -1,0 +1,1347 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Pirates!"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good",
+        gold: 20,
+        leader: "Thea",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "pirates",
+        gold: 160,
+        recruit: "Ruffian",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "good,pirates",
+      },
+      {
+        tag: "map",
+        id: "scenario_01_Pirates",
+        file: "01_Pirates.map",
+      },
+      {
+        tag: "unit",
+        id: "Thea",
+        type: "Bowman Thea",
+        side: 1,
+        x: 0,
+        y: 0,
+        name: _("Thea"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_27",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_28",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "traveling_minstrels.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/landscape-mountains-03.webp"),
+            text: _("Far north from Westin, on the west coast of the Kingdom of Wesnoth, there lies a place called the Bay of Pearls. The waters of the bay are calm, and clear, and warm even in winter. But its most notable feature is that for which it is named — abundant beds of oysters and a vast wealth in pearls."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_29",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/landscape-mountains-03.webp"),
+            text: _("Many have tried to claim the bay for their own; sometimes with words, and sometimes with swords. But in the end the Crown declared it the domain of the merfolk, those most suited to care for and harvest the bay’s undersea resources."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_30",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/landscape-mountains-03.webp"),
+            text: _("Attracted by the temperate climate and easily-accessible wealth, a large and thriving community of mermen quickly sprang up along the bay’s eastern coast. _Along the west coast, where the pearls were less plentiful, hardy clans of human fishers and farmers began to settle. Though not wealthy — at least not compared with their merfolk neighbors — the human hamlets afforded a simple, secure life for those disinterested in the wider kingdom’s hustle and bustle."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_31",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/landscape-mountains-03.webp"),
+            text: _("But for every man content with a quiet life, there is another who seeks to take it from him..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_32",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Thea,Thea,Rael,Elyn",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_33",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 30,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat the enemy leader"),
+        defeat: _("Death of Thea, Rael, or Elyn Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Thea",
+            object: "%7B%22id%22%3A%22side_traits_1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increaseDamage%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "breaking_the_chains.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "battle.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "traveling_minstrels.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "global_tmp",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_global_variable",
+            namespace: "TheSouthGuard",
+            from_local: "global_tmp",
+            to_global: "pap_saveload_info",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            recruit: "Peasant,Woodsman",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader2",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Thug%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Thug",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Thug",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Poacher%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Poacher",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Poacher",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Footpad%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Footpad",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Footpad",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "autoenrage2_timer",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "autoenrage_player_army",
+            greater_than: "$( 3*$autoenrage_ai_army )",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "autoenrage2_timer",
+            value: 1,
+            mode: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "autoenrage_player_army",
+            less_than_or_equal_to: "$( 3*$autoenrage_ai_army )",
+          },
+          {
+            tag: "set_variable",
+            name: "autoenrage2_timer",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "already_autoenraged2",
+            not_equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_13",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "getArmyValue_stored_units",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "autoenrage_player_army",
+            value: 0,
+          },
+          {
+            tag: "foreach",
+            variable: "getArmyValue_stored_units",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:unit_worth",
+                filter: "%7B%22tag%22%3A%22unit_worth%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24this_item.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "autoenrage_player_army",
+                value: "$( $cost * $health/100 )",
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "getArmyValue_stored_units",
+            kill: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "autoenrage_ai_army",
+            value: 0,
+          },
+          {
+            tag: "foreach",
+            variable: "getArmyValue_stored_units",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:unit_worth",
+                filter: "%7B%22tag%22%3A%22unit_worth%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24this_item.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "autoenrage_ai_army",
+                value: "$( $cost * $health/100 )",
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_14",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_15",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "autoenrage2_timer",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "autoenrage2_cleanup",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[spread_poison]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[high_xp_attack]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[combat]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "spread_poison",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "high_xp_attack",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "combat",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[leader_shares_keep]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "goal[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[grouping].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[aggression].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[caution].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[leader_value].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_12",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "enable_tutorial_elements",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "spawn",
+            id: "Thea",
+            type: "Bowman Thea",
+            side: 0,
+            x: 14,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Thea",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Thea",
+          },
+          {
+            tag: "hook",
+            name: "command:set_unit_hidden",
+            id: "Thea",
+            hidden: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "17,8",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 0,
+            y: 22,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Peasant",
+            side: 1,
+            x: 0,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "message",
+            speaker: "fisher",
+            text: _("Alderman! Alderman Rael!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "",
+            x: 12,
+            y: 11,
+          },
+          {
+            tag: "message",
+            speaker: "fisher",
+            text: _("(panting) Pirates! Alderman, it’s pirates! Burned my farm... (pant) Stole my skiff... (pant) Thought you should know..."),
+          },
+          {
+            tag: "spawn",
+            id: "Rael",
+            type: "Master Bowman",
+            side: 0,
+            x: 13,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Rael",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Rael",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Thea",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_unit_hidden",
+            id: "Thea",
+            hidden: "no",
+          },
+          {
+            tag: "message",
+            speaker: "Rael",
+            text: _("Pirates? What, here?!"),
+          },
+          {
+            tag: "spawn",
+            id: "skiff",
+            type: "Fishing Boat",
+            side: 2,
+            x: 7,
+            y: 32,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "skiff",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "skiff",
+            x: 18,
+            y: 24,
+          },
+          {
+            tag: "spawn",
+            id: "leader2",
+            type: "Bandit",
+            side: 2,
+            x: 17,
+            y: 23,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "leader2",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Ke",
+            cells: "17,23",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 150,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Ce",
+            cells: "18,23",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 150,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Ce",
+            cells: "17,22",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 150,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Ce",
+            cells: "16,23",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 150,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Ce",
+            cells: "16,24",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 150,
+          },
+          {
+            tag: "message",
+            speaker: "Rael",
+            text: _("Blast! Haven’t seen outlaws in these parts since I were a lad... these ones even dare to leave their faces uncovered. What do you make of it, Thea?"),
+          },
+          {
+            tag: "message",
+            speaker: "Thea",
+            text: _("I don’t know, Father. This is a strange thing. These outlaws couldn’t’ve come from the other villages — the other aldermen won’t stand for troublemakers."),
+          },
+          {
+            tag: "message",
+            speaker: "Rael",
+            text: _("Well, it’s a good thing I’ve been keeping my old war-bow waxed. There’s nothing for it but to drive them off. Constable Elyn, report!"),
+          },
+          {
+            tag: "spawn",
+            id: "Elyn",
+            type: "Javelineer",
+            side: 0,
+            x: 10,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Elyn",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Elyn",
+          },
+          {
+            tag: "message",
+            speaker: "Elyn",
+            text: _("(yawn) It’s too early for this, Pa..."),
+          },
+          {
+            tag: "message",
+            speaker: "Thea",
+            text: _("I’ll get to our keep and rally the farmers too; get a posse together. It’ll take more than the three of us to win this fight."),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Thea",
+            x: 17,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Thea",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Rael",
+            text: _("Well done for taking the initiative, Thea. Let’s show these pirates what we stand for. What do you say, lads?"),
+          },
+          {
+            tag: "message",
+            speaker: "fisher",
+            text: _("Rah!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Rael",
+            text: _("(whistles) There’s more of them than I expected. We’re going to be outnumbered until we have the time and gold to rally a larger force."),
+          },
+          {
+            tag: "message",
+            speaker: "Elyn",
+            text: _("We’ll need more experienced fighters, too. You’ve done your best to train me and Thea, Pa, but most of the farmers are just that... farmers."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22id%22%3A%22Elyn%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Elyn",
+            text: _("Take that! Don’t mess with Rochelm!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "failed_achievement",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_23",
+        on: "branch_if_23",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "failed_achievement",
+            not_equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:set_achievement",
+            id: "pap_s01",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Thea",
+            text: _("Well, that sounded ominous."),
+          },
+          {
+            tag: "spawn",
+            id: "Crier",
+            type: "Cavalryman",
+            side: 3,
+            x: 30,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Crier",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Crier",
+            x: 23,
+            y: 3,
+          },
+          {
+            tag: "message",
+            speaker: "Crier",
+            text: _("Hear ye! Word from Weldyn! I bring a proclamation from King Garard!"),
+          },
+          {
+            tag: "message",
+            speaker: "Rael",
+            text: _("Oh? Fortunate timing. Mayhaps this will explain our bandit attack."),
+          },
+          {
+            tag: "message",
+            speaker: "Crier",
+            text: _("No news of outlaws, goodman. Ahem..."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "portraits/scroll.webp",
+            text: _("<i>"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "portraits/scroll.webp",
+            text: _("<i>"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "portraits/scroll.webp",
+            text: _("<i>"),
+          },
+          {
+            tag: "message",
+            speaker: "Crier",
+            text: _("The message is given. Onwards to the next village."),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Crier",
+            x: 0,
+            y: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Crier",
+          },
+          {
+            tag: "message",
+            speaker: "Rael",
+            text: _("Ten acres... well, that’d be most of us. Blimey. But it is our duty."),
+          },
+          {
+            tag: "message",
+            speaker: "Elyn",
+            text: _("You’re leading the village to war? But you’re our only veteran fighter. What will we do if the outlaws come back?"),
+          },
+          {
+            tag: "message",
+            speaker: "Rael",
+            text: _("I have faith in you, son. Take good care of your sister. The lads and I will return before you know it."),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Rael",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22leader2%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_23",
+          },
+          {
+            tag: "message",
+            text: _("Pfft. You’re just leeches... All you pearl-folk are. You’ll get... what’s coming to you..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 22,
+          },
+          {
+            tag: "message",
+            speaker: "Thea",
+            text: _("This battle is dragging on... if we can’t finish off these pirates soon, we won’t have enough spare hands to bring in the harvest."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "side_turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 30,
+          },
+          {
+            tag: "message",
+            speaker: "Thea",
+            text: _("Brr, it’s starting to snow and we’re still stuck fighting. Our crops are all dead! Even if we win this battle, we’ll be sure to starve during the winter..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

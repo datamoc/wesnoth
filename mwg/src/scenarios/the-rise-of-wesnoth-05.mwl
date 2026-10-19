@@ -1,0 +1,976 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Oldwood"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Haldric",
+        gold: 140,
+        leader: "Prince_Haldric",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "orcs",
+        gold: 220,
+        recruit: "Orcish Archer, Orcish Assassin, Orcish Crossbowman, Goblin Pillager",
+        leader: "Tan-Gralg",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "orcs",
+        gold: 220,
+        recruit: "Orcish Archer, Orcish Assassin, Orcish Crossbowman, Goblin Pillager",
+        leader: "Tan-Rugar",
+      },
+      {
+        tag: "side",
+        id: 4,
+        team_name: "Haldric",
+        gold: 130,
+        recruit: "Wose Sapling",
+        leader: "Elilmaldur-Rithrandil",
+      },
+      {
+        tag: "map",
+        id: "scenario_05_The_Oldwood",
+        file: "05_The_Oldwood.map",
+      },
+      {
+        tag: "unit",
+        id: "Prince_Haldric",
+        type: "Noble Commander",
+        side: 1,
+        x: 5,
+        y: 6,
+        name: _("Prince Haldric"),
+      },
+      {
+        tag: "unit",
+        id: "Tan-Gralg",
+        type: "Orcish Warlord",
+        side: 2,
+        x: 28,
+        y: 2,
+        name: _("Tan-Gralg"),
+      },
+      {
+        tag: "unit",
+        id: "Tan-Rugar",
+        type: "Orcish Warlord",
+        side: 3,
+        x: 14,
+        y: 29,
+        name: _("Tan-Rugar"),
+      },
+      {
+        tag: "unit",
+        id: "Elilmaldur-Rithrandil",
+        type: "Ancient Wose",
+        side: 4,
+        x: 16,
+        y: 16,
+        name: _("Elilmaldur-Rithrandil"),
+      },
+      {
+        tag: "event",
+        id: "carryover_22",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_23",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Prince_Haldric,Tan-Gralg,Tan-Rugar,Elilmaldur-Rithrandil,Muldondindal,Landunwonbam,Bolwuldelman,Laffalialomdium",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_24",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 32,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat all enemy leaders"),
+        defeat: _("Death of Prince Haldric Death of Elilmaldur-Rithrandil Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "suspense.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "nunc_dimittis.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Prince%20Haldric%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("I can’t be finished yet... I still have so much more to do."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22King%20Eldaric%20IV%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("It is not yet my time! No!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Jessene%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! I’ll not go so easil—"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Outlaw%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Bah! I’m not dying today! <i>Poof</i>! (<i>The Lady Outlaw vanishes in a puff of smoke.</i>)"),
+          },
+          {
+            tag: "set_variable",
+            name: "have_lady",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "lady_store",
+            kill: "yes",
+            id: "Lady Outlaw",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Burin%20the%20Lost%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("Fool of a boy. I never should have followed him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ruddry%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Hail the Kings, may their bloodlines continue beyond my time!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ladoc%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("For Land and Lord, I sacrifice all!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Minister%20Edren%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("May the Lords of Light protect us all."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lord%20Typhon%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("Without him the bottoms of our ships will be completely vulnerable..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 23,
+            y: 22,
+            item_name: "",
+            image: "scenery%2Ftemple1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 5,
+            y: 5,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 5,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins2.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 6,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 5,
+            y: 7,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 4,
+            y: 6,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 4,
+            y: 5,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins2.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 29,
+            y: 2,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 29,
+            y: 3,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 27,
+            y: 3,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins2.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 27,
+            y: 2,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 15,
+            y: 29,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins2.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 15,
+            y: 30,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 13,
+            y: 30,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 13,
+            y: 29,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins2.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 17,
+            y: 16,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 17,
+            y: 17,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 15,
+            y: 17,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins2.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 15,
+            y: 16,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins.png",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Lady Outlaw",
+            unit: "Lady Outlaw",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Burin the Lost",
+            unit: "Burin the Lost",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sir Ruddry",
+            unit: "Sir Ruddry",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sir Ladoc",
+            unit: "Sir Ladoc",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Minister Edren",
+            unit: "Minister Edren",
+          },
+          {
+            tag: "spawn",
+            id: "Muldondindal",
+            type: "Elder Wose",
+            side: 4,
+            x: 9,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Muldondindal",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Muldondindal",
+          },
+          {
+            tag: "spawn",
+            id: "Landunwonbam",
+            type: "Elder Wose",
+            side: 4,
+            x: 15,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Landunwonbam",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Landunwonbam",
+          },
+          {
+            tag: "spawn",
+            id: "Bolwuldelman",
+            type: "Elder Wose",
+            side: 4,
+            x: 6,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Bolwuldelman",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Bolwuldelman",
+          },
+          {
+            tag: "spawn",
+            id: "Laffalialomdium",
+            type: "Elder Wose",
+            side: 4,
+            x: 23,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Laffalialomdium",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Laffalialomdium",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Haldric’s band finds itself at the heart of the Oldwood Forest. The road quickly narrows and becomes little more than a path. Branches reach high overhead, blocking almost all of the light... The ominous noises of the deep woods echo all around."),
+          },
+          {
+            tag: "message",
+            speaker: "Burin the Lost",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("Will this evil forest ever end! There are mosquitoes as big as my fist in here, and these nasty old trees are giving me the creeps."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Outlaw",
+            text: _("This isn’t so bad. Haldric’s kind are such a suspicious lot when it comes to these sorts of things."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Quiet. Listen, I think I hear something."),
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "15,14",
+            radius: 1,
+            multiturn: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Elilmaldur-Rithrandil",
+            text: _("All I hear are more tree-foes!"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("That tree, it speaks! No— No— We are tree-friends, really!"),
+          },
+          {
+            tag: "message",
+            speaker: "Elilmaldur-Rithrandil",
+            text: _("Your kind has long come with your axes, some tree-friends you are. Still, you seem less of a menace than these new monsters that have come to plague us. They cut the trees, and burn the trees for no reason at all!"),
+          },
+          {
+            tag: "message",
+            speaker: "Elilmaldur-Rithrandil",
+            text: _("You claim to be a tree-friend; show it to be true. For we are in dire need, or you may meet your fate with the rest of these monsters."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("We will help. <small>(_quietly^Be careful with the trees.)</small>"),
+          },
+          {
+            tag: "message",
+            speaker: "Burin the Lost",
+            text: _("What? What are you looking at me for?"),
+          },
+          {
+            tag: "hook",
+            name: "command:reset_fog",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 22,
+            y: 21,
+          },
+          {
+            tag: "message",
+            text: _("The temple has already been looted, but the entrance to its catacombs seems to be blocked by a wall of magical energy."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 4,
+          },
+          {
+            tag: "message",
+            speaker: "Tan-Rugar",
+            text: _("Stupid stinking trees, we’ll show you!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 6,
+          },
+          {
+            tag: "message",
+            speaker: "Tan-Gralg",
+            text: _("Chop ’em down. It’s cool in these woods, I think we need a fire!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Elilmaldur-Rithrandil%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("Without the help of these tree-folk we’ll be trapped in these woods till we die! There will be nothing to hold the orcs back!"),
+          },
+          {
+            tag: "message",
+            speaker: "Burin the Lost",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("Stupid tree-folk."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_18",
+        on: "branch_if_18",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "have_lady",
+          },
+          {
+            tag: "message",
+            speaker: "Lady Outlaw",
+            text: _("Young Prince, while the lich-lords have betrayed us by allying themselves with that orcish scum, I can’t bring myself to fight against one of the greatest leaders of my people."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Lady, why would you let those monsters lead your people?"),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Outlaw",
+            text: _("Haldric, we are an ancient people who lived in a land filled with all manner of man and beast. We needed vision that extended beyond the meager span of human years. The art of necromancy allowed our best and brightest to live forever, and our worst got to serve as mindless slaves."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Outlaw",
+            text: _("Other than losing our war in the far West, then our refugee war to your people, and this orc thing, it wasn’t such a bad deal. Lich-Lord Lenvan was one of our greatest leaders. He led our escape to this land. Albeit, after being down in that hole for so long I don’t imagine he’s too happy."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Uh-huh. Have you considered the possibility that the unholy act of turning your best and brightest into undead is what causes them to fall into darkness?"),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Outlaw",
+            text: _("We should save the debate for later. I can still be of use to you. I shall scout the road ahead. We need to know if we can make it to Southbay. I’ll return in a few days."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("We’ve defeated the orcs!"),
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            share_vision: "all",
+            fog: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Elilmaldur-Rithrandil",
+            text: _("On this day you have proved yourself to be a tree-friend. For so long your kind has only come with sharp blades to harm my kind. You come to build these buildings of stone. Our roots may be slow, but they are strong. We will eventually claim all of the stones back for the earth."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Well, I suspect you won’t have to worry about my kind for much longer. The orcs have come, and they are taking this Isle!"),
+          },
+          {
+            tag: "message",
+            speaker: "Elilmaldur-Rithrandil",
+            text: _("Hmmmm— my kind were here before your kind, and we will be here after the orcs are gone as well. We were here before all others, and I suspect that we will be here in the end."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Can you help us fight the orcs?"),
+          },
+          {
+            tag: "message",
+            speaker: "Elilmaldur-Rithrandil",
+            text: _("My kind are bound to the forest, we would be of little help to you beyond our borders. Maybe we could still be of some aid to you. In a war of your people some time ago one of your kings trapped an evil lich in the catacombs of the temple at the heart of the wood. We were there, we were watching."),
+          },
+          {
+            tag: "message",
+            speaker: "Elilmaldur-Rithrandil",
+            text: _("After we drove your kind off we figured out how to break the spell that holds the Evil in the catacombs, and keeps others from entering them."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("This helps us how?"),
+          },
+          {
+            tag: "message",
+            speaker: "Elilmaldur-Rithrandil",
+            text: _("The lich was carrying a powerful artifact. We know, we can feel it. This artifact may aid you in your quest."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Outlaw",
+            text: _("He must mean the Ruby of Fire. It was our most powerful artifact. We brought it with us from the Old Continent, long ago. We thought it was lost in the war with your people, when Lich-Lord Lenvan fell!"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("At this point we need all of the help we can get!"),
+          },
+          {
+            tag: "message",
+            speaker: "Elilmaldur-Rithrandil",
+            text: _("Then I will open the catacombs for you..."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_18",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-mad.webp",
+            text: _("We have run out of time... We’ll be trapped in these woods until we die!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_21",
+        on: "branch_if_21",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "have_lady",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "lady_store",
+            kill: "yes",
+            id: "Lady Outlaw",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_21",
+          },
+        ],
+      },
+    ],
+  },
+]

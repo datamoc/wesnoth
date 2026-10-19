@@ -1,0 +1,186 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Epilogue"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good guys",
+        recruit: "Merman Citizen, Merman Fighter, Merman Hunter, Mermaid Initiate",
+        leader: "Kai_Krellis",
+      },
+      {
+        tag: "map",
+        id: "scenario_13_Epilogue",
+        file: "Home_1.map",
+      },
+      {
+        tag: "unit",
+        id: "Kai_Krellis",
+        type: "Merman Child King",
+        side: 1,
+        x: 20,
+        y: 9,
+        name: _("Kai Krellis"),
+      },
+      {
+        tag: "event",
+        id: "carryover_4",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_5",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kai_Krellis",
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _(""),
+        defeat: _(""),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "wanderer.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Cylanna",
+            unit: "Cylanna",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Gwabbo",
+            unit: "Gwabbo",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Teeloa",
+            unit: "Teeloa",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Keshan",
+            unit: "Keshan",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Inky",
+            unit: "Inky",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Tyegea",
+            unit: "Tyegea",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Friendly Bat",
+            unit: "Friendly Bat",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Undead Bat",
+            unit: "Undead Bat",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Fearsome Bat",
+            unit: "Fearsome Bat",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_3",
+        on: "branch_if_3",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22have_unit%22%2C%22attributes%22%3A%7B%22id%22%3A%22Gwabbo%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22have_unit%22%2C%22attributes%22%3A%7B%22id%22%3A%22Cylanna%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Gwabbo and Cylanna were often together, and when Kai Krellis found a wife (which is a tale for another time!) they presided at his wedding."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("After destroying Mal-Ravanal’s henchmen, Kai Krellis awaited another attack. But it never came. Krellis sent some messengers south to discover what they could. The news that came back was better than good. Mal-Ravanal was dead! Soldiers of Wesnoth had defeated him at about the same time the merfolk had defeated the undead at Jotha. With the evil wizard gone, the merfolk relaxed and began rebuilding in earnest, and soon Jotha was restored."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Not everything was as before, of course. Many good merfolk had been lost in the first attacks and on the journey. The visiting priestesses did much to console the families of the dead, and as it always does, life continued. In a few months, the giggles of children could be heard echoing through the shallows. Many of those children were named after Kai Krellis, Gwabbo, Cylanna, and the other heroes."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_3",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Krellis himself married within a few years, and fathered strong sons and beautiful daughters. When the orcs who had learned to fear his father tested Jotha again, they learned to fear Kai Krellis even more."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+    ],
+  },
+]

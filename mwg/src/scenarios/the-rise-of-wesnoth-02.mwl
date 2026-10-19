@@ -1,0 +1,1024 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Fall"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Haldric",
+        gold: 120,
+        leader: "Prince_Haldric",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "wesfolk",
+        gold: 120,
+        recruit: "Footpad,Poacher,Thief,Thug",
+        leader: "Wesfolk_Leader",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "orcs",
+        gold: 160,
+        recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Wolf Rider, Goblin Spearman",
+        leader: "Tan-Rarbag",
+      },
+      {
+        tag: "side",
+        id: 4,
+        team_name: "orcs",
+        gold: 200,
+        recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Wolf Rider, Goblin Spearman",
+        leader: "Tan-Erang",
+      },
+      {
+        tag: "map",
+        id: "scenario_02_The_Fall",
+        file: "02_The_Fall.map",
+      },
+      {
+        tag: "unit",
+        id: "Prince_Haldric",
+        type: "Noble Fighter",
+        side: 1,
+        x: 28,
+        y: 14,
+        name: _("Prince Haldric"),
+      },
+      {
+        tag: "unit",
+        id: "Wesfolk_Leader",
+        type: "Wesfolk Outcast",
+        side: 2,
+        x: 4,
+        y: 23,
+        name: _("Wesfolk Leader"),
+      },
+      {
+        tag: "unit",
+        id: "Tan-Rarbag",
+        type: "Orcish Warlord",
+        side: 3,
+        x: 7,
+        y: 3,
+        name: _("Tan-Rarbag"),
+      },
+      {
+        tag: "unit",
+        id: "Tan-Erang",
+        type: "Orcish Warrior",
+        side: 4,
+        x: 34,
+        y: 1,
+        name: _("Tan-Erang"),
+      },
+      {
+        tag: "event",
+        id: "carryover_23",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.75,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: 0.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_24",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/trow_story_02-The_Fall.jpg"),
+            text: _("Summer passes into fall, and King Eldaric fortifies his frontiers. It is not long before the first orcish scouts are spotted. War has come to the valley."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_25",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Prince_Haldric,Wesfolk_Leader,Tan-Rarbag,Tan-Erang,u_1,u_2,u_3,Thegwyn,Galdred,Tromas",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_26",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 20,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat the Wesfolk Leader"),
+        defeat: _("Death of Prince Haldric Death of King Eldaric IV Orcs kill the Wesfolk Leader Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_dangerous_symphony.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "undead_siege.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "battle.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Prince%20Haldric%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("I can’t be finished yet... I still have so much more to do."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22King%20Eldaric%20IV%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("It is not yet my time! No!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Jessene%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! I’ll not go so easil—"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Outlaw%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Bah! I’m not dying today! <i>Poof</i>! (<i>The Lady Outlaw vanishes in a puff of smoke.</i>)"),
+          },
+          {
+            tag: "set_variable",
+            name: "have_lady",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "lady_store",
+            kill: "yes",
+            id: "Lady Outlaw",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Burin%20the%20Lost%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("Fool of a boy. I never should have followed him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ruddry%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Hail the Kings, may their bloodlines continue beyond my time!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ladoc%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("For Land and Lord, I sacrifice all!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Minister%20Edren%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("May the Lords of Light protect us all."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lord%20Typhon%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("Without him the bottoms of our ships will be completely vulnerable..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Wesfolk Leader",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.experience",
+                value: "$wesfolk_leader_store.experience",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Poacher",
+            side: 2,
+            x: 10,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Poacher",
+            side: 2,
+            x: 6,
+            y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Poacher",
+            side: 2,
+            x: 8,
+            y: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_3",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "King Eldaric IV",
+            unit: "King Eldaric IV",
+            x: 28,
+            y: 15,
+          },
+          {
+            tag: "spawn",
+            id: "Thegwyn",
+            type: "Heavy Infantryman",
+            side: 1,
+            x: 9,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Thegwyn",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Thegwyn",
+          },
+          {
+            tag: "spawn",
+            id: "Galdred",
+            type: "Heavy Infantryman",
+            side: 1,
+            x: 11,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Galdred",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Galdred",
+          },
+          {
+            tag: "spawn",
+            id: "Tromas",
+            type: "Heavy Infantryman",
+            side: 1,
+            x: 11,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Tromas",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Tromas",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "King Eldaric IV",
+            text: _("Haldric, things have not gone well! The orcs have arrived. We met them at the north keep but they were just too many. They have flanked us to the east in the mountains. I have my personal guards holding the pass to the north, but they won’t be able to last long... We must evacuate our home."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("That’s awful! And it only gets worse. That Wesfolk rabble has set up shop again in the south pass..."),
+          },
+          {
+            tag: "message",
+            speaker: "King Eldaric IV",
+            text: _("That’s the only way out of the valley! This is a disaster! We must defeat that Wesfolk scum and flee to the south. Our home is lost... We must make haste."),
+          },
+          {
+            tag: "message",
+            speaker: "Tan-Rarbag",
+            text: _("Run, meat, run! Sooner or later, you will tire and our wolves will hunt you down!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tan-Erang",
+            text: _("The meat will die! Die! Die! Die!"),
+          },
+          {
+            tag: "message",
+            speaker: "Wesfolk Leader",
+            text: _("This is going to get ugly..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 14,
+          },
+          {
+            tag: "message",
+            speaker: "King Eldaric IV",
+            text: _("Hurry! Only death awaits in this valley!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Tan-Erang%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "amount_gold",
+            value: 75,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You retrieve $amount_gold pieces of gold."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 75,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Tan-Rarbag%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "amount_gold",
+            value: 75,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You retrieve $amount_gold pieces of gold."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 75,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18_opt0",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Wesfolk Leader",
+            text: _("Let there be peace between us. Our survival depends on it."),
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "allow",
+            types: "Thief,Thug,Poacher,Footpad",
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("So what shall I call you?"),
+          },
+          {
+            tag: "message",
+            speaker: "Wesfolk Leader",
+            text: _("The Lady Outlaw will do."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "wesfolk_leader_store",
+            kill: "yes",
+            id: "Wesfolk Leader",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$wesfolk_leader_store.type",
+            side: 1,
+            id: "Lady_Outlaw",
+            x: "$wesfolk_leader_store.x",
+            y: "$wesfolk_leader_store.y",
+          },
+          {
+            tag: "set_variable",
+            name: "have_lady",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18_opt1",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Wesfolk Leader",
+            text: _("Arrogant fools! (<i>Reaches into pocket</i>) <i>Poof</i>!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_unit_hidden",
+            id: "Wesfolk Leader",
+            hidden: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: "full",
+            restore_statuses: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Wesfolk%20Leader%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Wesfolk Leader",
+          },
+          {
+            tag: "set_variable",
+            name: "have_lady",
+            value: 0,
+          },
+          {
+            tag: "message",
+            speaker: "King Eldaric IV",
+            text: _("Argh, she’s gone. Next time, more sword, less chat."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("She’s clever! Maybe I made the wrong choice. Well, at least she left some of her gold behind..."),
+          },
+          {
+            tag: "set_variable",
+            name: "amount_gold",
+            value: 250,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You retrieve $amount_gold pieces of gold."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 250,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Wesfolk%20Leader%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Umm, I invoke the right of surren..."),
+          },
+          {
+            tag: "message",
+            speaker: "King Eldaric IV",
+            text: _("Nay! Off with your hea—"),
+          },
+          {
+            tag: "message",
+            text: _("But I can help! Really! You could use me and my men’s skills on the long road ahead!"),
+          },
+          {
+            tag: "message",
+            speaker: "King Eldaric IV",
+            text: _("Haldric, what say you on this matter?"),
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "Prince Haldric",
+                portrait: "portraits/haldric-annoyed.webp",
+                text: _("Hmm... after some thought..."),
+              },
+              {
+                tag: "choice",
+                text: _("I think that your skills may be useful. You may join us."),
+                event: "ev_18_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("Your word can’t be trusted. Prepare to meet your gods!"),
+                event: "ev_18_opt1",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "King Eldaric IV",
+            text: _("Son, you must lead our people through the south pass. I will remain behind to hold off these vile monsters for as long as I can."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("But, Father!"),
+          },
+          {
+            tag: "message",
+            speaker: "King Eldaric IV",
+            text: _("It’s the only way. Go now, and don’t look back! Luck be with you!"),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Wesfolk%20Leader%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%223%2C%204%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "King Eldaric IV",
+            text: _("We’re surrounded! The orcs have taken the southern pass! All is lost!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "King Eldaric IV",
+            text: _("We’re surrounded! I can see their reinforcements! All is lost!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: "3, 4",
+            x: "25-29",
+            y: "12-14",
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Our home! Where shall we go!"),
+          },
+          {
+            tag: "message",
+            speaker: "King Eldaric IV",
+            text: _("There can be no looking back! We must go south."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "King Eldaric IV",
+          },
+        ],
+      },
+    ],
+  },
+]

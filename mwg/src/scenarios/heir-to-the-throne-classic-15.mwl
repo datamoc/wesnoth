@@ -1,0 +1,1304 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Lost General"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "elves",
+        gold: 175,
+        leader: "Konrad",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "elves",
+        gold: 175,
+        recruit: "Dwarvish Fighter",
+        leader: "Geldar",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "evil",
+        gold: 280,
+        recruit: "Orcish Warrior,Wolf Rider,Troll,Troll Whelp,Troll Rocklobber,Goblin Pillager,Orcish Assassin,Orcish Crossbowman",
+        leader: "Brugg",
+      },
+      {
+        tag: "side",
+        id: 4,
+        team_name: "evil",
+        gold: 200,
+        recruit: "Skeleton,Ghost,Revenant,Skeleton Archer,Bone Shooter",
+        leader: "Lionel",
+      },
+      {
+        tag: "map",
+        id: "scenario_15_The_Lost_General",
+        file: "15_The_Lost_General.map",
+      },
+      {
+        tag: "unit",
+        id: "Konrad",
+        type: "Commander",
+        side: 1,
+        x: 34,
+        y: 12,
+        name: _("Konrad"),
+      },
+      {
+        tag: "unit",
+        id: "Geldar",
+        type: "Dwarvish Lord",
+        side: 2,
+        x: 15,
+        y: 2,
+        name: _("Geldar"),
+      },
+      {
+        tag: "unit",
+        id: "Brugg",
+        type: "Troll Warrior",
+        side: 3,
+        x: 3,
+        y: 15,
+        name: _("Brugg"),
+      },
+      {
+        tag: "unit",
+        id: "Lionel",
+        type: "Death Knight",
+        side: 4,
+        x: 23,
+        y: 29,
+        name: _("Lionel"),
+      },
+      {
+        tag: "event",
+        id: "carryover_25",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_26",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Konrad,Geldar,Brugg,Lionel,Burlin,Ulfdain,u_1,u_2,u_3,u_4,u_5,u_6",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_27",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 46,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat all enemy leaders"),
+        defeat: _("Death of Konrad Death of Delfador Death of Kalenz Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_deep_path.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "underground.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knalgan_theme.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "into_the_shadows.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "heroes_rite.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "allow",
+            types: "Dwarvish Fighter,Dwarvish Thunderer",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "Dwarvish Guardsman",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("We are now in the main dwarvish caverns."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Underground roads once led to the different parts of the complex, but now everything lies in ruins."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 26,
+            y: 21,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "scenery/signpost.png",
+            text: _("The sign says ‘Guest quarters’."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 16,
+            y: 23,
+          },
+          {
+            tag: "spawn",
+            id: "Burlin",
+            type: "Dwarvish Fighter",
+            side: 2,
+            x: 16,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Burlin",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Burlin",
+          },
+          {
+            tag: "message",
+            speaker: "Burlin",
+            text: _("My uncle’s family drowned after the orcs flooded that cavern..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 12,
+            y: 21,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22narrator%22%2C%22image%22%3A%22wesnoth-icon.png%22%2C%22message%22%3A%22A%20hidden%20whirlpool%20sucks%20you%20down%20into%20a%20subterranean%20current!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22item%22%2C%22attributes%22%3A%7B%22x%22%3A%222%22%2C%22y%22%3A%2222%22%2C%22image%22%3A%22items%2Fbones.png%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22item%22%2C%22attributes%22%3A%7B%22x%22%3A%224%22%2C%22y%22%3A%2221%22%2C%22image%22%3A%22items%2Fbones.png%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22unit%22%2C%22attributes%22%3A%7B%22id%22%3A%22Ulfdain%22%2C%22name%22%3A%22Ulfdain%22%2C%22type%22%3A%22Dwarvish%20Ulfserker%22%2C%22side%22%3A%222%22%2C%22x%22%3A%222%22%2C%22y%22%3A%2221%22%2C%22random_traits%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22modifications%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22trait%22%2C%22attributes%22%3A%7B%22id%22%3A%22loyal%22%2C%22male_name%22%3A%22loyal%22%2C%22female_name%22%3A%22female%5Eloyal%22%2C%22description%22%3A%22Zero%20upkeep%22%2C%22help_text%22%3A%22%3Ci%3ELoyal%3C%2Fi%3E%20units%20don%E2%80%99t%20incur%20upkeep.%20Most%20units%20incur%20an%20upkeep%20cost%20at%20the%20end%20of%20every%20turn%2C%20which%20is%20equal%20to%20their%20level.%20Loyal%20units%20do%20not%20incur%20this%20cost.%5Cn%5Cn_%20During%20campaigns%2C%20certain%20units%20may%20opt%20to%20join%20the%20player%E2%80%99s%20forces%20of%20their%20own%20volition.%20These%20units%20are%20marked%20with%20the%20loyal%20trait.%20Although%20they%20may%20require%20payment%20to%20be%20recalled%2C%20they%20never%20incur%20any%20upkeep%20costs.%20This%20can%20make%20them%20invaluable%20during%20a%20long%20campaign%2C%20when%20gold%20is%20in%20short%20supply.%20This%20trait%20is%20never%20given%20to%20recruited%20units%2C%20so%20it%20may%20be%20unwise%20to%20dismiss%20such%20units%20or%20to%20send%20them%20to%20a%20foolish%20death.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22loyal%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22overlay%22%2C%22add%22%3A%22misc%2Floyal-icon.png%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22trait%22%2C%22attributes%22%3A%7B%22id%22%3A%22resilient%22%2C%22male_name%22%3A%22resilient%22%2C%22female_name%22%3A%22female%5Eresilient%22%2C%22help_text%22%3A%22%3Ci%3EResilient%3C%2Fi%3E%20units%20have%20an%20additional%204%20hitpoints%2C%20and%20gain%201%20more%20per%20level.%5Cn%5Cn_%20Resilient%20units%20can%20be%20useful%20at%20all%20stages%20of%20a%20campaign%2C%20and%20this%20is%20a%20useful%20trait%20for%20all%20units.%20Resilient%20is%20often%20most%20helpful%20as%20a%20trait%20when%20it%20occurs%20in%20a%20unit%20that%20has%20some%20combination%20of%20low%20hitpoints%2C%20good%20defense%2C%20or%20high%20resistances.%20Resilient%20units%20are%20especially%20useful%20for%20holding%20strategic%20positions%20against%20opponents.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22hitpoints%22%2C%22increase_total%22%3A%224%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22hitpoints%22%2C%22times%22%3A%22per%20level%22%2C%22increase_total%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22teleport%22%2C%22attributes%22%3A%7B%22x%22%3A%226%22%2C%22y%22%3A%2223%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22scroll_to%22%2C%22attributes%22%3A%7B%22x%22%3A%226%22%2C%22y%22%3A%2223%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22remove_shroud%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22x%22%3A%222-4%22%2C%22y%22%3A%2221-24%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22redraw%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Ulfdain%22%2C%22message%22%3A%22What%E2%80%99s%20this%2C%20more%20trolls%3F%20Aye%2C%20come%20to%20papa%2C%20little%20whelps.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22x%22%3A%226%22%2C%22y%22%3A%2223%22%2C%22message%22%3A%22Hello%3F%20Who%20is%20here%3F%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Ulfdain%22%2C%22message%22%3A%22What%20in%20the%20world%20are%20you%3F%20Some%20sort%20o%E2%80%99%20monster%E2%80%99s%20appendage%20set%20tae%20lure%20me%20down%20to%20be%20yer%20watery%20meal%2C%20eh%3F%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22x%22%3A%226%22%2C%22y%22%3A%2223%22%2C%22male_message%22%3A%22I%20am%20a%20merman%2C%20dweller%20of%20the%20vast%20oceans!%20Do%20not%20ask%20me%20what%20I%20am%20doing%20in%20a%20cave.%20My%20lord%20can%20be%20somewhat%20eccentric.%20We%20are%20fighting%20at%20the%20side%20of%20your%20fellow%20cave-dwellers%20to%20drive%20back%20the%20orcs%20and%20trolls.%22%2C%22female_message%22%3A%22I%20am%20a%20mermaid%2C%20dweller%20of%20the%20vast%20oceans!%20Do%20not%20ask%20me%20what%20I%20am%20doing%20in%20a%20cave.%20My%20lord%20can%20be%20somewhat%20eccentric.%20We%20are%20fighting%20at%20the%20side%20of%20your%20fellow%20cave-dwellers%20to%20drive%20back%20the%20orcs%20and%20trolls.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Ulfdain%22%2C%22message%22%3A%22(sniffs)%20A%20mer-mahn.%20Never%20heard%20of%20it.%20I%20doubt%20yer%20as%20tasty%20as%20my%20friends%20here.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22show_if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22have_unit%22%2C%22attributes%22%3A%7B%22x%22%3A%226%22%2C%22y%22%3A%2223%22%2C%22gender%22%3A%22male%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Ulfdain%22%2C%22message%22%3A%22(sniffs)%20A%20mer-mead.%20Never%20heard%20of%20it.%20I%20doubt%20yer%20as%20tasty%20as%20my%20friends%20here.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22show_if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22have_unit%22%2C%22attributes%22%3A%7B%22x%22%3A%226%22%2C%22y%22%3A%2223%22%2C%22gender%22%3A%22female%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22x%22%3A%226%22%2C%22y%22%3A%2223%22%2C%22message%22%3A%22Why%20are%20you%20down%20here%3F%20Are%20those...%20troll%20carcasses%3F%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Ulfdain%22%2C%22message%22%3A%22I%20was%20brawlin%E2%80%99%20with%20these%20wee%20pups%20here%20defending%20my%20outpost.%20We%20got%20a%20little%20carried%20away%2C%20fell%20in%20the%20water%2C%20and%20were%20sucked%20down%20intae%20this%20grotto.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22x%22%3A%226%22%2C%22y%22%3A%2223%22%2C%22message%22%3A%22How%20long%20have%20you%20been%20here%3F%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Ulfdain%22%2C%22message%22%3A%22Och%2C%20several%20days%20at%20least.%20The%20troll%20meat%20is%20starting%20to%20stink%2C%20and%20I%E2%80%99m%20a%20little%20ravenous%2C%20if%20ye%20catch%20my%20drift.%20Canna%E2%80%99%20swim%20past%20that%20current%2C%20and%20no%E2%80%99%20for%20lack%20o%E2%80%99%20tryin%E2%80%99.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22x%22%3A%226%22%2C%22y%22%3A%2223%22%2C%22message%22%3A%22I%20will%20rescue%20you.%20Hold%20onto%20my%20shoulders%2C%20sir%20dwarf.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Ulfdain%22%2C%22message%22%3A%22Thanks.%20Nae%20need%20to%20wait%20around%20here.%20Let%E2%80%99s%20go.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22store_unit%22%2C%22attributes%22%3A%7B%22kill%22%3A%22yes%22%2C%22variable%22%3A%22stored_Ulfdain%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Ulfdain%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("A hidden whirlpool sucks you down into a subterranean current!"),
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 2,
+            y: 22,
+            item_name: "",
+            image: "items%2Fbones.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 4,
+            y: 21,
+            item_name: "",
+            image: "items%2Fbones.png",
+          },
+          {
+            tag: "spawn",
+            id: "Ulfdain",
+            type: "Dwarvish Ulfserker",
+            side: 2,
+            x: 1,
+            y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Ulfdain",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Ulfdain",
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            x: 6,
+            y: 23,
+            to_x: 5,
+            to_y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 5,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: "1-3",
+            ys: "20-23",
+          },
+          {
+            tag: "message",
+            speaker: "Ulfdain",
+            text: _("What’s this, more trolls? Aye, come to papa, little whelps."),
+          },
+          {
+            tag: "message",
+            text: _("Hello? Who is here?"),
+          },
+          {
+            tag: "message",
+            speaker: "Ulfdain",
+            text: _("What in the world are you? Some sort o’ monster’s appendage set tae lure me down to be yer watery meal, eh?"),
+          },
+          {
+            tag: "message",
+            text: _(""),
+          },
+          {
+            tag: "message",
+            speaker: "Ulfdain",
+            text: _("(sniffs) A mer-mahn. Never heard of it. I doubt yer as tasty as my friends here."),
+          },
+          {
+            tag: "message",
+            speaker: "Ulfdain",
+            text: _("(sniffs) A mer-mead. Never heard of it. I doubt yer as tasty as my friends here."),
+          },
+          {
+            tag: "message",
+            text: _("Why are you down here? Are those... troll carcasses?"),
+          },
+          {
+            tag: "message",
+            speaker: "Ulfdain",
+            text: _("I was brawlin’ with these wee pups here defending my outpost. We got a little carried away, fell in the water, and were sucked down intae this grotto."),
+          },
+          {
+            tag: "message",
+            text: _("How long have you been here?"),
+          },
+          {
+            tag: "message",
+            speaker: "Ulfdain",
+            text: _("Och, several days at least. The troll meat is starting to stink, and I’m a little ravenous, if ye catch my drift. Canna’ swim past that current, and no’ for lack o’ tryin’."),
+          },
+          {
+            tag: "message",
+            text: _("I will rescue you. Hold onto my shoulders, sir dwarf."),
+          },
+          {
+            tag: "message",
+            speaker: "Ulfdain",
+            text: _("Thanks. Nae need to wait around here. Let’s go."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_Ulfdain",
+            kill: "yes",
+            id: "Ulfdain",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 6,
+            y: 22,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22narrator%22%2C%22image%22%3A%22wesnoth-icon.png%22%2C%22message%22%3A%22Better%20prepared%20this%20time%20to%20fight%20the%20current%2C%20you%20eventually%20manage%20to%20emerge%20from%20the%20whirlpool.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22teleport%22%2C%22attributes%22%3A%7B%22x%22%3A%2213%22%2C%22y%22%3A%2222%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22stored_Ulfdain.x%22%2C%22value%22%3A%2214%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22stored_Ulfdain.y%22%2C%22value%22%3A%2222%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22stored_Ulfdain.side%22%2C%22value%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22unstore_unit%22%2C%22attributes%22%3A%7B%22variable%22%3A%22stored_Ulfdain%22%2C%22find_vacant%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22place_shroud%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22x%22%3A%222-7%20%2C%207-8%22%2C%22y%22%3A%2221-24%2C22-24%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Ulfdain%22%2C%22message%22%3A%22Well%2C%20mer-mahn%2C%20we%20made%20it.%20I%20will%20fight%20for%20yer%20lord.%20He%20sounds%20like%20a%20brave%20fellow.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22show_if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22have_unit%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%2C%22gender%22%3A%22male%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Ulfdain%22%2C%22message%22%3A%22Well%2C%20mer-mead%2C%20we%20made%20it.%20I%20will%20fight%20for%20yer%20lord.%20He%20sounds%20like%20a%20brave%20fellow.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22show_if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22have_unit%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%2C%22gender%22%3A%22female%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22stored_Ulfdain%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Better prepared this time to fight the current, you eventually manage to emerge from the whirlpool."),
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "$unit.id",
+            x: 13,
+            y: 22,
+            to_x: 12,
+            to_y: 21,
+          },
+          {
+            tag: "set_variable",
+            name: "stored_Ulfdain.x",
+            value: 14,
+          },
+          {
+            tag: "set_variable",
+            name: "stored_Ulfdain.y",
+            value: 22,
+          },
+          {
+            tag: "set_variable",
+            name: "stored_Ulfdain.side",
+            value: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "stored_Ulfdain",
+          },
+          {
+            tag: "hook",
+            name: "command:place_shroud",
+            side: 1,
+            xs: "1-6,6-7",
+            ys: "20-23,21-23",
+            radius: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Ulfdain",
+            text: _("Well, mer-mahn, we made it. I will fight for yer lord. He sounds like a brave fellow."),
+          },
+          {
+            tag: "message",
+            speaker: "Ulfdain",
+            text: _("Well, mer-mead, we made it. I will fight for yer lord. He sounds like a brave fellow."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "21-24",
+            y: "0-22",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "thunderstick.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 200,
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("<i>(motions for silence)</i> <small>What was that raucous noise?</small>"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            portrait: "portraits/delfador-mentoring.webp",
+            text: _("That can only have been a dwarven thunderstick, Konrad. Our Knalgan allies must be in the thick of battle."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "10-18",
+            y: "9-15",
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: "13-15,11-17,9-18,11-17",
+            ys: "9,10,11-13,14",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 14,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You emerge into a vast natural cathedral, the walls arching higher than you can see in the darkness. Stretching across the gallery is a great chasm, around which the cave floor appears to have been completely worn smooth. This was once the center of a bustling dwarvish empire, the remnants of which have since been driven into the upper caves of Knalga by the forces of darkness."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "19-29",
+            y: "17-29",
+          },
+          {
+            tag: "message",
+            text: _("There is a big cave-in south of here."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "19-29",
+            y: "23-24",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "cave-in.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -11,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: -11,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: 4,
+          },
+          {
+            tag: "message",
+            text: _("The rocks are moving!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Uu",
+            cells: "27,25",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 28,
+            y: 26,
+            item_name: "",
+            image: "scenery%2Frubble.png",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Uu",
+            cells: "25,24",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 26,
+            y: 25,
+            item_name: "",
+            image: "scenery%2Frubble.png",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Skeleton",
+            side: 4,
+            x: 23,
+            y: 27,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Skeleton",
+            side: 4,
+            x: 23,
+            y: 27,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Who goes there? Friend or foe?"),
+          },
+          {
+            tag: "message",
+            text: _("We are desperately trying to rid these tunnels of orcs and trolls! Please help us in our quest."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Vile creature! Let us rid these tunnels of its kind!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%224%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I did not know that the undead were in these pits!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lionel%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Who is this foul enemy that we fight?"),
+          },
+          {
+            tag: "message",
+            speaker: "Lionel",
+            text: _("I am Lionel. I am the Lost General. I will avenge myself upon you all!"),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Avenge? What have we done to you that you must avenge?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Lionel? A General? I remember that name..."),
+          },
+          {
+            tag: "message",
+            speaker: "Lionel",
+            text: _("Remember me, do you? Aye. I was the king’s finest general, sent down to these pits to retrieve the Sceptre. But the orcs trapped me and my men in this cavern, to starve to death. The dwarves were no help, leaving me to die. Now I will get revenge on you all!"),
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Revenant",
+            side: 4,
+            x: 22,
+            y: 27,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Revenant",
+            side: 4,
+            x: 22,
+            y: 27,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_4",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Revenant",
+            side: 4,
+            x: 22,
+            y: 27,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_5",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lionel%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Lionel",
+            text: _("Argh! I am vanquished! But at least by worthy foes, instead of those disgusting orcs."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Rest in peace, Lionel. The poor, lost general."),
+          },
+          {
+            tag: "message",
+            speaker: "Lionel",
+            text: _("I am destroyed, but my mission must be completed. Though you are foes, you are at least worthy ones, so I will tell you that the Sceptre is east from here, the way you have come from, deep in the caverns. I made the mistake of not asking for directions when I became lost. May you have better fortune in your quest than I did!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "rumble.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -11,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: -11,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "rumble.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -11,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: -11,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "rumble.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -11,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: -11,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "rumble.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -11,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: -11,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: 4,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("The earth shakes."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Uu",
+            cells: "14,25",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 15,
+            y: 26,
+            item_name: "",
+            image: "scenery%2Frubble.png",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Uu",
+            cells: "15,25",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 16,
+            y: 26,
+            item_name: "",
+            image: "scenery%2Frubble.png",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Skeleton",
+            side: 4,
+            x: 22,
+            y: 27,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_6",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Konrad%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("We are vanquished, for I have been defeated!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Li'sar%22%2C%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I can’t believe it should end like this!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Argh! I am finished!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! This is the end! We have been defeated!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Warven%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("At least I die an honorable death."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "have_warven",
+            value: "no",
+            mode: "value",
+          },
+        ],
+      },
+    ],
+  },
+]

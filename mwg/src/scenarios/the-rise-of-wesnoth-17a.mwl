@@ -1,0 +1,1439 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Dragon"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Haldric",
+        gold: 220,
+        leader: "Prince_Haldric",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "Liz",
+        gold: 100,
+        recruit: "Saurian Skirmisher, Mudcrawler, Giant Mudcrawler, Saurian Ambusher, Vampire Bat,Saurian Augur,Saurian Oracle,Saurian Soothsayer",
+        leader: "Irix",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "Liz",
+        gold: 100,
+        recruit: "Saurian Skirmisher, Mudcrawler, Giant Mudcrawler, Saurian Ambusher, Vampire Bat,Saurian Augur,Saurian Oracle,Saurian Soothsayer",
+        leader: "Vriss",
+      },
+      {
+        tag: "side",
+        id: 4,
+        team_name: "Liz",
+        gold: 100,
+        recruit: "Saurian Skirmisher, Mudcrawler, Giant Mudcrawler, Saurian Ambusher, Vampire Bat,Saurian Augur,Saurian Oracle,Saurian Soothsayer",
+        leader: "Axiz",
+      },
+      {
+        tag: "side",
+        id: 5,
+        team_name: "Liz",
+        gold: 100,
+        recruit: "Saurian Skirmisher, Mudcrawler, Giant Mudcrawler, Saurian Ambusher, Vampire Bat,Saurian Augur,Saurian Oracle,Saurian Soothsayer",
+        leader: "Satras",
+      },
+      {
+        tag: "side",
+        id: 6,
+        team_name: "Liz",
+      },
+      {
+        tag: "map",
+        id: "scenario_17a_The_Dragon",
+        file: "17a_The_Dragon.map",
+      },
+      {
+        tag: "unit",
+        id: "Prince_Haldric",
+        type: "Noble Commander",
+        side: 1,
+        x: 12,
+        y: 6,
+        name: _("Prince Haldric"),
+      },
+      {
+        tag: "unit",
+        id: "Irix",
+        type: "Saurian Flanker",
+        side: 2,
+        x: 2,
+        y: 20,
+        name: _("Irix"),
+      },
+      {
+        tag: "unit",
+        id: "Vriss",
+        type: "Saurian Flanker",
+        side: 3,
+        x: 31,
+        y: 14,
+        name: _("Vriss"),
+      },
+      {
+        tag: "unit",
+        id: "Axiz",
+        type: "Saurian Flanker",
+        side: 4,
+        x: 33,
+        y: 25,
+        name: _("Axiz"),
+      },
+      {
+        tag: "unit",
+        id: "Satras",
+        type: "Saurian Flanker",
+        side: 5,
+        x: 10,
+        y: 30,
+        name: _("Satras"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_6",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 6,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_50",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,19,22,0,10;goal,19,22,0,10;goal,19,22,0,10;goal,,,0,15,%7B%22id%22%3A%5B%22Prince%20Haldric%22%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_51",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Prince_Haldric,Irix,Vriss,Axiz,Satras,Shek_kahan,Shek_kahan",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_52",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 30,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Slay the Dragon Slay the Dragon and defeat all enemy leaders<span foreground='white'><small> _(early finish bonus)</small></span>"),
+        defeat: _("Death of Prince Haldric Death of Lady Jessene Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "wanderer.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knalgan_theme.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "suspense.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Prince%20Haldric%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("I can’t be finished yet... I still have so much more to do."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22King%20Eldaric%20IV%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("It is not yet my time! No!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Jessene%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! I’ll not go so easil—"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Outlaw%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Bah! I’m not dying today! <i>Poof</i>! (<i>The Lady Outlaw vanishes in a puff of smoke.</i>)"),
+          },
+          {
+            tag: "set_variable",
+            name: "have_lady",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "lady_store",
+            kill: "yes",
+            id: "Lady Outlaw",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Burin%20the%20Lost%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("Fool of a boy. I never should have followed him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ruddry%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Hail the Kings, may their bloodlines continue beyond my time!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ladoc%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("For Land and Lord, I sacrifice all!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Minister%20Edren%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("May the Lords of Light protect us all."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lord%20Typhon%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("Without him the bottoms of our ships will be completely vulnerable..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 4,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 5,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "last_done",
+            equals: "Dragon",
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("I still think I should be called ‘Dragonbane’."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("Not in my lifetime."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_19",
+        on: "branch_if_19",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "last_done",
+            equals: "Hole",
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("It could be worse. We could be back in that troll hole!"),
+          },
+          {
+            tag: "message",
+            speaker: "Burin the Lost",
+            text: _("Hey, disparage the trolls, <i>not</i> the holes!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_19",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_21",
+        on: "branch_if_21",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "last_done",
+            equals: "Isle",
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Well, at least we don’t have to contend with the undead. No offense, Jessene."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("Don’t worry about it."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_21",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_23",
+        on: "branch_if_23",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "last_done",
+            equals: "Beach",
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Too bad that this isn’t going as well as the beach... I miss the beach."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_23",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_25",
+        on: "branch_if_25",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "num_done",
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("Haldric, just before we arrived here I got word that your ‘third of a fleet’ has departed for our old home, the Green Isle."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("You were planning on sharing this with me when?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_25",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_27",
+        on: "branch_if_27",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "num_done",
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("Haldric, messengers just informed me that the fleet has returned from our old home. They came back with as nearly as large a fleet as we initially set out with, and Southbay still stands. This is excellent news. As per your orders a third of the fleet has headed back out."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("That is excellent news indeed. Our numbers have doubled. Now on to the business at hand."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_27",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 20,
+            y: 27,
+            item_name: "",
+            image: "scenery%2Fmine-abandoned.png",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Lady Jessene",
+            unit: "Lady Jessene",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Burin the Lost",
+            unit: "Burin the Lost",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sir Ruddry",
+            unit: "Sir Ruddry",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sir Ladoc",
+            unit: "Sir Ladoc",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Minister Edren",
+            unit: "Minister Edren",
+          },
+          {
+            tag: "set_variable",
+            name: "dragon_awake",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "got_treasure",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "got_enemies",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "dragon_dead",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("After some days of travel Haldric finds himself confronted by a vast expanse of swamp. A small island with a mountain dominates the view. That can only be the home of the dragon."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 19,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "message",
+            speaker: "Burin the Lost",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("Flies, flies, everywhere! Ack!"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("‘Prince Haldric the Dragonbane’ sounds rather nice."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("We’ll see..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("I’m glad that’s over. The elves certainly aren’t taking it easy on us. It’s a miracle any of us are alive at all."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("I’m still not calling you ‘the Dragonbane’."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "num_done",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "set_variable",
+            name: "the_dragon",
+            value: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "last_done",
+            value: "Dragon",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Giant%20Mudcrawler%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Giant%20Mudcrawler%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-mad.webp",
+            text: _("Watch for the big mudcrawlers. They divide when you kill them."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_34",
+        on: "branch_if_34",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "dragon_awake",
+          },
+          {
+            tag: "spawn",
+            id: "Shek_kahan",
+            type: "Fire Dragon",
+            side: 6,
+            x: 19,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Shek_kahan",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Shek_kahan",
+          },
+          {
+            tag: "set_variable",
+            name: "dragon_awake",
+            value: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Shek'kahan",
+            text: _("It is unwise to trifle with dragons, boy!"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-mad.webp",
+            text: _("We shall see."),
+          },
+          {
+            tag: "gold",
+            side: 2,
+            amount: 40,
+          },
+          {
+            tag: "gold",
+            side: 3,
+            amount: 40,
+          },
+          {
+            tag: "gold",
+            side: 4,
+            amount: 40,
+          },
+          {
+            tag: "gold",
+            side: 5,
+            amount: 60,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_35",
+        on: "branch_if_35",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "dragon_awake",
+            not_equals: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "11-25",
+            y: "23-29",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_34",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_35",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_37",
+        on: "branch_if_37",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "dragon_awake",
+          },
+          {
+            tag: "spawn",
+            id: "Shek_kahan",
+            type: "Fire Dragon",
+            side: 6,
+            x: 19,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Shek_kahan",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Shek_kahan",
+          },
+          {
+            tag: "set_variable",
+            name: "dragon_awake",
+            value: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Shek'kahan",
+            text: _("Who dares disturb Shek’kahan the Terrible?"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-mad.webp",
+            text: _("I do, you fiend!"),
+          },
+          {
+            tag: "gold",
+            side: 2,
+            amount: 40,
+          },
+          {
+            tag: "gold",
+            side: 3,
+            amount: 40,
+          },
+          {
+            tag: "gold",
+            side: 4,
+            amount: 40,
+          },
+          {
+            tag: "gold",
+            side: 5,
+            amount: 60,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_37",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_38",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 19,
+            y: 26,
+          },
+          {
+            tag: "set_variable",
+            name: "amount_gold",
+            value: 175,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You retrieve $amount_gold pieces of gold."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 175,
+          },
+          {
+            tag: "set_variable",
+            name: "got_treasure",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_40",
+        on: "branch_if_40",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "dragon_dead",
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("We still have to slay the dragon!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_42",
+        on: "branch_if_42",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "got_treasure",
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("The dragon’s cave has yielded some treasure!"),
+          },
+          {
+            tag: "set_variable",
+            name: "amount_gold",
+            value: 175,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You retrieve $amount_gold pieces of gold."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 175,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_41",
+        on: "branch_if_41",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "dragon_dead",
+            not_equals: "",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_42",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_39",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_40",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_41",
+          },
+          {
+            tag: "set_variable",
+            name: "got_enemies",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_44_opt0",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_44_opt1",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "if_44",
+        on: "branch_if_44",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "got_enemies",
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "Prince Haldric",
+                portrait: "portraits/haldric-mad.png",
+                text: _("We’ve slain the dragon:"),
+              },
+              {
+                tag: "choice",
+                text: _("Let’s get out of here!"),
+                event: "if_44_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("Let’s finish off the rest of these monsters!"),
+                event: "if_44_opt1",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_46",
+        on: "branch_if_46",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "got_treasure",
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("The dragon’s cave has yielded some treasure!"),
+          },
+          {
+            tag: "set_variable",
+            name: "amount_gold",
+            value: 175,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You retrieve $amount_gold pieces of gold."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 175,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_45",
+        on: "branch_if_45",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "got_enemies",
+            not_equals: "",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_46",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_43",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Shek'kahan%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Shek'kahan",
+            text: _("No!"),
+          },
+          {
+            tag: "set_variable",
+            name: "dragon_dead",
+            value: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_44",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_45",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_48",
+        on: "branch_if_48",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "dragon_dead",
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("More saurians are arriving. They’ve surrounded us! We’re doomed."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_49",
+        on: "branch_if_49",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "dragon_dead",
+            not_equals: "",
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("We already killed the dragon. We really don’t need to be spending this much time chasing down the rest of these lizards."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("You’re right, you’re right. Let’s head back."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_47",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_48",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_49",
+          },
+        ],
+      },
+    ],
+  },
+]

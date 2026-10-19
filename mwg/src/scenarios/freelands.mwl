@@ -1,0 +1,123 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Freelands"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        gold: 75,
+        recruit: "Spearman,Bowman,Cavalryman",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        gold: 75,
+        recruit: "Orcish Grunt,Orcish Archer,Wolf Rider",
+      },
+      {
+        tag: "map",
+        id: "freelands",
+        file: "multiplayer/maps/2p_The_Freelands.map",
+      },
+      {
+        tag: "unit",
+        id: "unit-1-spearman",
+        type: "Spearman",
+        side: 1,
+        x: 20,
+        y: 4,
+      },
+      {
+        tag: "unit",
+        id: "unit-1-bowman",
+        type: "Bowman",
+        side: 1,
+        x: 18,
+        y: 4,
+      },
+      {
+        tag: "unit",
+        id: "unit-1-cavalryman",
+        type: "Cavalryman",
+        side: 1,
+        x: 19,
+        y: 5,
+      },
+      {
+        tag: "unit",
+        id: "unit-2-grunt",
+        type: "Orcish Grunt",
+        side: 2,
+        x: 20,
+        y: 21,
+      },
+      {
+        tag: "unit",
+        id: "unit-2-archer",
+        type: "Orcish Archer",
+        side: 2,
+        x: 19,
+        y: 20,
+      },
+      {
+        tag: "unit",
+        id: "unit-2-wolf-rider",
+        type: "Wolf Rider",
+        side: 2,
+        x: 18,
+        y: 21,
+      },
+      {
+        tag: "event",
+        id: "start",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            text: _("The Freelands: destroy the enemy force, or lose your own."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "orc_recuperation",
+        on: "turn",
+        children: [
+          {
+            tag: "hook",
+            name: "command:rest_heal",
+            side: 2,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        children: [
+          {
+            tag: "victory",
+            side: 1,
+            condition: "units_dead",
+            side_filter: 2,
+          },
+          {
+            tag: "victory",
+            side: 1,
+            condition: "hook",
+            hook: "predicate:side_owns_villages",
+            value: 3,
+          },
+          {
+            tag: "defeat",
+            side: 1,
+            condition: "units_dead",
+            side_filter: 1,
+          },
+        ],
+      },
+    ],
+  },
+]

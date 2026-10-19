@@ -1,0 +1,1457 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Flight"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good guys",
+        gold: 140,
+        recruit: "Merman Citizen, Merman Fighter, Merman Hunter, Mermaid Initiate",
+        leader: "Kai_Krellis",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "bad guys",
+        gold: 210,
+        leader: "Mal-Kevek",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "bad guys",
+        gold: 120,
+        leader: "Mel_Daveth",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "bad guys",
+        gold: 220,
+        leader: "Dead_Knight",
+      },
+      {
+        tag: "map",
+        id: "scenario_02_Flight",
+        file: "Home_1.map",
+      },
+      {
+        tag: "unit",
+        id: "Kai_Krellis",
+        type: "Merman Child King",
+        side: 1,
+        x: 20,
+        y: 9,
+        name: _("Kai Krellis"),
+      },
+      {
+        tag: "unit",
+        id: "Mal-Kevek",
+        type: "Lich",
+        side: 2,
+        x: 35,
+        y: 24,
+        name: _("Mal-Kevek"),
+      },
+      {
+        tag: "unit",
+        id: "Mel_Daveth",
+        type: "Necromancer",
+        side: 3,
+        x: 4,
+        y: 24,
+        name: _("Mel Daveth"),
+      },
+      {
+        tag: "unit",
+        id: "Dead_Knight",
+        type: "Death Knight",
+        side: 4,
+        x: 36,
+        y: 3,
+      },
+      {
+        tag: "event",
+        id: "carryover_42",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "avoid,42,12,0,10;avoid,42,13,0,10;avoid,42,14,0,10;avoid,42,15,0,10;avoid,42,16,0,10;avoid,41,16,0,10;avoid,41,17,0,10;avoid,40,18,0,10;avoid,40,19,0,10;avoid,40,20,0,10;avoid,39,21,0,10;avoid,38,23,0,10;avoid,37,24,0,10;avoid,36,25,0,10;avoid,35,25,0,10;avoid,34,26,0,10;avoid,32,26,0,10;avoid,31,26,0,10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_43",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Kai Krellis was concerned that the undead might return, so he determined to learn as much as possible about them. His only clue was the name the necromancer had spoken: <i>“Lord Ravanal”</i>. He sent his swiftest scouts north and south along the coast to learn what they might about this Ravanal. The news they brought him was not good."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_44",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Mal-Ravanal, it seemed, was a great human wizard who had transformed himself into a lich. He had attacked the edges of the Kingdom of Wesnoth, and was building a fearsome army of undead humans there. He had also sent necromancers to attack the orcs, and even the elves, in a quest for undead soldiers of different races. It seemed that he also lusted for merfolk slaves. Krellis’ scouts reported that more dark armies were heading north."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_45",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("As the weeks went by, the veterans of the last battle helped train new recruits. Krellis’ army did not yet match his father’s, but he now had many competent soldiers. As he had expected, their adversaries soon arrived."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_46",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kai_Krellis,Mal-Kevek,Mel_Daveth,Dead_Knight",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_47",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 22,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Move Kai Krellis to the north-west corner of the map. He must be level one or higher. Defeat all enemy leaders<span foreground='white'><small> _(different bonus for each)</small></span> Have a unit pick up the ring of power."),
+        defeat: _("Death of Kai Krellis Death of Cylanna Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "nunc_dimittis.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "elvish-theme.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Cylanna",
+            unit: "Cylanna",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Gwabbo",
+            unit: "Gwabbo",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Teeloa",
+            unit: "Teeloa",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Keshan",
+            unit: "Keshan",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Inky",
+            unit: "Inky",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Tyegea",
+            unit: "Tyegea",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Friendly Bat",
+            unit: "Friendly Bat",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Undead Bat",
+            unit: "Undead Bat",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Fearsome Bat",
+            unit: "Fearsome Bat",
+          },
+          {
+            tag: "hook",
+            name: "command:terrain_mask",
+            x: 33,
+            y: 3,
+            mask: "_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20Ce%2C%20Ce%2C%204%20Ke%2C%20Ce%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20Ce%2C%20Ce%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ce%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f",
+            border: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_4",
+        on: "branch_if_4",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "MD_dead",
+            not_equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22power_ring1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%2C%22increaseDamage%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increase%22%3A3%2C%22increaseTotal%22%3A3%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Mel Daveth",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_4",
+          },
+          {
+            tag: "set_variable",
+            name: "ring_x",
+            value: 999,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_6",
+        on: "branch_if_6",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "get_ring",
+            not_equals: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_8",
+        on: "branch_if_8",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "end_level_when_ring_picked_up",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("Killing these enemies was good, but there are many more on the way. I’m sure it is still unsafe here."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("I agree. I hate to leave our home, but we will return."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_7",
+        on: "branch_if_7",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "get_ring",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22power_ring2%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%2C%22increaseDamage%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increase%22%3A3%2C%22increaseTotal%22%3A3%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "power_ring2",
+          },
+          {
+            tag: "set_variable",
+            name: "ring_x",
+            value: 999,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_8",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "$ring_x",
+            y: "$ring_y",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_6",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_7",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22type%22%3A%22Blood%20Bat%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Blood Bat",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Blood Bat",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22type%22%3A%22Soulless%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Soulless",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Soulless",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%224%22%2C%22type%22%3A%22Bone%20Shooter%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Bone Shooter",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Bone Shooter",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%224%22%2C%22type%22%3A%22Deathblade%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Deathblade",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Deathblade",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Wraith%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Wraith",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Wraith",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Shadow%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Shadow",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Shadow",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_23",
+        on: "branch_if_23",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "recruited_unit_random_variation",
+            not_equals: "none",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "prerecruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22type%22%3A%22Walking%20Corpse%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "recruited_unit_random_variation",
+            values: "swimmer",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_23",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_25",
+        on: "branch_if_25",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "recruited_unit_random_variation",
+            not_equals: "none",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "prerecruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22type%22%3A%22Soulless%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "recruited_unit_random_variation",
+            values: "swimmer",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_25",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            recruit: "Ghost, Ghoul, Wraith, Shadow",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            recruit: "Walking Corpse, Soulless, Vampire Bat, Blood Bat",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            recruit: "Vampire Bat, Skeleton Archer, Skeleton, Bone Shooter, Deathblade",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_27",
+        on: "branch_if_27",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "KK.level",
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("I am not afraid! My people will see me fight the undead before we leave, even if defeating them all is impossible."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_28",
+        on: "branch_if_28",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "KK.level",
+            not_equals: "",
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("But will everyone follow me on so perilous an adventure? I am still a youth; it may be they will not trust me."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Mal-Kevek",
+            text: _("You may have ended my first life, but you have only made me more powerful in death. Now I will teach you a lesson!"),
+          },
+          {
+            tag: "message",
+            speaker: "Mel Daveth",
+            text: _("Leave some of them for me."),
+          },
+          {
+            tag: "message",
+            speaker: "Dead Knight",
+            text: _("Uhhh."),
+          },
+          {
+            tag: "message",
+            speaker: "Mel Daveth",
+            text: _("And him."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("We are surrounded. Look how many there are! How can we defeat them this time?"),
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("I am afraid we cannot. We need help. My old instructor, Tyegëa, teaches on an island to the north. She and her priestesses are powerful. With their help we could probably defeat these enemies. Our task is to convince her to leave her enclave."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("You can do that, right?"),
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("I am not sure that I can. However, you could."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Me? I’ve never even met Tyegëa. How can I convince her to help us if you cannot?"),
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("You will just have to trust me on this. She will listen to you. I will say no more on the matter."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Very well. How do we get there?"),
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("We follow the coast north, then go west to Bilheld Island. Tyegëa lives on a small island to the west of Bilheld, which is over ocean to the west-southwest of Tirigaz. Everyone will have to go; it is now deadly perilous here, and the open ocean west of Tirigaz can be dangerous for small groups."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "KK",
+            kill: "no",
+            id: "Kai Krellis",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_27",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_28",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 0,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 1,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 1,
+            y: 1,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 1,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 1,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 1,
+            y: 1,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 1,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 1,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 1,
+            y: 1,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 1,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 1,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mal-Kevek%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mal-Kevek",
+            text: _("This is impossible!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mal-Kevek%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Mal-Kevek",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "MK_dead",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_32",
+        on: "branch_if_32",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "MD_dead",
+            not_equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "ring_x",
+            value: "$x1",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "ring_y",
+            value: "$y1",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$ring_x",
+            y: "$ring_y",
+            item_name: "",
+            image: "items%2Fring-silver.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 600,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mel%20Daveth%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Mel Daveth",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_32",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "MD_dead",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Dead%20Knight%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Dead Knight",
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("I believe it is undead and has no will of its own, but the Kai may have the willpower to direct it."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Fascinating. I shall certainly try."),
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(items%2Fchest-open.png~CROP(0%2C0%2C68%2C54)%2C4%2C18)",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "gold.ogg",
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 120,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You receive 120 gold."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_35",
+        on: "branch_if_35",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "KK.level",
+            greater_than: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("It galls me to flee from our home, but we will return."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: 0,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "KK",
+            kill: "no",
+            id: "Kai Krellis",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_35",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "post_advance",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_advance_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%221%22%2C%22y%22%3A%221%22%2C%22id%22%3A%22Kai%20Krellis%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("It galls me to flee from our home, but we will return."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_38",
+        on: "branch_if_38",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ring_x",
+            not_equals: 999,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Have a unit pick up the ring to end the scenario."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "end_level_when_ring_picked_up",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_39",
+        on: "branch_if_39",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ring_x",
+            equals: 999,
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("Killing these enemies was good, but there are many more on the way. It will take greater might than we have to defeat them."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Onward to Tyegëa’s island, then."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("It galls me to flee from our home, but we will return."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_38",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_39",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Cylanna%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Cylanna! I need you!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_41",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kai%20Krellis%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("We are lost without our king!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

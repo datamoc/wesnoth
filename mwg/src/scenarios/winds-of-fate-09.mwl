@@ -1,0 +1,2117 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Ancestor"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "hero",
+        gold: 240,
+        recruit: "Drake Burner, Drake Clasher, Drake Fighter, Drake Glider, Saurian Augur, Saurian Skirmisher",
+        leader: "Gorlack",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "hero",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+      },
+      {
+        tag: "side",
+        id: 5,
+        controller: "ai",
+      },
+      {
+        tag: "side",
+        id: 6,
+        controller: "ai",
+      },
+      {
+        tag: "side",
+        id: 7,
+        controller: "ai",
+      },
+      {
+        tag: "side",
+        id: 8,
+        controller: "ai",
+      },
+      {
+        tag: "side",
+        id: 9,
+        controller: "ai",
+      },
+      {
+        tag: "side",
+        id: 10,
+        controller: "ai",
+      },
+      {
+        tag: "map",
+        id: "scenario_09_Ancestor",
+        file: "09_Ancestor.map",
+      },
+      {
+        tag: "unit",
+        id: "Gorlack",
+        type: "Drake Burner",
+        side: 1,
+        x: 4,
+        y: 36,
+        name: _("Gorlack"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_2",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_5",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 5,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_6",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 6,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_7",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 7,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_8",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 8,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_9",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 9,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_10",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 10,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_38",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_39",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("<span color='#bcb088'><b></b></span> _ My friend..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_40",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("<span color='#bcb088'><b></b></span> _ I have slain you..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_41",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Gorlack,u_1,u_2,u_3",
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Gorlack must reach the beacon at the northern volcano From there, make your final stand Make your final stand"),
+        defeat: _("Death of Gorlack Death of Arinexis Death of Zedrix Death of Gorlack Death of Arinexis Death of Zedrix"),
+      },
+      {
+        tag: "event",
+        id: "if_2",
+        on: "branch_if_2",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.advances_to",
+            equals: "",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            recall_cost: "$( $this_item.cost * 0.5 )",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_4",
+        on: "branch_if_4",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.level",
+            less_than_or_equal_to: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            recall_cost: "$( $this_item.cost + $this_item.cost * 0.4 * $this_item.experience ^ 2 / $this_item.max_experience ^ 2 )",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_5",
+        on: "branch_if_5",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.level",
+            greater_than: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            recall_cost: "$( $this_item.cost * 0.75 + $this_item.cost * 0.2 * $this_item.experience ^ 2 / $this_item.max_experience ^ 2 )",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_3",
+        on: "branch_if_3",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.advances_to",
+            not_equals: "",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_4",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_5",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recalls_to_correct",
+            kill: "no",
+          },
+          {
+            tag: "foreach",
+            variable: "recalls_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_2",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_3",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "recall",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type_adv_tree%22%3A%22Drake%20Warrior%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "unit_exists",
+                exists: "no",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            role: "fighter_intendant",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "recall",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type_adv_tree%22%3A%22Drake%20Arbiter%2C%20Drake%20Thrasher%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "unit_exists",
+                exists: "no",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            role: "clasher_intendant",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            role: "fighter_intendant",
+            unit: "",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            role: "clasher_intendant",
+            unit: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "gorlack_death",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Gorlack%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("So much left... unfinished..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "resha_death",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Resha%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("Resha!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "arinexis_death",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Arinexis%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("Arinexisss... Your time hass come too sssoon!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "zedrix_death",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Zedrix%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("My dragon, I have failed you..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 3,
+            ai_type: "big_animals",
+            action: "add",
+            filter: "%7B%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "Gryphon",
+        on: "turn_end",
+        once: false,
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22unit_type_table%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22split%22%2C%22attributes%22%3A%7B%22list%22%3A%22Gryphon%22%2C%22key%22%3A%22type%22%2C%22separator%22%3A%22%2C%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "unit_type_table_i",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_0",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%221-infinity%22%2C%22y%22%3A%221-infinity%22%2C%22terrain%22%3A%22Ww%22%2C%22include_borders%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_2",
+            value: 8,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_2",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_0",
+                variable: "_mwg_random_pick_1",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$unit_type_table[$unit_type_table_i].type",
+                side: 3,
+                x: "$random_placement_location.x",
+                y: "$random_placement_location.y",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "unit_type_table_i",
+                value: "$(($unit_type_table_i + 1) % $unit_type_table.length)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_2",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 4,
+            ai_type: "big_animals",
+            action: "add",
+            filter: "%7B%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "Dread_Bat",
+        on: "turn_end",
+        once: false,
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22unit_type_table%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22split%22%2C%22attributes%22%3A%7B%22list%22%3A%22Dread%20Bat%22%2C%22key%22%3A%22type%22%2C%22separator%22%3A%22%2C%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "unit_type_table_i",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_3",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%221-infinity%22%2C%22y%22%3A%221-infinity%22%2C%22terrain%22%3A%22Qxu%22%2C%22include_borders%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_5",
+            value: 8,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_5",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_3",
+                variable: "_mwg_random_pick_4",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$unit_type_table[$unit_type_table_i].type",
+                side: 4,
+                x: "$random_placement_location.x",
+                y: "$random_placement_location.y",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "unit_type_table_i",
+                value: "$(($unit_type_table_i + 1) % $unit_type_table.length)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_5",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 5,
+            ai_type: "big_animals",
+            action: "add",
+            filter: "%7B%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "Dark_Omen",
+        on: "turn_end",
+        once: false,
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22unit_type_table%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22split%22%2C%22attributes%22%3A%7B%22list%22%3A%22Dark%20Omen%22%2C%22key%22%3A%22type%22%2C%22separator%22%3A%22%2C%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "unit_type_table_i",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_6",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%221-infinity%22%2C%22y%22%3A%221-infinity%22%2C%22terrain%22%3A%22Ai%22%2C%22include_borders%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_8",
+            value: 8,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_8",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_6",
+                variable: "_mwg_random_pick_7",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$unit_type_table[$unit_type_table_i].type",
+                side: 5,
+                x: "$random_placement_location.x",
+                y: "$random_placement_location.y",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "unit_type_table_i",
+                value: "$(($unit_type_table_i + 1) % $unit_type_table.length)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_8",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 6,
+            ai_type: "big_animals",
+            action: "add",
+            filter: "%7B%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "Frost_Stoat",
+        on: "turn_end",
+        once: false,
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22unit_type_table%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22split%22%2C%22attributes%22%3A%7B%22list%22%3A%22Frost%20Stoat%22%2C%22key%22%3A%22type%22%2C%22separator%22%3A%22%2C%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "unit_type_table_i",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_9",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%221-infinity%22%2C%22y%22%3A%221-infinity%22%2C%22terrain%22%3A%22Ai%22%2C%22include_borders%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_11",
+            value: 8,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_11",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_9",
+                variable: "_mwg_random_pick_10",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$unit_type_table[$unit_type_table_i].type",
+                side: 6,
+                x: "$random_placement_location.x",
+                y: "$random_placement_location.y",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "unit_type_table_i",
+                value: "$(($unit_type_table_i + 1) % $unit_type_table.length)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_11",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 7,
+            ai_type: "big_animals",
+            action: "add",
+            filter: "%7B%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "Great_Icemonax",
+        on: "turn_end",
+        once: false,
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22unit_type_table%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22split%22%2C%22attributes%22%3A%7B%22list%22%3A%22Great%20Icemonax%22%2C%22key%22%3A%22type%22%2C%22separator%22%3A%22%2C%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "unit_type_table_i",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_12",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%221-infinity%22%2C%22y%22%3A%221-infinity%22%2C%22terrain%22%3A%22Aa%22%2C%22include_borders%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_14",
+            value: 8,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_14",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_12",
+                variable: "_mwg_random_pick_13",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$unit_type_table[$unit_type_table_i].type",
+                side: 7,
+                x: "$random_placement_location.x",
+                y: "$random_placement_location.y",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "unit_type_table_i",
+                value: "$(($unit_type_table_i + 1) % $unit_type_table.length)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_14",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 8,
+            ai_type: "big_animals",
+            action: "add",
+            filter: "%7B%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "Direwolf",
+        on: "turn_end",
+        once: false,
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22unit_type_table%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22split%22%2C%22attributes%22%3A%7B%22list%22%3A%22Direwolf%22%2C%22key%22%3A%22type%22%2C%22separator%22%3A%22%2C%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "unit_type_table_i",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_15",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%221-infinity%22%2C%22y%22%3A%221-infinity%22%2C%22terrain%22%3A%22*%5EF*%22%2C%22include_borders%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_17",
+            value: 24,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_17",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_15",
+                variable: "_mwg_random_pick_16",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$unit_type_table[$unit_type_table_i].type",
+                side: 8,
+                x: "$random_placement_location.x",
+                y: "$random_placement_location.y",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "unit_type_table_i",
+                value: "$(($unit_type_table_i + 1) % $unit_type_table.length)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_17",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 9,
+            ai_type: "big_animals",
+            action: "add",
+            filter: "%7B%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "Cave_Bear",
+        on: "turn_end",
+        once: false,
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22unit_type_table%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22split%22%2C%22attributes%22%3A%7B%22list%22%3A%22Cave%20Bear%22%2C%22key%22%3A%22type%22%2C%22separator%22%3A%22%2C%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "unit_type_table_i",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_18",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%221-infinity%22%2C%22y%22%3A%221-infinity%22%2C%22terrain%22%3A%22Md%22%2C%22include_borders%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_20",
+            value: 24,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_20",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_18",
+                variable: "_mwg_random_pick_19",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$unit_type_table[$unit_type_table_i].type",
+                side: 9,
+                x: "$random_placement_location.x",
+                y: "$random_placement_location.y",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "unit_type_table_i",
+                value: "$(($unit_type_table_i + 1) % $unit_type_table.length)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_20",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 10,
+            ai_type: "big_animals",
+            action: "add",
+            filter: "%7B%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "Yeti",
+        on: "turn_end",
+        once: false,
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22unit_type_table%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22split%22%2C%22attributes%22%3A%7B%22list%22%3A%22Yeti%22%2C%22key%22%3A%22type%22%2C%22separator%22%3A%22%2C%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "unit_type_table_i",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_21",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%221-infinity%22%2C%22y%22%3A%221-infinity%22%2C%22terrain%22%3A%22Ms%22%2C%22include_borders%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_23",
+            value: 4,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_23",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_21",
+                variable: "_mwg_random_pick_22",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$unit_type_table[$unit_type_table_i].type",
+                side: 10,
+                x: "$random_placement_location.x",
+                y: "$random_placement_location.y",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "unit_type_table_i",
+                value: "$(($unit_type_table_i + 1) % $unit_type_table.length)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_23",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 1,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "ne",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: "",
+            ys: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "spawn",
+            id: "Klanir",
+            type: "Drake Glider",
+            side: 2,
+            x: 13,
+            y: 37,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Klanir",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Klanir",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            id: "Klanir",
+            x: "6, 5",
+            y: "35,36",
+            raw: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Gorlack",
+          },
+          {
+            tag: "message",
+            speaker: "Klanir",
+            text: _("Dominant Gorlack, I bring ill tidings of the hunt. The Flight of Karron was decimated by a pack of humans upon the grassy stretches. The last word from Dominant Karron spoke of their striving for a retreat to your eyrie. In a noble attempt to aid the imperiled Flight of Karron... My dominant, Vladnir, fell to our prey. Our flight was scattered east, deep into the Greatland."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _(".................."),
+          },
+          {
+            tag: "message",
+            speaker: "Klanir",
+            text: _("I must relay what I know to Dominant Karron, should she still live."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("Glider, take care."),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Klanir",
+            x: 0,
+            y: 33,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Klanir",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Gorlack",
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("Cold ssseason has arrived. Many moons of cold are now upon usssss."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("We shall set camp there... Where the wounded land bleeds its warming ichor... May it provide the safety for our weary flight that I have failed to."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 28,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 2000,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 4,
+            y: 10,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("‘ BAK NEKST SPRING ’"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 29,
+            y: 23,
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Dragonfly Naiad",
+            side: 1,
+            x: 30,
+            y: 24,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Dragonfly Naiad",
+            side: 1,
+            x: 29,
+            y: 24,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Dragonfly Naiad",
+            side: 1,
+            x: 28,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_3",
+          },
+          {
+            tag: "message",
+            text: _("(<i>chirp chirp</i>)"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 28,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            fog: "no",
+            shroud: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "dragon",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "spawn_dragon",
+        once: false,
+        children: [
+          {
+            tag: "spawn",
+            id: "Khrakrahs",
+            type: "Fire Dragon",
+            side: 2,
+            x: 37,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Khrakrahs",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 1,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "ne",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Khrakrahs",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Khrakrahs",
+            x: 31,
+            y: 3,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32",
+        on: "turn_end",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22unit_type_table%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22split%22%2C%22attributes%22%3A%7B%22list%22%3A%22Wyrm%22%2C%22key%22%3A%22type%22%2C%22separator%22%3A%22%2C%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "unit_type_table_i",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_24",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%221-infinity%22%2C%22y%22%3A%221-infinity%22%2C%22terrain%22%3A%22Mv%22%2C%22include_borders%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_26",
+            value: 1,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_26",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_24",
+                variable: "_mwg_random_pick_25",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$unit_type_table[$unit_type_table_i].type",
+                side: 2,
+                x: "$random_placement_location.x",
+                y: "$random_placement_location.y",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "unit_type_table_i",
+                value: "$(($unit_type_table_i + 1) % $unit_type_table.length)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_26",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31",
+        on: "dragon",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "dragon_retreated",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "spawn_dragon",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Wyrm",
+            side: 2,
+            x: 29,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Wyrm",
+            side: 2,
+            x: 27,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Wyrm",
+            side: 2,
+            x: 31,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Wyrm",
+            side: 2,
+            x: 31,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Wyrm",
+            side: 2,
+            x: 28,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Wyrm",
+            side: 2,
+            x: 29,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            defeat_condition: "no_units_left",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "heroes_rite.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 2000,
+          },
+          {
+            tag: "message",
+            text: _("Ho! I do not believe what I see..."),
+          },
+          {
+            tag: "message",
+            text: _("It is magnificent."),
+          },
+          {
+            tag: "message",
+            text: _("It is a drakekin. Few have beheld such a being since the Time of Legend."),
+          },
+          {
+            tag: "message",
+            text: _("With our own eyes we behold a drakekin... It was the drakekin who led us from the Moonlit Wastes in the Time of Fate."),
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("I know you are here, weakling Shek’kahan! You know better than to intrude upon my domain, Brother! Even if I must search this entire valley, I will find your hiding place. Fly, my pets! Sweep this place of every scaleless beast so I will have no distraction."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("It is... an Ancestor..."),
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("Shek’kahan, do you not recognize Khrakrahs...?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Khrakrahs%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("Be no more."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "attacker_hits",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "Khrakrahs",
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("Your challenge is accepted."),
+          },
+          {
+            tag: "message",
+            text: _("! ! !"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Khrakrahs%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "dragon_retreated",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("I will return."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Khrakrahs",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.hitpoints",
+                value: 1,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Khrakrahs",
+            x: 37,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Khrakrahs",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_37",
+        on: "branch_if_37",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "dragon_retreated",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "spawn_dragon",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "dragon",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_37",
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("Show yourself, Brother!"),
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("Khrakrahs, he is here..."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "gorlack_location",
+            kill: "no",
+            id: "Gorlack",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            id: "Zedrix",
+            x: "$gorlack_location.x",
+            y: "$gorlack_location.y",
+            raw: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("Behold, mighty Shek’kahan!"),
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("You are bold to present such an imposter!"),
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("Impossster?! I am elder of Green Swamp Clan and all my years Shek’kahan protected usss. I could never missstake sssome impossster for him!"),
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("If you do not sssee this is Shek’kahan... then impossster is <b>you</b>!"),
+          },
+          {
+            tag: "message",
+            speaker: "Arinexis",
+            text: _("Do not sssay ssso much, Zedrix! You will be eaten!"),
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("You are bold indeed, little saurian. What you have told me is false, yet a mere liar could not speak so bravely before a dragon."),
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("Indeed, your heart believes the falsehood you speak... because it wishes to."),
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("..."),
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("<span color='cyan'>_ Zedrix, your Heart shall Reveal its Truth.</span>"),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "rumble.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 6000,
+          },
+          {
+            tag: "message",
+            speaker: "Zedrix",
+            text: _("Khrakrahs... your brother is dead. He fell protecting his domain and humble sssubjectsss... ... of which I am all that is left."),
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("So then it is true..."),
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("It was nigh every season he would intrude upon my domain or me his. Each time, there was such a glorious battle between us, the sons of Drugis, as to impart even the clouds with fright. I must not have challenged him enough that he grew weak, vulnerable. Now another great battle between us there will never be. Now there is only me."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 3000,
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("I go."),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Khrakrahs",
+            x: 33,
+            y: 2,
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("Ancestor, you spoke that Shek’kahan grew weak... Yet to his last breath, he was fearless."),
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("Yes, Shek’kahan was fearless."),
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("<b>That</b> was his weakness."),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Khrakrahs",
+            x: 37,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Khrakrahs",
+          },
+        ],
+      },
+    ],
+  },
+]

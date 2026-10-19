@@ -1,0 +1,828 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Elvish Treasury"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "player",
+        leader: "Kalenz",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "null",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "null",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "Lizards",
+        gold: 280,
+        recruit: "Saurian Skirmisher, Saurian Augur,  Saurian Ambusher",
+        leader: "Shurm",
+      },
+      {
+        tag: "side",
+        id: 5,
+        controller: "ai",
+        team_name: "Lizards",
+        gold: 280,
+        recruit: "Saurian Skirmisher, Saurian Augur, Saurian Ambusher",
+        leader: "Trigr",
+      },
+      {
+        tag: "map",
+        id: "scenario_04_The_Elvish_Treasury",
+        file: "campaigns/Legend_of_Wesmere/maps/04_The_Elvish_Treasury.map",
+      },
+      {
+        tag: "unit",
+        id: "Kalenz",
+        type: "Elvish Captain",
+        side: 1,
+        x: 7,
+        y: 29,
+        name: _("Kalenz"),
+      },
+      {
+        tag: "unit",
+        id: "Landar",
+        type: "Elvish Ranger",
+        side: 0,
+        x: 15,
+        y: 28,
+      },
+      {
+        tag: "unit",
+        id: "Shurm",
+        type: "Saurian Ambusher",
+        side: 4,
+        x: 5,
+        y: 15,
+        name: _("Shurm"),
+      },
+      {
+        tag: "unit",
+        id: "Trigr",
+        type: "Saurian Ambusher",
+        side: 5,
+        x: 25,
+        y: 14,
+        name: _("Trigr"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_2",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_20",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_21",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Kalenz and his forces raced to relieve the siege of the Elvish Treasury..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_22",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kalenz,Landar,Shurm,Trigr,Cleodil,Laril,Tameril-Isimeril",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_23",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 30,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat all enemy leaders Defeat all enemy leaders"),
+        defeat: _("Death of Kalenz Death of Landar Turns run out Death of Kalenz Death of Landar Turns run out Death of Cleodil"),
+      },
+      {
+        tag: "event",
+        id: "side_recall_filter_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            recall_filter: "%7B%22tag%22%3A%22filter_recall%22%2C%22attributes%22%3A%7B%22type_adv_tree%22%3A%22Elvish%20Fighter%2C%20Elvish%20Archer%2C%20Elvish%20Scout%22%7D%2C%22children%22%3A%5B%5D%2C%22gettext%22%3A%5B%5D%2C%22location%22%3A%7B%22file%22%3A%22C%3A%5C%5CUsers%5C%5Cmiche%5C%5Cdev%5C%5Cwesnoth-1.19.27%5C%5Cdata%5C%5Ccampaigns%5C%5CLegend_of_Wesmere%5C%5Cscenarios%5C%5Cchapter2%5C%5C04_The_Elvish_Treasury.cfg%22%2C%22line%22%3A898%2C%22column%22%3A1%7D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Kalenz",
+            object: "%7B%22id%22%3A%22side_traits_1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22movement%22%2C%22increase%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A%22-5%25%22%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 4,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 5,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "vengeful.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knalgan_theme.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "silvan_sanctuary.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Huraldur",
+            unit: "Huraldur",
+            x: 7,
+            y: 28,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Anduilas",
+            unit: "Anduilas",
+            x: 6,
+            y: 28,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Arkildur",
+            unit: "Arkildur",
+            x: 17,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "scout",
+            unit: "scout",
+            x: 16,
+            y: 28,
+          },
+          {
+            tag: "hook",
+            name: "command:allow_extra_recruit",
+            id: "Kalenz,Landar",
+            types: "Elvish Scout",
+          },
+          {
+            tag: "message",
+            text: _("It seems that we are too late. The Treasury has fallen to the saurians..."),
+          },
+          {
+            tag: "message",
+            text: _("And I see the remains of the garrison has been taken prisoner."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 10,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 11,
+            item_name: "",
+            image: "items%2Fcage.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 11,
+            y: 11,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 11,
+            item_name: "",
+            image: "units%2Felves-wood%2Fshyde.png~RC(magenta%3Ered)",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 11,
+            item_name: "",
+            image: "items%2Fcage.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 11,
+            y: 11,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 11,
+            item_name: "",
+            image: "units%2Felves-wood%2Fshyde.png~RC(magenta%3Ered)",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 11,
+            item_name: "",
+            image: "items%2Fcage.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 11,
+            y: 11,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 11,
+            item_name: "",
+            image: "units%2Felves-wood%2Fshyde.png~RC(magenta%3Ered)",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 11,
+            item_name: "",
+            image: "items%2Fcage.png",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Kalenz",
+          },
+          {
+            tag: "message",
+            text: _("We must free them and make these saurians pay. Attack and leave no one alive!"),
+          },
+          {
+            tag: "message",
+            text: _("More elves are coming! Too late, we’ve taken all your gold and we’ll get more gold from the orcs for helping them out!"),
+          },
+          {
+            tag: "message",
+            text: _("You will not live to enjoy it!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "free_cleodil",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "love_theme.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "spawn",
+            id: "Cleodil",
+            type: "Elvish Shyde",
+            side: 1,
+            x: 10,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Cleodil",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Cleodil",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 11,
+            y: 11,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "spawn",
+            id: "Laril",
+            type: "Elvish Druid",
+            side: 1,
+            x: 10,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Laril",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Laril",
+          },
+          {
+            tag: "spawn",
+            id: "Tameril-Isimeril",
+            type: "Elvish Sorceress",
+            side: 1,
+            x: 10,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Tameril-Isimeril",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Tameril-Isimeril",
+          },
+          {
+            tag: "message",
+            text: _("We are free! My lord Kalenz, from this day forward I and my kin are your sworn followers. And there is that which you should know about the treasure the orcs seek..."),
+          },
+          {
+            tag: "message",
+            text: _("I accept your service gratefully, for I will need every sword and bow and spell with which to defeat these invaders. There will be time for talk later; now, we must fight."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: "1,2,3",
+            x: 10,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "free_cleodil",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "scenario_end",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "message",
+            text: _("We have defeated the saurians and freed the garrison, and that is no small thing... but our gold is gone."),
+          },
+          {
+            tag: "message",
+            text: _("The saurians happily carried away the treasury gold, but they had come here looking for something more specific... some individual object they called ‘dastone’. I am sorry, my lord Kalenz, I could not understand their distorted speech very well."),
+          },
+          {
+            tag: "message",
+            text: _("The war with the orcs goes poorly. The Ka’lian will need that gold back to buy arms and food, to hire artisans, to support its armies."),
+          },
+          {
+            tag: "message",
+            text: _("We will hunt down those saurians and retrieve our gold. More, we must teach them that it is lethal folly to raid us, else they will plague us like rats."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Shurm%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I am ashamed to die at the hands of tree-shaggers!"),
+          },
+          {
+            tag: "message",
+            text: _("When you meet your kin in the dry hells, tell them you perished at the hands of Kalenz’s elves!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I am defeated. Now the orcs will destroy us!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Landar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Farewell, Kalenz!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Nooo! We cannot continue without Landar!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Cleodil%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I’m sorry I failed you, Kalenz... my beloved..."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Nooo! Cleodil! Without you I cannot go on!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Olurf%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I go to join my sires in the Halls of Death"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("I cannot fight the orcs alone! It’s all over!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Uradredia%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Our cause is lost. With Uradredia gone, the North Elves will no longer fight!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Galtrid%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("I cannot fight the orcs alone! It’s all over!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "last_breath",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_wml%22%2C%22attributes%22%3A%7B%22upkeep%22%3A%22loyal%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_side%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22allied_with%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22has_unit%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%2CLandar%2CCleodil%2COlurf%2CUradredia%2CGaltrid%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I grieve that I have failed you, my lord Kalenz..."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Farewell $unit.name. Your loyal service won’t be forgotten."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "$unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            text: _("Oh, no! We are too late..."),
+          },
+        ],
+      },
+    ],
+  },
+]

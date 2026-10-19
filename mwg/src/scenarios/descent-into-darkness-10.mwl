@@ -1,0 +1,2795 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Endless Night"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good",
+        gold: 200,
+        recruit: "Walking Corpse,Vampire Bat,Ghost,Ghoul,Skeleton Archer,Skeleton",
+        leader: "Mal_Keshar",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "enemies",
+        gold: 0,
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "enemies",
+        gold: 0,
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "monster",
+        gold: 0,
+      },
+      {
+        tag: "side",
+        id: 5,
+        controller: "null",
+        team_name: "fake",
+        gold: 0,
+      },
+      {
+        tag: "map",
+        id: "scenario_10_Endless_Night",
+        file: "10_Endless_Night.map",
+      },
+      {
+        tag: "unit",
+        id: "Mal_Keshar",
+        type: "Mal Keshar",
+        side: 1,
+        x: 11,
+        y: 27,
+        name: _("Mal Keshar"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_5",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 5,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_34",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.9,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: 0.1,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_35",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "squidVille",
+            not_equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "timesForever",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "transience.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Years pass. Every summer, by the time the mountainous paths and high passes shed their wintry gowns of snow, the lich sends his soldiers to attack the orcs, removing all human, elven, and dwarven patrols that impede them. Every year, the undead inflict some damage before being repelled."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_36",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "squidVille",
+            not_equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "timesForever",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("The lich sometimes wonders if his endeavors are naught but a fruitless crusade, but then again, so what? Life, unlife, death... nothing has ever given his existence meaning. And yet, he still persists? For what?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_37",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "squidVille",
+            not_equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "timesForever",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("<i>Reason and purpose...</i>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_38",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "squidVille",
+            not_equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "timesForever",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("He needs none. Philosophy only begets misery. Violence and savagery have always been the essence of his existence, a conviction that he has only embraced more wholly in undeath. Better to simply kill without deliberation, without consideration. He has never been one for regrets."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_39",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "squidVille",
+            not_equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "timesForever",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Rumors circulate of a lich who preys on scouting patrols. A hero, gathering his loyal troops to him, decides to put an end to the evil."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_40",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "squidVille",
+            not_equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "timesForever",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "transience.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Mal Keshar continues to study the book and re-reads the final entry."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_41",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "squidVille",
+            not_equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "timesForever",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("<i>“We prevailed today on the field, but our victory did not please me. I realize now... the world is not ready for our knowledge. They cannot understand that we have conquered that primordial fear: death. Instead, as they look upon us, judgment of our appearance drives them to ignorant terror. I give up on all of them. [...] In some future time, less conservative attitudes may dominate, and our knowledge can be put to good use. I can certainly afford to wait. In the meantime, we are doing what we can to hasten that day.”</i>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_42",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "squidVille",
+            not_equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "timesForever",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("<i>“As for me, I will make my journal conspicuous on this battlefield. I suspect that most will fear it enough to try to destroy it, but I have placed several wards on my journal to protect it. This way, it should survive long enough to make its way into the hands of someone more open-minded. Tath, in particular, is home to many mages. It only takes one who is willing to learn...”</i>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_43",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "squidVille",
+            not_equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "timesForever",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "transience.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("<i>“We prevailed today on the field, but our victory did not please me. I realize now... the world is not ready for our knowledge. They cannot understand that we have conquered that primordial fear: death. Instead, as they look upon us, judgment of our appearance drives them to ignorant terror. I give up on all of them. [...] In some future time, less conservative attitudes may dominate, and our knowledge can be put to good use. I can certainly afford to wait. In the meantime, we are doing what we can to hasten that day.”</i>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_44",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "squidVille",
+            not_equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "timesForever",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("<i>“As for me, I will make my journal conspicuous on this battlefield. I suspect that most will fear it enough to try to destroy it, but I have placed several wards on my journal to protect it. This way, it should survive long enough to make its way into the hands of someone more open-minded. Tath, in particular, is home to many mages. It only takes one who is willing to learn...”</i>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_45",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "squidVille",
+            not_equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "timesForever",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("The final entry gnaws at Mal Keshar. While he had been Darken Volk’s pawn, both of them were being used as pawns by the author of the book. Has his whole existence been nothing more than that of a puppet?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_46",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "squidVille",
+            not_equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "timesForever",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Still, despite his misgivings about being manipulated, he feels that he can learn something from the book. Orcs had only ever been half of the story — the other had been his own people being unable to accept his use of dark magic. But, if he allowed a foolish hero to take a copy of the book, would others eventually follow in his footsteps? If enough people began to view necromancy as merely another magical art, could it eventually be accepted in society?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_47",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "squidVille",
+            not_equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "timesForever",
+            greater_than: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "transience.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("The book still sits on a dusty shelf in Mal Keshar’s keep, untended and untouched, but constantly plaguing his mind."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_48",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "squidVille",
+            not_equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "timesForever",
+            greater_than: 2,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("If he allowed a foolish hero to take a copy of the book, would others eventually follow in his footsteps? Would the author’s plan actually work, or would people continue to view necromancy as only a corrupting power? One voice tells him that being accepted by society should not be of any concern to him. Another says that it would not hurt to try. He does not come to any conclusions, but a slightly embellished copy of the tome sits there in his lair, waiting to be taken."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_49",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Mal_Keshar",
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat the foolish hero Defeat another foolish hero Defeat yet another foolish hero Defeat both foolish heroes Allow an enemy unit to take the book Destruction of Mal Keshar"),
+        defeat: _("Destruction of Mal Keshar"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "did_soul_eater_die1",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22ability%22%3A%22did_soul_eater1%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: 4,
+            animate: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x2%22%2C%22y%22%3A%22%24y2%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "did_soul_eater_die2",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22ability%22%3A%22did_soul_eater2%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: 8,
+            animate: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x2%22%2C%22y%22%3A%22%24y2%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "did_soul_eater_die3",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22ability%22%3A%22did_soul_eater3%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: 12,
+            animate: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x2%22%2C%22y%22%3A%22%24y2%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "runit",
+            kill: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:harm_unit",
+            amount: 1,
+            kill: "no",
+            animate: "no",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22ability%22%3A%22did_starving%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_4",
+        on: "branch_if_4",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "timesForever",
+            greater_than: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "previous_previous_randomHero",
+            value: "$previous_randomHero",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "previous_randomHero",
+            value: "$randomHero",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_5",
+        on: "branch_if_5",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "timesForever",
+            less_than_or_equal_to: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "previous_previous_randomHero",
+            value: -1,
+          },
+          {
+            tag: "set_variable",
+            name: "previous_randomHero",
+            value: -1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "new_turn",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "turn_number",
+              },
+            ],
+          },
+          {
+            tag: "switch",
+            variable: "randomHero2",
+            children: [
+              {
+                tag: "case",
+                equals: "human",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:config_side",
+                    side: 3,
+                    recruit: "Spearman,Swordsman,Pikeman,Bowman,Longbowman,Heavy Infantryman,Shock Trooper,Mage,Red Mage,White Mage,Horseman,Knight,Lancer",
+                    user_team_name: "Humans",
+                    flag: "flags/loyalist-flag-[1~4].png:150",
+                    color: "gold",
+                    flag_icon: "flags/loyalist-flag-icon.png",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:scroll_to",
+                    x: 1,
+                    y: 49,
+                  },
+                  {
+                    tag: "spawn",
+                    id: "Too_Foolish_Hero",
+                    type: "Royal Guard",
+                    side: 3,
+                    x: 7,
+                    y: 45,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_unit",
+                    unit: "Too_Foolish_Hero",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_terrain",
+                    terrain: "Ke",
+                    cells: "7,45",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_terrain",
+                    terrain: "Ce",
+                    cells: "6,46-47;8-9,46;9,45-47",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_terrain",
+                    terrain: "Uu^Vct",
+                    cells: "8,48;4,44;11,45;4,47",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:capture_village",
+                    side: 3,
+                    cells: "8,48;4,44;11,45;4,47",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Too Foolish Hero",
+                    text: _("Your doom is at hand, lich! It is nigh time you answered for your evil crimes!"),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:play_music",
+                    file: "loyalists.ogg",
+                    play_once: "yes",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "bandit",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:config_side",
+                    side: 3,
+                    recruit: "Thug,Bandit,Footpad,Outlaw,Poacher,Trapper,Thief,Rogue",
+                    user_team_name: "Bandits",
+                    flag: "",
+                    color: "brown",
+                    flag_icon: "",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:scroll_to",
+                    x: 1,
+                    y: 49,
+                  },
+                  {
+                    tag: "spawn",
+                    id: "Too_Foolish_Hero",
+                    type: "Highwayman",
+                    side: 3,
+                    x: 7,
+                    y: 45,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_unit",
+                    unit: "Too_Foolish_Hero",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_terrain",
+                    terrain: "Ke",
+                    cells: "7,45",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_terrain",
+                    terrain: "Ce",
+                    cells: "6,46-47;8-9,46;9,45-47",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_terrain",
+                    terrain: "Uu^Vct",
+                    cells: "8,48;4,44;11,45;4,47",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:capture_village",
+                    side: 3,
+                    cells: "8,48;4,44;11,45;4,47",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Too Foolish Hero",
+                    text: _("You have preyed on too many of my men. Our territory will be much more secure without your undead pestering us."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:play_music",
+                    file: "knolls.ogg",
+                    play_once: "yes",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "elf",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:config_side",
+                    side: 3,
+                    recruit: "Elvish Fighter,Elvish Hero,Elvish Captain,Elvish Archer,Elvish Ranger,Elvish Marksman,Elvish Shaman,Elvish Sorceress,Elvish Druid,Elvish Scout,Elvish Rider,Wose",
+                    user_team_name: "Elves",
+                    flag: "flags/wood-elvish-flag-[1~4].png:150",
+                    color: "brown",
+                    flag_icon: "flags/wood-elvish-flag-icon.png",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:scroll_to",
+                    x: 1,
+                    y: 49,
+                  },
+                  {
+                    tag: "spawn",
+                    id: "Too_Foolish_Hero",
+                    type: "Elvish Marshal",
+                    side: 3,
+                    x: 7,
+                    y: 45,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_unit",
+                    unit: "Too_Foolish_Hero",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_terrain",
+                    terrain: "Ke",
+                    cells: "7,45",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_terrain",
+                    terrain: "Ce",
+                    cells: "6,46-47;8-9,46;9,45-47",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_terrain",
+                    terrain: "Uu^Vct",
+                    cells: "8,48;4,44;11,45;4,47",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:capture_village",
+                    side: 3,
+                    cells: "8,48;4,44;11,45;4,47",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Too Foolish Hero",
+                    text: _("We have finally found you, lich! Long have we heard of your abominable deeds, ensnaring the living with your dark sorceries and molding them into your slaves. Your wretched unlife ends here!"),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:play_music",
+                    file: "elvish-theme.ogg",
+                    play_once: "yes",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "dwarf",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:config_side",
+                    side: 3,
+                    recruit: "Dwarvish Fighter,Dwarvish Steelclad,Dwarvish Thunderer,Dwarvish Thunderguard,Dwarvish Stalwart,Dwarvish Guardsman,Dwarvish Ulfserker,Dwarvish Berserker,Dwarvish Scout,Dwarvish Pathfinder,Gryphon Rider,Gryphon Master",
+                    user_team_name: "Dwarves",
+                    flag: "flags/knalgan-flag-[1~4].png:150",
+                    color: "brown",
+                    flag_icon: "flags/knalgan-flag-icon.png",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:scroll_to",
+                    x: 1,
+                    y: 49,
+                  },
+                  {
+                    tag: "spawn",
+                    id: "Too_Foolish_Hero",
+                    type: "Dwarvish Lord",
+                    side: 3,
+                    x: 7,
+                    y: 45,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_unit",
+                    unit: "Too_Foolish_Hero",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_terrain",
+                    terrain: "Ke",
+                    cells: "7,45",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_terrain",
+                    terrain: "Ce",
+                    cells: "6,46-47;8-9,46;9,45-47",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_terrain",
+                    terrain: "Uu^Vct",
+                    cells: "8,48;4,44;11,45;4,47",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:capture_village",
+                    side: 3,
+                    cells: "8,48;4,44;11,45;4,47",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Too Foolish Hero",
+                    text: _("Been a long time since I’ve smashed me some undead. Ye gots ye plenty o’ bones for me hammer ta break."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:play_music",
+                    file: "knalgan_theme.ogg",
+                    play_once: "yes",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "orc",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:config_side",
+                    side: 3,
+                    recruit: "Orcish Warrior,Orcish Slayer,Orcish Crossbowman,Troll,Troll Rocklobber",
+                    user_team_name: "Orcs",
+                    flag: "flags/ragged-flag-[1~6].png:150",
+                    color: "white",
+                    flag_icon: "flags/ragged-flag-icon.png",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:scroll_to",
+                    x: 1,
+                    y: 49,
+                  },
+                  {
+                    tag: "spawn",
+                    id: "Too_Foolish_Hero",
+                    type: "Orcish Warlord",
+                    side: 3,
+                    x: 7,
+                    y: 45,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_unit",
+                    unit: "Too_Foolish_Hero",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_terrain",
+                    terrain: "Ke",
+                    cells: "7,45",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_terrain",
+                    terrain: "Ce",
+                    cells: "6,46-47;8-9,46;9,45-47",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_terrain",
+                    terrain: "Uu^Vct",
+                    cells: "8,48;4,44;11,45;4,47",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:capture_village",
+                    side: 3,
+                    cells: "8,48;4,44;11,45;4,47",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:add_item",
+                    x: 9,
+                    y: 46,
+                    item_name: "",
+                    image: "scenery%2Fwhitefang-flag.png",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Too Foolish Hero",
+                    text: _("I’ve finally found your lair, lich! You have attacked my tribe and wreaked havoc on our homes for many years. You slew my father and turned his body into one of your nasty creations. With your death, your annoying minions will pester us no longer!"),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:play_music",
+                    file: "northerners.ogg",
+                    play_once: "yes",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("I almost feel as if the universe is mocking me by sending me this many imbeciles..."),
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "no",
+            income: "$(6 + 2 * $timesForever)",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "second_hero_arrived",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_6",
+        on: "branch_if_6",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "timesForever",
+            greater_than: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:replace_map",
+            terrain: "Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Wog%2C%20Wog%2C%20Wog%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Gg%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Gll%5EFdw%2C%20Gll%5EFdw%2C%20Gd%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Gll%5EFp%2C%20Gll%5EFmw%2C%20Rp%2C%20Gll%5EFp%2C%20Gs%5EFp%0AXu%2C%20Xu%2C%20Wwrg%2C%20Wwrg%2C%20Wwg%5EEwl%2C%20Xu%2C%20Xu%2C%20Wwg%2C%20Wwrg%2C%20Wwrg%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Gd%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Gll%5EFdw%2C%20Rp%2C%20Rp%2C%20Gll%5EFmw%2C%20Gll%5EFp%0AWog%2C%20Xu%2C%20Wwg%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Wwg%2C%20Wwrg%2C%20Wwrg%2C%20Wwg%2C%20Wwg%5EEwl%2C%20Wwg%5EEwl%2C%20Uu%5EEm%2C%20Uu%2C%20Uu%5EEmf%2C%20Uh%5ETf%2C%20Uh%5EEm%2C%20Rb%5EEs%2C%20Xu%2C%20Uu%2C%20Re%5EVct%2C%20Rb%2C%20Re%5EEs%2C%20Re%5EEs%2C%20Gd%2C%20Gd%5EEm%2C%20Gll%5EEm%2C%20Rp%2C%20Gll%5EFdw%2C%20Gll%5EFp%2C%20Gll%5EFmw%0AWog%2C%20Wog%2C%20Wog%2C%20Wwg%2C%20Wwg%2C%20Xu%2C%20Wog%2C%20Xu%2C%20Wog%2C%20Wwg%5EEwl%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Uu%5EEs%2C%20Rb%5EEs%2C%20Ur%5EEs%2C%20Ur%5EEs%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Xu%2C%20Uu%5EEm%2C%20Ce%2C%20Rb%5EEs%2C%20Ce%2C%20Rb%2C%20Ur%5EEs%2C%20Ur%2C%20Ur%2C%20Rp%2C%20Gll%5EFdw%2C%20Gll%5EEmf%2C%20Gll%5EFmw%2C%20Gll%5EFp%0AXu%2C%20Wog%2C%20Xu%2C%20Wwrg%2C%20Wwrg%2C%20Wog%2C%20Wwg%2C%20Wog%2C%20Wwg%2C%20Wwg%5EEwl%2C%20Ur%2C%20Ur%2C%20Uu%2C%20Ur%2C%20Uh%5EEm%2C%20Uu%2C%20Uu%5EEm%2C%20Ur%5EEs%2C%20Ur%5EEs%2C%20Ur%2C%20Ur%5EEs%2C%20Ce%2C%20Ke%2C%20Ur%2C%20Ce%2C%20Re%5EVct%2C%20Gd%2C%20Gll%5EEm%2C%20Gll%5EEm%2C%20Gll%5EFmw%2C%20Gll%5EFp%2C%20Gll%5EEmf%0AXu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Wwrg%2C%20Wog%2C%20Wwrg%2C%20Wwrg%2C%20Wwg%5EBw%2F%2C%20Uu%5EVu%2C%20Uu%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uh%5EEmf%2C%20Uu%5EEm%2C%20Uu%2C%20Rb%5EVct%2C%20Rb%2C%20Ce%2C%20Ce%2C%20Ce%2C%20Re%5EEs%2C%20Re%5EEs%2C%20Re%2C%20Gd%5EEm%2C%20Xu%2C%20Re%5EEm%2C%20Xu%2C%20Gs%5EFp%0AXu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Wog%2C%20Wwg%2C%20Wwrg%2C%20Wwg%2C%20Wwg%5EEwl%2C%20Xuc%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xos%2C%20Uh%5EEm%2C%20Uu%5EEm%2C%20Ur%5EEs%2C%20Xu%2C%20Re%5EEs%2C%20Uu%2C%20Uu%5EEm%2C%20Rb%5EEs%2C%20Rb%2C%20Rb%5EVct%2C%20Uu%2C%20Uu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Uh%5ETf%2C%20Uu%5EEmf%2C%20Uh%2C%20Wog%2C%20Wwg%2C%20Wog%2C%20Wwg%2C%20Xuc%2C%20Xuc%2C%20Xu%2C%20Xuc%2C%20Wwg%2C%20Xos%2C%20Wwg%5EEwl%2C%20Re%2C%20Rb%5EEs%2C%20Ur%2C%20Uh%5EEm%2C%20Xu%2C%20Re%5EEs%2C%20Uu%5EEm%2C%20Xu%2C%20Uu%2C%20Uu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Uh%5EEm%2C%20Uu%5EEm%2C%20Wog%5EBw%5Cr%2C%20Wog%2C%20Wog%2C%20Wwrg%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Wwg%5EEwl%2C%20Xos%2C%20Wwg%5EEwl%2C%20Uh%5EEm%2C%20Re%5EEs%2C%20Xu%2C%20Rb%2C%20Uh%5EEm%2C%20Xu%2C%20Rb%5EEs%2C%20Uu%2C%20Xu%2C%20Xu%2C%20Uu%5EEmf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AWog%2C%20Wwg%2C%20Wwg%2C%20Wwrg%2C%20Wog%2C%20Wog%2C%20Wwg%2C%20Wwg%2C%20Xos%2C%20Xos%2C%20Xuc%2C%20Xu%2C%20Xos%2C%20Re%5EEs%2C%20Uh%5EEmf%2C%20Xuc%2C%20Xos%2C%20Uu%2C%20Uu%5EEs%2C%20Rb%2C%20Uu%2C%20Uh%5EEm%2C%20Rb%2C%20Rb%2C%20Re%5EEm%2C%20Uu%5ETf%2C%20Re%5EEdb%2C%20Uu%5EEs%2C%20Uu%5EEm%2C%20Xu%2C%20Uh%5ETf%2C%20Xu%0AXu%2C%20Wog%2C%20Wog%2C%20Wog%2C%20Wog%2C%20Wog%2C%20Wwg%5EBw%5Cr%2C%20Wwg%5EEwl%2C%20Wwg%5EEwl%2C%20Rb%5EEs%2C%20Wwg%2C%20Xuc%2C%20Wwg%5EEwl%2C%20Uh%5EEm%2C%20Xu%2C%20Xos%2C%20Xuc%2C%20Re%5EEs%2C%20Ur%2C%20Uu%5EEs%2C%20Uh%5EEm%2C%20Uh%5EEmf%2C%20Uu%2C%20Uu%5EEm%2C%20Re%5EEdb%2C%20Rb%5EEdb%2C%20Rb%5EEdb%2C%20Rb%5EEs%2C%20Uh%5EEm%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Xu%0AWwg%2C%20Wog%2C%20Wwrg%2C%20Wog%2C%20Wog%2C%20Wwg%5EEwl%2C%20Rd%5EEsd%2C%20Re%5EEs%2C%20Rb%5EEs%2C%20Uu%2C%20Xuc%2C%20Wwg%2C%20Uh%5EEm%2C%20Re%5EBr%5C%2C%20Re%5EEs%2C%20Xuc%2C%20Rb%5EEs%2C%20Uu%2C%20Ur%5EEdb%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Re%5EEm%2C%20Xu%2C%20Uu%5EEdb%2C%20Rb%5EEs%2C%20Uu%5EEm%2C%20Uh%5EEmf%2C%20Xu%2C%20Xu%2C%20Xu%0AXuc%2C%20Wwg%2C%20Xuc%2C%20Wwrg%2C%20Wwg%2C%20Wwg%2C%20Xu%2C%20Xuc%2C%20Xuc%2C%20Xu%2C%20Uu%5EEmf%2C%20Uh%5ETf%2C%20Rb%5EEs%2C%20Re%5EBr%7C%2C%20Ur%2C%20Rb%5EEm%2C%20Uu%2C%20Uu%2C%20Uu%5EEdb%2C%20Uu%5EVud%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uu%5EEm%2C%20Uu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXos%2C%20Xos%2C%20Wwrg%2C%20Wwg%2C%20Wwg%5EEwl%2C%20Rd%5EEsd%2C%20Ur%2C%20Xuc%2C%20Uu%5EVu%2C%20Xuc%2C%20Ur%5EBr%5C%2C%20Uu%5EEm%2C%20Ur%5EBr%5C%2C%20Rb%5EEs%2C%20Uu%5EEm%2C%20Ur%2C%20Ur%2C%20Ur%5EEdb%2C%20Uu%5EEdb%2C%20Uu%5EEdb%2C%20Xu%2C%20Xu%2C%20Rb%5EEs%2C%20Xu%2C%20Uu%5EEs%2C%20Uu%5EEs%2C%20Uu%2C%20Uh%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AWog%2C%20Xuc%2C%20Wog%2C%20Wwg%5EEwl%2C%20Xos%2C%20Re%5EEm%2C%20Re%5EEs%2C%20Ur%5EEs%2C%20Uu%5EEm%2C%20Uh%5EEmf%2C%20Ur%5EBr%7C%2C%20Ur%5EBr%2F%2C%20Re%5EEs%2C%20Uh%5EEm%2C%20Rb%5EEs%2C%20Uu%5EEm%2C%20Re%5EBr%2F%2C%20Rd%2C%20Uu%5EEm%2C%20Ur%5EEdb%2C%20Ur%5EEs%2C%20Xu%2C%20Rb%5EEm%2C%20Rb%2C%20Rb%5EEdb%2C%20Re%5EEs%2C%20Rb%5EEdb%2C%20Xu%2C%20Ql%2C%20Ql%2C%20Xu%2C%20Xu%0AWog%2C%20Wog%2C%20Wwg%2C%20Xuc%2C%20Uu%5EEmf%2C%20Uh%5ETf%2C%20Rb%5EEs%2C%20Rb%5EEs%2C%20Ur%5EBr%2F%2C%20Ur%5EBr%2F%2C%20Uu%5EBr%7C%2C%20Xuc%2C%20Uh%5EEmf%2C%20Uu%5EEm%2C%20Rb%5EEs%2C%20Re%5EBr%7C%2C%20Uu%5EEmf%2C%20Uh%5ETf%2C%20Uh%5EEm%2C%20Uu%2C%20Uu%2C%20Xu%2C%20Uu%5EEm%2C%20Uu%5EEmf%2C%20Xu%2C%20Rd%5EEdb%2C%20Re%5EEdb%2C%20Rd%5EIi%2C%20Ql%2C%20Ql%2C%20Xu%2C%20Xu%0AXuc%2C%20Xuc%2C%20Wwg%5EEwl%2C%20Xuc%2C%20Ur%5EBr%2F%2C%20Ur%5EBr%7C%2C%20Uu%5EVu%2C%20Ur%5EBr%7C%2C%20Uu%5EEm%2C%20Ur%2C%20Uu%5EBr%7C%2C%20Xos%2C%20Xos%2C%20Uh%5ETf%2C%20Re%2C%20Xuc%2C%20Xuc%2C%20Xos%2C%20Xu%2C%20Uu%5EEs%2C%20Ur%5EEs%2C%20Rb%5EEs%2C%20Cud%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Ql%2C%20Rd%5EEsd%2C%20Ql%2C%20Xu%2C%20Xu%2C%20Xu%0ARb%5EBr%2F%2C%20Rb%5EBr%2F%2C%20Rb%5EBr%5C%2C%20Rb%5EEs%2C%20Rd%5EEs%2C%20Uu%2C%20Xos%2C%20Xuc%2C%20Xos%2C%20Xuc%2C%20Xos%2C%20Uh%5ETf%2C%20Uu%5EEm%2C%20Re%5EEm%2C%20Uh%5EEmf%2C%20Xuc%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Rb%2C%20Ur%2C%20Rb%5EEs%2C%20Rb%5EEs%2C%20Re%2C%20Xu%2C%20Xu%2C%20Ql%2C%20Ql%2C%20Ql%5EBs%7C%2C%20Ql%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Xuc%2C%20Uh%5EEm%2C%20Uu%5EEmf%2C%20Xuc%2C%20Xos%2C%20Xuc%2C%20Xu%2C%20Xu%2C%20Xos%2C%20Xuc%2C%20Uu%5EEm%2C%20Uu%5EEs%2C%20Ur%5EBr%5C%2C%20Xuc%2C%20Xu%2C%20Uu%5ETf%2C%20Uu%5EEm%2C%20Rb%5EEmf%2C%20Ur%5EEs%2C%20Re%2C%20Re%5EEdb%2C%20Rd%5EEdb%2C%20Ql%2C%20Ql%2C%20Xu%2C%20Ql%2C%20Ql%5EBs%7C%2C%20Ql%2C%20Ql%2C%20Xu%2C%20Xu%0AXu%2C%20Xuc%2C%20Xuc%2C%20Uh%5ETf%2C%20Xos%2C%20Xos%2C%20Xu%2C%20Xu%2C%20Uh%5ETf%2C%20Xu%2C%20Uh%5EEmf%2C%20Uh%5EEm%2C%20Xuc%2C%20Ur%5EEs%2C%20Uu%5EEm%2C%20Cud%2C%20Ur%2C%20Uu%2C%20Ur%2C%20Uu%5EEm%2C%20Re%5EEs%2C%20Rb%5EEdb%2C%20Rd%5EEsd%2C%20Rd%5EEsd%2C%20Ql%2C%20Ql%2C%20Ur%5EIi%2C%20Ur%5EEs%2C%20Urb%5EVu%2C%20Ql%2C%20Ql%2C%20Xu%0AXu%2C%20Xu%2C%20Xos%2C%20Xos%2C%20Xos%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uh%5EEm%2C%20Uh%5ETf%2C%20Xuc%2C%20Xu%2C%20Xu%2C%20Re%5EEm%2C%20Uu%5EEmf%2C%20Rb%5EEs%2C%20Ur%5EEs%2C%20Uu%5EEm%2C%20Re%5EEs%2C%20Rb%5EEs%2C%20Re%2C%20Uu%5EEm%2C%20Ql%2C%20Ql%5EBs%2F%2C%20Ql%5EBs%2F%2C%20Ql%2C%20Ur%5EEdb%2C%20Ql%5EBs%5C%2C%20Ql%2C%20Ql%2C%20Xu%0AXuc%2C%20Xu%2C%20Xuc%2C%20Xos%2C%20Xos%2C%20Xu%2C%20Uu%5EVu%2C%20Xu%2C%20Uu%5EEm%2C%20Uh%5EEmf%2C%20Uu%2C%20Xu%2C%20Uu%2C%20Xu%2C%20Re%2C%20Re%5EEm%2C%20Rb%5EEs%2C%20Ur%2C%20Ur%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Cud%2C%20Uu%5EEmf%2C%20Uu%5EEm%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Ql%5EBs%5C%2C%20Rd%5EEsd%2C%20Xu%0AXuc%2C%20Xuc%2C%20Uh%5ETf%2C%20Uu%5EEmf%2C%20Uh%5ETf%2C%20Uh%5EEmf%2C%20Rb%5EEs%2C%20Rb%5EEs%2C%20Re%5EEdb%2C%20Ss%2C%20Ss%5EEm%2C%20Uu%5EVud%2C%20Rb%5EEs%2C%20Rb%5EEs%2C%20Sm%2C%20Rd%5EEsd%2C%20Uu%5EVu%2C%20Rb%5EEs%2C%20Ur%5EEs%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Xu%2C%20Xu%2C%20Uh%5ETf%2C%20Ql%2C%20Ql%2C%20Xu%2C%20Ql%2C%20Ql%2C%20Rd%5EEdb%2C%20Rb%5EIi%2C%20Xu%0AXuc%2C%20Xuc%2C%20Uh%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Re%5EEdb%2C%20Rd%5EEsd%2C%20Re%5EEdb%2C%20Rb%5EEdb%2C%20Sm%2C%20Rd%5EEsd%2C%20Ur%5EEdb%2C%20Re%5EEdb%2C%20Rd%5EEdb%2C%20Ss%5EEm%2C%20Sm%2C%20Sm%2C%20Ur%5EEm%2C%20Uh%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Ql%2C%20Ql%2C%20Xu%2C%20Xu%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Xu%0AXos%2C%20Xos%2C%20Rb%5EEs%2C%20Xu%2C%20Ur%5EEs%2C%20Ur%5EEs%2C%20Re%5EEdb%2C%20Re%5EEdb%2C%20Rd%5EEsd%2C%20Ss%5EBs%5C%2C%20Uu%5EVu%2C%20Ur%5EEdb%2C%20Ss%5EEm%2C%20Rd%5EEdb%2C%20Ss%5EEmf%2C%20Ss%5EBs%5C%2C%20Rd%5EEdb%2C%20Ur%5EEdb%2C%20Rb%5EEs%2C%20Uh%5EEmf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXuc%2C%20Uu%5EEmf%2C%20Uu%5EBr%5C%2C%20Xu%2C%20Ur%5EEs%2C%20Ss%5EEm%2C%20Ss%5ETf%2C%20Ss%5EEm%2C%20Ss%5EEm%2C%20Sm%2C%20Sm%5EEmf%2C%20Sm%2C%20Cud%2C%20Ss%5ETf%2C%20Ss%5EBs%2F%2C%20Rd%5EEsd%2C%20Ss%5EEm%2C%20Re%5EEdb%2C%20Rb%5EEs%2C%20Xu%2C%20Xu%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0ARb%5EEs%2C%20Uu%5EBr%2F%2C%20Ur%5EEs%2C%20Rb%5EBr%5C%2C%20Rd%5EEdb%2C%20Ss%5EEm%2C%20Ss%5EEmf%2C%20Uu%5EVud%2C%20Ur%5EEdb%2C%20Ss%2C%20Cud%2C%20Sm%5ETf%2C%20Cud%2C%20Cud%2C%20Sm%5EEdb%2C%20Ss%5EEmf%2C%20Rd%5EEsd%2C%20Rb%5EEs%2C%20Uu%5EVud%2C%20Xu%2C%20Xu%2C%20Uu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AUu%2C%20Uu%5EEm%2C%20Xuc%2C%20Ur%5EEs%2C%20Ur%5EEdb%2C%20Rd%5EEsd%2C%20Ss%5EBs%2F%2C%20Ur%5EEdb%2C%20Rd%5EEsd%2C%20Cud%2C%20Cud%2C%201%20Kud%2C%20Cud%2C%20Cud%2C%20Sm%5EEdb%2C%20Sm%5EEdb%2C%20Re%5EEs%2C%20Urb%5EIi%2C%20Uu%2C%20Xu%2C%20Uh%2C%20Rb%5EEs%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AUr%2C%20Xuc%2C%20Xu%2C%20Xuc%2C%20Uu%5EVu%2C%20Ur%5EEdb%2C%20Uu%2C%20Sm%2C%20Sm%5EEdb%2C%20Sm%5EEdb%2C%20Cud%2C%20Ss%5ETf%2C%20Sm%5EEmf%2C%20Ur%2C%20Sm%5EBs%5C%2C%20Ss%5EEm%2C%20Uu%2C%20Uu%5EEs%2C%20Ur%5EEs%2C%20Uu%2C%20Xu%2C%20Uh%5EEmf%2C%20Xu%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AUr%2C%20Uh%5EEm%2C%20Xu%2C%20Xu%2C%20Xuc%2C%20Rb%2C%20Urb%2C%20Sm%5EEdb%2C%20Sm%5EEdb%2C%20Ss%5EEdb%2C%20Ss%5EEm%2C%20Ss%2C%20Sm%5ETf%2C%20Sm%5EEm%2C%20Ss%5EEm%2C%20Ur%2C%20Ur%5EEdb%2C%20Uu%5EEdb%2C%20Ur%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXuc%2C%20Cud%2C%20Xos%2C%20Xu%2C%20Xuc%2C%20Uu%2C%20Uu%2C%20Xu%2C%20Rd%5EEs%2C%20Ss%5EEdb%2C%20Sm%5EEmf%2C%20Ss%5EEm%2C%20Xu%2C%20Xu%2C%20Ss%5EEm%2C%20Uu%5EVud%2C%20Uu%5EEdb%2C%20Uu%5EEdb%2C%20Rb%2C%20Xu%2C%20Uu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXos%2C%20Xos%2C%20Xuc%2C%20Xos%2C%20Uu%2C%20Uu%2C%20Uu%2C%20Xuc%2C%20Re%5EEs%2C%20Ss%5EEm%2C%20Rd%5EEsd%2C%20Sm%5EEm%2C%20Sm%2C%20Xu%2C%20Uu%5EEm%2C%20Xu%2C%20Uu%5EEm%2C%20Ur%2C%20Ur%5EEs%2C%20Rb%5EEs%2C%20Uu%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXuc%2C%20Xuc%2C%20Uu%5EEm%2C%20Rb%5EEs%2C%20Uu%2C%20Uu%2C%20Uu%2C%20Uu%2C%20Uu%5EEmf%2C%20Rd%5EEsd%2C%20Rb%2C%20Uu%5EEmf%2C%20Sm%2C%20Uu%5EEmf%2C%20Uh%5ETf%2C%20Uu%5EEmf%2C%20Uu%5EEm%2C%20Rb%2C%20Rb%2C%20Ur%5EEs%2C%20Xu%2C%20Uh%5EEm%2C%20Uh%5EEmf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0ARb%5EEs%2C%20Uh%5EEmf%2C%20Xos%2C%20Xuc%2C%20Ur%5EEs%2C%20Ur%2C%20Uu%5EEm%2C%20Uh%5EEm%2C%20Uh%5ETf%2C%20Uh%5EEmf%2C%20Xu%2C%20Uu%5EEm%2C%20Uh%5EEm%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Uu%5EEm%2C%20Xu%2C%20Xu%2C%20Uu%2C%20Uu%2C%20Xu%2C%20Xu%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AUu%5EEm%2C%20Uh%5EEm%2C%20Xu%2C%20Xuc%2C%20Ur%5EEs%2C%20Xuc%2C%20Xu%2C%20Rb%5EEs%2C%20Ur%5EEs%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Xu%2C%20Uu%5EEm%2C%20Ur%5EEs%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Xu%2C%20Xu%2C%20Rb%2C%20Rb%5EEs%2C%20Uu%5EEm%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AUu%5EEm%2C%20Xuc%2C%20Xos%2C%20Uu%2C%20Xu%2C%20Xos%2C%20Xuc%2C%20Rb%5EEs%2C%20Ur%5EEs%2C%20Uu%5EEm%2C%20Uh%5ETf%2C%20Xu%2C%20Uu%2C%20Ur%5EEs%2C%20Rb%2C%20Rb%2C%20Xu%2C%20Ur%5EEs%2C%20Xu%2C%20Rb%2C%20Uh%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Xuc%2C%20Xos%2C%20Rb%2C%20Uu%5EEm%2C%20Ur%5EEs%2C%20Xu%2C%20Uu%2C%20Uu%5EEm%2C%20Rb%5EEs%2C%20Rb%5EEs%2C%20Uh%5EEmf%2C%20Ur%5EEs%2C%20Uu%2C%20Rb%5EEs%2C%20Ur%5EEs%2C%20Ur%5EEs%2C%20Uu%2C%20Xu%2C%20Uh%5EEmf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Xu%2C%20Xu%2C%20Xos%2C%20Uh%5ETf%2C%20Uu%5EEmf%2C%20Uu%2C%20Xu%2C%20Uu%5EEm%2C%20Uh%5EEm%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Rb%2C%20Re%2C%20Rb%5EEs%2C%20Ur%2C%20Xu%2C%20Uu%5EEm%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uh%5ETf%2C%20Uu%5EEm%2C%20Rb%5EEm%2C%20Qxu%2C%20Uu%5EEm%2C%20Rb%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uu%2C%20Uu%2C%20Uu%2C%20Rb%5EEs%2C%20Rb%5EEs%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Uh%5EEmf%2C%20Uu%2C%20Qxu%2C%20Qxu%2C%20Uu%2C%20Uu%5EEm%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Uu%2C%20Ur%5EEs%2C%20Ur%5EEs%2C%20Uu%5EEm%2C%20Rb%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AUh%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%5EBh%7C%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Uu%2C%20Ur%5EEs%2C%20Rb%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Uh%5EEm%2C%20Xu%2C%20Uu%5EEmf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Xu%2C%20Uu%2C%20Qxu%2C%20Uu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%5EBh%2F%2C%20Uh%5EEmf%2C%20Qxu%2C%20Uu%2C%20Uu%2C%20Uu%5EEm%2C%20Uh%5EEdb%2C%20Rb%5EEs%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Uu%5EEm%2C%20Uu%5EEmf%2C%20Xu%2C%20Uu%2C%20Uu%2C%20Uh%2C%20Uu%2C%20Rb%5EEs%2C%20Qxu%5EBh%2F%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Uu%5EEm%2C%20Uu%5EEdb%2C%20Uu%2C%20Xu%2C%20Uu%5EEm%2C%20Ur%5EEs%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Xu%2C%20Uu%5EEs%2C%20Uu%5EEm%2C%20Uu%5EEs%2C%20Uu%5EEm%2C%20Uh%5ETf%2C%20Uu%2C%20Uu%2C%20Uh%5EEmf%2C%20Qxu%2C%20Qxu%2C%20Uu%5EEdb%2C%20Qxu%5EBh%2F%2C%20Qxu%2C%20Xu%2C%20Qxu%2C%20Uu%2C%20Xu%2C%20Qxu%5EBcx%5C%2C%20Qxu%5EBcx%5C%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Xu%0AUh%5EEs%2C%20Uh%5EEs%2C%20Uh%5EEs%2C%20Ur%5EEs%2C%20Xu%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Uh%5EEmf%2C%20Ur%5EEs%2C%20Ur%2C%20Ur%5EEs%2C%20Ur%5EEs%2C%20Uu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Qxu%2C%20Xu%2C%20Qxu%2C%20Qxu%0AXu%2C%20Xu%2C%20Uu%2C%20Xu%2C%20Ur%5EEs%2C%20Uu%5EEs%2C%20Uu%5EEdb%2C%20Uu%2C%20Ur%5EEs%2C%20Uu%2C%20Uu%5EEm%2C%20Uu%2C%20Ur%5EEs%2C%20Uu%5EEdb%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%5EXo%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%0AMm%2C%20Xu%2C%20Uh%5ETf%2C%20Ur%5EEs%2C%20Uu%5EEs%2C%20Ur%5EEdb%2C%20Uu%5EEdb%2C%20Ur%5EEdb%2C%20Uu%2C%20Ur%2C%20Uu%2C%20Uu%5EEdb%2C%20Uu%5EEdb%2C%20Uu%5EEdb%2C%20Uu%5EEdb%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%5EXo%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%0AMm%2C%20Mm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uu%5EEdb%2C%20Uh%5EEdb%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Uu%2C%20Uu%5EEdb%2C%20Uu%5EEdb%2C%20Xu%2C%20Xu%2C%20Uu%5EEm%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%5EXo%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%0AHh%5EFmw%2C%20Mm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uh%5EEm%2C%20Uh%5EEdb%2C%20Uh%5EEmf%2C%20Ur%5EEs%2C%20Ur%5EEs%2C%20Uu%5EEm%2C%20Uh%5EEdb%2C%20Ur%2C%20Uu%5EEm%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%5EXo%2C%20Qxu%5EXo%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%0AMm%2C%20Mm%2C%20Mm%2C%20Xu%2C%20Xu%2C%20Uh%5EEmf%2C%20Uu%5EEdb%2C%20Uh%5EEm%2C%20Ur%2C%20Uu%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Ur%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%5EXo%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%0AHh%5EFp%2C%20Mm%2C%20Hh%5EEm%2C%20Re%5EEs%2C%20Hh%2C%20Re%5EEs%2C%20Uu%5EEdb%2C%20Uu%5EEdb%2C%20Uu%2C%20Ur%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Ur%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%5EXo%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%0AHh%5EEm%2C%20Hh%5EFmw%2C%20Mm%2C%20Hh%5EFmw%2C%20Mm%2C%20Mm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%5EXo%2C%20Qxu%5EXo%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%0A",
+            expand: "yes",
+            shrink: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:set_time_area",
+            area: "%7B%22tag%22%3A%22time_area%22%2C%22attributes%22%3A%7B%22x%22%3A%222%22%2C%22y%22%3A%2249%22%2C%22radius%22%3A%223%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_radius%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22X*%5E*%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%225%22%2C%22y%22%3A%2250%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dawn%22%2C%22name%22%3A%22Dawn%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dawn.png%22%2C%22red%22%3A%22-25%22%2C%22green%22%3A%22-15%22%2C%22blue%22%3A%220%22%2C%22sound%22%3A%22ambient%2Fmorning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22morning%22%2C%22name%22%3A%22Morning%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-morning.png%22%2C%22lawful_bonus%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22afternoon%22%2C%22name%22%3A%22Afternoon%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-afternoon.png%22%2C%22lawful_bonus%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dusk%22%2C%22name%22%3A%22Dusk%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dusk.png%22%2C%22red%22%3A%2210%22%2C%22green%22%3A%22-20%22%2C%22blue%22%3A%22-35%22%2C%22sound%22%3A%22ambient%2Fnight.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22first_watch%22%2C%22name%22%3A%22First%20Watch%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-firstwatch.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22second_watch%22%2C%22name%22%3A%22Second%20Watch%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-secondwatch.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "randomHero2",
+            values: "human,bandit,elf,dwarf,orc",
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "randomHero2",
+                equals: "$randomHero",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "randomHero2",
+                values: "human,bandit,elf,dwarf,orc",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "flankturn",
+            values: "5..10",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            gold: "$(170 + 50 * $timesForever)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_8",
+        on: "branch_if_8",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "timesForever",
+            greater_than_or_equal_to: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_king_is_dead.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "weight_of_revenge.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "nunc_dimittis.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 20,
+            y: 43,
+            item_name: "",
+            image: "items%2Fball-dark.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_9",
+        on: "branch_if_9",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "timesForever",
+            less_than: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "battle.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "casualties_of_war.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22type%22%3A%22Walking%20Corpse%22%2C%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22variation%22%3A%22drake%2Cdwarf%2Cgoblin%2Cgryphon%2Cmounted%2Csaurian%2Cspider%2Cswimmer%2Ctroll%2Cwose%2Cwolf%2Cbat%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_wml%22%2C%22attributes%22%3A%7B%22experience%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "timesForever",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "second_hero_arrived",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.profile",
+                value: "portraits/malin_lich-ancient.webp",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_4",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_5",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "randomHero",
+            values: "human,bandit,elf,dwarf,orc",
+          },
+          {
+            tag: "while",
+            test: "wml_condition_tree('tree=%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22randomHero%22%2C%22equals%22%3A%22%24previous_randomHero%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22randomHero%22%2C%22equals%22%3A%22%24previous_previous_randomHero%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D')",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "randomHero",
+                values: "human,bandit,elf,dwarf,orc",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_6",
+          },
+          {
+            tag: "switch",
+            variable: "randomHero",
+            children: [
+              {
+                tag: "case",
+                equals: "human",
+                children: [
+                  {
+                    tag: "spawn",
+                    id: "Foolish_Hero",
+                    type: "Royal Guard",
+                    side: 2,
+                    x: 21,
+                    y: 3,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_unit",
+                    unit: "Foolish_Hero",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:config_side",
+                    side: 2,
+                    recruit: "Spearman,Swordsman,Pikeman,Bowman,Longbowman,Heavy Infantryman,Shock Trooper,Mage,Red Mage,White Mage,Horseman,Knight,Lancer",
+                    user_team_name: "Humans",
+                    flag: "flags/loyalist-flag-[1~4].png:150",
+                    color: "gold",
+                    flag_icon: "flags/loyalist-flag-icon.png",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:config_side",
+                    side: 3,
+                    flag: "flags/loyalist-flag-[1~4].png:150",
+                    color: "gold",
+                    flag_icon: "flags/loyalist-flag-icon.png",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:play_music",
+                    file: "loyalists.ogg",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "bandit",
+                children: [
+                  {
+                    tag: "spawn",
+                    id: "Foolish_Hero",
+                    type: "Highwayman",
+                    side: 2,
+                    x: 21,
+                    y: 3,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_unit",
+                    unit: "Foolish_Hero",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:config_side",
+                    side: 2,
+                    recruit: "Thug,Bandit,Footpad,Outlaw,Poacher,Trapper,Thief,Rogue",
+                    user_team_name: "Bandits",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:play_music",
+                    file: "knolls.ogg",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "elf",
+                children: [
+                  {
+                    tag: "spawn",
+                    id: "Foolish_Hero",
+                    type: "Elvish Marshal",
+                    side: 2,
+                    x: 21,
+                    y: 3,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_unit",
+                    unit: "Foolish_Hero",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:config_side",
+                    side: 2,
+                    recruit: "Elvish Fighter,Elvish Hero,Elvish Captain,Elvish Archer,Elvish Ranger,Elvish Marksman,Elvish Shaman,Elvish Sorceress,Elvish Druid,Elvish Scout,Elvish Rider,Wose",
+                    user_team_name: "Elves",
+                    flag: "flags/wood-elvish-flag-[1~4].png:150",
+                    flag_icon: "flags/wood-elvish-flag-icon.png",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:config_side",
+                    side: 3,
+                    flag: "flags/wood-elvish-flag-[1~4].png:150",
+                    flag_icon: "flags/wood-elvish-flag-icon.png",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:play_music",
+                    file: "elvish-theme.ogg",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "dwarf",
+                children: [
+                  {
+                    tag: "spawn",
+                    id: "Foolish_Hero",
+                    type: "Dwarvish Lord",
+                    side: 2,
+                    x: 21,
+                    y: 3,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_unit",
+                    unit: "Foolish_Hero",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:config_side",
+                    side: 2,
+                    recruit: "Dwarvish Fighter,Dwarvish Steelclad,Dwarvish Thunderer,Dwarvish Thunderguard,Dwarvish Stalwart,Dwarvish Guardsman,Dwarvish Ulfserker,Dwarvish Berserker,Dwarvish Scout,Dwarvish Pathfinder,Gryphon Rider,Gryphon Master",
+                    user_team_name: "Dwarves",
+                    flag: "flags/knalgan-flag-[1~4].png:150",
+                    flag_icon: "flags/knalgan-flag-icon.png",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:config_side",
+                    side: 3,
+                    flag: "flags/knalgan-flag-[1~4].png:150",
+                    flag_icon: "flags/knalgan-flag-icon.png",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:play_music",
+                    file: "knalgan_theme.ogg",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "orc",
+                children: [
+                  {
+                    tag: "spawn",
+                    id: "Foolish_Hero",
+                    type: "Orcish Warlord",
+                    side: 2,
+                    x: 21,
+                    y: 3,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_unit",
+                    unit: "Foolish_Hero",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:config_side",
+                    side: 2,
+                    recruit: "Orcish Warrior,Orcish Slayer,Orcish Crossbowman,Troll,Troll Rocklobber",
+                    user_team_name: "Orcs",
+                    flag: "flags/ragged-flag-[1~6].png:150",
+                    color: "white",
+                    flag_icon: "flags/ragged-flag-icon.png",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:config_side",
+                    side: 3,
+                    flag: "flags/ragged-flag-[1~6].png:150",
+                    color: "white",
+                    flag_icon: "flags/ragged-flag-icon.png",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:play_music",
+                    file: "northerners.ogg",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "20,1;18,4;24,3;23,5",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            gold: "$(230 + 50 * $timesForever)",
+            income: "$(6 + 6 * $timesForever)",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_8",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_9",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            type: "Skeletal Dragon",
+            unit: "",
+            x: 28,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 21,
+            y: 27,
+            item_name: "",
+            image: "scenery%2Fblack-monolith.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 5,
+            y: 5,
+            item_name: "",
+            image: "scenery%2Fwhirlpool.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_11",
+        on: "branch_if_11",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "squidVille",
+            equals: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("That was quite the nightmare..."),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("...unless it was not one? No. No no no. I don’t even want to think about that."),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("I need to go slaughter some foolish heroes to purge that from my mind."),
+          },
+          {
+            tag: "set_variable",
+            name: "squidVille",
+            value: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "squidVille",
+            not_equals: 1,
+          },
+          {
+            tag: "switch",
+            variable: "timesForever",
+            children: [
+              {
+                tag: "case",
+                equals: 1,
+              },
+              {
+                tag: "case",
+                equals: 2,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("I will destroy you like the last foolish hero who challenged me."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 3,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("Another foolish hero? Seriously?"),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 4,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("Is there an endless supply of foolish heroes with death wishes? Honestly, where do you all come from?"),
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            tag: "switch",
+            variable: "randomHero",
+            children: [
+              {
+                tag: "case",
+                equals: "human",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Foolish Hero",
+                    text: _("Your doom is at hand, lich! It is nigh time you answered for your crimes against humanity!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("Narrow-minded and obtuse, as one would expect of cityfolk. Go back to your manors and taverns before I decide to kill you."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "bandit",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Foolish Hero",
+                    text: _("You have preyed on too many of my men. Our territory will be much more secure without your undead pestering us."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("Not even real soldiers. How meaningless."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "elf",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Foolish Hero",
+                    text: _("We have finally found you, lich! Long have we heard of your abominable deeds, ensnaring the living with your dark sorceries and molding them into your slaves. Your wretched unlife ends here!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("Life or death, it is all the same. There are always those who try to kill me. Ever do they fail."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "dwarf",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Foolish Hero",
+                    text: _("Been a long time since I’ve smashed me some undead. Ye gots ye plenty o’ bones for me hammer ta break."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("And it has been some time since I’ve had a supply of dwarven corpses to work with. I suppose I can put your hammers to good use in the mines."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "orc",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:add_item",
+                    x: 20,
+                    y: 4,
+                    item_name: "",
+                    image: "scenery%2Fwhitefang-flag.png",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Foolish Hero",
+                    text: _("I’ve finally found your lair, lich! You have attacked my tribe and wreaked havoc on our homes for many years. You slew my father and turned his body into one of your nasty creations. With your death, your annoying minions will pester us no longer!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("The Whitefang Orcs! It is you who despoiled my motherland and razed my home. It is you who forced me to resort to necromancy to protect myself. It is you who ended my mortal life and forced me to become a lich. And you desire vengeance? Hah! The irony of this would be hysterical if I could still feel such an emotion."),
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: "2,3",
+            x: 16,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "items%2Fbook5.png",
+          },
+          {
+            tag: "switch",
+            variable: "hero_type",
+            children: [
+              {
+                tag: "case",
+                equals: "human",
+                children: [
+                  {
+                    tag: "message",
+                    text: _("That’s an evil grimoire!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("It might be linked to the lich’s power! Try burning it."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("<small>(faking pain)</small> Aaargh!"),
+                  },
+                  {
+                    tag: "message",
+                    text: _("It’s not catching fire!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("Still, it seems to be hurting the lich. Let us retreat and bring it with us. The mages may be able to destroy this and put an end to this lich."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "bandit",
+                children: [
+                  {
+                    tag: "message",
+                    text: _("That’s an evil grimoire!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("It might be linked to the lich’s power! Try burning it."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("<small>(faking pain)</small> Aaargh!"),
+                  },
+                  {
+                    tag: "message",
+                    text: _("It’s not catching fire!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("Still, it seems to be hurting the lich. Let us retreat and bring it with us. We may yet find another way to destroy it and put an end to this lich."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "elf",
+                children: [
+                  {
+                    tag: "message",
+                    text: _("That’s an evil grimoire!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("It must be connected to the lich’s power. Perhaps if we burn it with faerie fire, the lich will be destroyed. Let us take it and retreat."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "dwarf",
+                children: [
+                  {
+                    tag: "message",
+                    text: _("That be an evil grimoire!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("Try destroyin’ the blasted thing."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("<small>(faking pain)</small> Aaargh!"),
+                  },
+                  {
+                    tag: "message",
+                    text: _("Me axe kinna cut tha paper. It be protected by magic!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("Aye, but the lich still seems ta be hurtin’. Let’s take it ’n retreat. Maybe tha forge can destroy it."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "orc",
+                children: [
+                  {
+                    tag: "message",
+                    text: _("Me like skull on book. It look good."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("Idiot."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("<small>(faking pain)</small> Aaargh!"),
+                  },
+                  {
+                    tag: "message",
+                    text: _("Uuuuuh, I can’t pull skull off book, but lich scream."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("Defend the book, my minions! Aaargh!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("The book must be connected to the lich’s power! Take it and retreat. Once we smash that book, the lich should be destroyed."),
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "timesForever",
+            greater_than_or_equal_to: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 17,
+            y: 27,
+            item_name: "",
+            image: "items%2Fbook5.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_11",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_12",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_13",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "monolith",
+            equals: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:set_achievement",
+            id: "did_monolith",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "monolith",
+            value: 1,
+            mode: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "timesForever",
+            greater_than_or_equal_to: 3,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("A monolith of black stone, a dark surface reflecting deep shadow infinitely into the night."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_19",
+        on: "branch_if_19",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "monolith",
+            equals: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "monolith",
+            value: 1,
+            mode: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_18",
+        on: "branch_if_18",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "timesForever",
+            less_than: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_19",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("A monolith of black stone, cold and brittle to the touch."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 20,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_18",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_21",
+        on: "branch_if_21",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "metInky",
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("A cuttlefish! Perhaps I shall make it my pet."),
+          },
+          {
+            tag: "set_variable",
+            name: "metInky",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_22",
+        on: "branch_if_22",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "metInky",
+            not_equals: "",
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("We meet again, squiddy one."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 4,
+            y: 4,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "squidVille",
+              },
+            ],
+          },
+          {
+            tag: "spawn",
+            id: "Inky",
+            type: "Cuttle Fish",
+            side: 4,
+            x: 4,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Inky",
+          },
+          {
+            tag: "message",
+            speaker: "Inky",
+            text: _("Gllllbbbg!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_21",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_22",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_25",
+        on: "branch_if_25",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "gotosquid",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "scenery%2Fwhirlpool.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Get these tentacles off of me!"),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "water-blast.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Release me at once you oversized piece of calamari— eeeeaaaaaaaaa!"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("<i>Blub... blub... blub...</i>"),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "descent-into-darkness-11",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_24",
+        on: "branch_if_24",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "second_unit.id",
+            equals: "Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_25",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_26",
+        on: "branch_if_26",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "second_unit.id",
+            not_equals: "Mal Keshar",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Inky%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "gotosquid",
+            values: "1..11",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_24",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_26",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 19,
+            y: 42,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "timesForever",
+                greater_than_or_equal_to: 3,
+              },
+            ],
+          },
+          {
+            tag: "switch",
+            variable: "reflectionPool",
+            children: [
+              {
+                tag: "case",
+                equals: 0,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("I remember this place. It swirls with strange energy, like a pool of memories."),
+                  },
+                  {
+                    tag: "spawn",
+                    id: "Drogan",
+                    type: "Lieutenant",
+                    side: 5,
+                    x: 20,
+                    y: 43,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_unit",
+                    unit: "Drogan",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Drogan",
+                    text: _("D’ya still ’member tha good ol’ days? When you were little, ’n yer father had no time fer ya, we used ta train together in tha fields. Just you ’n me fer hours on end, practicin’ with our swords ’n havin’ fun."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Drogan",
+                    text: _("It were so much simpler back then, without yer complicated magic ’n yer crazy education ta mess things up. Don’t ya think so, Malin?"),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:delay",
+                    time: 1500,
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("That name is no longer mine."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:kill_unit",
+                    unit: "Drogan",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_dynamic",
+                    variable: "reflectionPool",
+                    value: 1,
+                    mode: "add",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 1,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("What does the darkness have in store for me this time?"),
+                  },
+                  {
+                    tag: "spawn",
+                    id: "Dela_Keshar",
+                    type: "Frontier Baroness",
+                    side: 5,
+                    x: 20,
+                    y: 43,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_unit",
+                    unit: "Dela_Keshar",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Dela Keshar",
+                    text: _("I guess we were never that close, but you were still my brother. When you went to Alduin fer those eight years, I was so lonely, ya know? Bein’ the daughter of a baron, it was real hard to make any real friends. It was always just people tryin’ to be nice and friendly just to get something out of me. People didn’t care about me. They only cared about my title."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Dela Keshar",
+                    text: _("When you first came back from Alduin, I was so, so happy to see ya. I thought you and me and pa could finally be a family again and I’d finally have someone I could talk to as just, you know, a friend. And then ya went and screwed it all up by turnin’ to that dark magic of yours. You don’t know how much that hurt me. You really don’t, Malin."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:delay",
+                    time: 1500,
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("That is not my name."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:kill_unit",
+                    unit: "Dela Keshar",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_dynamic",
+                    variable: "reflectionPool",
+                    value: 1,
+                    mode: "add",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 2,
+                children: [
+                  {
+                    tag: "spawn",
+                    id: "Darken_Volk",
+                    type: "Necromancer",
+                    side: 5,
+                    x: 20,
+                    y: 43,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_unit",
+                    unit: "Darken_Volk",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Darken Volk",
+                    text: _("A necromancer’s existence is a solitary one. Though we may be surrounded by hordes of the undead, it is a scarce occasion that we interact with another truly sentient being. In all my years of travels, you were my first and only apprentice."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Darken Volk",
+                    text: _("I taught you everything I knew. I imparted you with all the power you needed to accomplish your goals. I thought that in return, you would afford me a single, small favor, and that I would not ask more of you. How did you repay me? By betraying me using the very skills I taught you! You are a cursed soul, Mal Keshar the Damned!"),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:kill_unit",
+                    unit: "Darken Volk",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:delay",
+                    time: 1500,
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("Hah."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("Hahahahaha."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("<i>HAHAHAHAHAHAHAHAHA.</i>"),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:delay",
+                    time: 1500,
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("That is indeed my name."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_achievement",
+                    id: "did_reflection",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_dynamic",
+                    variable: "reflectionPool",
+                    value: 1,
+                    mode: "add",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_30",
+        on: "branch_if_30",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "x1",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22y1%22%2C%22numerical_equals%22%3A%2227%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22timesForever%22%2C%22greater_than%22%3A%225%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "second",
+            text: _("Boss, look! The lich dropped a shiny book!"),
+          },
+          {
+            tag: "message",
+            speaker: "speakinghero",
+            text: _("Well, what is it?"),
+          },
+          {
+            tag: "message",
+            speaker: "second",
+            text: _("I don’t know, but it looks like someone wrote something inside! It says:"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "items/book2.png",
+            text: _("<i>That stupid memory came back to bother me again today. It was that time at the Academy when Zephrin and I were arguing about orcs. I still remember that hoarse voice of his telling me, ‘Fun story, Malin, but you really should put a disclaimer. You know, to make sure everyone understands no orcs were harmed in the making of this story, hahaha.’ I can still hear his infernal cackling ringing in my head. Sure thing, Zephrin, right... like my whole life was some sort of work of fiction!</i>"),
+          },
+          {
+            tag: "message",
+            speaker: "speakinghero",
+            text: _("Bah! Do these people believe that we are fools? They must think we are all actors in a poorly written drama! I’ve had enough of this. I’m going home."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_31",
+        on: "branch_if_31",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22x1%22%2C%22numerical_equals%22%3A%2217%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22y1%22%2C%22numerical_equals%22%3A%2227%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22timesForever%22%2C%22greater_than%22%3A%225%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "speakinghero",
+            text: _("Anyway, round up the wolves. I’m going home."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_29",
+        on: "branch_if_29",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "timesForever",
+            greater_than_or_equal_to: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "journeys_end.ogg",
+          },
+          {
+            tag: "switch",
+            variable: "hero_type",
+            children: [
+              {
+                tag: "case",
+                equals: "human",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("Slain by those who were once my countrymen..."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:kill_unit",
+                    unit: "Mal Keshar",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("His evil deeds have come to an end."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "second",
+                    text: _("Who do you think he was before he was corrupted by the darkness?"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("It matters not. He embraced death over life, and thus relinquished his right to mercy. Let us return home; the town will need us to defend against the orcish raids."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "second",
+                    text: _("Yes, sir."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "bandit",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("Darkness descends... and I..."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:kill_unit",
+                    unit: "Mal Keshar",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("It’s done. He’ll trouble us no more."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "second",
+                    text: _("Who do you think he was before becoming a lich?"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("Likely one of those arrogant mages who think themselves superior to everyone else. He probably learned necromancy just to subjugate people like us."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "second",
+                    text: _("So he was an evil tyrant. How dreadful."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("Probably. Anyway, there’s no use in dwelling upon one so wicked. Let’s go."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "elf",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("Darkness descends... and I..."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:kill_unit",
+                    unit: "Mal Keshar",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("Well, that is the end of his evil ways."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "second",
+                    text: _("I wonder who this lich was in life before he turned to the evil that is undeath."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("A selfish human, only greedy for power while utterly indifferent to anything but himself. A necromancer’s only purpose is to work for their own gain, nothing else."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "second",
+                    text: _("Pure evil, that is what they are."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("Indeed. We need not afford this one any compassion. Let us leave this miserable place."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "dwarf",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("Darkness descends... and I..."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:kill_unit",
+                    unit: "Mal Keshar",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("Tha lich be nae but a pile o’ bones now."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "second",
+                    text: _("I wonder what kind o’ human he did be in life."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("Me guess be that he be some loonie mage who wanted ta make other humans inta ’is slaves. Why else d’ye think tha lad woul’ turn ta dark magic?"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "second",
+                    text: _("I dinna know. Ye think tha lich’s castle can be useful?"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("Aye. Let’s git to workin’."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "orc",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("Felled by an orc... so it ends... like this..."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:kill_unit",
+                    unit: "Mal Keshar",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("The lich is dead! I have finally avenged my father."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "second",
+                    text: _("Who you think he was, boss?"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "speakinghero",
+                    text: _("Just some angst-ridden mage who turned to dark magic when he swore some stupid quest for revenge upon us. Amusing that he was more bothersome in death than in life. Annoying that it took so long to kill him."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_30",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_31",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_32",
+        on: "branch_if_32",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "timesForever",
+            less_than: 3,
+          },
+          {
+            tag: "message",
+            text: _("... Then my battle against the orcs is lost!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mal%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_29",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_32",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+    ],
+  },
+]

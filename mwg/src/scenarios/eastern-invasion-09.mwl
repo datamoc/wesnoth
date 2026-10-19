@@ -1,0 +1,4899 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Castle in the Ice"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good",
+        gold: 0,
+        leader: "Gweddry",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "monsters",
+        gold: 0,
+        recruit: "Drake Fighter,Drake Burner,Drake Glider",
+        leader: "Kaslar_Ro",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "monsters",
+        gold: 0,
+        recruit: "Drake Fighter,Drake Burner,Drake Glider",
+        leader: "Kegra",
+      },
+      {
+        tag: "side",
+        id: 4,
+        team_name: "monsters",
+      },
+      {
+        tag: "side",
+        id: 5,
+        team_name: "monsters",
+      },
+      {
+        tag: "map",
+        id: "scenario_09_Castle_in_the_Ice",
+        file: "09_Castle_in_the_Ice.map",
+      },
+      {
+        tag: "unit",
+        id: "Gweddry",
+        type: "Frontier Sergeant",
+        side: 1,
+        x: 6,
+        y: 30,
+        name: _("Gweddry"),
+      },
+      {
+        tag: "unit",
+        id: "Kaslar_Ro",
+        type: "Hurricane Drake",
+        side: 2,
+        x: 12,
+        y: 6,
+        name: _("Kaslar Ro"),
+      },
+      {
+        tag: "unit",
+        id: "Kegra",
+        type: "Sky Drake",
+        side: 3,
+        x: 44,
+        y: 19,
+        name: _("Kegra"),
+      },
+      {
+        tag: "unit",
+        id: "u_1",
+        type: "Ogre",
+        side: 5,
+        x: 41,
+        y: 29,
+      },
+      {
+        tag: "unit",
+        id: "u_2",
+        type: "Young Ogre",
+        side: 5,
+        x: 41,
+        y: 29,
+      },
+      {
+        tag: "unit",
+        id: "u_3",
+        type: "Young Ogre",
+        side: 5,
+        x: 41,
+        y: 29,
+      },
+      {
+        tag: "event",
+        id: "hide_side_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_5",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 5,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_109",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 100,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.9,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,,,0,5,%7B%22side%22%3A1%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_110",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "silence.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("As Gweddry and his band continued north, winter tightened its grip on the wildlands. The days began to shorten and the air swiftly grew chill, making the already challenging mountains even more perilous to traverse."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_111",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Gweddry,Kaslar_Ro,Kegra",
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Move any unit to the abandoned castle. Move Grug next to an enemy ogre."),
+        defeat: _("Death of Gweddry, Dacyn, or Owaec"),
+      },
+      {
+        tag: "event",
+        id: "side_recall_filter_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            recall_filter: "%7B%22tag%22%3A%22filter_recall%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22trait%22%3A%22undead%22%7D%2C%22children%22%3A%5B%5D%2C%22gettext%22%3A%5B%5D%2C%22location%22%3A%7B%22file%22%3A%22C%3A%5C%5CUsers%5C%5Cmiche%5C%5Cdev%5C%5Cwesnoth-1.19.27%5C%5Cdata%5C%5Ccampaigns%5C%5CEastern_Invasion%5C%5Cscenarios%5C%5C09_Castle_in_the_Ice.cfg%22%2C%22line%22%3A1597%2C%22column%22%3A1%7D%7D%5D%2C%22gettext%22%3A%5B%5D%2C%22location%22%3A%7B%22file%22%3A%22C%3A%5C%5CUsers%5C%5Cmiche%5C%5Cdev%5C%5Cwesnoth-1.19.27%5C%5Cdata%5C%5Ccampaigns%5C%5CEastern_Invasion%5C%5Cscenarios%5C%5C09_Castle_in_the_Ice.cfg%22%2C%22line%22%3A1596%2C%22column%22%3A1%7D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Gweddry",
+            object: "%7B%22id%22%3A%22side_traits_1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Kaslar_Ro",
+            object: "%7B%22id%22%3A%22side_traits_2%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22max_experience%22%2C%22increase%22%3A%22-20%25%22%7D%2C%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increaseDamage%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Kegra",
+            object: "%7B%22id%22%3A%22side_traits_3%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%2C%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increaseDamage%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "suspense.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "nunc_dimittis.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            moves: 2,
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22id%22%3A%22Kaslar%20Ro%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Kaslar Ro",
+            side: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Drake%20Burner%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Drake Burner",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Drake Burner",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Drake%20Fighter%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Drake Fighter",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Drake Fighter",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader3",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 3,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22type%22%3A%22Drake%20Burner%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Drake Burner",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Drake Burner",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22type%22%3A%22Drake%20Fighter%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Drake Fighter",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Drake Fighter",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "drakes_no_income",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16_1",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "drakes_no_income",
+                equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "2,3",
+            gold: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17_2",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 3,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "drakes_no_income",
+                equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "2,3",
+            gold: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            income: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            income: -1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            income: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            income: 4,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 24,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            income: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            income: 6,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 36,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            income: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            income: 8,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 48,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            income: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            income: 11,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 60,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            income: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            income: 13,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Yeti",
+            side: 4,
+            x: 52,
+            y: 32,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 4,
+            ai_type: "zone_guardian",
+            action: "add",
+            filter: "%7B%22type%22%3A%22Yeti%22%7D",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Icemonax",
+            side: 4,
+            x: 41,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Icemonax",
+            side: 4,
+            x: 41,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Icemonax",
+            side: 4,
+            x: 41,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 4,
+            ai_type: "zone_guardian",
+            action: "add",
+            filter: "%7B%22type%22%3A%22Icemonax%2CGreat%20Icemonax%22%7D",
+          },
+          {
+            tag: "spawn",
+            id: "Pudror",
+            type: "Ghost",
+            side: 4,
+            x: 28,
+            y: 30,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Pudror",
+          },
+          {
+            tag: "spawn",
+            id: "Chief_Bir-brish",
+            type: "Wraith",
+            side: 4,
+            x: 28,
+            y: 30,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Chief_Bir-brish",
+          },
+          {
+            tag: "spawn",
+            id: "Huno",
+            type: "Ghost",
+            side: 4,
+            x: 28,
+            y: 30,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Huno",
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 4,
+            ai_type: "zone_guardian",
+            action: "add",
+            filter: "%7B%22type%22%3A%22Ghost%2CWraith%2CShadow%22%7D",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Frost Stoat",
+            side: 4,
+            x: 8,
+            y: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Frost Stoat",
+            side: 4,
+            x: 8,
+            y: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 4,
+            ai_type: "zone_guardian",
+            action: "add",
+            filter: "%7B%22type%22%3A%22Frost%20Stoat%22%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 5,
+            ai_type: "zone_guardian",
+            action: "add",
+            filter: "%7B%22type%22%3A%22Young%20Ogre%2COgre%2CGreat%20Ogre%22%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 21,
+            y: 26,
+            item_name: "",
+            image: "scenery%2Fvillage-human-burned1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 23,
+            y: 31,
+            item_name: "",
+            image: "scenery%2Fvillage-human-burned1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 26,
+            y: 28,
+            item_name: "",
+            image: "scenery%2Fvillage-human-burned2.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 25,
+            y: 33,
+            item_name: "",
+            image: "scenery%2Fvillage-human-burned3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 30,
+            y: 29,
+            item_name: "",
+            image: "scenery%2Fvillage-human-burned4.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 24,
+            y: 30,
+            item_name: "",
+            image: "items%2Fbones.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 31,
+            y: 29,
+            item_name: "",
+            image: "items%2Fbones.png~FL(horiz)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 28,
+            y: 28,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 26,
+            y: 32,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins2.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 27,
+            y: 30,
+            item_name: "",
+            image: "scenery%2Fcastle-ruins3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 28,
+            y: 31,
+            item_name: "",
+            image: "scenery%2Ftemple-cracked2.png~FL(horiz)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 27,
+            y: 31,
+            item_name: "",
+            image: "items%2Forcish-flag.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 52,
+            y: 33,
+            item_name: "",
+            image: "items%2Fbones.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 52,
+            y: 32,
+            item_name: "",
+            image: "items%2Fbones.png~FL(horiz)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 54,
+            y: 33,
+            item_name: "",
+            image: "items%2Fbones.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 53,
+            y: 33,
+            item_name: "",
+            image: "items%2Fbones.png~FL(horiz)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 53,
+            y: 33,
+            item_name: "",
+            image: "items%2Fburial.png",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Dacyn",
+            unit: "Dacyn",
+            x: 5,
+            y: 31,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Owaec",
+            unit: "Owaec",
+            x: 3,
+            y: 31,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Addogin",
+            unit: "Addogin",
+            x: 2,
+            y: 32,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Terraent",
+            unit: "Terraent",
+            x: 2,
+            y: 32,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Hahid al-Ali",
+            unit: "Hahid al-Ali",
+            x: 7,
+            y: 32,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Dolburras",
+            unit: "Dolburras",
+            x: 5,
+            y: 30,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Grug",
+            unit: "Grug",
+            x: 4,
+            y: 32,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_trait",
+            trait_id: "TRAIT_elements",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_29",
+        on: "branch_if_29",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "item_picked",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 6,
+            y: 31,
+            item_name: "",
+            image: "items%2Fpotion-yellow.png",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "potion.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.status.poisoned",
+                value: "yes",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.status.poisoned",
+                value: "no",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            moves: 0,
+            attacks_left: 0,
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22x%22%3A%226%22%2C%22y%22%3A%2231%22%7D%2C%22children%22%3A%5B%5D%7D",
+            side: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_31",
+        on: "branch_if_31",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "item_picked",
+            not_equals: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "EVENT_elements",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 5,
+            y: 30,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%2C%22id%22%3A%22EVENT_elements%22%2C%22first_time_only%22%3A%22no%22%2C%22delayed_variable_substitution%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22item_dialog%22%2C%22attributes%22%3A%7B%22name%22%3A%22Elixir%20of%20Elements%22%2C%22image%22%3A%22items%2Fpotion-yellow.png%22%2C%22description%22%3A%22This%20bubbling%20yellow%20vial%20grants%20immunity%20to%20both%20fire%20and%20cold.%20It%20also%20makes%20you%20sweat%20profusely.%22%2C%22effect%22%3A%22%3Cspan%20size%3D'small'%3E%3Ci%3E%20%20(Elixirs%20only%20last%20for%201%20scenario.)%3C%2Fi%3E%3C%2Fspan%3E%5Cn%3Cspan%20size%3D'small'%3E%3Ci%3E%20%20Picking%20up%20an%20item%20consumes%20your%20moves%20and%20attack.%3C%2Fi%3E%3C%2Fspan%3E%5Cn%3Cb%3E%3C%2Fb%3E%22%2C%22take_string%22%3A%22Take%22%2C%22leave_string%22%3A%22Leave%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22item_picked%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22remove_event%22%2C%22attributes%22%3A%7B%22id%22%3A%22EVENT_elements%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22remove_item%22%2C%22attributes%22%3A%7B%22x%22%3A%226%22%2C%22y%22%3A%2231%22%2C%22image%22%3A%22items%2Fpotion-yellow.png%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22sound%22%2C%22attributes%22%3A%7B%22name%22%3A%22potion.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22delay%22%2C%22attributes%22%3A%7B%22time%22%3A%221500%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22store_unit%22%2C%22attributes%22%3A%7B%22variable%22%3A%22MODIFY_UNIT_store%22%2C%22kill%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%226%22%2C%22y%22%3A%2231%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22foreach%22%2C%22attributes%22%3A%7B%22array%22%3A%22MODIFY_UNIT_store%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22do%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22this_item.status.poisoned%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22unstore_unit%22%2C%22attributes%22%3A%7B%22variable%22%3A%22this_item%22%2C%22find_vacant%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22MODIFY_UNIT_store%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22delay%22%2C%22attributes%22%3A%7B%22time%22%3A%22300%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22store_unit%22%2C%22attributes%22%3A%7B%22variable%22%3A%22MODIFY_UNIT_store%22%2C%22kill%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%226%22%2C%22y%22%3A%2231%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22foreach%22%2C%22attributes%22%3A%7B%22array%22%3A%22MODIFY_UNIT_store%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22do%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22this_item.status.poisoned%22%2C%22value%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22unstore_unit%22%2C%22attributes%22%3A%7B%22variable%22%3A%22this_item%22%2C%22find_vacant%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22MODIFY_UNIT_store%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22floating_text%22%2C%22attributes%22%3A%7B%22x%22%3A%226%22%2C%22y%22%3A%2231%22%2C%22text%22%3A%22%3Cspan%20color%3D'%23E8B923'%20size%3D'x-small'%3Eelemental%20resist%3C%2Fspan%3E%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22modify_unit%22%2C%22attributes%22%3A%7B%22moves%22%3A%220%22%2C%22attacks_left%22%3A%220%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22x%22%3A%226%22%2C%22y%22%3A%2231%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22trait%22%2C%22attributes%22%3A%7B%22id%22%3A%22TRAIT_elements%22%2C%22name%22%3A%22elements%22%2C%22description%22%3A%22An%20elixir%20of%20elements%20has%20given%20this%20unit%20immunity%20to%20both%20fire%20and%20cold.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22resistance%22%2C%22replace%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22resistance%22%2C%22attributes%22%3A%7B%22cold%22%3A%220%22%2C%22fire%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22victory%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22remove_trait%22%2C%22attributes%22%3A%7B%22trait_id%22%3A%22TRAIT_elements%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22allow_undo%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_29",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_31",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "buy_elixir",
+        once: true,
+        children: [
+          {
+            tag: "gold",
+            side: 1,
+            amount: -10,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "gold.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "Hahid al-Ali",
+            text: _("Pleasure doing business with you!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 5,
+            y: 30,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 31,
+            item_name: "",
+            image: "items%2Fpotion-yellow.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 6,
+            y: 31,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 31,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 31,
+            item_name: "",
+            image: "items%2Fpotion-yellow.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 6,
+            y: 31,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 31,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 31,
+            item_name: "",
+            image: "items%2Fpotion-yellow.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 6,
+            y: 31,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 31,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 31,
+            item_name: "",
+            image: "items%2Fpotion-yellow.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 31,
+            item_name: "",
+            image: "items%2Fpotion-yellow.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_trait",
+            trait_id: "TRAIT_elements",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32",
+        on: "ignore_elixir",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Hahid al-Ali",
+            text: _("Suit yourself; more for me!"),
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "potion.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.status.poisoned",
+                value: "yes",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.status.poisoned",
+                value: "no",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22x%22%3A%227%22%2C%22y%22%3A%2232%22%7D%2C%22children%22%3A%5B%5D%7D",
+            side: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27_opt0",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "buy_elixir",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27_opt1",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "ignore_elixir",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Owaec",
+            text: _("This winter cold chills my very bones! I long for the rolling plains of my homeland. I wonder how the horse lords fare against the grim undead; surely Wesnoth is near victory?"),
+          },
+          {
+            tag: "message",
+            speaker: "Dacyn",
+            text: _("Doubtful, but <i>our</i> victory is close. Across this river lies the abandoned sanctuary, and within lies an artifact that can destroy Mal-Ravanal once and for all. That is the object of our quest."),
+          },
+          {
+            tag: "message",
+            speaker: "Dacyn",
+            text: _("This area was deserted whence last I came, but I have heard rumors that a flight of drakes has taken up residence."),
+          },
+          {
+            tag: "message",
+            speaker: "Owaec",
+            text: _("Wolves and drakes, bah! I fear no mindless beasts!"),
+          },
+          {
+            tag: "message",
+            speaker: "Dacyn",
+            text: _("Unlike yourself, drakes are very much intelligent. Their inner flame guards against our mages’ fire and their flight will serve them better than our feet amidst these snow-covered mountains."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 14,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 17,
+            ys: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 750,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 19,
+            y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 19,
+            ys: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 750,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 20,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 20,
+            ys: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 750,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 25,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 25,
+            ys: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 750,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 32,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 32,
+            ys: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 750,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 41,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 41,
+            ys: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 41,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 42,
+            y: 4,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 42,
+            y: 4,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 42,
+            y: 4,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 42,
+            y: 4,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 42,
+            y: 4,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 42,
+            y: 4,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 42,
+            y: 4,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 42,
+            y: 4,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 42,
+            y: 4,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 42,
+            y: 4,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 52,
+            ys: 32,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: "41,5",
+            ys: "28,20",
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 26,
+            ys: 31,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 8,
+            ys: 15,
+          },
+          {
+            tag: "message",
+            speaker: "Hahid al-Ali",
+            text: _("Fire and ice, eh? I have just the thing — behold the wondrous elixir of elements! Whoever drinks from this bubbling yellow vial will gain immunity to even the hottest flame!"),
+          },
+          {
+            tag: "message",
+            speaker: "Hahid al-Ali",
+            text: _("But wait, there’s more! The elixir of elements also bestows immunity to cold; perfect for enduring the frigid winter weather."),
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "Hahid al-Ali",
+                text: _("Act fast, this offer is for a limited time only! <i>(elixirs only last for 1 scenario)</i>"),
+              },
+              {
+                tag: "choice",
+                text: _("Buy the elixir (10 gold)."),
+                event: "ev_27_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("Leave the elixir for Hahid."),
+                event: "ev_27_opt1",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "frostbite_amount",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 6,
+          },
+          {
+            tag: "set_variable",
+            name: "frostbite_amount",
+            value: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 12,
+          },
+          {
+            tag: "set_variable",
+            name: "frostbite_amount",
+            value: 3,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 18,
+          },
+          {
+            tag: "set_variable",
+            name: "frostbite_amount",
+            value: 4,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_38",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 24,
+          },
+          {
+            tag: "set_variable",
+            name: "frostbite_amount",
+            value: 5,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_39",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 30,
+          },
+          {
+            tag: "set_variable",
+            name: "frostbite_amount",
+            value: 6,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 36,
+          },
+          {
+            tag: "set_variable",
+            name: "frostbite_amount",
+            value: 7,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_41",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 42,
+          },
+          {
+            tag: "set_variable",
+            name: "frostbite_amount",
+            value: 8,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_42",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 48,
+          },
+          {
+            tag: "set_variable",
+            name: "frostbite_amount",
+            value: 9,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_43",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 54,
+          },
+          {
+            tag: "set_variable",
+            name: "frostbite_amount",
+            value: 10,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_44",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 60,
+          },
+          {
+            tag: "set_variable",
+            name: "frostbite_amount",
+            value: 11,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_45",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 66,
+          },
+          {
+            tag: "set_variable",
+            name: "frostbite_amount",
+            value: 12,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_46",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 66,
+          },
+          {
+            tag: "set_variable",
+            name: "frostbite_amount",
+            value: 13,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_47",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 72,
+          },
+          {
+            tag: "set_variable",
+            name: "frostbite_amount",
+            value: 14,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_48",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 78,
+          },
+          {
+            tag: "set_variable",
+            name: "frostbite_amount",
+            value: 15,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_49",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 84,
+          },
+          {
+            tag: "set_variable",
+            name: "frostbite_amount",
+            value: 16,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_51",
+        on: "branch_if_51",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ogres_sighted",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "frostbite_ogres",
+            kill: "no",
+            side: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22frostbite_units%22%2C%22mode%22%3A%22append%22%2C%22to_variable%22%3A%22frostbite_ogres%22%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_50",
+        on: "turn_end",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "frostbite_units",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_51",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "wind.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 200,
+          },
+          {
+            tag: "foreach",
+            variable: "frostbite_units",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit",
+                variable: "MODIFY_UNIT_store",
+                kill: "yes",
+                id: "$this_item.id",
+              },
+              {
+                tag: "foreach",
+                variable: "MODIFY_UNIT_store",
+                item: "this_item",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_dynamic",
+                    variable: "this_item.status.slowed",
+                    value: "yes",
+                    mode: "value",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:unstore_unit",
+                    variable: "this_item",
+                  },
+                ],
+              },
+              {
+                tag: "hook",
+                name: "command:delay",
+                time: 100,
+              },
+              {
+                tag: "hook",
+                name: "command:store_unit",
+                variable: "MODIFY_UNIT_store",
+                kill: "yes",
+                id: "$this_item.id",
+              },
+              {
+                tag: "foreach",
+                variable: "MODIFY_UNIT_store",
+                item: "this_item",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_dynamic",
+                    variable: "this_item.status.slowed",
+                    value: "no",
+                    mode: "value",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:unstore_unit",
+                    variable: "this_item",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 200,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_52",
+        on: "turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 1,
+          },
+          {
+            tag: "message",
+            text: _("<i>Brrrr</i>, I can’t feel my fingers or toes! We’ll die of cold if we’re trapped out here for too long."),
+          },
+          {
+            tag: "message",
+            speaker: "Addogin",
+            text: _("What am I even doin’ here? All I wanted was to make an honest living smashin’ in skulls, then retire somewhere warm..."),
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_53",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 20,
+          },
+          {
+            tag: "message",
+            speaker: "Gweddry",
+            text: _("The cold keeps getting worse! We have to reach that abandoned castle before we all freeze!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_54_1",
+        on: "recruit",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Dacyn",
+            text: _("Gweddry, you should try to conserve our gold over the next few conflicts. We will be hard-pressed to find many villages in these lands and will surely need more for later."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("(This and the next 3 scenarios have 100% carryover, but few villages and 0 starting gold.)"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("(You’ll want as much gold as you can possibly get when you try to leave the wildlands!)"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_55_2",
+        on: "recall",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Dacyn",
+            text: _("Gweddry, you should try to conserve our gold over the next few conflicts. We will be hard-pressed to find many villages in these lands and will surely need more for later."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("(This and the next 3 scenarios have 100% carryover, but few villages and 0 starting gold.)"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("(You’ll want as much gold as you can possibly get when you try to leave the wildlands!)"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_57",
+        on: "branch_if_57",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.id",
+            equals: "Dacyn",
+          },
+          {
+            tag: "message",
+            speaker: "Gweddry",
+            text: _("Look, a ruined castle off in the distance! Is that the one we’re looking for?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_58",
+        on: "branch_if_58",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.id",
+            not_equals: "Dacyn",
+          },
+          {
+            tag: "switch",
+            variable: "unit.race",
+            children: [
+              {
+                tag: "case",
+                equals: "dwarf",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "see",
+                    portrait: "old",
+                    text: _(""),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "ogre",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "castle",
+                    portrait: "ruin",
+                    text: _("said by a dwarf"),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "undead",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Gweddry",
+                    text: _("Oi,"),
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_56",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2220%2C25%22%2C%22y%22%3A%2222%2C28%22%2C%22radius%22%3A%229%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 23,
+            ys: 27,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 23,
+            y: 27,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_57",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_58",
+          },
+          {
+            tag: "message",
+            speaker: "Dacyn",
+            text: _("No. The ruin we’re journeying towards lies across the river."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_59",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 3,
+              },
+              {
+                tag: "spawn",
+                id: "u_10",
+                type: "Wolf",
+                side: 4,
+                x: 0,
+                y: 11,
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_unit",
+                unit: "u_10",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_60",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 9,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 1,
+              },
+              {
+                tag: "spawn",
+                id: "u_11",
+                type: "Wolf",
+                side: 4,
+                x: 52,
+                y: 26,
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_unit",
+                unit: "u_11",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_61",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 9,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 2,
+              },
+              {
+                tag: "spawn",
+                id: "u_12",
+                type: "Wolf",
+                side: 4,
+                x: 52,
+                y: 26,
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_unit",
+                unit: "u_12",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_62",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 18,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 2,
+              },
+              {
+                tag: "spawn",
+                id: "u_13",
+                type: "Wolf",
+                side: 4,
+                x: 0,
+                y: 11,
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_unit",
+                unit: "u_13",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_63",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 24,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 1,
+              },
+              {
+                tag: "spawn",
+                id: "u_14",
+                type: "Wolf",
+                side: 4,
+                x: 52,
+                y: 26,
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_unit",
+                unit: "u_14",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_64",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 24,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 2,
+              },
+              {
+                tag: "spawn",
+                id: "u_15",
+                type: "Wolf",
+                side: 4,
+                x: 52,
+                y: 26,
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_unit",
+                unit: "u_15",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_65",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 32,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 3,
+              },
+              {
+                tag: "spawn",
+                id: "u_16",
+                type: "Wolf",
+                side: 4,
+                x: 0,
+                y: 11,
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_unit",
+                unit: "u_16",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_66",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 1,
+              },
+              {
+                tag: "spawn",
+                id: "u_17",
+                type: "Wolf",
+                side: 4,
+                x: 52,
+                y: 26,
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_unit",
+                unit: "u_17",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_67",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 2,
+              },
+              {
+                tag: "spawn",
+                id: "u_18",
+                type: "Wolf",
+                side: 4,
+                x: 52,
+                y: 26,
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_unit",
+                unit: "u_18",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_68",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 48,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 1,
+              },
+              {
+                tag: "spawn",
+                id: "u_19",
+                type: "Wolf",
+                side: 4,
+                x: 52,
+                y: 26,
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_unit",
+                unit: "u_19",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_69",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 48,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 2,
+              },
+              {
+                tag: "spawn",
+                id: "u_20",
+                type: "Wolf",
+                side: 4,
+                x: 52,
+                y: 26,
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_unit",
+                unit: "u_20",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_70",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 48,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 2,
+              },
+              {
+                tag: "spawn",
+                id: "u_21",
+                type: "Wolf",
+                side: 4,
+                x: 0,
+                y: 11,
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_unit",
+                unit: "u_21",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_71",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 56,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 1,
+              },
+              {
+                tag: "spawn",
+                id: "u_22",
+                type: "Wolf",
+                side: 4,
+                x: 52,
+                y: 26,
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_unit",
+                unit: "u_22",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_72",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 56,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 2,
+              },
+              {
+                tag: "spawn",
+                id: "u_23",
+                type: "Wolf",
+                side: 4,
+                x: 52,
+                y: 26,
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_unit",
+                unit: "u_23",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_73",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 64,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 3,
+              },
+              {
+                tag: "spawn",
+                id: "u_24",
+                type: "Wolf",
+                side: 4,
+                x: 0,
+                y: 11,
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_unit",
+                unit: "u_24",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_74",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 72,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 1,
+              },
+              {
+                tag: "spawn",
+                id: "u_25",
+                type: "Wolf",
+                side: 4,
+                x: 52,
+                y: 26,
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_unit",
+                unit: "u_25",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_75",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 72,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 2,
+              },
+              {
+                tag: "spawn",
+                id: "u_26",
+                type: "Wolf",
+                side: 4,
+                x: 52,
+                y: 26,
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_unit",
+                unit: "u_26",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_76",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "Tapok",
+            type: "Orcish Warlord",
+            side: 3,
+            x: 32,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Tapok",
+          },
+          {
+            tag: "spawn",
+            id: "Ogho",
+            type: "Orcish Grunt",
+            side: 3,
+            x: 33,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Ogho",
+          },
+          {
+            tag: "spawn",
+            id: "Mortic",
+            type: "Drake Flameheart",
+            side: 2,
+            x: 29,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Mortic",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mortic%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Mortic",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_78",
+        on: "branch_if_78",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.race",
+            equals: "drake",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "their_unit_id",
+            value: "$unit.id",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_79",
+        on: "branch_if_79",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.race",
+            not_equals: "drake",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "their_unit_id",
+            value: "Mortic",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_77",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%2C3%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: "30-32",
+            ys: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "31-33,11",
+            radius: 2,
+          },
+          {
+            tag: "message",
+            speaker: "Tapok",
+            text: _("Well? Are they ready?"),
+          },
+          {
+            tag: "spawn",
+            id: "Ga_all",
+            type: "Drake Glider",
+            side: 2,
+            x: 30,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Ga_all",
+          },
+          {
+            tag: "spawn",
+            id: "Verash",
+            type: "Drake Warrior",
+            side: 2,
+            x: 30,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Verash",
+          },
+          {
+            tag: "message",
+            speaker: "Mortic",
+            text: _("Ga’all, your Hunt has failed. Verash, your claws grow aged. To our Flight, your only usefulness remains... As tribute to the orcs."),
+          },
+          {
+            tag: "message",
+            speaker: "Verash",
+            text: _("Aspirant Mortic, As you command."),
+          },
+          {
+            tag: "message",
+            speaker: "Ogho",
+            text: _("C’mon wyrms, get moving!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Ogho",
+            x: 29,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Verash",
+            x: 29,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Ga'all",
+            x: 29,
+            y: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Tapok",
+            text: _("Heh heh, quality tribute, as always. Be grateful for our generosity. Chief only asked for two this time!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Tapok",
+            x: 29,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Ogho",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Verash",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Ga'all",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Tapok",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mortic",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.max_moves",
+                value: 5,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 700,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mortic",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_78",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_79",
+          },
+          {
+            tag: "message",
+            speaker: "$their_unit_id",
+            text: _("An unknown creature approaches. Paler than an Orc. Taller than a Dwarf. Tell me of your kin."),
+          },
+          {
+            tag: "message",
+            speaker: "Gweddry",
+            text: _("We are men, of Wesnoth! We come in peace, seeking magic to help in our war against an undead horde."),
+          },
+          {
+            tag: "message",
+            speaker: "$their_unit_id",
+            text: _("Dra-Nak warned us. You men of Wes-Noth speak of peace. Yet you brandish your spears at our flight. We have already paid the orcs, dearly. No further tribute can be paid."),
+          },
+          {
+            tag: "message",
+            speaker: "Gweddry",
+            text: _("No, wait, we just want to-"),
+          },
+          {
+            tag: "message",
+            speaker: "$their_unit_id",
+            text: _("Our Hunt must continue."),
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            gold: 50,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            gold: 50,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 11,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 11,
+            ys: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "11,5",
+            radius: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 750,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 43,
+            y: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 43,
+            ys: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "43,18",
+            radius: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 750,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_80",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mortic%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mortic",
+            text: _("I am Aspirant. Yet in these northlands, even prey bares its fangs, And threatens to vanquish us. We have struggled against mightier flights, And tarnished our honor. Yet our flame still persists. I shall not fall here."),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Mortic",
+            x: 44,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Mortic",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_81_1",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "ogres_sighted",
+                equals: "yes",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_82_2",
+        on: "side_turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "ogres_sighted",
+                equals: "yes",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_83_3",
+        on: "grug_ogre_now",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "ogres_sighted",
+                equals: "yes",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_85",
+        on: "branch_if_85",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.side",
+            equals: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "our_unit_id",
+            value: "$unit.id",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "their_unit_id",
+            value: "$second_unit.id",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_86",
+        on: "branch_if_86",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.side",
+            not_equals: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "their_unit_id",
+            value: "$unit.id",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "our_unit_id",
+            value: "$second_unit.id",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_84",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%225%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22race%22%3A%22human%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%225%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22race%22%3A%22human%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "ogres_peaceful",
+                not_equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_85",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_86",
+          },
+          {
+            tag: "message",
+            speaker: "$their_unit_id",
+            text: _("Guuuh... human?"),
+          },
+          {
+            tag: "message",
+            speaker: "$our_unit_id",
+            text: _("Err, hello?"),
+          },
+          {
+            tag: "message",
+            speaker: "$their_unit_id",
+            text: _("Human! Human human human!"),
+          },
+          {
+            tag: "message",
+            speaker: "Gweddry",
+            text: _("They don’t look very friendly..."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "ogres_sighted",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_88",
+        on: "branch_if_88",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.side",
+            equals: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "our_unit_id",
+            value: "$unit.id",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "STORE_UNIT_VAR_store",
+            kill: "no",
+            side: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "their_unit_id",
+            value: "$STORE_UNIT_VAR_store.id",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_89",
+        on: "branch_if_89",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.side",
+            not_equals: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "their_unit_id",
+            value: "$unit.id",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "STORE_UNIT_VAR_store",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "our_unit_id",
+            value: "$STORE_UNIT_VAR_store.id",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_87",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: 1,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_88",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_89",
+          },
+          {
+            tag: "message",
+            speaker: "$our_unit_id",
+            text: _("Guuuh... who you?"),
+          },
+          {
+            tag: "message",
+            speaker: "$their_unit_id",
+            text: _("Uhhhh... who <i><b>you</b></i>?"),
+          },
+          {
+            tag: "message",
+            speaker: "$our_unit_id",
+            text: _("Me... friend? New friend?"),
+          },
+          {
+            tag: "message",
+            speaker: "$their_unit_id",
+            text: _("New friend! Me no fight friend."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "ogres_peaceful",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 5,
+            team_name: "good",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "ogres_sighted",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_91",
+        on: "branch_if_91",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "side_number",
+            equals: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 5,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.side",
+                value: 1,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Young%20Ogre%2COgre%2CGreat%20Ogre%2CAncient%20Ogre%22%7D%2C%22children%22%3A%5B%5D%7D",
+            type: "Young Ogre,Ogre,Great Ogre,Ancient Ogre",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_93",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 5,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.side",
+                value: 1,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Young%20Ogre%2COgre%2CGreat%20Ogre%2CAncient%20Ogre%22%7D%2C%22children%22%3A%5B%5D%7D",
+            type: "Young Ogre,Ogre,Great Ogre,Ancient Ogre",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_92",
+        on: "branch_if_92",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "side_number",
+            not_equals: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_90",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                id: "Grug",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "STORE_UNIT_VAR_store",
+            kill: "no",
+            side: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "their_unit_id",
+            value: "$STORE_UNIT_VAR_store.id",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "ogres_sighted",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "grug_ogre_now",
+          },
+          {
+            tag: "message",
+            speaker: "$their_unit_id",
+            text: _("Guuuh... who you?"),
+          },
+          {
+            tag: "message",
+            speaker: "Grug",
+            text: _("Grug me! Me friend human."),
+          },
+          {
+            tag: "message",
+            speaker: "$their_unit_id",
+            text: _("Uhhhh... friend... human?"),
+          },
+          {
+            tag: "message",
+            speaker: "Grug",
+            text: _("You too friend human! Help human fight good."),
+          },
+          {
+            tag: "message",
+            speaker: "$their_unit_id",
+            text: _("OK, me help human fight! Human good!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "ogres_peaceful",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_achievement",
+            id: "ei_S09",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 5,
+            team_name: "good",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_91",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_92",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_94",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 8,
+            y: 15,
+          },
+          {
+            tag: "set_variable",
+            name: "gold",
+            value: 25,
+          },
+          {
+            tag: "switch",
+            variable: "unit.race",
+            children: [
+              {
+                tag: "case",
+                equals: "dwarf",
+                children: [
+                  {
+                    tag: "message",
+                    portrait: "said by a dwarf",
+                    text: _("circa"),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "ogre",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "My",
+                    portrait: "beard,",
+                    text: _("25"),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "undead",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "a",
+                    portrait: "shipwreck",
+                    text: _("gold"),
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_gold",
+            side: 1,
+            amount: "$gold",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_95",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 26,
+            y: 31,
+          },
+          {
+            tag: "set_variable",
+            name: "gold",
+            value: 30,
+          },
+          {
+            tag: "switch",
+            variable: "unit.race",
+            children: [
+              {
+                tag: "case",
+                equals: "dwarf",
+                children: [
+                  {
+                    tag: "message",
+                    portrait: "said by a dwarf",
+                    text: _("circa"),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "ogre",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "This",
+                    portrait: "town",
+                    text: _("30"),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "undead",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "is",
+                    portrait: "a",
+                    text: _("gold"),
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_gold",
+            side: 1,
+            amount: "$gold",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_96",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 29,
+            y: 11,
+          },
+          {
+            tag: "set_variable",
+            name: "gold",
+            value: 15,
+          },
+          {
+            tag: "switch",
+            variable: "unit.race",
+            children: [
+              {
+                tag: "case",
+                equals: "dwarf",
+                children: [
+                  {
+                    tag: "message",
+                    portrait: "said by a dwarf",
+                    text: _("circa"),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "ogre",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Meh,",
+                    portrait: "this",
+                    text: _("15"),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "undead",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "drake",
+                    portrait: "got",
+                    text: _("gold"),
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_gold",
+            side: 1,
+            amount: "$gold",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_97",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Yeti%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("GROARRR!!!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "EVENT_yeti_steak",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "$x1",
+            y: "$y1",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%2C%22id%22%3A%22EVENT_yeti_steak%22%2C%22first_time_only%22%3A%22no%22%2C%22delayed_variable_substitution%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22have_unit%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22item_dialog%22%2C%22attributes%22%3A%7B%22name%22%3A%22Yetiburger%22%2C%22image%22%3A%22items%2Fyeti-meat.png%22%2C%22description%22%3A%22Eating%20this%20funny%20tasting%20meat%20%3Ci%3E%3Cb%3Edoubles%20your%20hitpoints%3C%2Fb%3E%3C%2Fi%3E%20and%20grants%20%3Ci%3E%3Cb%3Eimmunity%20to%20cold%3C%2Fb%3E%3C%2Fi%3E.%22%2C%22effect%22%3A%22%3Cspan%20size%3D'small'%3E%3Ci%3EThis%20item%20%3Cb%3ECANNOT%3C%2Fb%3E%20be%20dropped%2C%20and%20%3Cb%3ECANNOT%3C%2Fb%3E%20be%20reused%20if%20its%20user%20dies.%3C%2Fi%3E%3C%2Fspan%3E%5Cn%3Cspan%20size%3D'small'%3E%3Ci%3E%20%20Picking%20up%20an%20item%20consumes%20your%20moves%20and%20attack.%3C%2Fi%3E%3C%2Fspan%3E%5Cn%3Cb%3E%3C%2Fb%3E%22%2C%22take_string%22%3A%22Take%22%2C%22leave_string%22%3A%22Leave%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22item_picked%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22remove_event%22%2C%22attributes%22%3A%7B%22id%22%3A%22EVENT_yeti_steak%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22remove_item%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%2C%22image%22%3A%22items%2Fyeti-meat.png%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22modify_unit%22%2C%22attributes%22%3A%7B%22moves%22%3A%220%22%2C%22attacks_left%22%3A%220%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22trait%22%2C%22attributes%22%3A%7B%22id%22%3A%22TRAIT_yeti_steak%22%2C%22name%22%3A%22yetiburger%22%2C%22description%22%3A%22Eating%20this%20funny%20tasting%20meat%20%3Ci%3E%3Cb%3Edoubles%20your%20hitpoints%3C%2Fb%3E%3C%2Fi%3E%20and%20grants%20%3Ci%3E%3Cb%3Eimmunity%20to%20cold%3C%2Fb%3E%3C%2Fi%3E.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22hitpoints%22%2C%22increase%22%3A%22%2B100%25%22%2C%22increase_total%22%3A%22%2B100%25%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22resistance%22%2C%22replace%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22resistance%22%2C%22attributes%22%3A%7B%22cold%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22allow_undo%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_98",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Yeti%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "items%2Fyeti-meat.png",
+          },
+          {
+            tag: "message",
+            speaker: "Gweddry",
+            text: _("I’ve never tried Yeti meat. I wonder what it tastes like?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_99",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_100",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 41,
+            y: 3,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Dacyn%22%2C%22message%22%3A%22This%20is%20the%20place!%20Let%20us%20enter.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22endlevel%22%2C%22attributes%22%3A%7B%22result%22%3A%22victory%22%2C%22bonus%22%3A%22no%22%2C%22carryover_add%22%3A%22yes%22%2C%22carryover_percentage%22%3A%22100%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Dacyn",
+            text: _("This is the place! Let us enter."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "foreign_defeat",
+        on: "defeat",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Wesnoth never learned the fate of Gweddry’s band, but they would soon learn the full measure of the power of Mal-Ravanal in a war that would end only in misery and death."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_101",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Gweddry%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Gweddry",
+            text: _("No! I... die..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_102",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Dacyn%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Dacyn",
+            text: _("The light fades... We are doomed..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_103",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Owaec%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Owaec",
+            text: _("I... must— Argh...!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_104",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Addogin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Addogin",
+            text: _("How did I get dragged into this mess..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_105",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Hahid%20al-Ali%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Hahid al-Ali",
+            text: _("Alas, my long, storied, and exceedingly profitable career has at last come to an end, so far from home! I only... wish I could have died on the soft sands... instead of among these primitive barbarians..."),
+          },
+          {
+            tag: "message",
+            text: _("Bar... ber... bears? Die why?"),
+          },
+          {
+            tag: "message",
+            text: _("Aye, ‘tis a sad place for one o’ us foreigners to fall. We’ll miss ye, that’s for sure."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_106",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Terraent%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Terraent",
+            text: _("And so, I give... the last thing I have to give... in service of the Light..."),
+          },
+          {
+            tag: "message",
+            speaker: "Owaec",
+            text: _("You shall be gravely missed, paladin of the Light! May you long live on in song and tale."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_107",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Grug%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Grug",
+            text: _("Hurt... grarrgghh..."),
+          },
+          {
+            tag: "message",
+            text: _("Though he was not one of us, he served bravely alongside Wesnoth’s best. We must carry on the good fight."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_108",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Dolburras%22%2C%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Dolburras",
+            text: _("Watch out behind ye— ach!"),
+          },
+          {
+            tag: "message",
+            speaker: "Gweddry",
+            text: _("Though he was not one of us, he served bravely alongside Wesnoth’s best. We must carry on the good fight."),
+          },
+        ],
+      },
+    ],
+  },
+]

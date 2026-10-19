@@ -1,0 +1,744 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Coward"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Kapoue",
+        gold: 225,
+        leader: "Kapou_e",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "rebels",
+        gold: 350,
+        recruit: "Goblin Knight, Orcish Warrior, Orcish Crossbowman, Wolf Rider, Orcish Grunt, Orcish Archer, Orcish Slayer, Ogre",
+        leader: "Orga",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "rebels",
+        gold: 150,
+        recruit: "Wolf Rider, Orcish Grunt, Orcish Archer, Young Ogre",
+        leader: "Knorgh",
+      },
+      {
+        tag: "side",
+        id: 4,
+        team_name: "rebels",
+        gold: 150,
+        recruit: "Wolf Rider, Orcish Grunt, Orcish Archer, Young Ogre",
+        leader: "Nofhug",
+      },
+      {
+        tag: "map",
+        id: "scenario_16_The_Coward",
+        file: "16_The_Coward.map",
+      },
+      {
+        tag: "unit",
+        id: "Kapou_e",
+        type: "Orcish Leader",
+        side: 1,
+        x: 45,
+        y: 10,
+      },
+      {
+        tag: "unit",
+        id: "Orga",
+        type: "Orcish Warlord",
+        side: 2,
+        x: 13,
+        y: 19,
+        name: _("Orga"),
+      },
+      {
+        tag: "unit",
+        id: "Knorgh",
+        type: "Orcish Warrior",
+        side: 3,
+        x: 32,
+        y: 10,
+        name: _("Knorgh"),
+      },
+      {
+        tag: "unit",
+        id: "Nofhug",
+        type: "Orcish Warrior",
+        side: 4,
+        x: 37,
+        y: 20,
+        name: _("Nofhug"),
+      },
+      {
+        tag: "event",
+        id: "carryover_18",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 1.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: 0.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_19",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Kapou’e and his followers made a grueling march across the frozen Northlands. For the orcs, it was a constant nightmare of freezing, marching and fighting. Food was scarce, and the stores that they managed to seize from rebellious tribes had to be strictly rationed. Many of the weaker orcs who weren’t killed in combat died from exhaustion or fell behind and froze to death."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_20",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Throughout this nightmare, Kapou’e drove himself and his men ruthlessly. The spring thaw would soon be upon them and with it, the human army that Earl Lanbec’h was no doubt rallying. By that time, the orcs had to be united one way or another, since if they were separated and scattered, they would surely be exterminated."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_21",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("And so they marched on, persevering in weather that would kill even the most hardened human, and through fierce bloody battles with belligerent tribes."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_22",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Finally, after over three months, Kapou’e and his exhausted but hardened army arrived at Bitok, just before the spring thaw."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_23",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kapou_e,Orga,Knorgh,Nofhug",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_24",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 22,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat all enemy leaders"),
+        defeat: _("Death of Kapou’e Death of Grüü Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "vengeful.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "breaking_the_chains.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 4,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "prerecruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unit.upkeep",
+            value: "$unit.level",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unit.upkeep",
+            value: 1,
+            mode: "sub",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unit.variables.great_horde_upkeep_mod_applied",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "unit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "horde_units",
+            kill: "yes",
+            side: 1,
+          },
+          {
+            tag: "foreach",
+            variable: "horde_units",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.upkeep",
+                value: "$this_item.level",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.upkeep",
+                value: 1,
+                mode: "sub",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.variables.great_horde_upkeep_mod_applied",
+                value: "yes",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "post_advance",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_advance_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_wml%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22modifications%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22trait%22%2C%22attributes%22%3A%7B%22id%22%3A%22loyal%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unit.upkeep",
+            value: "$unit.level",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unit.upkeep",
+            value: 1,
+            mode: "sub",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unit.variables.great_horde_upkeep_mod_applied",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "unit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "Shan_Taum",
+            type: "Orcish Warlord",
+            side: 2,
+            x: 11,
+            y: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Shan_Taum",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Grüü",
+            unit: "Grüü",
+            x: 45,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Inarix",
+            unit: "Inarix",
+            x: 44,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Jetto",
+            unit: "Jetto",
+            x: 44,
+            y: 9,
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            portrait: "portraits/kapoue-angry.webp",
+            text: _("Good morning, Shan Taum!"),
+          },
+          {
+            tag: "message",
+            speaker: "Shan Taum",
+            portrait: "portraits/shan_taum.webp~FL()~RIGHT()",
+            text: _("What... Kapou’e! What in the frozen Northlands are you doing here?!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Oh, I just thought I would take a bracing winter stroll and visit my father’s old friend. How could I not, given his impressive list of recent accomplishments."),
+          },
+          {
+            tag: "message",
+            speaker: "Shan Taum",
+            portrait: "portraits/shan_taum.webp~FL()~RIGHT()",
+            text: _("Accomplishments?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Well let’s see, first he betrays the trust of his sworn sovereign and becomes no less than a boot-licking spy for the humans. Then he goes on to engineer the death of half of the Great Council and in doing so makes himself directly responsible for the deaths of hundreds of orcs. And best of all, he is directly responsible for a bloody civil war right at the time when his people are on the edge of total extermination!"),
+          },
+          {
+            tag: "message",
+            speaker: "Shan Taum",
+            portrait: "portraits/shan_taum.webp~FL()~RIGHT()",
+            text: _("LIES! THESE ARE ALL LIES!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Tell you what, you ungrateful backstabbing traitor, if you surrender right now, I will just cut off your head instead of torturing you to death."),
+          },
+          {
+            tag: "message",
+            speaker: "Shan Taum",
+            portrait: "portraits/shan_taum.webp~FL()~RIGHT()",
+            text: _("How dare you accuse me of being a traitor, you turdlicker!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Right... So what will it be, beheading or torture?"),
+          },
+          {
+            tag: "message",
+            speaker: "Shan Taum",
+            portrait: "portraits/shan_taum.webp~FL()~RIGHT()",
+            text: _("Orga, kill this kid for me. I’ll be in my keep."),
+          },
+          {
+            tag: "message",
+            speaker: "Orga",
+            portrait: "portraits/orcs/warlord.webp~FL()~RIGHT()",
+            text: _("Yes, sir!"),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Shan Taum",
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            portrait: "portraits/kapoue-angry.webp",
+            text: _("What! Fight like an orc, you gutless coward!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Orga",
+            x: 11,
+            y: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Orga",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 4,
+          },
+          {
+            tag: "message",
+            speaker: "Helper",
+            text: _("Hey Chief, it’s pretty odd. Shan Taum doesn’t seem to have too many of his men around. He was given control of half the Great Horde. Do you think they left him?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("I doubt it. Shan Taum knows how to dissemble. I’ll bet he sent them out like we did to clobber the other tribes into his rule. In any case, it will be convenient for us."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Good, we crushed this pocket of resistance too. Now where in the world did that coward Shan Taum run off to?"),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kapou'e%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Argh! I’m done. My people are doomed!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Orcish%20Shaman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Ouch! This hurts!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("The Council will never be complete again. This is hopeless."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Gr%C3%BC%C3%BC%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Oh no, I am defeated."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "inarix_abandoned",
+            not_equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Inarix",
+            text: _("Ahhh!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Blast it, without Inarix to lead her saurians, we can no longer count on their help."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "got_saurians",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "Saurian Skirmisher, Saurian Augur",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Inarix%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+        ],
+      },
+    ],
+  },
+]

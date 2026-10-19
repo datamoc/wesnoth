@@ -1,0 +1,774 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Contention"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "hero",
+        gold: 100,
+        recruit: "Drake Burner, Drake Clasher, Drake Fighter, Drake Glider",
+        leader: "Gorlack",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "rival",
+        gold: 100,
+        recruit: "Drake Burner, Drake Clasher, Drake Fighter, Drake Glider",
+        leader: "Karron",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "null",
+        team_name: "spectators,hero,rival",
+      },
+      {
+        tag: "map",
+        id: "scenario_03_The_Contention",
+        file: "03_The_Contention.map",
+      },
+      {
+        tag: "unit",
+        id: "Gorlack",
+        type: "Drake Burner",
+        side: 1,
+        x: 13,
+        y: 5,
+        name: _("Gorlack"),
+      },
+      {
+        tag: "unit",
+        id: "Karron",
+        type: "Drake Blademaster",
+        side: 2,
+        x: 13,
+        y: 33,
+        name: _("Karron"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_16",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.75,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_17",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("So the day of the contention came. Each caste elected an aspirant from their ranks to become the new dominant. Each aspirant chose carefully three intendants to aid them."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_18",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("All the skills to lead a flight were tested. Each aspirant was put through trials of endurance, trials of warfare, trials of the hunt. In the end, only the two aspirants of Vladnir remained to face one another in the Arena of Dominance, in the very heart of Morogor..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_19",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Gorlack,Karron",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_20",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 24,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Hold more villages at the end of turn 24 Defeat Karron"),
+        defeat: _("Fail to hold more villages at the end of turn 24 Defeat of Gorlack"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "siege_of_laurelmor.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "weight_of_revenge.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Inferno Drake",
+            side: 3,
+            x: 2,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "Vladnir",
+            type: "Drake Warden",
+            side: 3,
+            x: 2,
+            y: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Vladnir",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Drake Blademaster",
+            side: 3,
+            x: 2,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Drake Enforcer",
+            side: 3,
+            x: 22,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Drake Flameheart",
+            side: 3,
+            x: 22,
+            y: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "WoF Hurricane Drake",
+            side: 3,
+            x: 22,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.canrecruit",
+                value: "yes",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "seats",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Rp%22%2C%22variable%22%3A%22seats%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "seats",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "random",
+                values: "Drake Burner,Drake Burner,Drake Burner,Drake Burner,Drake Clasher,Drake Clasher,Drake Clasher,Drake Clasher,Drake Fighter,Drake Fighter,Drake Fighter,Drake Fighter,Drake Glider,Drake Glider,Drake Glider,Drake Glider,Fire Drake,Fire Drake,Drake Warrior,Drake Warrior,Drake Flare,Drake Flare,Drake Thrasher,Drake Thrasher,Drake Arbiter,Drake Arbiter,WoF Sky Drake,WoF Sky Drake,Drake Flameheart,Inferno Drake,Drake Enforcer,Drake Warden,Drake Blademaster,WoF Hurricane Drake",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$random",
+                side: 3,
+                x: "$this_item.x",
+                y: "$this_item.y",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 1,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "s",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_side",
+            side: 2,
+            variable: "side_2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Karron",
+            text: _("Today, my old mentor, it is I that teaches <i>you</i>. You shall learn a pivotal lesson in humility!"),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("If just sharp as your tongue were your teeth."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_6",
+        on: "branch_if_6",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "side.recruit",
+            equals: "",
+          },
+          {
+            tag: "set_variable",
+            name: "recruit",
+            value: "",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$unit.side",
+            mode: "allow",
+            types: "$recruit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$unit.side",
+            mode: "disallow",
+            types: "$unit.type",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22%24unit.side%7C_recruit%22%2C%22mode%22%3A%22append%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22%24unit.type%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:store_side",
+            side: "$unit.side",
+            variable: "side",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_6",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Gorlack%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "$unit.id",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.hitpoints",
+                value: 1,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Karron%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "$unit.id",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.hitpoints",
+                value: 1,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "leader_kill",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "last_breath",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22id%22%3A%22Gorlack%2CKarron%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:put_to_recall_list",
+            id: "$unit.id",
+            filter: "%7B%22tag%22%3A%22put_to_recall_list%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%2C%22heal%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D",
+            heal: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_11",
+        on: "branch_if_11",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "side_1.num_villages",
+            greater_than: "$side_2.num_villages",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_side",
+            side: 1,
+            variable: "side_1",
+          },
+          {
+            tag: "hook",
+            name: "command:store_side",
+            side: 2,
+            variable: "side_2",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_11",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "defeat",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Vladnir",
+            text: _("Karron has ascended to the rank of dominant. The flight-in-contention is hereby entrusted to Dominant Karron’s keeping."),
+          },
+          {
+            tag: "message",
+            speaker: "Karron",
+            text: _("This must be a dream. I no longer dwell in the shadow of Gorlack."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "leader_kill",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("For winning by defeating the rival leader, you receive war claws!"),
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increaseDamage%22%3A4%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Gorlack",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Vladnir",
+            text: _("Gorlack has ascended to the rank of dominant. The flight-in-contention is hereby entrusted to Dominant Gorlack’s keeping."),
+          },
+          {
+            tag: "message",
+            speaker: "Karron",
+            text: _("........."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("Drakes! Fellows of all castes, hear me! This is a dark time in which we endure. Our lands provide not as once they did. Unfed hatchlings succumb to the wasting. A war among us hastens. Worse than these all— your hearts bleed fear!"),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("This hope I offer you. There are lands beyond Morogor. Beyond its troubles. This oath I swear you. I shall lead you to the way beyond. With my new flight, I proceed to the far lands to plant my eyrie!"),
+          },
+          {
+            tag: "message",
+            speaker: "Vladnir",
+            text: _("So it begins..."),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("Upon the greatest of all lands my eyrie will stand. The Greatland of the east!"),
+          },
+          {
+            tag: "message",
+            speaker: "Gorlack",
+            text: _("Await my summons. For it will be your salvation!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_14",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "scenario_end",
+        once: true,
+      },
+    ],
+  },
+]

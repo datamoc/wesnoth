@@ -1,0 +1,2856 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Born to the Banner"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "South_Guard",
+        gold: 50,
+        recruit: "Spearman,Bowman",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "South_Guard,quintain",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "quintain",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "bandits",
+        recruit: "Thug",
+      },
+      {
+        tag: "map",
+        id: "scenario_01_Born_to_the_Banner",
+        file: "01_Born_to_the_Banner.map",
+      },
+      {
+        tag: "event",
+        id: "hide_side_2",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_65",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_66",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "revelation.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/fall.webp"),
+            text: _("<span color=' <<'> + _Our story begins during a time of great prosperity and peace in Wesnoth. Royal armies had destroyed the undead tombs in the east. The northern orc-forts were quiet and secure. The elves in the western forest kept to their own affairs. In the south, men built new towns and farms.</span>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_67",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/winter.webp"),
+            text: _("<span color=' <<'> + _And from those young towns arose a stout-hearted peasant militia: The South Guard, stewards of peace and order on the southern frontier. _For eight years all was well, the Guard having only to quash the occasional bandit or wild creature. Perhaps the only real unease came from the Aethenwood to the west, where the elves lived in reserved aloofness, indifferent to the doings of man. Traversing their land without permission was forbidden, but the elves rarely entered the lands of men in turn.</span>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_68",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/summer.webp"),
+            text: _("<span color=' <<'> + _Over time, in the absence of pressing danger, the South Guard grew complacent and lazy. Reports to the capital slowed, and in the spring of the ninth year, ceased altogether. Displeased with the Guard’s conduct, the Crown decided to send someone to investigate...</span>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_69",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Mari,Deoran",
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Move Deoran next to Mari Attack the dummy End your turn End your turn on a village Recruit some soldiers Destroy Mari’s quintain Defeat Urza Mathin"),
+        defeat: _("Get yourself killed Get yourself killed Get yourself killed Get yourself killed Get yourself killed Get yourself killed Death of Deoran Death of Mari Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "loyalists.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "battle.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "global_tmp",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_global_variable",
+            namespace: "TheSouthGuard",
+            from_local: "global_tmp",
+            to_global: "sg_saveload_info",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader4",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 4,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[spread_poison]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[high_xp_attack]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[combat]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "spread_poison",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "high_xp_attack",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "combat",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[leader_shares_keep]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "goal[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "aspect[grouping].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "aspect[aggression].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "aspect[caution].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "aspect[leader_value].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "aspect[leader_aggression].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "Mari",
+            type: "Veteran Fencer",
+            side: 2,
+            x: 9,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Mari",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Mari",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5_opt0",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "enable_tutorial_elements",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "play_tutorial",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5_opt1",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "enable_tutorial_elements",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "skip_tutorial",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "spawn",
+            id: "Deoran",
+            type: "Cavalryman Commander",
+            side: 1,
+            x: 16,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Deoran",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Deoran",
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            portrait: "portraits/deoran-glad.webp",
+            text: _("Lieutenant Deoran, reporting for duty SIR! ...err, ma’am."),
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Relax, Lieutenant. Fresh from the academy, are we?"),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("Yes ma’am. —sir. And as His Majesty ordered, I’ve brought with me a contingent of fresh soldiers to reinforce Westin’s faltering South Guard!"),
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("I’m Mari. Got the same orders as you; guess someone wanted an officer with experience to keep an eye on you and your “fresh” company. Can’t imagine why."),
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Well, orders are orders. Come on over here, Deoran — let’s get a closer look at you."),
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "Deoran",
+                text: _(""),
+              },
+              {
+                tag: "choice",
+                text: _("On my way!"),
+                event: "ev_5_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("I know what I’m doing. (Skip tutorial)"),
+                event: "ev_5_opt1",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "skip_tutorial",
+        once: true,
+        children: [
+          {
+            tag: "gold",
+            side: 1,
+            amount: 15,
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Suit yourself. I’m sure you won’t need my help against those bandits anyway."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "play_battle",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "select",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "Deoran",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "arrow",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 5,
+            item_name: "arrow",
+            image: "misc%2Fhighlight-hex.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "explain_undo",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22formula%22%3A%22self.moves%3D0%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2211%22%2C%22y%22%3A%225%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "tutorial_undo_explained",
+                not_equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _Tip: Press “u” if you ever want to undo a move. Attacks cannot be undone.</span>"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "tutorial_undo_explained",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "select",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "arrow",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 10,
+            y: 4,
+            item_name: "arrow",
+            image: "misc%2Fhighlight-hex.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "arrow",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "defender_hits",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "Deoran",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_Deoran",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "defender_misses",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "Deoran",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_Deoran",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Deoran%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Deoran",
+            object: "%7B%22id%22%3A%22force_cth_Deoran%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "defender_hits",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "Deoran",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_Deoran",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Deoran%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Deoran",
+            object: "%7B%22id%22%3A%22force_cth_Deoran%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "attacker_misses",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "Deoran",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_Deoran",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Deoran%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Deoran",
+            object: "%7B%22id%22%3A%22force_cth_Deoran%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "attacker_hits",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "Deoran",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_Deoran",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Deoran%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Deoran",
+            object: "%7B%22id%22%3A%22force_cth_Deoran%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "attacker_hits",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "Deoran",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "new_turn",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_quintain",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_quintain",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22quintain%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "quintain",
+            object: "%7B%22id%22%3A%22force_cth_quintain%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "defender_misses",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "quintain",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "defender_hits",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "quintain",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_quintain",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22quintain%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "quintain",
+            object: "%7B%22id%22%3A%22force_cth_quintain%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Deoran%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_Deoran",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Deoran%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Deoran",
+            object: "%7B%22id%22%3A%22force_cth_Deoran%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_quintain",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22quintain%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "quintain",
+            object: "%7B%22id%22%3A%22force_cth_quintain%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 10,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "arrow",
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("<i>(Bows)</i> A pleasure to make your acquaintance, Captain."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _Wondering about those percentages that appear on the ground when you move a unit? That’s your soldiers’ terrain defense — their <i><b>chance to evade</b></i> enemy attacks.</span>"),
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Amazing, you know how to ride your horse. Now let’s see if you know how to swing your sword."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_mari",
+            kill: "yes",
+            id: "Mari",
+          },
+          {
+            tag: "spawn",
+            id: "quintain",
+            type: "Quintain",
+            side: 3,
+            x: 9,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "quintain",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "stored_mari",
+            x: 9,
+            y: 5,
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Behold!"),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("...a quintain? You want me to attack a practice dummy?"),
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("You have fifty pounds of armor and a horse, rookie. I’m fairly sure you’ll win."),
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 5,
+            item_name: "arrow",
+            image: "misc%2Fhighlight-hex.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "attack_end",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "STORE_UNIT_VAR_store",
+            kill: "no",
+            id: "quintain",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "hitpoints",
+            value: "$STORE_UNIT_VAR_store.hitpoints",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "quintain",
+          },
+          {
+            tag: "spawn",
+            id: "quintain",
+            type: "Quintain",
+            side: 3,
+            x: 9,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "quintain",
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            portrait: "portraits/deoran-mad.webp",
+            text: _("Hey, this quintain fights back! I’m not about to lose to a dummy — let me attack again!"),
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Nice try, but you already used up your chance to attack. Now it’s the <i>quintain’s</i> turn to act."),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("The <i>dummy</i> gets a turn?"),
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Why not? It’s a magical quintain, on loan from the wizards’ academy at Alduin. It strikes twice per attack, and will sting something fierce if it hits you. Brace yourself!"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _To end your turn, click the <b>“End Turn”</b> button in the bottom-right corner of the screen, or press <b>Ctrl+Space</b>.</span>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "explain_undo",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22formula%22%3A%22self.moves%3D0%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EV*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "tutorial_undo_explained",
+                not_equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _Tip: Press “u” if you ever want to undo a move. Attacks cannot be undone.</span>"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "tutorial_undo_explained",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "prevent_attacking1",
+        on: "pre_attack",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "prevent_attacking3",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "prevent_attacking2",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent%22%2C%22attributes%22%3A%7B%22id%22%3A%22quintain%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "prevent_attacking3",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "prevent_attacking3",
+        on: "prevent_attacking3",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "STORE_UNIT_VAR_store",
+            kill: "no",
+            id: "Deoran",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "hitpoints",
+            value: "$STORE_UNIT_VAR_store.hitpoints",
+            mode: "value",
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("I’m already seriously injured! If I attack now, I am sure to be vanquished. By a dummy, no less."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "capture",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "arrow",
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("You’ve captured a village, which now flies the red-and-white colors of our banner. Each village we own provides us with some income — and importantly for you, provides a place to rest and recover."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _Starting your turn in a village will <b><i>heal you for 8 hitpoints</i></b>. End your turn now.</span>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            portrait: "portraits/deoran-sad.webp",
+            text: _("I’m injured; this is more dangerous than I expected. I should retreat to a village, where I can catch my breath and bandage my wounds."),
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 8,
+            y: 6,
+            item_name: "arrow",
+            image: "misc%2Fhighlight-hex.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 12,
+            y: 7,
+            item_name: "arrow",
+            image: "misc%2Fhighlight-hex.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "explain_undo",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22formula%22%3A%22self.moves%3D0%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%229%22%2C%22y%22%3A%2210%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "tutorial_undo_explained",
+                not_equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _Tip: Press “u” if you ever want to undo a move. Attacks cannot be undone.</span>"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "tutorial_undo_explained",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "explain_undo",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22formula%22%3A%22self.moves%3D0%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%229%22%2C%22y%22%3A%2210%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EV*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "tutorial_undo_explained",
+                not_equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _Tip: Press “u” if you ever want to undo a move. Attacks cannot be undone.</span>"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "tutorial_undo_explained",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 8,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "arrow",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _Press <b>Ctrl+R</b> to recruit new soldiers. (Or right-click on a keep hex.)</span>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "recruit",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            text: _("At your service, Commander Deoran! You should still have some gold left — I suggest you keep recruiting more soldiers."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "turn_refresh",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 3,
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Congratulations, you ran away from the dummy and licked your wounds in a village. I hope you’re proud."),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("I’ve had enough of being humiliated by this dummy. Time to recruit some proper soldiers and smash that thing to pieces."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _The golden crown above Deoran’s HP bar indicates that he’s a leader: he can <b>recruit</b> new units when standing on a castle’s <b>keep</b> hex. In most scenarios, you will lose if your leader is killed. Use Deoran enough to build his experience, but not so aggressively that he’s at risk of dying!</span>"),
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 9,
+            y: 10,
+            item_name: "arrow",
+            image: "misc%2Fhighlight-hex.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_30",
+        on: "branch_if_30",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "tutorial_undo_explained",
+            not_equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _Tip: Press “u” if you ever want to undo a move. Attacks cannot be undone.</span>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22id%22%3A%22Deoran%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22id%22%3A%22quintain%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("...he’s fine. Just out cold, and of no use to you for the rest of our journey."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22quintain%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Hooray! The dummy is destroyed, and I’ve gained valuable combat experience!"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _Units gain a small amount of experience when attacking or defending, but gain much more by striking a finishing blow, especially against high-level enemies. With enough experience, a soldier will advance to a powerful level 2 unit.</span>"),
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Not bad, you’ve smashed it to splinters. ...is it too late to mention that I was supposed to return that after we finished training? Maybe I can find a replacement once we reach Westin."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Of course before we can reach Westin, we’ll first have to fight our way past these bandits."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "quintain_killers",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "play_battle",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 4,
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("The quintain is repairing itself! Come on men, let’s go finish it off!"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _In addition to the +8 healing provided by a village, units will also regenerate 2 hitpoints if they spend their turn resting: neither moving nor fighting. This “rest-healing” stacks with village healing.</span>"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_30",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 7,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                id: "quintain",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Are you... actually trying to fight the quintain? We don’t have all day. Hurry up and beat it."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 8,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                id: "quintain",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("We’re going to have to cut things short, rookie. Look: bandits on the south road!"),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "quintain",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "play_battle",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "play_tutorial",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 17,
+            y: 1,
+            item_name: "arrow",
+            image: "misc%2Fhighlight-hex.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_36",
+        on: "branch_if_36",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Thug",
+            side: 4,
+            x: 10,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_37",
+        on: "branch_if_37",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Thug",
+            side: 4,
+            x: 12,
+            y: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_38",
+        on: "branch_if_38",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Thug",
+            side: 4,
+            x: 17,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_39",
+        on: "branch_if_39",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Thug",
+            side: 4,
+            x: 15,
+            y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_41",
+        on: "branch_if_41",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "quintain_killers.length",
+            greater_than: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Officially, I’m only here as an observer. These ruffians don’t look too dangerous — you and your professional soldiers should be able to make short work of them, even without my sword."),
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Besides, it only took $quintain_killers.length of you to deal with my dummy. What’s a dozen muscly bandits compared to that?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_42",
+        on: "branch_if_42",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "quintain_killers.length",
+            less_than_or_equal_to: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Oh, <i><b>now</b></i> you want my help? I thought you were too clever to listen to my tutorial."),
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Look, officially I’m only here as an observer. These ruffians don’t look too dangerous — you and your professional soldiers should be able to make short work of them, even without my sword."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_43",
+        on: "branch_if_43",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "enable_tutorial_elements",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _You may toggle tips on or off at any time during the campaign by right-clicking anywhere and selecting “Tips: On/Off” in the menu.</span>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_44",
+        on: "branch_if_44",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "enable_tutorial_elements",
+            not_equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _You may toggle tips on or off at any time during the campaign by right-clicking anywhere and selecting “Tips: On/Off” in the menu. Because you skipped the tutorial, tips are currently off.</span>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_45",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mari%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "mari_fights",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_46",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_defender_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mari%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "mari_fights",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_48",
+        on: "attack_end",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("What happened to being a passive observer?"),
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("...self-defense doesn’t count."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_47",
+        on: "mari_fights",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "Mari",
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Get out of my face!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40",
+        on: "side_turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mari",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.variation",
+                value: "",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Mari",
+            x: 13,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mari",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mari",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.variation",
+                value: "relaxed",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("Are you going to help fight? We must drive these villains from the road!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_41",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_42",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_43",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_44",
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 2,
+            ai_type: "zone_guardian",
+            action: "add",
+            filter: "%7B%22id%22%3A%22Mari%22%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_49",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent%22%2C%22attributes%22%3A%7B%22side%22%3A%224%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Stop right there! Not one hair further or I’ll bash your head in!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_51",
+        on: "new_turn",
+        once: false,
+      },
+      {
+        tag: "event",
+        id: "ev_53",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+              {
+                tag: "variable",
+                name: "time_of_day.id",
+                equals: "morning",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("Day has come! We will be strongest in the light — now is the time for us to attack and drive these bandits from our lands. To me, men of the South Guard!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "tod_popup",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_52",
+        on: "turn_refresh",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+              {
+                tag: "variable",
+                name: "time_of_day.id",
+                equals: "dusk",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Urza Mathin",
+            text: _("The sun begins to set! Soon these Wesnoth soldiers will falter in the dark, while my thugs and I will fight at our best. Press the attack!"),
+          },
+          {
+            tag: "gold",
+            side: 2,
+            amount: 40,
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Careful, Deoran. Unless you have overwhelming numbers, you may want to hunker down and hold a defensive position until dawn. Castles and especially villages (because they heal) make for good defensive positions. _ Capturing villages will also increase your income, which you can use to recruit more soldiers."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "tod_popup",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.status.guardian",
+                value: "no",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_50",
+        on: "new_turn",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_54",
+        on: "tod_popup",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_55",
+        on: "attack_end",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "time_of_day.id",
+                equals: "first_watch",
+              },
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22time_of_day.id%22%2C%22equals%22%3A%22second_watch%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unfavorable_attacks",
+            value: 1,
+            mode: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_56_1",
+        on: "new_turn",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+              {
+                tag: "variable",
+                name: "unfavorable_attacks",
+                greater_than_or_equal_to: 6,
+              },
+              {
+                tag: "have_unit",
+                side: 2,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Urza Mathin",
+            text: _("Ha, this will be an easy victory! These soldiers’ young commander must be a fool, for he fights my thugs at night while I am strong and he is weak."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "tod_popup",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_57_2",
+        on: "side_turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+              {
+                tag: "variable",
+                name: "unfavorable_attacks",
+                greater_than_or_equal_to: 6,
+              },
+              {
+                tag: "have_unit",
+                side: 2,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Urza Mathin",
+            text: _("Ha, this will be an easy victory! These soldiers’ young commander must be a fool, for he fights my thugs at night while I am strong and he is weak."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "tod_popup",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_58_1",
+        on: "prestart",
+        once: false,
+        children: [
+          {
+            tag: "set_variable",
+            name: "unfavorable_attacks",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_59_2",
+        on: "side_turn_end",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "unfavorable_attacks",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_60",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "play_battle",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("Bandits! Where?"),
+          },
+          {
+            tag: "hook",
+            name: "command:replace_map",
+            terrain: "Hh%5EQhhf%2C%20Hh%5EQhhf%2C%20Hh%5EQhhf%2C%20Hh%5EQhhf%2C%20Hh%5EQhhf%2C%20Hh%5EQhhf%2C%20Hh%5EQhhf%2C%20Gg%5EQhhf%2C%20Gs%5EQhhf%2C%20Gg%5EQhhf%2C%20Gg%5EQhhf%2C%20Gg%5EQhhf%2C%20Gg%5EQhhf%2C%20Gg%5EQhhf%2C%20Gs%5EQhhf%2C%20Gg%5EQhhf%2C%20Gg%2C%20Re%2C%20Rb%5EGvs%2C%20Rb%5EGvs%2C%20Rb%5EGvs%2C%20Re%5EGvs%2C%20Re%5EGvs%2C%20Re%5EGvs%2C%20Gs%5EFmw%2C%20Gs%5EFmw%2C%20Gs%5EFms%2C%20Gs%5EFds%2C%20Gs%5EFms%2C%20Gs%5EFds%0AHh%2C%20Hh%2C%20Hh%2C%20Hh%5EFds%2C%20Hh%5EFds%2C%20Hh%5EFp%2C%20Hh%5EFds%2C%20Gs%5EFms%2C%20Gs%5EFms%2C%20Gg%5EFds%2C%20Gs%5EFms%2C%20Gg%5EEfm%2C%20Gg%5E_mh%2C%20Gs%5EFds%2C%20Gs%5EQhhf%2C%20Gg%2C%20Re%2C%201%20Re%2C%20Rb%5EGvs%2C%20Rb%5EGvs%2C%20Re%5EGvs%2C%20Re%5EGvs%2C%20Re%5EGvs%2C%20Gg%5EEff%2C%20Gg%5EEff%2C%20Gs%5EFmw%2C%20Gs%5EFms%2C%20Gs%5EFmw%2C%20Gs%5EFms%2C%20Gs%5EFds%0AHh%2C%20Hh%2C%20Hh%5EFds%2C%20Hh%2C%20Gs%2C%20Gs%2C%20Gs%5EFds%2C%20Gs%5EFms%2C%20Gs%5EQhh%2C%20Gs%5EQhh%2C%20Gg%5EQhh%2C%20Gg%5EQhh%2C%20Gg%5EQhh%2C%20Gg%5EQhhf%2C%20Gg%2C%20Gg%5EEs%2C%20Re%2C%20Rb%5EGvs%2C%20Re%5EGvs%2C%20Re%5EGvs%2C%20Re%5EGvs%2C%20Re%5EGvs%2C%20Gg%5EEff%2C%20Gg%5EEff%2C%20Gs%2C%20Gs%5EFmw%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Gs%5EFds%0ARe%5EGvs%2C%20Hh%5EFds%2C%20Gs%5EFms%2C%20Gs%2C%20Gg%5EQhhf%2C%20Gs%2C%20Gs%5EQhhf%2C%20Gs%5EQhh%2C%20Gs%5EFms%2C%20Gs%5EFms%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Gg%2C%20Gll%2C%20Re%2C%20Rb%5EGvs%2C%20Gg%2C%20Gg%2C%20Re%5EGvs%2C%20Gg%2C%20Gg%5EEff%2C%20Gg%5EFms%2C%20Gs%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Gs%5EFms%2C%20Gs%2C%20Hh%2C%20Hh%0ARe%5EGvs%2C%20Re%5EGvs%2C%20Gs%5EQhh%2C%20Gg%5EQhhf%2C%20Re%5EGvs%2C%20Gg%5EQhh%2C%20Rb%5EGvs%2C%20Re%5EGvs%2C%20Rb%5EGvs%2C%20Gs%5EFp%2C%20Rr%2C%20Gs%5EFds%2C%20Gs%5EFms%2C%20Gll%2C%20Rb%5EGvs%2C%20Rb%5EGvs%2C%20Re%5EGvs%2C%20Re%5EGvs%2C%20Re%5EGvs%2C%20Gg%2C%20Gs%5EFds%2C%20Gg%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Gs%5EFp%2C%20Gs%5EFds%2C%20Gs%5EFms%2C%20Hh%5EFmw%2C%20Hh%2C%20Hh%0ARe%5EGvs%2C%20Re%5EGvs%2C%20Re%5EGvs%2C%20Re%5EGvs%2C%20Re%5EGvs%2C%20Re%5EGvs%2C%20Rb%5EGvs%2C%20Rb%5EGvs%2C%20Rb%5EGvs%2C%20Gs%2C%20Gs%2C%20Gs%2C%20Re%2C%20Gll%2C%20Rb%5EGvs%2C%20Rb%5EGvs%2C%20Re%5EGvs%2C%20Re%5EGvs%2C%20Gg%2C%20Gg%2C%20Gg%2C%20Gg%5EEfm%2C%20Gg%5EEfm%2C%20Gs%2C%20Gs%2C%20Gs%2C%20Gs%5EFms%2C%20Gs%5EFmw%2C%20Hh%5EFmw%2C%20Hh%0ARe%5EGvs%2C%20Re%5EGvs%2C%20Rb%5EGvs%2C%20Re%5EGvs%2C%20Rb%5EGvs%2C%20Rb%5EGvs%2C%20Rb%5EGvs%2C%20Rb%5EGvs%2C%20Gg%5EVwm%2C%20Gg%5EEfm%2C%20Gg%5EEfm%2C%20Re%2C%20Gs%2C%20Rb%5EGvs%2C%20Rb%5EGvs%2C%20Rb%5EGvs%2C%20Re%5EGvs%2C%20Re%5EGvs%2C%20Gs%5EFms%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Gg%2C%20Gs%5EFms%2C%20Gs%2C%20Gs%5EFp%2C%20Gs%5EFds%2C%20Gs%5EFp%2C%20Gs%5EFms%2C%20Hh%5EFds%2C%20Hh%5EFds%0AHh%5EFds%2C%20Re%5EGvs%2C%20Hh%2C%20Rb%5EGvs%2C%20Hh%2C%20Rb%5EGvs%2C%20Rb%5EGvs%2C%20Rb%5EGvs%2C%20Re%2C%20Re%2C%20Gg%2C%20Re%2C%20Gg%5EVl%2C%20Re%5EGvs%2C%20Re%5EGvs%2C%20Rb%5EGvs%2C%20Gg%5EEff%2C%20Gg%5EEff%2C%20Gs%5EFms%2C%20Gs%5EFds%2C%20Gs%5EFms%2C%20Gg%5EEfm%2C%20Gs%5EFms%2C%20Gs%5EFds%2C%20Gs%5EFms%2C%20Gs%5EFms%2C%20Gs%2C%20Gs%5EFds%2C%20Gs%5EQhhf%2C%20Gs%5EQhhf%0AHh%5EFds%2C%20Hh%5EFds%2C%20Hh%5EQhh%2C%20Hh%5EQhh%2C%20Hh%5EQhh%2C%20Hh%5EQhh%2C%20Gs%2C%20Gs%2C%20Gs%2C%20Re%2C%20Re%5EEs%2C%20Re%2C%20Re%2C%20Gg%5EEff%2C%20Gs%5EEff%2C%20Gs%5EEff%2C%20Gs%5EEfm%2C%20Gs%5EFms%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Gg%5EEfm%2C%20Gg%5EEfm%2C%20Gs%5EFp%2C%20Gs%5EFds%2C%20Gs%5EFms%2C%20Gs%5EFms%2C%20Hh%5EQhhf%2C%20Hh%5EQhhf%2C%20Mm%5EQhh%2C%20Hh%5EQhh%0AHh%5EQhh%2C%20Hh%5EQhh%2C%20Wo%2C%20Wo%2C%20Wo%2C%20Gg%5EEfm%2C%20Wo%2C%20Ww%2C%20Ch%2C%20Ch%2C%20Ch%2C%20Gg%2C%20Gg%2C%20Re%2C%20Re%2C%20Gs%5EEfm%2C%20Gs%5EEfm%2C%20Gs%5EEfm%2C%20Ww%2C%20Ww%2C%20Ww%2C%20Gs%5EFds%2C%20Hh%5EQhhf%2C%20Hh%5EQhhf%2C%20Hh%5EQhhf%2C%20Hh%5EQhh%2C%20Hh%5EQhh%2C%20Hh%5EQhh%2C%20Mm%5EQhh%2C%20Mm%5EQhh%0AHh%5EQhh%2C%20Wo%2C%20Wo%2C%20Wo%2C%20Wo%2C%20Wo%2C%20Ww%2C%20Wo%2C%20Ww%2C%20Kh%2C%20Wo%2C%20Ww%2C%20Ww%2C%20Re%2C%20Re%2C%20Gs%5EEfm%2C%20Ww%2C%20Ww%2C%20Wo%2C%20Wo%2C%20Wo%2C%20Ww%2C%20Gg%2C%20Hh%5EQhh%2C%20Hh%5EQhhf%2C%20Hh%5EQhh%2C%20Hh%5EQhh%2C%20Mm%5EQhh%2C%20Hh%5EQhh%2C%20Mm%5EQhh%0AWo%2C%20Wo%2C%20Ww%2C%20Wo%2C%20Ww%2C%20Ww%2C%20Ww%2C%20Ww%2C%20Ww%2C%20Ww%2C%20Wo%2C%20Wo%2C%20Ww%5EEwf%2C%20Ww%5EEwf%2C%20Re%2C%20Ch%2C%20Ww%2C%20Wo%2C%20Ww%2C%20Ww%2C%20Ww%2C%20Ww%2C%20Ww%2C%20Gs%5EFmw%2C%20Wo%2C%20Wo%2C%20Wo%2C%20Hh%5EQhh%2C%20Hh%2C%20Hh%0AWo%2C%20Wo%2C%20Ww%2C%20Ww%2C%20Gg%2C%20Gg%2C%20Gg%5EEfm%2C%20Ww%2C%20Gg%2C%20Ww%2C%20Ww%2C%20Ww%2C%20Ww%5EBsb%2F%2C%20Ww%5EBsb%2F%2C%20Ww%2C%20Ww%2C%20Ww%2C%20Ww%2C%20Ww%2C%20Ww%2C%20Ww%2C%20Wo%2C%20Wo%2C%20Wo%2C%20Ww%2C%20Hh%5EQhh%2C%20Hh%5EQhh%2C%20Wo%2C%20Wo%2C%20Hh%0AWw%2C%20Ww%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Gg%2C%20Gg%5EEfm%2C%20Gg%5EEfm%2C%20Gg%5EEfm%2C%20Gg%5EEfm%2C%20Gg%5EVh%2C%20Rb%2C%20Rb%2C%20Gs%5EFds%2C%20Ww%2C%20Wo%2C%20Wo%2C%20Wo%2C%20Ww%2C%20Wo%2C%20Gg%2C%20Ww%2C%20Ww%2C%20Ww%2C%20Wo%2C%20Ww%5EEwl%2C%20Hh%2C%20Hh%5EQhh%2C%20Ww%2C%20Hh%5EQhh%2C%20Hh%5EQhh%0AWw%2C%20Ww%2C%20Gs%5EFms%2C%20Gs%5EFds%2C%20Re%2C%20Gg%2C%20Gll%2C%20Gg%2C%20Re%2C%20Re%2C%20Rb%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Ww%2C%20Wo%2C%20Wo%2C%20Hh%5EQhh%2C%20Wo%2C%20Hh%5EQhh%2C%20Gg%2C%20Gg%2C%20Ww%2C%20Ww%2C%20Ww%5EEwf%2C%20Wo%2C%20Ww%5EEwl%2C%20Wo%2C%20Wo%2C%20Hh%5EQhh%2C%20Hh%5EQhh%0AGs%5EFms%2C%20Gs%5EFms%2C%20Re%2C%20Re%2C%20Gs%5EQhuf%2C%20Gll%2C%20Gll%5EEs%2C%20Gs%5EFms%2C%20Gg%5EVh%2C%20Gg%2C%20Re%2C%20Gs%2C%20Gs%5EEfm%2C%20Gg%5EVwm%2C%20Gs%2C%20Hh%5EQhh%2C%20Hh%5EQhh%2C%20Hh%5EQhh%2C%20Gs%2C%20Gs%2C%20Hh%5EFdw%2C%20Gg%2C%20Hh%5EQhh%2C%20Gs%2C%20Gs%5EFdw%2C%20Wo%2C%20Ww%2C%20Wo%2C%20Wo%2C%20Hh%5EQhh%0ARe%2C%20Gs%5EFds%2C%20Gll%2C%20Gs%5EQhuf%2C%20Gs%5EFds%2C%20Gs%5EQhuf%2C%20Gs%5EQhuf%2C%20Gs%5EQhuf%2C%20Gg%5EFmw%2C%20Gg%2C%20Gg%5EFmw%2C%20Re%2C%20Gs%5EEfm%2C%20Gs%5EEfm%2C%20Gs%5EFds%2C%20Gs%2C%20Gs%2C%20Gs%2C%20Hh%2C%20Gs%5EQhh%2C%20Hh%5EQhh%2C%20Hh%5EQhh%2C%20Hh%5EQhh%2C%20Gs%2C%20Gs%2C%20Gs%2C%20Ww%2C%20Wo%2C%20Wo%2C%20Wo%0AGll%5EEm%2C%20Re%2C%20Gll%5EQhuf%2C%20Gs%5EQhuf%2C%20Gs%5EFms%2C%20Re%2C%20Gs%5EFds%2C%20Gs%5EQhuf%2C%20Gg%2C%20Gs%5EFds%2C%20Gs%5EFms%2C%20Re%2C%20Gs%2C%20Gs%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Hh%5EFp%2C%20Hh%2C%20Hh%5EQhh%2C%20Hh%5EQhh%2C%20Hh%2C%20Hh%5EFdw%2C%20Hh%2C%20Hh%5EQhh%2C%20Hh%5EQhhf%2C%20Gs%5EFp%2C%20Wo%2C%20Wo%2C%20Hh%5EQhh%2C%20Wo%0AGs%5EQhuf%2C%20Gs%5EQhuf%2C%20Gs%5EFds%2C%20Gll%5E_ml%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Gs%5EQhuf%2C%20Gs%5EFmw%2C%20Gs%5EFds%2C%20Gs%2C%20Re%2C%20Gs%5EFms%2C%20Gs%5EFms%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Gs%5EFp%2C%20Hh%5EQhhf%2C%20Hh%5EFp%2C%20Hh%2C%20Hh%5EQhh%2C%20Hh%5EQhh%2C%20Mm%2C%20Hh%5EQhh%2C%20Hh%2C%20Hh%5EQhhf%2C%20Hh%5EQhh%2C%20Wo%2C%20Hh%5EQhh%2C%20Wo%0AGs%5EQhuf%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Gs%5EFds%2C%20Gs%5EQhuf%2C%20Gs%5EQhuf%2C%20Gs%2C%20Re%2C%20Re%2C%20Re%2C%20Gs%5EFp%2C%20Re%2C%20Gs%5EFds%2C%20Hh%5EQhhf%2C%20Hh%5EQhhf%2C%20Hh%5E_mh%2C%20Hh%5EFp%2C%20Hh%5EQhh%2C%20Mm%2C%20Mm%5EQhh%2C%20Mm%5EQhh%2C%20Mm%2C%20Hh%2C%20Mm%5EQhh%2C%20Wo%2C%20Wo%2C%20Wo%0AHh%5EQhuf%2C%20Gs%5EFds%2C%20Gll%5EFdw%2C%20Gs%5EFds%2C%20Gll%5EFp%2C%20Gs%5EFds%2C%20Gs%5EQhuf%2C%20Gs%5EQhuf%2C%20Gs%2C%20Re%5EEs%2C%20Gs%5EFmw%2C%20Gs%5EVl%2C%20Gs%5EFms%2C%20Re%2C%20Gs%5EFms%2C%20Re%2C%20Ker%2C%20Hh%5EQhhf%2C%20Hh%5EQhhf%2C%20Hh%5EQhh%2C%20Hh%5EQhh%2C%20Hh%2C%20Hh%2C%20Hh%2C%20Mm%2C%20Mm%2C%20Hh%5EQhh%2C%20Mm%5EQhh%2C%20Wo%2C%20Wo%0AGg%5EQhu%2C%20Gll%5EFmw%2C%20Gll%5EFmw%2C%20Gll%5EFmw%2C%20Gs%5EFp%2C%20Gs%5EFms%2C%20Gs%5EQhuf%2C%20Gs%5EFms%2C%20Gs%2C%20Re%2C%20Gs%2C%20Hh%2C%20Hh%2C%20Gs%5EFds%2C%20Gs%5EFms%2C%20Gs%5EDr%2C%20Cer%5EDr%2C%20Cer%2C%20Gs%5EFdw%2C%20Gs%5EFmw%2C%20Hh%5EQhh%2C%20Hh%5EFdw%2C%20Hh%5EQhh%2C%20Hh%5EQhh%2C%20Hh%5EFdw%2C%20Hh%5EQhh%2C%20Wo%2C%20Wo%2C%20Wo%2C%20Ww%0AGs%5EQhuf%2C%20Gs%5EFp%2C%20Hh%2C%20Hh%2C%20Gll%5EFmw%2C%20Gs%5EFms%2C%20Gs%5EQhuf%2C%20Gs%2C%20Gs%5EFms%2C%20Re%2C%20Re%2C%20Gs%5EFp%2C%20Gs%5EFp%2C%20Gs%5EFds%2C%20Gs%2C%20Gs%2C%20Gs%5EFds%2C%20Gs%5EFms%2C%20Gs%5EFms%2C%20Gs%5EFmw%2C%20Gs%5EFp%2C%20Hh%5EQhh%2C%20Hh%5EFmw%2C%20Ww%2C%20Ww%2C%20Hh%5EQhh%2C%20Wo%2C%20Wo%2C%20Ww%2C%20Ww%0AHh%5EQhuf%2C%20Gs%5EFms%2C%20Gs%5EFds%2C%20Hh%2C%20Gll%5EEmf%2C%20Gs%5EFmw%2C%20Gs%5EFms%2C%20Gs%5EQhuf%2C%20Gs%5EFmw%2C%20Gs%2C%20Re%2C%20Gs%5EFms%2C%20Gs%5EFms%2C%20Gs%5EFds%2C%20Gs%5EFp%2C%20Gs%5EFms%2C%20Gs%5EFms%2C%20Gs%2C%20Gs%5EFds%2C%20Gs%5EFp%2C%20Gs%5EFms%2C%20Hh%5EFmw%2C%20Hh%5EFms%2C%20Ww%5EEwf%2C%20Hh%5EQhh%2C%20Hh%5EQhh%2C%20Wo%2C%20Wo%2C%20Ww%2C%20Ww%0AHh%5EQhuf%2C%20Gs%5EQhuf%2C%20Gll%5EQhu%2C%20Gs%5EQhu%2C%20Hh%5EQhu%2C%20Gs%5EQhuf%2C%20Gs%5EQhuf%2C%20Gs%5EQhuf%2C%20Gs%2C%20Re%2C%20Gs%5EFmw%2C%20Re%2C%20Re%5EEs%2C%20Gs%5EFms%2C%20Gg%2C%20Gs%5EFds%2C%20Gg%2C%20Gs%5EFms%2C%20Re%5EEs%2C%20Gs%5EFms%2C%20Gs%5EFdw%2C%20Hh%2C%20Gll%5EFms%2C%20Gll%5EFp%2C%20Gg%2C%20Wo%2C%20Ww%2C%20Ww%2C%20Ww%2C%20Ww%0A",
+            expand: "yes",
+            shrink: "yes",
+          },
+          {
+            tag: "spawn",
+            id: "Urza_Mathin",
+            type: "Bandit",
+            side: 4,
+            x: 15,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Urza_Mathin",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            gold: 60,
+            hidden: "no",
+            income: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 4,
+            cells: "10,19",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Thug",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_36",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Thug",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_37",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Thug",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_38",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Thug",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_39",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_turns",
+            value: 30,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 15,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Urza Mathin",
+            text: _("Oh, what’s this? A lady and her loyal squire travelin’ south on this dangerous road? Tell ya what, we can offer ya protection ’round here for a small fee."),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            portrait: "portraits/deoran-mad.webp",
+            text: _("Do you take us for fools? I ride south to reinforce Westin’s venerable South Guard, on orders from the King to ensure the region is kept safe and secure!"),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            portrait: "portraits/deoran-mad.webp",
+            text: _("The only danger around here is you, and I intend to put an end to it. Men, raise your spears!"),
+          },
+          {
+            tag: "message",
+            speaker: "Urza Mathin",
+            text: _("Hah, like it would be that easy, child. I’m Urza Mathin, eldest of the four Urza brothers, and these are my thugs. Time to show you who the real power is in these parts!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_61",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 25,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Get a move on, rookie! I’m sure those bandits have called for reinforcements — you’re running out of time to finish them off."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "explain_turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_62",
+        on: "side_turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 30,
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Footpad",
+            side: 4,
+            x: 9,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Outlaw",
+            side: 4,
+            x: 8,
+            y: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Footpad",
+            side: 4,
+            x: 11,
+            y: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Footpad",
+            side: 4,
+            x: 6,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Footpad",
+            side: 4,
+            x: 5,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+          {
+            tag: "spawn",
+            id: "u_10",
+            type: "Trapper",
+            side: 4,
+            x: 0,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_10",
+          },
+          {
+            tag: "spawn",
+            id: "u_11",
+            type: "Poacher",
+            side: 4,
+            x: 1,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_11",
+          },
+          {
+            tag: "spawn",
+            id: "u_12",
+            type: "Poacher",
+            side: 4,
+            x: 0,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_12",
+          },
+          {
+            tag: "spawn",
+            id: "u_13",
+            type: "Poacher",
+            side: 4,
+            x: 2,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_13",
+          },
+          {
+            tag: "message",
+            speaker: "Urza Mathin",
+            text: _("Reinforcements from my brothers! Excellent. These lands belong to the brothers Urza!"),
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("We’ve run out of time, and now more enemies have arrived! We’ll have to retreat and bring more soldiers some other time. I really thought Deoran could handle this on his own..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_63",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Urza%20Mathin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_achievement",
+            id: "tsg_s01",
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            portrait: "portraits/deoran-mad.webp",
+            text: _("You are beaten, you bloodthirsty, balding bandit! Accosting travelers between Weldyn and Westin; what is the meaning of this? How have you become so bold as to strike at even trained soldiers!?"),
+          },
+          {
+            tag: "message",
+            speaker: "Urza Mathin",
+            text: _("How... impossible... no! If I die... so will you!"),
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Urza Mathin",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 250,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 250,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_64",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Urza%20Mathin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "STORE_UNIT_VAR_store",
+            kill: "no",
+            id: "Urza Mathin",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "urzX",
+            value: "$STORE_UNIT_VAR_store.x",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "STORE_UNIT_VAR_store",
+            kill: "no",
+            id: "Urza Mathin",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "urzY",
+            value: "$STORE_UNIT_VAR_store.y",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "STORE_UNIT_VAR_store",
+            kill: "no",
+            id: "Urza Mathin",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "urzF",
+            value: "$STORE_UNIT_VAR_store.facing",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Urza Mathin",
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("What the—"),
+          },
+          {
+            tag: "message",
+            speaker: "Zombie Mathin",
+            text: _("Gruhh..."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mari",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.variation",
+                value: "",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "Mari",
+            x: 11,
+            y: 17,
+            to_x: 10,
+            to_y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            id: "Mari",
+            x: "$urzX",
+            y: "$urzY",
+            raw: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Look out!"),
+          },
+          {
+            tag: "hook",
+            name: "command:harm_unit",
+            amount: 999,
+            experience: "no",
+            delay: 0,
+            animate: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Zombie%20Mathin%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Zombie Mathin",
+            primary_attack_range: "melee",
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Undead again. As if losing one arm to these things wasn’t bad enough, now they’re back for my second."),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("I’ve never seen the like before in my life! That man clearly died, then stood right back up again! You say you’ve fought these things before, Mari?"),
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Yeah, I have. And no, simple bandits aren’t supposed to know how to create them. This reeks of black magic; powerful black magic."),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("This brother said he was the eldest of four — the other three are doubtless still alive and causing trouble. How did petty outlaws get their hands on magic like this?"),
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Maybe the locals in town will know something. Come on, let’s hurry onwards towards Westin, and hope we don’t run into any more trouble on the way."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_mari",
+            kill: "yes",
+            id: "Mari",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+    ],
+  },
+]

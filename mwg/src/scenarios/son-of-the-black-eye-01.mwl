@@ -1,0 +1,446 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("End of Peace"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Kapoue",
+        gold: 110,
+        recruit: "Wolf Rider, Orcish Grunt, Orcish Archer",
+        leader: "Kapou_e",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "Humans",
+        gold: 180,
+        recruit: "Cavalryman, Fencer, Spearman, Bowman",
+        leader: "Alber",
+      },
+      {
+        tag: "map",
+        id: "scenario_01_End_of_Peace",
+        file: "01_End_of_Peace.map",
+      },
+      {
+        tag: "unit",
+        id: "Kapou_e",
+        type: "Orcish Leader",
+        side: 1,
+        x: 15,
+        y: 4,
+        name: _("Kapou’e"),
+      },
+      {
+        tag: "unit",
+        id: "Alber",
+        type: "Lieutenant",
+        side: 2,
+        x: 29,
+        y: 38,
+        name: _("Alber"),
+      },
+      {
+        tag: "event",
+        id: "carryover_8",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_9",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Rahul I, Lord Protector of the Northern Alliance, concluded peace with enemy orcs during the fourteenth year of his leadership. He ended a 15-year war with Black-Eye Karun, ruler of the enemy orcs. A peace treaty between the Alliance and the orcs settled their territorial disputes."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_10",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("So impressed was Rahul with the intelligence, prowess and leadership of Black-Eye Karun that he invited him to become a Lord Companion of the Northern Alliance. After much deliberation Black-Eye Karun decided to accept the offer. However, on the way to the city of Dwarven Doors — the headquarters of the Northern Alliance — Karun and his small group of bodyguards were attacked and slain to the last man. There were no survivors to confirm the incident, but it soon became believed among the orcs that the Northern Alliance had deliberately set up this ambush in order to break the unity of the orcs by slaying their strongest leader."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_11",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("The peace treaty still held however, partially because the treaty — although arranged by the Northern Alliance — was between the local earls and the orcish tribes and didn’t have any direct connection with the Northern Alliance. The other — and perhaps the main — reason why the treaty held was that with the death of the Black-Eye, the unity of the orcs was shattered and they once again descended into inner squabbling. Thus the years that followed were relatively peaceful and prosperous — at least for the humans."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_12",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("In the thirteenth year of the Lord Protectorship of Howgarth III — the successor of Rahul I — tension began to rise between orcish tribes and human earldoms in the Northlands. Famine led humans to colonize some orcish lands and push orcs into desolated hill country. The few orcish tribes who had remained part of the Alliance, feeling the pressure, either left Alliance territory or revolted and were destroyed."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_13",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Retaliating, the orcs systematically slaughtered human colonies and villages on their lands. Then, Earl Lanbec’h — the most powerful human warlord of the North — determined to abolish the orcish menace, raised an army and conferred leadership of it to his son-in-law Baron Alber."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_14",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Baron Alber personally led a small vanguard with the mission to establish a base inside orcish lands."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_15",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("By nightfall his troops reached a mountainous region under the authority of orcish leader Kapou’e, the son of the Black-Eye."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_16",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kapou_e,Alber",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_17",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 26,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat Alber"),
+        defeat: _("Death of Kapou’e Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "northerners.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "siege_of_laurelmor.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Alber",
+            text: _("Look, friends! Those orcs don’t imagine they are living their last day. Let’s slay them and claim this land back to our people!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Who is this unlicked whelp? Grunts — kill him and bring me his head!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6_opt0",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Vrag",
+            text: _("Wise decision, Kapou’e. By the size of that army, this is no mere raid — it seems to me that the humans have decided to declare war on us."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("If they want war, then they shall get war!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("We’ll head for Barag Gór in the lands of the free tribes and demand assistance from the Great Council. With their help, we can raise troops from the free tribes and crush these humans."),
+          },
+          {
+            tag: "message",
+            speaker: "second",
+            text: _("But the free tribes are beyond the Mountains of Haag. These mountains are infested with dwarves and wild trolls."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Don’t be so cowardly. The trolls have been our allies in the past — maybe they will help us. And what true orc has ever feared dwarvish dirt-grubbers? Move it! We leave within the hour. If you’re not ready by then, stay and die."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6_opt1",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            portrait: "portraits/kapoue-angry.webp",
+            text: _("Prepare for battle, my grunts! We’ll show these humans what happens when you try to steal from Kapou’e, Son of the Black-Eye!"),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "son-of-the-black-eye-02",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Alber%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Argh! I die! But other humans will come to avenge me, filthy orcs!"),
+          },
+          {
+            tag: "message",
+            speaker: "second",
+            text: _("Victory!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            portrait: "portraits/kapoue-angry.webp",
+            text: _("Oh, just die, human-worm."),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Alber",
+          },
+          {
+            tag: "spawn",
+            id: "Vrag",
+            type: "Wolf Rider",
+            side: 1,
+            x: 7,
+            y: 30,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Vrag",
+          },
+          {
+            tag: "message",
+            speaker: "Vrag",
+            text: _("(<i>Pant</i>) Chief! Chief!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Speak, rider."),
+          },
+          {
+            tag: "message",
+            speaker: "Vrag",
+            text: _("There is a huge human army marching on us! They can’t be more than one or two days march from here."),
+          },
+          {
+            tag: "message",
+            speaker: "second",
+            text: _("Uh oh! What should we do, Chief?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Don’t be afraid. If any more of these pathetic humans come, we’ll deal with them the way we did with this trash!"),
+          },
+          {
+            tag: "message",
+            speaker: "Vrag",
+            text: _("Uh, Chief, with all respect that army is huge! Not only that, but most of them look like tough old soldiers. It would be foolish to confront them with the forces we have on hand."),
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "Kapou'e",
+                text: _("Hmmm..."),
+              },
+              {
+                tag: "choice",
+                text: _("If what you say is true, then there is no way our tribe can face such an army alone."),
+                event: "ev_6_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("Bah, humans? No better than goblins. We’ll break them!"),
+                event: "ev_6_opt1",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kapou'e%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Argh! I’m done. My people are doomed!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

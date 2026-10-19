@@ -1,0 +1,950 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Introductions"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "knalgans",
+        recruit: "Thug,Poacher,Spearman,Bowman,Gryphon,Dwarvish Fighter,Dwarvish Thunderer,Dwarvish Ulfserker,Dwarvish Scout,Footpad",
+        leader: "Tallin",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "trolls",
+      },
+      {
+        tag: "map",
+        id: "scenario_09a_Introductions",
+        file: "09a_Introductions.map",
+      },
+      {
+        tag: "unit",
+        id: "Tallin",
+        type: "Peasant",
+        side: 1,
+        x: 8,
+        y: 15,
+        name: _("Tallin"),
+      },
+      {
+        tag: "unit",
+        id: "u_1",
+        type: "Troll",
+        side: 2,
+        x: 0,
+        y: 2,
+      },
+      {
+        tag: "unit",
+        id: "u_2",
+        type: "Troll",
+        side: 2,
+        x: 1,
+        y: 0,
+      },
+      {
+        tag: "unit",
+        id: "u_3",
+        type: "Troll",
+        side: 2,
+        x: 4,
+        y: 4,
+      },
+      {
+        tag: "unit",
+        id: "u_4",
+        type: "Troll",
+        side: 2,
+        x: 9,
+        y: 5,
+      },
+      {
+        tag: "unit",
+        id: "u_5",
+        type: "Troll",
+        side: 2,
+        x: 10,
+        y: 3,
+      },
+      {
+        tag: "unit",
+        id: "u_6",
+        type: "Troll",
+        side: 2,
+        x: 15,
+        y: 5,
+      },
+      {
+        tag: "unit",
+        id: "u_7",
+        type: "Troll",
+        side: 2,
+        x: 17,
+        y: 10,
+      },
+      {
+        tag: "unit",
+        id: "u_8",
+        type: "Troll Whelp",
+        side: 2,
+        x: 2,
+        y: 8,
+      },
+      {
+        tag: "unit",
+        id: "u_9",
+        type: "Troll Whelp",
+        side: 2,
+        x: 5,
+        y: 2,
+      },
+      {
+        tag: "unit",
+        id: "u_10",
+        type: "Troll Whelp",
+        side: 2,
+        x: 7,
+        y: 3,
+      },
+      {
+        tag: "unit",
+        id: "u_11",
+        type: "Troll Whelp",
+        side: 2,
+        x: 7,
+        y: 5,
+      },
+      {
+        tag: "unit",
+        id: "u_12",
+        type: "Troll Whelp",
+        side: 2,
+        x: 9,
+        y: 7,
+      },
+      {
+        tag: "unit",
+        id: "u_13",
+        type: "Troll Whelp",
+        side: 2,
+        x: 11,
+        y: 5,
+      },
+      {
+        tag: "unit",
+        id: "u_14",
+        type: "Troll Whelp",
+        side: 2,
+        x: 12,
+        y: 4,
+      },
+      {
+        tag: "unit",
+        id: "u_15",
+        type: "Troll Rocklobber",
+        side: 2,
+        x: 0,
+        y: 4,
+      },
+      {
+        tag: "unit",
+        id: "u_16",
+        type: "Troll Rocklobber",
+        side: 2,
+        x: 3,
+        y: 2,
+      },
+      {
+        tag: "unit",
+        id: "u_17",
+        type: "Troll Rocklobber",
+        side: 2,
+        x: 8,
+        y: 2,
+      },
+      {
+        tag: "unit",
+        id: "u_18",
+        type: "Troll Rocklobber",
+        side: 2,
+        x: 9,
+        y: 4,
+      },
+      {
+        tag: "unit",
+        id: "u_19",
+        type: "Troll Rocklobber",
+        side: 2,
+        x: 13,
+        y: 2,
+      },
+      {
+        tag: "event",
+        id: "hide_side_2",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_18",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 80,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_19",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Tallin",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_20",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 18,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Move Tallin to the Signpost in the north"),
+        defeat: _("Death of Tallin Death of Ro’Arthian Death of Ro’Sothian Death of Eryssa Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "revelation.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_dangerous_symphony.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "underground.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_0",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Uu%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_2",
+            value: 4,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_2",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_0",
+                variable: "_mwg_random_pick_1",
+              },
+              {
+                tag: "hook",
+                name: "command:add_item",
+                x: "$random_placement_location.x",
+                y: "$random_placement_location.y",
+                item_name: "",
+                image: "scenery%2Frubble.png",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_2",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Abhai",
+            unit: "Abhai",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Camerin",
+            unit: "Camerin",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Father Morvin",
+            unit: "Father Morvin",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sister Thera",
+            unit: "Sister Thera",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Krash",
+            unit: "Krash",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Elenia",
+            unit: "Elenia",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Stalrag",
+            unit: "Stalrag",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Ro'Arthian",
+            unit: "Ro'Arthian",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Ro'Sothian",
+            unit: "Ro'Sothian",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("After rescuing the Princess, Tallin and his allies quickly withdrew into the caves."),
+          },
+          {
+            tag: "message",
+            speaker: "Eryssa",
+            text: _("Now that we are well shot of that dungeon, do you mind telling me who you are?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22race%22%3A%22troll%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Supporter",
+            text: _("Hey look, it’s a troll!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("A troll? What in the world are trolls doing this close to Knalga? Something’s wrong, let’s hurry back."),
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            hidden: "no",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 0,
+            y: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("I can see the dwarvish defenses just ahead. Let’s go!"),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Tallin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Argh! I am finished, but our campaign must... not end... crush... our... enemies... and... save... our... people..."),
+          },
+          {
+            tag: "message",
+            speaker: "Supporter",
+            text: _("No, Tallin, we can’t do it without you!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Camerin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Camerin",
+            text: _("What... how can this happen?"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("He was stark raving mad, but I am sure going to miss him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Krash%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Krash",
+            text: _("(<i>Roars in pain</i>)"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Krash!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Krash%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Father Morvin",
+            text: _("It’s no good, Tallin, he is gone."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("You wretched monsters! You are going to pay for this!"),
+          },
+          {
+            tag: "message",
+            speaker: "Camerin",
+            text: _("Awww, I liked that guy!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Elenia%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Elenia",
+            text: _("Alas! My wanderings have come to an end."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Blast it! We have lost a valuable ally!"),
+          },
+          {
+            tag: "message",
+            speaker: "Sister Thera",
+            text: _("Farewell Elenia. May you find peace in your final journey."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "last_breath",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sister%20Thera%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:find_respawn_point",
+            variable: "respawn_point",
+            respawn_near: "Tallin",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "$unit.id",
+            x: "$respawn_point.x",
+            y: "$respawn_point.y",
+            to_x: "$respawn_point.x",
+            to_y: "$respawn_point.y",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: "$respawn_point.x",
+            y: "$respawn_point.y",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: "full",
+            animate: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "last_breath",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Father%20Morvin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:find_respawn_point",
+            variable: "respawn_point",
+            respawn_near: "Tallin",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "$unit.id",
+            x: "$respawn_point.x",
+            y: "$respawn_point.y",
+            to_x: "$respawn_point.x",
+            to_y: "$respawn_point.y",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: "$respawn_point.x",
+            y: "$respawn_point.y",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: "full",
+            animate: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Stalrag%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Stalrag",
+            text: _("Farewell, my friends. I now go to join my fallen brothers."),
+          },
+          {
+            tag: "message",
+            speaker: "Shinsplitter",
+            text: _("No, Stalrag! Without you what will become of the Shinsplitters?"),
+          },
+          {
+            tag: "message",
+            speaker: "Stalrag",
+            text: _("Shinsplitters... join Tallin... He is your new... leader... trust... and... serve... him... as... you... have... served... me."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Your death shall not go unavenged, brave Stalrag. DEATH TO THE ORCS!!"),
+          },
+          {
+            tag: "message",
+            speaker: "Shinsplitter",
+            text: _("DIE, YOU FOUL SCUM!!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Ro'Sothian%2CRo'Arthian%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            text: _("I have had enough! Come on brother, let’s get outta here."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Ro'Sothian%2CRo'Arthian%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Dang it! They’re gone, and the creatures they control are leaving too. Without them, this is hopeless."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Eryssa%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Eryssa",
+            text: _("Alas, you must continue your mission without me!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("How could this happen? We can’t possibly go on without her..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22role%22%3A%22Supporter%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]

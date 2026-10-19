@@ -1,0 +1,999 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Saving Parthyn"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "town guard",
+        gold: 70,
+        recruit: "Walking Corpse",
+        leader: "Malin_Keshar",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 105,
+        recruit: "Orcish Grunt,Orcish Archer,Wolf Rider,Orcish Crossbowman",
+        leader: "Kreg_a_shar_Trr",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "town guard",
+        gold: 30,
+        recruit: "Peasant,Woodsman,Spearman",
+        leader: "Drogan",
+      },
+      {
+        tag: "map",
+        id: "scenario_01_Saving_Parthyn",
+        file: "01_Saving_Parthyn.map",
+      },
+      {
+        tag: "unit",
+        id: "Malin_Keshar",
+        type: "Malin Keshar",
+        side: 1,
+        x: 21,
+        y: 14,
+        name: _("Malin Keshar"),
+      },
+      {
+        tag: "unit",
+        id: "u_1",
+        type: "Spearman",
+        side: 1,
+        x: 27,
+        y: 10,
+      },
+      {
+        tag: "unit",
+        id: "u_2",
+        type: "Bowman",
+        side: 1,
+        x: 25,
+        y: 14,
+      },
+      {
+        tag: "unit",
+        id: "u_3",
+        type: "Spearman",
+        side: 1,
+        x: 22,
+        y: 11,
+      },
+      {
+        tag: "unit",
+        id: "Kreg_a_shar_Trr",
+        type: "Orcish Warrior",
+        side: 2,
+        x: 14,
+        y: 2,
+        name: _("Kreg’a’shar Trr"),
+      },
+      {
+        tag: "unit",
+        id: "Drogan",
+        type: "Sergeant",
+        side: 3,
+        x: 5,
+        y: 18,
+        name: _("Drogan"),
+      },
+      {
+        tag: "unit",
+        id: "u_4",
+        type: "Swordsman",
+        side: 3,
+        x: 14,
+        y: 16,
+      },
+      {
+        tag: "unit",
+        id: "u_5",
+        type: "Spearman",
+        side: 3,
+        x: 8,
+        y: 15,
+      },
+      {
+        tag: "unit",
+        id: "u_6",
+        type: "Spearman",
+        side: 3,
+        x: 6,
+        y: 12,
+      },
+      {
+        tag: "unit",
+        id: "Dela_Keshar",
+        type: "Frontier Baroness",
+        side: 0,
+        x: 3,
+        y: 16,
+      },
+      {
+        tag: "event",
+        id: "carryover_21",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.8,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: 0.5,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "offensive",
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,,,0,4,%7B%22id%22%3A%5B%22Malin%20Keshar%22%5D%7D;avoid,20,13,0,10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_22",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "elvish-theme.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Malin Keshar was born ten years after the death of Haldric IV. He grew up in the northern border town of Parthyn, the second child and eldest son of the city’s baron. Every summer, by the time the mountainous paths and high passes shed their wintry gowns of snow, orcs descended from the northern hills to ravage the settlements at the frontier. Every year, Malin’s father led the townsfolk to repel the raids and force the orcs to retreat back to the north."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_23",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("When Malin was ten, a passing mage sensed strong magical abilities in the boy and suggested he be sent to the Isle of Alduin for training in the magical arts. Malin studied there for eight years, learning all manner of magic from basic control over the elements, to the mystic arts and scrying, to alchemy and simple medicine."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_24",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Although his life on Alduin was luxurious and peaceful, Malin found the teachings of the scholarly mages to be too philosophical for his tastes. His thoughts turned back to Parthyn, where more practical magics were necessary to drive off the orcs. Malin began to research these magics on his own, but his lack of patience and general indiscretion eventually led to several confrontations with his teachers and other students. Believing Malin to be too reckless, the mages expelled him from Alduin."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_25",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("When Malin returned to Parthyn, orcs had already begun to attack the city. Although he tried his best to fight them off, the raids were far more relentless and the town guard was far weaker than he had remembered. One night, a particularly powerful band of orcs overran the city walls and Malin could only watch as his father was cut down by one of the savage orcish warriors."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_26",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Shaken by the loss of their commander, the human defense began to falter. The orcs roared in anticipation of victory, but before they could overrun the city, skeleton warriors poured out of the woods to their rear. The undead cut down orc after orc, swords and axes hacking through flesh and bone with ruthless efficiency. The soldiers watched in half amazement, half fear as the orcs dropped and the skeletons turned toward them, empty eyes bleeding with fetid magic. All was dreadfully still as the blood and carnage settled in the rank darkness."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_27",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("The silence was broken by the irregular shuffle of a man emerging from the trees. He stood before them, a hunched figure with a rasping voice reminiscent of crackling bones. <i>“I am Darken Volk. While I know you do not love my kind, I think it is vital that we put aside our differences. The orcish menace grows in the north and they will soon return in even greater force. You cannot hope to defend against them without my... help. For now, I ask only to refresh myself in your town.”</i>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_28",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Drogan, the captain of the guard, replied, <i>“Nay, ye surely know that tha law says tha penalty fer necromancy be death. But, since you’ve saved our town, I’ll let ya rest here fer up ta three days. After, I’m banishin’ ya from Parthyn. Should ye return, we’ll attack ya on sight.”</i>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_29",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Malin, troubled by his father’s death and the strength of the orcish assault, argued to no avail that Darken Volk be allowed to stay. After a couple days, the necromancer left Parthyn without incident."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_30",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Malin_Keshar,u_1,u_2,u_3,Kreg_a_shar_Trr,Drogan,u_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_31",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 13,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defend the river fort for two nights Kill the orcish leader"),
+        defeat: _("Orcs reach the outskirts of Parthyn Death of Malin Keshar Death of Dela Keshar Death of Drogan"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "northerners.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "loyalists.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "battle.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "malin_used_necromancy",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "set_variable",
+            name: "monolith",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Dela Keshar",
+            text: _("You really think it was a good idea to send out a raidin’ party right after the orcs just attacked us? Father isn’t even here with us any more..."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Nor is Darken Volk. We are truly defenseless."),
+          },
+          {
+            tag: "message",
+            speaker: "Dela Keshar",
+            text: _("Not like we even need him. No way we’re trusting a necromancer."),
+          },
+          {
+            tag: "message",
+            speaker: "Drogan",
+            text: _("Quit bickerin’, you two. With most o’ them orcs dead now, their camps will be lots weaker. Our raiders will clear ’em out and leave us a quiet summer."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 13,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("So much for quiet, Drogan. Orcs amass north of the river!"),
+          },
+          {
+            tag: "message",
+            speaker: "Drogan",
+            text: _("What? Curses! Why be thar still so many o’ ’em?"),
+          },
+          {
+            tag: "message",
+            speaker: "Dela Keshar",
+            text: _("Well ya sent out a bunch of our soldiers before we even started ta fix the city walls..."),
+          },
+          {
+            tag: "message",
+            speaker: "Drogan",
+            text: _("Quiet, you. Malin, you’ve got ta hold tha river fort or they’ll overrun us. Tha raidin’ party should be back in two days ta help us fight ’em off. Fer now, I’ll send tha remaining guards to help ya."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "recruit",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Walking%20Corpse%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Drogan",
+            text: _("What in blazes is that... that thing? Has tha necromancer returned already? His timin’ couldn’t be any worse..."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("No, Drogan. I raised this corpse with the skills Darken Volk taught me before he left. I have no love for it, but we need to take action, or we’ll never be able to repel the orcs!"),
+          },
+          {
+            tag: "message",
+            speaker: "Drogan",
+            text: _("I’m ’shamed of ya, Malin. Even if it’d ensure our survival, nothin’ good ever comes of necromancy. The moment ya use it, you’ve already sold yer soul ta black magic!"),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("What?! I am hardly evil, Drogan!"),
+          },
+          {
+            tag: "message",
+            speaker: "Drogan",
+            text: _("Ya say that, but you’ve been very quiet ’bout why tha mages sent you home from Alduin. I’m beginning ta think you were already dabblin’ in this witchcraft even before ya met that necromancer!"),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("No! No... it was something stupid, something silly... it does not matter now! I’ll not stand by and allow the orcs to destroy my home while I have the power to prevent it!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "malin_used_necromancy",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 16,
+            y: 15,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "scenery/signpost.png",
+            text: _("Welcome to Parthyn"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 19,
+            y: 16,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Ignorance is the parent of fear."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "malin",
+            kill: "no",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "set_variable",
+            name: "experience_gained",
+            value: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "malin.experience",
+            value: "$experience_gained|",
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "malin",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 29,
+            y: 14,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("A monolith of pale stone, luminous and bright, but cold and brittle to the touch."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "monolith",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "malin",
+            kill: "no",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "set_variable",
+            name: "experience_gained",
+            value: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "malin.experience",
+            value: "$experience_gained|",
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "malin",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 30,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "zombie-hit-1.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Soulless",
+            side: 1,
+            x: 30,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Someone left a dead fish here."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 2,
+            x: "-1-16",
+            y: "12-19",
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("The orcs have broken through. Parthyn is open to attack!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Drogan%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Who will be left to defend Parthyn?"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Dela%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I’m... dying..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "Soldier",
+            type: "Swordsman",
+            side: 3,
+            x: 4,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Soldier",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Longbowman",
+            side: 3,
+            x: 5,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Javelineer",
+            side: 3,
+            x: 5,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+          {
+            tag: "message",
+            speaker: "Soldier",
+            text: _("We’re back from the raid, Drogan. Seems like we made it just in time!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kreg'a'shar Trr",
+            text: _("More humans! We’ll need more fighters to squash ’em all. Grunts, retreat!"),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("The orcs are dead!"),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_18",
+        on: "branch_if_18",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "malin_used_necromancy",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Drogan",
+            text: _("By all rights, Malin, I should have ya kill’d on tha spot. I can’t believe ya let that necromancer corrupt you. I s’ppose part o’ this is my fault since I let ’im into Parthyn, but still... Since I showed ’im mercy, I’ll show ya the same. I’m banishin’ you from Parthyn."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Fine words, Drogan. Would you rather have let the orcs overrun the town?"),
+          },
+          {
+            tag: "message",
+            speaker: "Drogan",
+            text: _("Aye, better that than ta even dabble in dark magic. We woulda rebuilt this place like always. Even if I died, ’least it woulda been with dignity. Too bad tha mages didn’t teach ya more sense."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("I only did it to protect what I care about! Is this really what I deserve for saving your hides?"),
+          },
+          {
+            tag: "message",
+            speaker: "Drogan",
+            text: _("Yes, yes it is. Nobody’ll support ya on yer crazy path to depravity."),
+          },
+          {
+            tag: "message",
+            text: _("We should all be glad to see you gone, necromancer. I detest having fought by your side."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Dela? Sister?"),
+          },
+          {
+            tag: "message",
+            speaker: "Dela Keshar",
+            text: _("Well..."),
+          },
+          {
+            tag: "message",
+            speaker: "Drogan",
+            text: _("Ya can’t support ’im on this one, Dela."),
+          },
+          {
+            tag: "message",
+            speaker: "Dela Keshar",
+            text: _("I... guess you’re right. You’ve decided your magic is more important than us, Malin. I can’t help you."),
+          },
+          {
+            tag: "message",
+            speaker: "Drogan",
+            text: _("Begone, Malin. I’ve no wish to see yer face around here ever again."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_19",
+        on: "branch_if_19",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "malin_used_necromancy",
+            not_equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Drogan",
+            text: _("Bravely done holdin’ off them orcs by yerself, Malin. But we’re not outta trouble yet. The raidin’ party reports that more warlords be gatherin’ their armies in the hills, just a few days north o’ tha Great River. I don’t know if we can fight ’em all off."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Then we must seek help. It has not been long since Darken Volk’s departure. Perhaps I can find him and ask him to aid us."),
+          },
+          {
+            tag: "message",
+            speaker: "Drogan",
+            text: _("I’ll pretend like I didn’t hear that."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Then what would you have us do, Drogan? Let the orcs overrun Parthyn? Abandon our families to those savages?"),
+          },
+          {
+            tag: "message",
+            speaker: "Drogan",
+            text: _("Yes. Leave Parthyn fer now and rebuild later, like we always do."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Or we can drive off the orcs altogether and make sure they never attack us again. Surely I cannot be the only one who sees that what Drogan says is madness!"),
+          },
+          {
+            tag: "message",
+            speaker: "Drogan",
+            text: _("If ya go out on a quest to seek depravity, none o’ us will support ya."),
+          },
+          {
+            tag: "message",
+            text: _("Better to die than to ally ourselves with a necromancer."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Dela? Sister?"),
+          },
+          {
+            tag: "message",
+            speaker: "Dela Keshar",
+            text: _("I hope that you’ll stay with us, Malin. Be reasonable."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Be reasonable? I am the only one who sees reason here. If no one will help me, I will go by myself."),
+          },
+          {
+            tag: "message",
+            speaker: "Dela Keshar",
+            text: _("Malin, seekin’ out the help of a necromancer is just... just foolhardy! We need ya here to help protect the town!"),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("You will eventually see that I am right, Dela. I am resolved."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22animate%22%3A%22no%22%2C%22fire_event%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_18",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_19",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            side: 1,
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22race%22%3A%22human%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22id%22%3A%22Malin%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Malin%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I’m not ready to die yet..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

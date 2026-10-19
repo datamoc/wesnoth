@@ -1,0 +1,2145 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Proven by the Sword"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good",
+        gold: 50,
+        recruit: "Spearman,Bowman",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "bandits",
+        gold: 40,
+        recruit: "Walking Corpse",
+        leader: "Urza_Fastik",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "null",
+        team_name: "good",
+      },
+      {
+        tag: "map",
+        id: "scenario_02_Proven_by_the_Sword",
+        file: "02_Proven_by_the_Sword.map",
+      },
+      {
+        tag: "unit",
+        id: "Urza_Fastik",
+        type: "Trapper",
+        side: 2,
+        x: 6,
+        y: 14,
+        name: _("Urza Fastik"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_53",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_54",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Urza_Fastik,Mari,Mari,Minister_Hylas,Sir_Gerrick,Sir_Gerrick,Mari,Minister_Hylas",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_55",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 30,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat Urza Fastik"),
+        defeat: _("Death of Deoran Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Urza_Fastik",
+            object: "%7B%22id%22%3A%22side_traits_2%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%2C%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increaseDamage%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "legends_of_the_north.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "battle.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader2",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[spread_poison]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[high_xp_attack]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[combat]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "spread_poison",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "high_xp_attack",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "combat",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[leader_shares_keep]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "goal[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[grouping].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[aggression].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[caution].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[leader_value].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[leader_aggression].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_6",
+        on: "branch_if_6",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Walking Corpse",
+            side: 2,
+            x: 20,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_7",
+        on: "branch_if_7",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Walking Corpse",
+            side: 2,
+            x: 18,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_8",
+        on: "branch_if_8",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Walking Corpse",
+            side: 2,
+            x: 22,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_9",
+        on: "branch_if_9",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Walking Corpse",
+            side: 2,
+            x: 24,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_10",
+        on: "branch_if_10",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Walking Corpse",
+            side: 2,
+            x: 16,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_11",
+        on: "branch_if_11",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Walking Corpse",
+            side: 2,
+            x: 17,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Thug",
+            side: 2,
+            x: 8,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Thug",
+            side: 2,
+            x: 13,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Thug",
+            side: 2,
+            x: 11,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_10",
+            type: "Thug",
+            side: 2,
+            x: 9,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_11",
+            type: "Thug",
+            side: 2,
+            x: 9,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_11",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_12",
+            type: "Thug",
+            side: 2,
+            x: 4,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_12",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_6",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_7",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_8",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_9",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_10",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_11",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Thug",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_12",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Thug",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_13",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Thug",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_14",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Thug",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_15",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Thug",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Thug",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Hh",
+            cells: "13,6",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_19",
+        on: "branch_if_19",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "enable_tutorial_elements",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Let’s find out. Deoran, you and your men deal with this bandit. Anyone who dies to those zombies will become one themselves, so don’t be stupid and remember what we practiced: _ Defend at night, attack at day, and control villages for income. Withdraw your injured soldiers to villages for healing. And stand on good terrain like hills, villages, and castles, not bad terrain like water."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_20",
+        on: "branch_if_20",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "enable_tutorial_elements",
+            not_equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Let’s find out. Deoran, you and your men deal with this bandit. Anyone who dies to those zombies will become one themselves, so don’t be stupid."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_21",
+        on: "branch_if_21",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "enable_tutorial_elements",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("For with each fight, we gain experience and grow stronger! If I have any veteran soldiers from the last battle, I may wish to recall them so they can continue to gain experience and eventually gain a promotion."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "spawn",
+            id: "Mari",
+            type: "Veteran Fencer",
+            side: 3,
+            x: 33,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Mari",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Mari",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Mari",
+            x: 32,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 150,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Deoran",
+            unit: "Deoran",
+            x: 34,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Deoran",
+            x: 31,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 150,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Ke",
+            cells: "31,7",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 150,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Ce",
+            cells: "30,7",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 150,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Ce",
+            cells: "30,8",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 150,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Ce",
+            cells: "31,8",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 150,
+          },
+          {
+            tag: "message",
+            speaker: "Urza Fastik",
+            text: _("What’s this? Soldiers on the road from Tahn — that can only mean my brother Mathin is dead! Curses... the master should never have sent him here alongside me."),
+          },
+          {
+            tag: "message",
+            speaker: "Urza Fastik",
+            text: _("I will avenge him. You fools will get no further, for I am second of the Urza brothers, and much more powerful than my late elder. Behold!"),
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Urza Fastik",
+          },
+          {
+            tag: "spawn",
+            id: "u_13",
+            type: "Walking Corpse",
+            side: 2,
+            x: 5,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_13",
+          },
+          {
+            tag: "spawn",
+            id: "u_14",
+            type: "Walking Corpse",
+            side: 2,
+            x: 4,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_14",
+          },
+          {
+            tag: "spawn",
+            id: "u_15",
+            type: "Walking Corpse",
+            side: 2,
+            x: 6,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_15",
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("Another Urza brother, augmenting his ranks with the restless dead. The brothers must have been waiting on the road for travelers, ambushing civilians and raising their corpses as minions."),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("I know banditry is not uncommon in the lawless south, but necromancy!? Where is the rest of the South Guard? How have things gotten so far out of control?"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_19",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_20",
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Meanwhile, I’ll sneak past and get in contact with Westin — someone in town better know what’s going on here. If we’re lucky, I’ll return with reinforcements."),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("Going alone? That sounds dangerous. What happened to staying an observer?"),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Mari",
+            x: 19,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_mari",
+            kill: "yes",
+            id: "Mari",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("Well then. I hope Mari returns with the rest of the South Guard, but I shouldn’t count on it. I may only be a junior commander, but this outlaw underestimates me if he thinks I can’t beat him on my own."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_21",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "capture",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_capturer_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("Good, we’ve captured a village! The little flag waving from it will serve as a reminder that it’s under our control. It will remain that way until an enemy moves into it. _ Each village we control provides upkeep and generates gold, which I can use to recruit new soldiers."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent%22%2C%22attributes%22%3A%7B%22type%22%3A%22Walking%20Corpse%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Ha, this zombie is so slow and weak! Usually, moving next to an enemy unit prevents me from moving any further. But this frail, feeble Walking Corpse is easy to outmaneuver."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _Unlike most units, level 0 units (such as Walking Corpses) do not exert a Zone of Control. Your units can move freely around them.</span>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 4,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I’m nearly blind in this nighttime gloom... If we don’t keep our distance from the undead, we’re going to get massacred!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 6,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("Dawn breaks — the heroes grow strong while the villains grow weak. Men of the South Guard, now is our time to attack!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "new_turn",
+        once: false,
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "attack_end",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "time_of_day.id",
+                equals: "first_watch",
+              },
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22time_of_day.id%22%2C%22equals%22%3A%22second_watch%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unfavorable_attacks",
+            value: 1,
+            mode: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28_1",
+        on: "new_turn",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+              {
+                tag: "variable",
+                name: "unfavorable_attacks",
+                greater_than_or_equal_to: 6,
+              },
+              {
+                tag: "variable",
+                name: "zombie_tod_explained",
+                not_equals: "yes",
+              },
+              {
+                tag: "have_unit",
+                side: 2,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Urza Fastik",
+            text: _("Ah, excellent! The South Guard fights my warriors at night, when we are at our best! I am fortunate that their commander is so inexperienced."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "zombie_tod_explained",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29_2",
+        on: "side_turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+              {
+                tag: "variable",
+                name: "unfavorable_attacks",
+                greater_than_or_equal_to: 6,
+              },
+              {
+                tag: "variable",
+                name: "zombie_tod_explained",
+                not_equals: "yes",
+              },
+              {
+                tag: "have_unit",
+                side: 2,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Urza Fastik",
+            text: _("Ah, excellent! The South Guard fights my warriors at night, when we are at our best! I am fortunate that their commander is so inexperienced."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "zombie_tod_explained",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30_1",
+        on: "prestart",
+        once: false,
+        children: [
+          {
+            tag: "set_variable",
+            name: "unfavorable_attacks",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31_2",
+        on: "side_turn_end",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "unfavorable_attacks",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_33",
+        on: "attack_end",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "time_of_day.id",
+                equals: "morning",
+              },
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22time_of_day.id%22%2C%22equals%22%3A%22afternoon%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "favorable_attacks",
+            value: 1,
+            mode: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "new_turn",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+              {
+                tag: "variable",
+                name: "favorable_attacks",
+                greater_than_or_equal_to: 6,
+              },
+              {
+                tag: "variable",
+                name: "zombie_tod_explained",
+                not_equals: "yes",
+              },
+              {
+                tag: "have_unit",
+                type: "Walking Corpse",
+                side: 2,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Urza Fastik",
+            text: _("Idiot corpses, what are you doing? Don’t fight the South Guard during the day, when they’re at their best! ...how do I control these blasted things?"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "zombie_tod_explained",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35_1",
+        on: "prestart",
+        once: false,
+        children: [
+          {
+            tag: "set_variable",
+            name: "favorable_attacks",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36_2",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "set_variable",
+            name: "favorable_attacks",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_38",
+        on: "attack_end",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22W*%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Wwf%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22canrecruit%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Cer%5E*%2CH*%5E*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "water_attacks",
+            value: 1,
+            mode: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_39",
+        on: "attack_end",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22canrecruit%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Cer%5E*%2CH*%5E*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22W*%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Wwf%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "water_attacks",
+            value: 1,
+            mode: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_41",
+        on: "branch_if_41",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "time_of_day.id",
+            equals: "morning",
+          },
+          {
+            tag: "condition",
+            variable: "time_of_day.id",
+            equals: "afternoon",
+          },
+          {
+            tag: "message",
+            speaker: "Urza Fastik",
+            text: _("If only it weren’t daytime, this would be the perfect fight for me..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_42",
+        on: "branch_if_42",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "time_of_day.id",
+            equals: "first_watch",
+          },
+          {
+            tag: "condition",
+            variable: "time_of_day.id",
+            equals: "second_watch",
+          },
+          {
+            tag: "message",
+            speaker: "Urza Fastik",
+            text: _("And in the middle of the night too! This is the perfect fight for me!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40_1",
+        on: "new_turn",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+              {
+                tag: "variable",
+                name: "water_attacks",
+                greater_than_or_equal_to: 2,
+              },
+              {
+                tag: "have_unit",
+                side: 2,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Urza Fastik",
+            text: _("Yes that’s right, you foolish South Guard commander! Fight waist-deep in the river while my bandits are safe in their encampments!"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _Most of your units have only a 20% chance to evade when standing in shallow water, while in encampment terrain most of the bandits have 60%. Fighting with your units on poor terrain isn’t always a bad idea, but it is often not worth the disadvantage to your troops.</span>"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_41",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_42",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_44",
+        on: "branch_if_44",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "time_of_day.id",
+            equals: "morning",
+          },
+          {
+            tag: "condition",
+            variable: "time_of_day.id",
+            equals: "afternoon",
+          },
+          {
+            tag: "message",
+            speaker: "Urza Fastik",
+            text: _("If only it weren’t daytime, this would be the perfect fight for me..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_45",
+        on: "branch_if_45",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "time_of_day.id",
+            equals: "first_watch",
+          },
+          {
+            tag: "condition",
+            variable: "time_of_day.id",
+            equals: "second_watch",
+          },
+          {
+            tag: "message",
+            speaker: "Urza Fastik",
+            text: _("And in the middle of the night too! This is the perfect fight for me!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_43_2",
+        on: "side_turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+              {
+                tag: "variable",
+                name: "water_attacks",
+                greater_than_or_equal_to: 2,
+              },
+              {
+                tag: "have_unit",
+                side: 2,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Urza Fastik",
+            text: _("Yes that’s right, you foolish South Guard commander! Fight waist-deep in the river while my bandits are safe in their encampments!"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _Most of your units have only a 20% chance to evade when standing in shallow water, while in encampment terrain most of the bandits have 60%. Fighting with your units on poor terrain isn’t always a bad idea, but it is often not worth the disadvantage to your troops.</span>"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_44",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_45",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_46_1",
+        on: "prestart",
+        once: false,
+        children: [
+          {
+            tag: "set_variable",
+            name: "water_attacks",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_47_2",
+        on: "side_turn_end",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "water_attacks",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_48",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_49",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "8-15",
+            y: "-1-4",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "turn_number",
+                less_than: 10,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Urza Fastik",
+            text: _("Hey, that’s not fair! I spent ages fortifying the road, you can’t just go around!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_50",
+        on: "turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 25,
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("I had better hurry and finish off this bandit! If I take too long he may decide to flee, and then I’ll never get the chance to find out what he knows!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "explain_turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_51",
+        on: "side_turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 30,
+          },
+          {
+            tag: "spawn",
+            id: "Mari",
+            type: "Veteran Fencer",
+            side: 3,
+            x: 1,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Mari",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Mari",
+          },
+          {
+            tag: "spawn",
+            id: "Minister_Hylas",
+            type: "White Mage",
+            side: 3,
+            x: 0,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Minister_Hylas",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Minister_Hylas",
+          },
+          {
+            tag: "spawn",
+            id: "Sir_Gerrick",
+            type: "Veteran Infantryman",
+            side: 3,
+            x: 0,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Sir_Gerrick",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Sir_Gerrick",
+          },
+          {
+            tag: "message",
+            speaker: "Sir Gerrick",
+            text: _("We’ve caught you at last, you outlaw! Prepare to meet your end!"),
+          },
+          {
+            tag: "message",
+            speaker: "Urza Fastik",
+            text: _("Gah, more soldiers from Westin... Forget this, I’m getting out of here while I still have the chance!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Urza Fastik",
+            x: 3,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22race%22%3A%22human%22%2C%22animate%22%3A%22no%22%2C%22fire_event%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("He’s gone! Good work defeating these undead, Deoran, but their leader has escaped..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_52",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Urza%20Fastik%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_achievement",
+            id: "tsg_s02",
+          },
+          {
+            tag: "message",
+            text: _("Even with the power of darkness at my command... No, I can’t die yet! I— I can still escape!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Urza Fastik",
+            x: 3,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 150,
+          },
+          {
+            tag: "hook",
+            name: "command:harm_unit",
+            amount: 4,
+            kill: "no",
+            animate: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Urza%20Fastik%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Urza Fastik",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 150,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 4,
+            y: 10,
+            item_name: "",
+            image: "scenery%2Fblood-1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Urza Fastik",
+            x: 1,
+            y: 8,
+          },
+          {
+            tag: "spawn",
+            id: "Sir_Gerrick",
+            type: "Veteran Infantryman",
+            side: 3,
+            x: 0,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Sir_Gerrick",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Sir_Gerrick",
+          },
+          {
+            tag: "message",
+            speaker: "Sir Gerrick",
+            text: _("Not so fast, outlaw — we’ve caught you at last! Time to clap you in irons."),
+          },
+          {
+            tag: "hook",
+            name: "command:harm_unit",
+            amount: 15,
+            slowed: "yes",
+            delay: 0,
+            kill: "no",
+            animate: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Urza%20Fastik%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Urza Fastik",
+            primary_attack_type: "impact",
+          },
+          {
+            tag: "message",
+            speaker: "Urza Fastik",
+            text: _("Urgh! Get these chains... off me..."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 150,
+          },
+          {
+            tag: "spawn",
+            id: "Mari",
+            type: "Veteran Fencer",
+            side: 3,
+            x: 0,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Mari",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Mari",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Mari",
+            x: 2,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mari",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 150,
+          },
+          {
+            tag: "spawn",
+            id: "Minister_Hylas",
+            type: "White Mage",
+            side: 3,
+            x: 0,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Minister_Hylas",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Minister_Hylas",
+          },
+          {
+            tag: "message",
+            speaker: "Mari",
+            text: _("Minister, don’t let him die! This is our best chance to finally get some answers."),
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: 8,
+            animate: "yes",
+            restore_statuses: "no",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Urza%20Fastik%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Urza Fastik",
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            portrait: "portraits/deoran-glad.webp",
+            text: _("Mari, you’ve returned! And these must be the South Guard officers we were sent here to meet."),
+          },
+          {
+            tag: "message",
+            speaker: "Minister Hylas",
+            text: _("Minister Hylas, archivist and local medic. A pleasure to make your acquaintance, Lieutenant Deoran."),
+          },
+          {
+            tag: "message",
+            speaker: "Sir Gerrick",
+            text: _("Aye, an’ I’m Sir Gerrick, infantry commander o’ the South Guard! But now ain’t the time for talk — let’s get this prisoner back t’ town, and finally get some answers out o’ him."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+    ],
+  },
+]

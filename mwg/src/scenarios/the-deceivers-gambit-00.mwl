@@ -1,0 +1,2992 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Graduation"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "alduin",
+        gold: 0,
+        leader: "Delfador",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "alduin",
+        gold: 0,
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "monsters",
+        gold: 0,
+      },
+      {
+        tag: "map",
+        id: "scenario_00_Graduation",
+        file: "00_Graduation.map",
+      },
+      {
+        tag: "unit",
+        id: "Delfador",
+        type: "Delfador L1",
+        side: 1,
+        x: 0,
+        y: 0,
+        name: _("Apprentice"),
+      },
+      {
+        tag: "event",
+        id: "carryover_50",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,,,0,999,%7B%22id%22%3A%5B%22Delfador%22%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_51",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Delfador,Methor,Leollyn,Saegwylyn",
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Reach the blue orb at the east edge of the map"),
+        defeat: _("Death of the Apprentice Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "silence.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: "25-26",
+            y: "0-2",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<i>In honor of master Heryera, who gave her life in defense of Elensefar against the lich Ras-Tabahn.</i>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "start",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "if_6",
+        on: "branch_if_6",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "consecutive_delfador_hits",
+            less_than: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Delfador",
+            object: "%7B%22id%22%3A%22force_cth_delfador%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_7",
+        on: "branch_if_7",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "consecutive_delfador_hits",
+            greater_than_or_equal_to: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Delfador",
+            object: "%7B%22id%22%3A%22force_cth_delfador%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "attack_end",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_delfador",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "attack",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_delfador",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_6",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_7",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_10",
+        on: "branch_if_10",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "consecutive_delfador_hits",
+            less_than: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Delfador",
+            object: "%7B%22id%22%3A%22force_cth_delfador%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_11",
+        on: "branch_if_11",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "consecutive_delfador_hits",
+            greater_than_or_equal_to: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Delfador",
+            object: "%7B%22id%22%3A%22force_cth_delfador%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "unit_hits",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            unit: "Delfador",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "consecutive_delfador_hits",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_delfador",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_10",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_11",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "consecutive_delfador_hits",
+            less_than: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Delfador",
+            object: "%7B%22id%22%3A%22force_cth_delfador%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "consecutive_delfador_hits",
+            greater_than_or_equal_to: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Delfador",
+            object: "%7B%22id%22%3A%22force_cth_delfador%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "unit_misses",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            unit: "Delfador",
+          },
+          {
+            tag: "set_variable",
+            name: "consecutive_delfador_hits",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_delfador",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_13",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_14",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Mudcrawler",
+            side: 3,
+            x: 2,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Mudcrawler",
+            side: 3,
+            x: 5,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Mudcrawler",
+            side: 3,
+            x: 9,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 29,
+            y: 6,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 29,
+            y: 6,
+            item_name: "",
+            image: "items%2Fball-blue.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 2,
+            item_name: "",
+            image: "scenery%2Fs00-terrain.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 25,
+            y: 1,
+            item_name: "",
+            image: "scenery%2Fbookshelves.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 24,
+            y: 2,
+            item_name: "",
+            image: "scenery%2Ffountain-%5B01~13%5D.png%3A100",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 27,
+            y: 3,
+            item_name: "",
+            image: "scenery%2Fstatue-alduin.png",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_magic_missile",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_levitate",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "skill_magic_missile",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "skill_levitate",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:put_to_recall_list",
+            id: "Delfador",
+            filter: "%7B%22tag%22%3A%22put_to_recall_list%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%7D%2C%22children%22%3A%5B%5D%7D",
+            heal: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "no_spellcasting_event",
+            value: "dummy",
+            mode: "value",
+          },
+          {
+            tag: "set_variable",
+            name: "consecutive_delfador_hits",
+            value: 1,
+          },
+          {
+            tag: "spawn",
+            id: "Methor",
+            type: "Mage of Light",
+            side: 2,
+            x: 8,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Methor",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Methor",
+          },
+          {
+            tag: "spawn",
+            id: "Leollyn",
+            type: "Arch Mage",
+            side: 2,
+            x: 10,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Leollyn",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Leollyn",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Leollyn%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Leollyn",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "spawn",
+            id: "Saegwylyn",
+            type: "Silver Mage",
+            side: 2,
+            x: 12,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Saegwylyn",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Saegwylyn",
+          },
+          {
+            tag: "spawn",
+            id: "Mirya",
+            type: "Mage",
+            side: 2,
+            x: 16,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Mirya",
+          },
+          {
+            tag: "spawn",
+            id: "Rolyn",
+            type: "Mage",
+            side: 2,
+            x: 18,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Rolyn",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Mage",
+            side: 2,
+            x: 27,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.name",
+                value: "Apprentice",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Mudcrawler",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_15",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Mudcrawler",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Mudcrawler",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Eyestalk",
+            side: 3,
+            x: 12,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Eyestalk",
+            side: 3,
+            x: 13,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Eyestalk",
+            side: 3,
+            x: 15,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Eyestalk",
+            side: 3,
+            x: 16,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Eyestalk",
+            side: 3,
+            x: 19,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Leollyn",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.name",
+                value: "The Author",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Leollyn",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.name",
+                value: "Leollyn",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "cry_from_elensefar.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "message",
+            speaker: "Methor",
+            text: _("Faster, faster! The wraiths will soon be upon you!"),
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Delfador",
+            unit: "Delfador",
+            x: 1,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Delfador",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.experience",
+                value: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "refresh_delfador_skills",
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Hey, how was I supposed to know the halfway cave was warded! All I did was throw a few celebratory firebolts! For the spectators, you know?"),
+          },
+          {
+            tag: "message",
+            speaker: "Methor",
+            text: _("Just hurry and get to the dispel orb!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "side_turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Methor",
+            text: _("Out of all the masters in Alduin, why did the sages curse me with the most reckless apprentice in all Wesnoth?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "fire.wav",
+          },
+          {
+            tag: "spawn",
+            id: "u_10",
+            type: "Fire Guardian",
+            side: 3,
+            x: 0,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_10",
+          },
+          {
+            tag: "spawn",
+            id: "u_11",
+            type: "Fire Guardian",
+            side: 3,
+            x: 0,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_11",
+          },
+          {
+            tag: "spawn",
+            id: "u_12",
+            type: "Fire Wraith",
+            side: 3,
+            x: 0,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_12",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type_adv_tree%22%3A%22Fire%20Guardian%22%7D%2C%22children%22%3A%5B%5D%7D",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22movement%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "message",
+            speaker: "Methor",
+            text: _("The wraiths are catching up! Keep moving!"),
+          },
+          {
+            tag: "message",
+            speaker: "Saegwylyn",
+            text: _("10 copper says he tries to firebolt them again..."),
+          },
+          {
+            tag: "message",
+            speaker: "Methor",
+            text: _("Ignore her. You’re making good time so far — now cast Levitate and slip past the eyestalks! You may need to cast it several turns in a row to keep ahead of the wraiths."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Levitate? Master, are you sure?"),
+          },
+          {
+            tag: "message",
+            speaker: "Methor",
+            text: _("Oh for the love of— remember what happened last time you tried to fight? Just do it!"),
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Delfador",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "refresh_spellcasting_rightclick_menu",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21_1",
+        on: "attacker_hits",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "Delfador",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "attack_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22range%22%3A%22ranged%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22type_adv_tree%22%3A%22Fire%20Guardian%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Methor",
+            text: _("All right, all right! It’s just as you said."),
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "gold.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "Saegwylyn",
+            text: _("10 more copper for me!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_achievement",
+            id: "tdg_s00",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22_2",
+        on: "attacker_misses",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "Delfador",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "attack_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22range%22%3A%22ranged%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22type_adv_tree%22%3A%22Fire%20Guardian%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Methor",
+            text: _("All right, all right! It’s just as you said."),
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "gold.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "Saegwylyn",
+            text: _("10 more copper for me!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_achievement",
+            id: "tdg_s00",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "skill_levitate_complete",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Saegwylyn",
+            text: _("So he does know proper magic after all. It only took four failed exams..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "new_turn",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "unit_exists",
+                exists: "yes",
+                id: "Delfador",
+                x: "20-98",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Methor",
+            x: 11,
+            y: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Methor",
+            text: _("Almost there! Just fly across the chasm and touch the orb — and make sure your levitate spell doesn’t end over lava!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            unit: "Mirya,Rolyn",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%2229-30%22%2C%22y%22%3A%229%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "$unit.id",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Hello, my adoring fans!"),
+          },
+          {
+            tag: "message",
+            speaker: "Mirya",
+            text: _("Hey, what’re you doing! This isn’t the normal route!"),
+          },
+          {
+            tag: "message",
+            speaker: "Rolyn",
+            text: _("We’d better get out of here. Remember what happened on his last exam?"),
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 2,
+            ai_type: "goto",
+            action: "add",
+            filter: "%7B%22id%22%3A%22Mirya%2CRolyn%22%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2216%22%2C%22y%22%3A%2212%22%2C%22radius%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28_1",
+        on: "attacker_hits",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            type: "Mage",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type_adv_tree%22%3A%22Fire%20Guardian%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24second_unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$second_unit.id",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:put_to_recall_list",
+            id: "$second_unit.id",
+            filter: "%7B%22tag%22%3A%22put_to_recall_list%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24second_unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            heal: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: "full",
+            restore_statuses: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24second_unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$second_unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29_2",
+        on: "attacker_misses",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            type: "Mage",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type_adv_tree%22%3A%22Fire%20Guardian%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24second_unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$second_unit.id",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:put_to_recall_list",
+            id: "$second_unit.id",
+            filter: "%7B%22tag%22%3A%22put_to_recall_list%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24second_unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            heal: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: "full",
+            restore_statuses: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24second_unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$second_unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_31",
+        on: "branch_if_31",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "x1",
+            greater_than: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Methor",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_32",
+        on: "branch_if_32",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "x1",
+            less_than_or_equal_to: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Methor",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_33",
+        on: "branch_if_33",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "x1",
+            greater_than: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Leollyn",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_34",
+        on: "branch_if_34",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "x1",
+            less_than_or_equal_to: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Leollyn",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_35",
+        on: "branch_if_35",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "x1",
+            greater_than: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Saegwylyn",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_36",
+        on: "branch_if_36",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "x1",
+            less_than_or_equal_to: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Saegwylyn",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_37",
+        on: "branch_if_37",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "x1",
+            greater_than: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Rolyn",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_38",
+        on: "branch_if_38",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "x1",
+            less_than_or_equal_to: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Rolyn",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_39",
+        on: "branch_if_39",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "x1",
+            greater_than: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mirya",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_40",
+        on: "branch_if_40",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "x1",
+            less_than_or_equal_to: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mirya",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            unit: "Delfador",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_31",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_32",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_33",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_34",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_35",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_36",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_37",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_38",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_39",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_40",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_42",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: "25-26",
+            y: "0-2",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<i>In honor of master Heryera, who gave her life in defense of Elensefar against the lich Ras-Tabahn.</i>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_41",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 28,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "skill-shield.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 29,
+            y: 6,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 29,
+            y: 6,
+            item_name: "",
+            image: "items%2Fball-green.png",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "skill_levitate",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22type%22%3A%22Fire%20Guardian%2CFire%20Wraith%2CMudcrawler%22%2C%22animate%22%3A%22yes%22%2C%22fire_event%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Delfador",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Yes! I’ve made it! This time has to be good enough."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "message",
+            speaker: "Leollyn",
+            text: _("<span size='small'>_Well, what do you think?</span>"),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Saegwylyn",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "nw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Methor",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "nw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Saegwylyn",
+            text: _("<span size='small'>_I say no. A mage needs wisdom; this apprentice cares only for his own amusement. This one is a petty magician, not a wise sage or advisor of kings.</span>"),
+          },
+          {
+            tag: "message",
+            speaker: "Methor",
+            text: _("<span size='small'>_I say yes. I admit my apprentice enjoys the spotlight more than most, but with this much magical aptitude who wouldn’t want to show off?</span>"),
+          },
+          {
+            tag: "message",
+            speaker: "Methor",
+            text: _("<span size='small'>_I think it’s obvious this is one of the most gifted magi we’ve trained in years. The skill is innate; the wisdom will come with time.</span>"),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Leollyn",
+            text: _("<span size='small'>_So mine is the deciding vote. Very well, I’ve made up my mind.</span>"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_unit_hidden",
+            id: "Leollyn",
+            hidden: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "Leollyn",
+            x: 25,
+            y: 6,
+            to_x: 24,
+            to_y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Leollyn",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Delfador",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_unit_hidden",
+            id: "Leollyn",
+            hidden: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "fade_duration_remaining",
+            value: 1000,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "fade_duration_remaining",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "fade_duration_remaining",
+                value: 5,
+                mode: "sub",
+              },
+              {
+                tag: "set_variable",
+                name: "volume",
+                value: 100,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "volume",
+                value: "$fade_duration_remaining",
+                mode: "multiply",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "volume",
+                value: 1000,
+                mode: "divide",
+              },
+              {
+                tag: "hook",
+                name: "command:volume",
+                music: "$volume",
+              },
+              {
+                tag: "hook",
+                name: "command:delay",
+                time: 5,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:volume",
+            music: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "decoherence.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:set_unit_hidden",
+            hidden: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "set_variable",
+            name: "fade_duration_remaining",
+            value: 100,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "fade_duration_remaining",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "fade_duration_remaining",
+                value: 5,
+                mode: "sub",
+              },
+              {
+                tag: "set_variable",
+                name: "volume",
+                value: 100,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "volume",
+                value: "$fade_duration_remaining",
+                mode: "multiply",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "volume",
+                value: 100,
+                mode: "divide",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "volume",
+                value: "$(100-$volume)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:volume",
+                music: "$volume",
+              },
+              {
+                tag: "hook",
+                name: "command:delay",
+                time: 5,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:volume",
+            music: 100,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("<i>The Deceiver weaves the twine encircling the puppets in the court of royals.</i>"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("<i>Fatherless prince and sovereignless king, the balance of man hangs upon this thread.</i>"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("<i>Should force and fire brandish themselves where wisdom and pity are left wanting, this string of fate shall inexorably be sundered.</i>"),
+          },
+          {
+            tag: "set_variable",
+            name: "fade_duration_remaining",
+            value: 500,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "fade_duration_remaining",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "fade_duration_remaining",
+                value: 5,
+                mode: "sub",
+              },
+              {
+                tag: "set_variable",
+                name: "volume",
+                value: 100,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "volume",
+                value: "$fade_duration_remaining",
+                mode: "multiply",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "volume",
+                value: 500,
+                mode: "divide",
+              },
+              {
+                tag: "hook",
+                name: "command:volume",
+                music: "$volume",
+              },
+              {
+                tag: "hook",
+                name: "command:delay",
+                time: 5,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:volume",
+            music: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 29,
+            y: 6,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 29,
+            y: 6,
+            item_name: "",
+            image: "items%2Fball-blue.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 2,
+            item_name: "",
+            image: "scenery%2Fs00-terrain.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 25,
+            y: 1,
+            item_name: "",
+            image: "scenery%2Fbookshelves.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 24,
+            y: 2,
+            item_name: "",
+            image: "scenery%2Ffountain-%5B01~13%5D.png%3A100",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 27,
+            y: 3,
+            item_name: "",
+            image: "scenery%2Fstatue-alduin.png",
+          },
+          {
+            tag: "hook",
+            name: "command:set_unit_hidden",
+            hidden: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "fade_duration_remaining",
+            value: 100,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "fade_duration_remaining",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "fade_duration_remaining",
+                value: 5,
+                mode: "sub",
+              },
+              {
+                tag: "set_variable",
+                name: "volume",
+                value: 100,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "volume",
+                value: "$fade_duration_remaining",
+                mode: "multiply",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "volume",
+                value: 100,
+                mode: "divide",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "volume",
+                value: "$(100-$volume)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:volume",
+                music: "$volume",
+              },
+              {
+                tag: "hook",
+                name: "command:delay",
+                time: 5,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:volume",
+            music: 100,
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "traveling_minstrels.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 5,
+          },
+          {
+            tag: "message",
+            speaker: "Leollyn",
+            text: _("Apprentice! Are you listening? I’m trying to congratulate you!"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("But who— what— um, yes, I must have drifted off."),
+          },
+          {
+            tag: "message",
+            speaker: "Leollyn",
+            text: _("...as I was saying... apprentice, congratulations on your successful completion of the practical portion of your graduation exam! Now we proceed to the written section; please conjure your quill and parchment..."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Methor",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.side",
+                value: 1,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_43",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Oh no! Master, help!"),
+          },
+          {
+            tag: "message",
+            speaker: "Methor",
+            text: _("I’ll save you!"),
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:put_to_recall_list",
+            id: "$unit.id",
+            filter: "%7B%22tag%22%3A%22put_to_recall_list%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            heal: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: "full",
+            restore_statuses: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "STORE_UNIT_VAR_store",
+            kill: "no",
+            id: "Methor",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "x",
+            value: "$STORE_UNIT_VAR_store.x",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "STORE_UNIT_VAR_store",
+            kill: "no",
+            id: "Methor",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "y",
+            value: "$STORE_UNIT_VAR_store.y",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Delfador",
+            unit: "Delfador",
+          },
+          {
+            tag: "message",
+            speaker: "Methor",
+            text: _("(sigh) Not again! I suppose you’ll have to retry the exam next year... for the sixth time."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "herodeath_delfador12",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%2C%22level%22%3A%220-2%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("No, it can’t end yet! I have so much left to do..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "herodeath_delfador3",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%2C%22level%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("No! Magic, why have you failed me..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "herodeath_delfador4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%2C%22level%22%3A%224-99%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("If only I had been a little wiser..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "herodeath_methor",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Methor%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "message",
+            speaker: "Methor",
+            text: _("War, pain, death... I tried so hard to change things..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "herodeath_deoran",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Deoran%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("I have failed my kingdom and my duty..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_44",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Garard%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Garard",
+            text: _("A horse! A horse! My kingdom for a horse..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_45",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Asheviere%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Asheviere",
+            text: _("It’s finally over..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_46",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lionel%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Lionel",
+            text: _("Blasted orcs..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "herodeath_kalenz",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Nobody can cheat death forever..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "herodeath_chantal",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Chantal%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Chantal",
+            text: _("Deoran, I never had a chance to tell you—"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_47",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24companion_id%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lynyan%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_48",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24companion_id%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Barin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "message",
+            speaker: "Barin",
+            text: _("I shoulda never left my swamp..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_49",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kaylan%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "message",
+            speaker: "Kaylan",
+            text: _("I am grievously injured; I can be of no further aid in your quest. Fight on without me, Delfador!"),
+          },
+        ],
+      },
+    ],
+  },
+]

@@ -1,0 +1,730 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Rough Landing"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Haldric",
+        gold: 170,
+        leader: "Prince_Haldric",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "Naga",
+        gold: 110,
+        recruit: "Naga Fighter, Vampire Bat",
+        leader: "Abraxas",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "Naga",
+        gold: 110,
+        recruit: "Naga Fighter, Vampire Bat",
+        leader: "Xamalia",
+      },
+      {
+        tag: "side",
+        id: 4,
+        team_name: "Naga",
+        gold: 110,
+        recruit: "Naga Fighter, Vampire Bat",
+        leader: "Gaxmail",
+      },
+      {
+        tag: "map",
+        id: "scenario_14_Rough_Landing",
+        file: "14_Rough_Landing.map",
+      },
+      {
+        tag: "unit",
+        id: "Prince_Haldric",
+        type: "Noble Commander",
+        side: 1,
+        x: 9,
+        y: 26,
+        name: _("Prince Haldric"),
+      },
+      {
+        tag: "unit",
+        id: "Abraxas",
+        type: "Naga Warrior",
+        side: 2,
+        x: 22,
+        y: 25,
+        name: _("Abraxas"),
+      },
+      {
+        tag: "unit",
+        id: "Xamalia",
+        type: "Naga Warrior",
+        side: 3,
+        x: 20,
+        y: 5,
+        name: _("Xamalia"),
+      },
+      {
+        tag: "unit",
+        id: "Gaxmail",
+        type: "Naga Warrior",
+        side: 4,
+        x: 6,
+        y: 6,
+        name: _("Gaxmail"),
+      },
+      {
+        tag: "event",
+        id: "carryover_17",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.60,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_18",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/trow_intro_05.webp"),
+            text: _("After a particularly bad series of storms the Eldaric has taken on water, and much of the fleet has been scattered. Lord Typhon suggests stopping at a group of small windswept islands to regroup."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_19",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Prince_Haldric,Abraxas,Xamalia,Gaxmail,Familiar",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_20",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 25,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat all enemy leaders"),
+        defeat: _("Death of Prince Haldric Death of Lady Jessene Death of Lord Typhon Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "wanderer.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Prince%20Haldric%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("I can’t be finished yet... I still have so much more to do."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22King%20Eldaric%20IV%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("It is not yet my time! No!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Jessene%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! I’ll not go so easil—"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Outlaw%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Bah! I’m not dying today! <i>Poof</i>! (<i>The Lady Outlaw vanishes in a puff of smoke.</i>)"),
+          },
+          {
+            tag: "set_variable",
+            name: "have_lady",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "lady_store",
+            kill: "yes",
+            id: "Lady Outlaw",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Burin%20the%20Lost%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("Fool of a boy. I never should have followed him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ruddry%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Hail the Kings, may their bloodlines continue beyond my time!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ladoc%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("For Land and Lord, I sacrifice all!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Minister%20Edren%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("May the Lords of Light protect us all."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lord%20Typhon%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("Without him the bottoms of our ships will be completely vulnerable..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Lady Jessene",
+            unit: "Lady Jessene",
+            x: 8,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Burin the Lost",
+            unit: "Burin the Lost",
+            x: 8,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sir Ruddry",
+            unit: "Sir Ruddry",
+            x: 10,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sir Ladoc",
+            unit: "Sir Ladoc",
+            x: 10,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Minister Edren",
+            unit: "Minister Edren",
+            x: 10,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Lord Typhon",
+            unit: "Lord Typhon",
+            x: 10,
+            y: 24,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 10,
+            y: 27,
+            item_name: "",
+            image: "scenery%2Fgalleon.png~RC(magenta%3Ered)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Burin the Lost",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("I don’t think I can take much more of this. I’m feeling ill!"),
+          },
+          {
+            tag: "message",
+            speaker: "Lord Typhon",
+            text: _("Be careful, these islands aren’t safe. We’re in naga territory. But this is the only place to stop with soft sand beaches to make landfall... The nagas like to scavenge metal from ships that they capture here."),
+          },
+          {
+            tag: "message",
+            speaker: "Xamalia",
+            text: _("Prey! Get them!"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("The fleet must regroup here. We have to defeat these monsters."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "new_turn",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "turn_number",
+                greater_than_or_equal_to: "$serpent_spawn_turn_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "possible_serpent_locs",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22include_borders%22%3A%22no%22%2C%22terrain%22%3A%22Wo*%22%2C%22variable%22%3A%22possible_serpent_locs%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22radius%22%3A%229%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22radius%22%3A%2210%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "serpent_loc_i",
+            values: "0..$|($|possible_serpent_locs.length - 1)",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: "$|possible_serpent_locs[$|serpent_loc_i].x",
+            y: "$|possible_serpent_locs[$|serpent_loc_i].y",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "water-blast.wav",
+          },
+          {
+            tag: "message",
+            text: _("$serpent_msg"),
+          },
+          {
+            tag: "message",
+            text: _("Look out, a serpent has emerged from the deep."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%2C3%2C4%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "variable_compare",
+                variable: "side_$unit.side|_serpent_triggered",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "side_$unit.side|_serpent_triggered",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "switch",
+            variable: "unit.side",
+            children: [
+              {
+                tag: "case",
+                equals: 2,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_dynamic",
+                    variable: "serpent_name",
+                    value: "Chompey the Serpent",
+                    mode: "value",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_dynamic",
+                    variable: "serpent_msg",
+                    value: "Graarrrrrr!",
+                    mode: "value",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 3,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_dynamic",
+                    variable: "serpent_name",
+                    value: "Scaly the Serpent",
+                    mode: "value",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_dynamic",
+                    variable: "serpent_msg",
+                    value: "Roarrrrrr!",
+                    mode: "value",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 4,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_dynamic",
+                    variable: "serpent_name",
+                    value: "Toothey the Serpent",
+                    mode: "value",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_dynamic",
+                    variable: "serpent_msg",
+                    value: "Hissssss!",
+                    mode: "value",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "serpent_spawn_delay",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "serpent_spawn_turn_number",
+            value: "$($turn_number + $serpent_spawn_delay)",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("We’ve defeated the nagas. The fleet should be able to regroup here."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("The next time we see land, it should be the great continent to the east."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("I’ll be glad when this voyage is over. We’re almost there. Almost there."),
+          },
+          {
+            tag: "spawn",
+            id: "Familiar",
+            type: "Familiar",
+            side: 4,
+            x: 2,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Familiar",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Familiar",
+          },
+          {
+            tag: "message",
+            speaker: "Familiar",
+            text: _("<i>Clack</i>! <i>Clack!</i>"),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Familiar",
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("I think we’re being followed..."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("We were too slow... The fleet will be scattered to the four corners of the world!"),
+          },
+        ],
+      },
+    ],
+  },
+]

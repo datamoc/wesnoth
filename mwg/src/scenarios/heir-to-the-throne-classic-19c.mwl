@@ -1,0 +1,1292 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Cliffs of Thoria"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "elves",
+        share_vision: "none",
+        gold: 250,
+        leader: "Konrad",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "drakes",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "monsters",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "elves",
+        share_vision: "none",
+      },
+      {
+        tag: "map",
+        id: "scenario_19c_Cliffs_of_Thoria",
+        file: "19c_Cliffs_of_Thoria.map",
+      },
+      {
+        tag: "unit",
+        id: "Konrad",
+        type: "Commander",
+        side: 1,
+        x: 1,
+        y: 9,
+        name: _("Konrad"),
+      },
+      {
+        tag: "unit",
+        id: "u_1",
+        type: "Merman Fighter",
+        side: 1,
+        x: 1,
+        y: 9,
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_27",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "avoid,0,14,0,10;avoid,0,15,0,10;avoid,0,16,0,10;avoid,0,17,0,10;avoid,0,18,0,10;avoid,0,19,0,10;avoid,0,20,0,10;avoid,0,21,0,10;avoid,1,14,0,10;avoid,1,15,0,10;avoid,1,16,0,10;avoid,1,17,0,10;avoid,1,18,0,10;avoid,1,19,0,10;avoid,1,20,0,10;avoid,1,21,0,10;avoid,2,14,0,10;avoid,2,15,0,10;avoid,2,16,0,10;avoid,2,17,0,10;avoid,2,18,0,10;avoid,2,19,0,10;avoid,2,20,0,10;avoid,2,21,0,10;avoid,3,14,0,10;avoid,3,15,0,10;avoid,3,16,0,10;avoid,3,17,0,10;avoid,3,18,0,10;avoid,3,19,0,10;avoid,3,20,0,10;avoid,3,21,0,10;avoid,4,14,0,10;avoid,4,15,0,10;avoid,4,16,0,10;avoid,4,17,0,10;avoid,4,18,0,10;avoid,4,19,0,10;avoid,4,20,0,10;avoid,4,21,0,10;avoid,5,14,0,10;avoid,5,15,0,10;avoid,5,16,0,10;avoid,5,17,0,10;avoid,5,18,0,10;avoid,5,19,0,10;avoid,5,20,0,10;avoid,5,21,0,10;avoid,6,14,0,10;avoid,6,15,0,10;avoid,6,16,0,10;avoid,6,17,0,10;avoid,6,18,0,10;avoid,6,19,0,10;avoid,6,20,0,10;avoid,6,21,0,10;avoid,7,14,0,10;avoid,7,15,0,10;avoid,7,16,0,10;avoid,7,17,0,10;avoid,7,18,0,10;avoid,7,19,0,10;avoid,7,20,0,10;avoid,7,21,0,10;avoid,8,14,0,10;avoid,8,15,0,10;avoid,8,16,0,10;avoid,8,17,0,10;avoid,8,18,0,10;avoid,8,19,0,10;avoid,8,20,0,10;avoid,8,21,0,10;avoid,9,14,0,10;avoid,9,15,0,10;avoid,9,16,0,10;avoid,9,17,0,10;avoid,9,18,0,10;avoid,9,19,0,10;avoid,9,20,0,10;avoid,9,21,0,10;avoid,10,14,0,10;avoid,10,15,0,10;avoid,10,16,0,10;avoid,10,17,0,10;avoid,10,18,0,10;avoid,10,19,0,10;avoid,10,20,0,10;avoid,10,21,0,10;avoid,11,14,0,10;avoid,11,15,0,10;avoid,11,16,0,10;avoid,11,17,0,10;avoid,11,18,0,10;avoid,11,19,0,10;avoid,11,20,0,10;avoid,11,21,0,10;avoid,12,14,0,10;avoid,12,15,0,10;avoid,12,16,0,10;avoid,12,17,0,10;avoid,12,18,0,10;avoid,12,19,0,10;avoid,12,20,0,10;avoid,12,21,0,10;avoid,13,14,0,10;avoid,13,15,0,10;avoid,13,16,0,10;avoid,13,17,0,10;avoid,13,18,0,10;avoid,13,19,0,10;avoid,13,20,0,10;avoid,13,21,0,10;avoid,14,14,0,10;avoid,14,15,0,10;avoid,14,16,0,10;avoid,14,17,0,10;avoid,14,18,0,10;avoid,14,19,0,10;avoid,14,20,0,10;avoid,14,21,0,10;avoid,15,14,0,10;avoid,15,15,0,10;avoid,15,16,0,10;avoid,15,17,0,10;avoid,15,18,0,10;avoid,15,19,0,10;avoid,15,20,0,10;avoid,15,21,0,10;avoid,16,14,0,10;avoid,16,15,0,10;avoid,16,16,0,10;avoid,16,17,0,10;avoid,16,18,0,10;avoid,16,19,0,10;avoid,16,20,0,10;avoid,16,21,0,10;avoid,17,14,0,10;avoid,17,15,0,10;avoid,17,16,0,10;avoid,17,17,0,10;avoid,17,18,0,10;avoid,17,19,0,10;avoid,17,20,0,10;avoid,17,21,0,10;avoid,18,14,0,10;avoid,18,15,0,10;avoid,18,16,0,10;avoid,18,17,0,10;avoid,18,18,0,10;avoid,18,19,0,10;avoid,18,20,0,10;avoid,18,21,0,10;avoid,19,14,0,10;avoid,19,15,0,10;avoid,19,16,0,10;avoid,19,17,0,10;avoid,19,18,0,10;avoid,19,19,0,10;avoid,19,20,0,10;avoid,19,21,0,10;avoid,20,14,0,10;avoid,20,15,0,10;avoid,20,16,0,10;avoid,20,17,0,10;avoid,20,18,0,10;avoid,20,19,0,10;avoid,20,20,0,10;avoid,20,21,0,10;avoid,21,14,0,10;avoid,21,15,0,10;avoid,21,16,0,10;avoid,21,17,0,10;avoid,21,18,0,10;avoid,21,19,0,10;avoid,21,20,0,10;avoid,21,21,0,10;avoid,22,14,0,10;avoid,22,15,0,10;avoid,22,16,0,10;avoid,22,17,0,10;avoid,22,18,0,10;avoid,22,19,0,10;avoid,22,20,0,10;avoid,22,21,0,10;avoid,23,14,0,10;avoid,23,15,0,10;avoid,23,16,0,10;avoid,23,17,0,10;avoid,23,18,0,10;avoid,23,19,0,10;avoid,23,20,0,10;avoid,23,21,0,10;avoid,24,14,0,10;avoid,24,15,0,10;avoid,24,16,0,10;avoid,24,17,0,10;avoid,24,18,0,10;avoid,24,19,0,10;avoid,24,20,0,10;avoid,24,21,0,10;avoid,25,14,0,10;avoid,25,15,0,10;avoid,25,16,0,10;avoid,25,17,0,10;avoid,25,18,0,10;avoid,25,19,0,10;avoid,25,20,0,10;avoid,25,21,0,10;avoid,26,14,0,10;avoid,26,15,0,10;avoid,26,16,0,10;avoid,26,17,0,10;avoid,26,18,0,10;avoid,26,19,0,10;avoid,26,20,0,10;avoid,26,21,0,10;avoid,27,14,0,10;avoid,27,15,0,10;avoid,27,16,0,10;avoid,27,17,0,10;avoid,27,18,0,10;avoid,27,19,0,10;avoid,27,20,0,10;avoid,27,21,0,10;avoid,28,14,0,10;avoid,28,15,0,10;avoid,28,16,0,10;avoid,28,17,0,10;avoid,28,18,0,10;avoid,28,19,0,10;avoid,28,20,0,10;avoid,28,21,0,10;avoid,29,14,0,10;avoid,29,15,0,10;avoid,29,16,0,10;avoid,29,17,0,10;avoid,29,18,0,10;avoid,29,19,0,10;avoid,29,20,0,10;avoid,29,21,0,10;avoid,30,14,0,10;avoid,30,15,0,10;avoid,30,16,0,10;avoid,30,17,0,10;avoid,30,18,0,10;avoid,30,19,0,10;avoid,30,20,0,10;avoid,30,21,0,10;avoid,31,14,0,10;avoid,31,15,0,10;avoid,31,16,0,10;avoid,31,17,0,10;avoid,31,18,0,10;avoid,31,19,0,10;avoid,31,20,0,10;avoid,31,21,0,10;avoid,32,14,0,10;avoid,32,15,0,10;avoid,32,16,0,10;avoid,32,17,0,10;avoid,32,18,0,10;avoid,32,19,0,10;avoid,32,20,0,10;avoid,32,21,0,10;avoid,33,14,0,10;avoid,33,15,0,10;avoid,33,16,0,10;avoid,33,17,0,10;avoid,33,18,0,10;avoid,33,19,0,10;avoid,33,20,0,10;avoid,33,21,0,10;avoid,34,14,0,10;avoid,34,15,0,10;avoid,34,16,0,10;avoid,34,17,0,10;avoid,34,18,0,10;avoid,34,19,0,10;avoid,34,20,0,10;avoid,34,21,0,10;avoid,35,14,0,10;avoid,35,15,0,10;avoid,35,16,0,10;avoid,35,17,0,10;avoid,35,18,0,10;avoid,35,19,0,10;avoid,35,20,0,10;avoid,35,21,0,10;avoid,36,14,0,10;avoid,36,15,0,10;avoid,36,16,0,10;avoid,36,17,0,10;avoid,36,18,0,10;avoid,36,19,0,10;avoid,36,20,0,10;avoid,36,21,0,10;avoid,37,14,0,10;avoid,37,15,0,10;avoid,37,16,0,10;avoid,37,17,0,10;avoid,37,18,0,10;avoid,37,19,0,10;avoid,37,20,0,10;avoid,37,21,0,10;avoid,38,14,0,10;avoid,38,15,0,10;avoid,38,16,0,10;avoid,38,17,0,10;avoid,38,18,0,10;avoid,38,19,0,10;avoid,38,20,0,10;avoid,38,21,0,10;avoid,39,14,0,10;avoid,39,15,0,10;avoid,39,16,0,10;avoid,39,17,0,10;avoid,39,18,0,10;avoid,39,19,0,10;avoid,39,20,0,10;avoid,39,21,0,10;avoid,13,12,0,10;avoid,13,13,0,10;avoid,14,12,0,10;avoid,14,13,0,10;avoid,15,12,0,10;avoid,15,13,0,10;avoid,16,12,0,10;avoid,16,13,0,10;avoid,17,12,0,10;avoid,17,13,0,10;avoid,18,12,0,10;avoid,18,13,0,10;avoid,43,10,0,10;avoid,43,11,0,10;avoid,43,12,0,10;avoid,43,13,0,10;avoid,43,14,0,10;avoid,43,15,0,10;avoid,43,16,0,10;avoid,43,17,0,10;avoid,43,18,0,10;avoid,43,19,0,10;avoid,43,20,0,10;avoid,43,21,0,10;avoid,44,10,0,10;avoid,44,11,0,10;avoid,44,12,0,10;avoid,44,13,0,10;avoid,44,14,0,10;avoid,44,15,0,10;avoid,44,16,0,10;avoid,44,17,0,10;avoid,44,18,0,10;avoid,44,19,0,10;avoid,44,20,0,10;avoid,44,21,0,10;avoid,45,10,0,10;avoid,45,11,0,10;avoid,45,12,0,10;avoid,45,13,0,10;avoid,45,14,0,10;avoid,45,15,0,10;avoid,45,16,0,10;avoid,45,17,0,10;avoid,45,18,0,10;avoid,45,19,0,10;avoid,45,20,0,10;avoid,45,21,0,10;avoid,46,10,0,10;avoid,46,11,0,10;avoid,46,12,0,10;avoid,46,13,0,10;avoid,46,14,0,10;avoid,46,15,0,10;avoid,46,16,0,10;avoid,46,17,0,10;avoid,46,18,0,10;avoid,46,19,0,10;avoid,46,20,0,10;avoid,46,21,0,10;avoid,47,10,0,10;avoid,47,11,0,10;avoid,47,12,0,10;avoid,47,13,0,10;avoid,47,14,0,10;avoid,47,15,0,10;avoid,47,16,0,10;avoid,47,17,0,10;avoid,47,18,0,10;avoid,47,19,0,10;avoid,47,20,0,10;avoid,47,21,0,10;avoid,48,10,0,10;avoid,48,11,0,10;avoid,48,12,0,10;avoid,48,13,0,10;avoid,48,14,0,10;avoid,48,15,0,10;avoid,48,16,0,10;avoid,48,17,0,10;avoid,48,18,0,10;avoid,48,19,0,10;avoid,48,20,0,10;avoid,48,21,0,10;avoid,49,10,0,10;avoid,49,11,0,10;avoid,49,12,0,10;avoid,49,13,0,10;avoid,49,14,0,10;avoid,49,15,0,10;avoid,49,16,0,10;avoid,49,17,0,10;avoid,49,18,0,10;avoid,49,19,0,10;avoid,49,20,0,10;avoid,49,21,0,10;avoid,50,10,0,10;avoid,50,11,0,10;avoid,50,12,0,10;avoid,50,13,0,10;avoid,50,14,0,10;avoid,50,15,0,10;avoid,50,16,0,10;avoid,50,17,0,10;avoid,50,18,0,10;avoid,50,19,0,10;avoid,50,20,0,10;avoid,50,21,0,10;avoid,51,10,0,10;avoid,51,11,0,10;avoid,51,12,0,10;avoid,51,13,0,10;avoid,51,14,0,10;avoid,51,15,0,10;avoid,51,16,0,10;avoid,51,17,0,10;avoid,51,18,0,10;avoid,51,19,0,10;avoid,51,20,0,10;avoid,51,21,0,10;avoid,52,10,0,10;avoid,52,11,0,10;avoid,52,12,0,10;avoid,52,13,0,10;avoid,52,14,0,10;avoid,52,15,0,10;avoid,52,16,0,10;avoid,52,17,0,10;avoid,52,18,0,10;avoid,52,19,0,10;avoid,52,20,0,10;avoid,52,21,0,10;avoid,53,10,0,10;avoid,53,11,0,10;avoid,53,12,0,10;avoid,53,13,0,10;avoid,53,14,0,10;avoid,53,15,0,10;avoid,53,16,0,10;avoid,53,17,0,10;avoid,53,18,0,10;avoid,53,19,0,10;avoid,53,20,0,10;avoid,53,21,0,10;avoid,54,10,0,10;avoid,54,11,0,10;avoid,54,12,0,10;avoid,54,13,0,10;avoid,54,14,0,10;avoid,54,15,0,10;avoid,54,16,0,10;avoid,54,17,0,10;avoid,54,18,0,10;avoid,54,19,0,10;avoid,54,20,0,10;avoid,54,21,0,10;avoid,40,13,0,10;avoid,40,14,0,10;avoid,40,15,0,10;avoid,40,16,0,10;avoid,40,17,0,10;avoid,40,18,0,10;avoid,40,19,0,10;avoid,40,20,0,10;avoid,40,21,0,10;avoid,41,13,0,10;avoid,41,14,0,10;avoid,41,15,0,10;avoid,41,16,0,10;avoid,41,17,0,10;avoid,41,18,0,10;avoid,41,19,0,10;avoid,41,20,0,10;avoid,41,21,0,10;avoid,42,13,0,10;avoid,42,14,0,10;avoid,42,15,0,10;avoid,42,16,0,10;avoid,42,17,0,10;avoid,42,18,0,10;avoid,42,19,0,10;avoid,42,20,0,10;avoid,42,21,0,10;avoid,0,0,0,10;avoid,0,1,0,10;avoid,0,2,0,10;avoid,0,3,0,10;avoid,0,4,0,10;avoid,0,5,0,10;avoid,0,6,0,10;avoid,0,7,0,10;avoid,0,8,0,10;avoid,0,9,0,10;avoid,0,10,0,10;avoid,1,0,0,10;avoid,1,1,0,10;avoid,1,2,0,10;avoid,1,3,0,10;avoid,1,4,0,10;avoid,1,5,0,10;avoid,1,6,0,10;avoid,1,7,0,10;avoid,1,8,0,10;avoid,1,9,0,10;avoid,1,10,0,10;avoid,2,0,0,10;avoid,2,1,0,10;avoid,2,2,0,10;avoid,2,3,0,10;avoid,2,4,0,10;avoid,2,5,0,10;avoid,2,6,0,10;avoid,2,7,0,10;avoid,2,8,0,10;avoid,2,9,0,10;avoid,2,10,0,10;avoid,3,0,0,10;avoid,3,1,0,10;avoid,3,2,0,10;avoid,3,3,0,10;avoid,3,4,0,10;avoid,3,5,0,10;avoid,3,6,0,10;avoid,3,7,0,10;avoid,3,8,0,10;avoid,3,9,0,10;avoid,3,10,0,10;avoid,4,0,0,10;avoid,4,1,0,10;avoid,4,2,0,10;avoid,4,3,0,10;avoid,4,4,0,10;avoid,4,5,0,10;avoid,4,6,0,10;avoid,4,7,0,10;avoid,4,8,0,10;avoid,4,9,0,10;avoid,4,10,0,10;avoid,5,0,0,10;avoid,5,1,0,10;avoid,5,2,0,10;avoid,5,3,0,10;avoid,5,4,0,10;avoid,5,5,0,10;avoid,5,6,0,10;avoid,5,7,0,10;avoid,5,8,0,10;avoid,5,9,0,10;avoid,5,10,0,10;avoid,6,0,0,10;avoid,6,1,0,10;avoid,6,2,0,10;avoid,6,3,0,10;avoid,6,4,0,10;avoid,6,5,0,10;avoid,6,6,0,10;avoid,6,7,0,10;avoid,6,8,0,10;avoid,6,9,0,10;avoid,6,10,0,10;avoid,7,0,0,10;avoid,7,1,0,10;avoid,7,2,0,10;avoid,7,3,0,10;avoid,7,4,0,10;avoid,7,5,0,10;avoid,7,6,0,10;avoid,7,7,0,10;avoid,7,8,0,10;avoid,7,9,0,10;avoid,7,10,0,10;avoid,8,0,0,10;avoid,8,1,0,10;avoid,8,2,0,10;avoid,8,3,0,10;avoid,8,4,0,10;avoid,8,5,0,10;avoid,8,6,0,10;avoid,8,7,0,10;avoid,8,8,0,10;avoid,8,9,0,10;avoid,8,10,0,10;avoid,9,0,0,10;avoid,9,1,0,10;avoid,9,2,0,10;avoid,9,3,0,10;avoid,9,4,0,10;avoid,9,5,0,10;avoid,9,6,0,10;avoid,9,7,0,10;avoid,9,8,0,10;avoid,9,9,0,10;avoid,9,10,0,10;avoid,10,0,0,10;avoid,10,1,0,10;avoid,10,2,0,10;avoid,10,3,0,10;avoid,10,4,0,10;avoid,10,5,0,10;avoid,10,6,0,10;avoid,10,7,0,10;avoid,10,8,0,10;avoid,10,9,0,10;avoid,10,10,0,10;avoid,11,0,0,10;avoid,11,1,0,10;avoid,11,2,0,10;avoid,11,3,0,10;avoid,11,4,0,10;avoid,11,5,0,10;avoid,11,6,0,10;avoid,11,7,0,10;avoid,11,8,0,10;avoid,11,9,0,10;avoid,11,10,0,10;avoid,12,0,0,10;avoid,12,1,0,10;avoid,12,2,0,10;avoid,12,3,0,10;avoid,12,4,0,10;avoid,12,5,0,10;avoid,12,6,0,10;avoid,12,7,0,10;avoid,12,8,0,10;avoid,12,9,0,10;avoid,12,10,0,10;avoid,13,0,0,10;avoid,13,1,0,10;avoid,13,2,0,10;avoid,13,3,0,10;avoid,13,4,0,10;avoid,13,5,0,10;avoid,13,6,0,10;avoid,13,7,0,10;avoid,13,8,0,10;avoid,13,9,0,10;avoid,13,10,0,10;avoid,14,0,0,10;avoid,14,1,0,10;avoid,14,2,0,10;avoid,14,3,0,10;avoid,14,4,0,10;avoid,14,5,0,10;avoid,14,6,0,10;avoid,14,7,0,10;avoid,14,8,0,10;avoid,14,9,0,10;avoid,14,10,0,10;avoid,15,0,0,10;avoid,15,1,0,10;avoid,15,2,0,10;avoid,15,3,0,10;avoid,15,4,0,10;avoid,15,5,0,10;avoid,15,6,0,10;avoid,15,7,0,10;avoid,15,8,0,10;avoid,15,9,0,10;avoid,15,10,0,10;avoid,16,0,0,10;avoid,16,1,0,10;avoid,16,2,0,10;avoid,16,3,0,10;avoid,16,4,0,10;avoid,16,5,0,10;avoid,16,6,0,10;avoid,16,7,0,10;avoid,16,8,0,10;avoid,16,9,0,10;avoid,16,10,0,10;avoid,17,0,0,10;avoid,17,1,0,10;avoid,17,2,0,10;avoid,17,3,0,10;avoid,17,4,0,10;avoid,17,5,0,10;avoid,17,6,0,10;avoid,17,7,0,10;avoid,17,8,0,10;avoid,17,9,0,10;avoid,17,10,0,10;avoid,18,0,0,10;avoid,18,1,0,10;avoid,18,2,0,10;avoid,18,3,0,10;avoid,18,4,0,10;avoid,18,5,0,10;avoid,18,6,0,10;avoid,18,7,0,10;avoid,18,8,0,10;avoid,18,9,0,10;avoid,18,10,0,10;avoid,19,0,0,10;avoid,19,1,0,10;avoid,19,2,0,10;avoid,19,3,0,10;avoid,19,4,0,10;avoid,19,5,0,10;avoid,19,6,0,10;avoid,19,7,0,10;avoid,19,8,0,10;avoid,19,9,0,10;avoid,19,10,0,10;avoid,20,0,0,10;avoid,20,1,0,10;avoid,20,2,0,10;avoid,20,3,0,10;avoid,20,4,0,10;avoid,20,5,0,10;avoid,20,6,0,10;avoid,20,7,0,10;avoid,20,8,0,10;avoid,20,9,0,10;avoid,20,10,0,10;avoid,21,0,0,10;avoid,21,1,0,10;avoid,21,2,0,10;avoid,21,3,0,10;avoid,21,4,0,10;avoid,21,5,0,10;avoid,21,6,0,10;avoid,21,7,0,10;avoid,21,8,0,10;avoid,21,9,0,10;avoid,21,10,0,10;avoid,22,0,0,10;avoid,22,1,0,10;avoid,22,2,0,10;avoid,22,3,0,10;avoid,22,4,0,10;avoid,22,5,0,10;avoid,22,6,0,10;avoid,22,7,0,10;avoid,22,8,0,10;avoid,22,9,0,10;avoid,22,10,0,10;avoid,23,0,0,10;avoid,23,1,0,10;avoid,23,2,0,10;avoid,23,3,0,10;avoid,23,4,0,10;avoid,23,5,0,10;avoid,23,6,0,10;avoid,23,7,0,10;avoid,23,8,0,10;avoid,23,9,0,10;avoid,23,10,0,10;avoid,24,0,0,10;avoid,24,1,0,10;avoid,24,2,0,10;avoid,24,3,0,10;avoid,24,4,0,10;avoid,24,5,0,10;avoid,24,6,0,10;avoid,24,7,0,10;avoid,24,8,0,10;avoid,24,9,0,10;avoid,24,10,0,10;avoid,25,0,0,10;avoid,25,1,0,10;avoid,25,2,0,10;avoid,25,3,0,10;avoid,25,4,0,10;avoid,25,5,0,10;avoid,25,6,0,10;avoid,25,7,0,10;avoid,25,8,0,10;avoid,25,9,0,10;avoid,25,10,0,10;avoid,26,0,0,10;avoid,26,1,0,10;avoid,26,2,0,10;avoid,26,3,0,10;avoid,26,4,0,10;avoid,26,5,0,10;avoid,26,6,0,10;avoid,26,7,0,10;avoid,26,8,0,10;avoid,26,9,0,10;avoid,26,10,0,10;avoid,27,0,0,10;avoid,27,1,0,10;avoid,27,2,0,10;avoid,27,3,0,10;avoid,27,4,0,10;avoid,27,5,0,10;avoid,27,6,0,10;avoid,27,7,0,10;avoid,27,8,0,10;avoid,27,9,0,10;avoid,27,10,0,10;avoid,28,0,0,10;avoid,28,1,0,10;avoid,28,2,0,10;avoid,28,3,0,10;avoid,28,4,0,10;avoid,28,5,0,10;avoid,28,6,0,10;avoid,28,7,0,10;avoid,28,8,0,10;avoid,28,9,0,10;avoid,28,10,0,10;avoid,29,0,0,10;avoid,29,1,0,10;avoid,29,2,0,10;avoid,29,3,0,10;avoid,29,4,0,10;avoid,29,5,0,10;avoid,29,6,0,10;avoid,29,7,0,10;avoid,29,8,0,10;avoid,29,9,0,10;avoid,29,10,0,10;avoid,30,0,0,10;avoid,30,1,0,10;avoid,30,2,0,10;avoid,30,3,0,10;avoid,30,4,0,10;avoid,30,5,0,10;avoid,30,6,0,10;avoid,30,7,0,10;avoid,30,8,0,10;avoid,30,9,0,10;avoid,30,10,0,10;avoid,31,0,0,10;avoid,31,1,0,10;avoid,31,2,0,10;avoid,31,3,0,10;avoid,31,4,0,10;avoid,31,5,0,10;avoid,31,6,0,10;avoid,31,7,0,10;avoid,31,8,0,10;avoid,31,9,0,10;avoid,31,10,0,10;avoid,32,0,0,10;avoid,32,1,0,10;avoid,32,2,0,10;avoid,32,3,0,10;avoid,32,4,0,10;avoid,32,5,0,10;avoid,32,6,0,10;avoid,32,7,0,10;avoid,32,8,0,10;avoid,32,9,0,10;avoid,32,10,0,10;avoid,33,0,0,10;avoid,33,1,0,10;avoid,33,2,0,10;avoid,33,3,0,10;avoid,33,4,0,10;avoid,33,5,0,10;avoid,33,6,0,10;avoid,33,7,0,10;avoid,33,8,0,10;avoid,33,9,0,10;avoid,33,10,0,10;avoid,34,0,0,10;avoid,34,1,0,10;avoid,34,2,0,10;avoid,34,3,0,10;avoid,34,4,0,10;avoid,34,5,0,10;avoid,34,6,0,10;avoid,34,7,0,10;avoid,34,8,0,10;avoid,34,9,0,10;avoid,34,10,0,10;avoid,35,0,0,10;avoid,35,1,0,10;avoid,35,2,0,10;avoid,35,3,0,10;avoid,35,4,0,10;avoid,35,5,0,10;avoid,35,6,0,10;avoid,35,7,0,10;avoid,35,8,0,10;avoid,35,9,0,10;avoid,35,10,0,10;avoid,36,0,0,10;avoid,36,1,0,10;avoid,36,2,0,10;avoid,36,3,0,10;avoid,36,4,0,10;avoid,36,5,0,10;avoid,36,6,0,10;avoid,36,7,0,10;avoid,36,8,0,10;avoid,36,9,0,10;avoid,36,10,0,10;avoid,37,0,0,10;avoid,37,1,0,10;avoid,37,2,0,10;avoid,37,3,0,10;avoid,37,4,0,10;avoid,37,5,0,10;avoid,37,6,0,10;avoid,37,7,0,10;avoid,37,8,0,10;avoid,37,9,0,10;avoid,37,10,0,10;avoid,38,0,0,10;avoid,38,1,0,10;avoid,38,2,0,10;avoid,38,3,0,10;avoid,38,4,0,10;avoid,38,5,0,10;avoid,38,6,0,10;avoid,38,7,0,10;avoid,38,8,0,10;avoid,38,9,0,10;avoid,38,10,0,10;avoid,39,0,0,10;avoid,39,1,0,10;avoid,39,2,0,10;avoid,39,3,0,10;avoid,39,4,0,10;avoid,39,5,0,10;avoid,39,6,0,10;avoid,39,7,0,10;avoid,39,8,0,10;avoid,39,9,0,10;avoid,39,10,0,10;avoid,40,0,0,10;avoid,40,1,0,10;avoid,40,2,0,10;avoid,40,3,0,10;avoid,40,4,0,10;avoid,40,5,0,10;avoid,40,6,0,10;avoid,40,7,0,10;avoid,40,8,0,10;avoid,40,9,0,10;avoid,40,10,0,10;avoid,41,0,0,10;avoid,41,1,0,10;avoid,41,2,0,10;avoid,41,3,0,10;avoid,41,4,0,10;avoid,41,5,0,10;avoid,41,6,0,10;avoid,41,7,0,10;avoid,41,8,0,10;avoid,41,9,0,10;avoid,41,10,0,10;avoid,42,0,0,10;avoid,42,1,0,10;avoid,42,2,0,10;avoid,42,3,0,10;avoid,42,4,0,10;avoid,42,5,0,10;avoid,42,6,0,10;avoid,42,7,0,10;avoid,42,8,0,10;avoid,42,9,0,10;avoid,42,10,0,10;avoid,43,0,0,10;avoid,43,1,0,10;avoid,43,2,0,10;avoid,43,3,0,10;avoid,43,4,0,10;avoid,43,5,0,10;avoid,43,6,0,10;avoid,43,7,0,10;avoid,43,8,0,10;avoid,43,9,0,10;avoid,43,10,0,10;avoid,44,0,0,10;avoid,44,1,0,10;avoid,44,2,0,10;avoid,44,3,0,10;avoid,44,4,0,10;avoid,44,5,0,10;avoid,44,6,0,10;avoid,44,7,0,10;avoid,44,8,0,10;avoid,44,9,0,10;avoid,44,10,0,10;avoid,45,0,0,10;avoid,45,1,0,10;avoid,45,2,0,10;avoid,45,3,0,10;avoid,45,4,0,10;avoid,45,5,0,10;avoid,45,6,0,10;avoid,45,7,0,10;avoid,45,8,0,10;avoid,45,9,0,10;avoid,45,10,0,10;avoid,46,0,0,10;avoid,46,1,0,10;avoid,46,2,0,10;avoid,46,3,0,10;avoid,46,4,0,10;avoid,46,5,0,10;avoid,46,6,0,10;avoid,46,7,0,10;avoid,46,8,0,10;avoid,46,9,0,10;avoid,46,10,0,10;avoid,47,0,0,10;avoid,47,1,0,10;avoid,47,2,0,10;avoid,47,3,0,10;avoid,47,4,0,10;avoid,47,5,0,10;avoid,47,6,0,10;avoid,47,7,0,10;avoid,47,8,0,10;avoid,47,9,0,10;avoid,47,10,0,10;avoid,48,0,0,10;avoid,48,1,0,10;avoid,48,2,0,10;avoid,48,3,0,10;avoid,48,4,0,10;avoid,48,5,0,10;avoid,48,6,0,10;avoid,48,7,0,10;avoid,48,8,0,10;avoid,48,9,0,10;avoid,48,10,0,10;avoid,49,0,0,10;avoid,49,1,0,10;avoid,49,2,0,10;avoid,49,3,0,10;avoid,49,4,0,10;avoid,49,5,0,10;avoid,49,6,0,10;avoid,49,7,0,10;avoid,49,8,0,10;avoid,49,9,0,10;avoid,49,10,0,10;avoid,50,0,0,10;avoid,50,1,0,10;avoid,50,2,0,10;avoid,50,3,0,10;avoid,50,4,0,10;avoid,50,5,0,10;avoid,50,6,0,10;avoid,50,7,0,10;avoid,50,8,0,10;avoid,50,9,0,10;avoid,50,10,0,10;avoid,51,0,0,10;avoid,51,1,0,10;avoid,51,2,0,10;avoid,51,3,0,10;avoid,51,4,0,10;avoid,51,5,0,10;avoid,51,6,0,10;avoid,51,7,0,10;avoid,51,8,0,10;avoid,51,9,0,10;avoid,51,10,0,10;avoid,52,0,0,10;avoid,52,1,0,10;avoid,52,2,0,10;avoid,52,3,0,10;avoid,52,4,0,10;avoid,52,5,0,10;avoid,52,6,0,10;avoid,52,7,0,10;avoid,52,8,0,10;avoid,52,9,0,10;avoid,52,10,0,10;avoid,53,0,0,10;avoid,53,1,0,10;avoid,53,2,0,10;avoid,53,3,0,10;avoid,53,4,0,10;avoid,53,5,0,10;avoid,53,6,0,10;avoid,53,7,0,10;avoid,53,8,0,10;avoid,53,9,0,10;avoid,53,10,0,10;avoid,54,0,0,10;avoid,54,1,0,10;avoid,54,2,0,10;avoid,54,3,0,10;avoid,54,4,0,10;avoid,54,5,0,10;avoid,54,6,0,10;avoid,54,7,0,10;avoid,54,8,0,10;avoid,54,9,0,10;avoid,54,10,0,10;avoid,0,11,0,10;avoid,0,12,0,10;avoid,1,11,0,10;avoid,1,12,0,10;avoid,2,11,0,10;avoid,2,12,0,10;avoid,3,11,0,10;avoid,3,12,0,10;avoid,4,11,0,10;avoid,4,12,0,10;avoid,5,11,0,10;avoid,5,12,0,10;avoid,6,11,0,10;avoid,6,12,0,10;avoid,7,11,0,10;avoid,7,12,0,10;avoid,8,11,0,10;avoid,8,12,0,10;avoid,9,11,0,10;avoid,9,12,0,10;avoid,10,11,0,10;avoid,10,12,0,10;avoid,11,11,0,10;avoid,11,12,0,10;avoid,12,11,0,10;avoid,12,12,0,10;avoid,13,11,0,10;avoid,13,12,0,10;avoid,14,11,0,10;avoid,14,12,0,10;avoid,15,11,0,10;avoid,15,12,0,10;avoid,16,11,0,10;avoid,16,12,0,10;avoid,17,11,0,10;avoid,17,12,0,10;avoid,18,11,0,10;avoid,18,12,0,10;avoid,19,11,0,10;avoid,19,12,0,10;avoid,20,11,0,10;avoid,20,12,0,10;avoid,21,11,0,10;avoid,21,12,0,10;avoid,22,11,0,10;avoid,22,12,0,10;avoid,23,11,0,10;avoid,23,12,0,10;avoid,24,11,0,10;avoid,24,12,0,10;avoid,25,11,0,10;avoid,25,12,0,10;avoid,26,11,0,10;avoid,26,12,0,10;avoid,27,11,0,10;avoid,27,12,0,10;avoid,28,11,0,10;avoid,28,12,0,10;avoid,29,11,0,10;avoid,29,12,0,10;avoid,30,11,0,10;avoid,30,12,0,10;avoid,31,11,0,10;avoid,31,12,0,10;avoid,32,11,0,10;avoid,32,12,0,10;avoid,33,11,0,10;avoid,33,12,0,10;avoid,34,11,0,10;avoid,34,12,0,10;avoid,35,11,0,10;avoid,35,12,0,10;avoid,36,11,0,10;avoid,36,12,0,10;avoid,37,11,0,10;avoid,37,12,0,10;avoid,38,11,0,10;avoid,38,12,0,10;avoid,39,11,0,10;avoid,39,12,0,10;avoid,40,11,0,10;avoid,40,12,0,10;avoid,41,11,0,10;avoid,41,12,0,10;avoid,42,11,0,10;avoid,42,12,0,10;avoid,43,11,0,10;avoid,43,12,0,10;avoid,0,13,0,10;avoid,0,14,0,10;avoid,0,15,0,10;avoid,0,16,0,10;avoid,0,17,0,10;avoid,0,18,0,10;avoid,0,19,0,10;avoid,0,20,0,10;avoid,0,21,0,10;avoid,1,13,0,10;avoid,1,14,0,10;avoid,1,15,0,10;avoid,1,16,0,10;avoid,1,17,0,10;avoid,1,18,0,10;avoid,1,19,0,10;avoid,1,20,0,10;avoid,1,21,0,10;avoid,2,13,0,10;avoid,2,14,0,10;avoid,2,15,0,10;avoid,2,16,0,10;avoid,2,17,0,10;avoid,2,18,0,10;avoid,2,19,0,10;avoid,2,20,0,10;avoid,2,21,0,10;avoid,3,13,0,10;avoid,3,14,0,10;avoid,3,15,0,10;avoid,3,16,0,10;avoid,3,17,0,10;avoid,3,18,0,10;avoid,3,19,0,10;avoid,3,20,0,10;avoid,3,21,0,10;avoid,4,13,0,10;avoid,4,14,0,10;avoid,4,15,0,10;avoid,4,16,0,10;avoid,4,17,0,10;avoid,4,18,0,10;avoid,4,19,0,10;avoid,4,20,0,10;avoid,4,21,0,10;avoid,5,13,0,10;avoid,5,14,0,10;avoid,5,15,0,10;avoid,5,16,0,10;avoid,5,17,0,10;avoid,5,18,0,10;avoid,5,19,0,10;avoid,5,20,0,10;avoid,5,21,0,10;avoid,6,13,0,10;avoid,6,14,0,10;avoid,6,15,0,10;avoid,6,16,0,10;avoid,6,17,0,10;avoid,6,18,0,10;avoid,6,19,0,10;avoid,6,20,0,10;avoid,6,21,0,10;avoid,7,13,0,10;avoid,7,14,0,10;avoid,7,15,0,10;avoid,7,16,0,10;avoid,7,17,0,10;avoid,7,18,0,10;avoid,7,19,0,10;avoid,7,20,0,10;avoid,7,21,0,10;avoid,8,13,0,10;avoid,8,14,0,10;avoid,8,15,0,10;avoid,8,16,0,10;avoid,8,17,0,10;avoid,8,18,0,10;avoid,8,19,0,10;avoid,8,20,0,10;avoid,8,21,0,10;avoid,9,13,0,10;avoid,9,14,0,10;avoid,9,15,0,10;avoid,9,16,0,10;avoid,9,17,0,10;avoid,9,18,0,10;avoid,9,19,0,10;avoid,9,20,0,10;avoid,9,21,0,10;avoid,10,13,0,10;avoid,10,14,0,10;avoid,10,15,0,10;avoid,10,16,0,10;avoid,10,17,0,10;avoid,10,18,0,10;avoid,10,19,0,10;avoid,10,20,0,10;avoid,10,21,0,10;avoid,11,13,0,10;avoid,11,14,0,10;avoid,11,15,0,10;avoid,11,16,0,10;avoid,11,17,0,10;avoid,11,18,0,10;avoid,11,19,0,10;avoid,11,20,0,10;avoid,11,21,0,10;avoid,12,13,0,10;avoid,12,14,0,10;avoid,12,15,0,10;avoid,12,16,0,10;avoid,12,17,0,10;avoid,12,18,0,10;avoid,12,19,0,10;avoid,12,20,0,10;avoid,12,21,0,10;avoid,13,13,0,10;avoid,13,14,0,10;avoid,13,15,0,10;avoid,13,16,0,10;avoid,13,17,0,10;avoid,13,18,0,10;avoid,13,19,0,10;avoid,13,20,0,10;avoid,13,21,0,10;avoid,14,13,0,10;avoid,14,14,0,10;avoid,14,15,0,10;avoid,14,16,0,10;avoid,14,17,0,10;avoid,14,18,0,10;avoid,14,19,0,10;avoid,14,20,0,10;avoid,14,21,0,10;avoid,15,13,0,10;avoid,15,14,0,10;avoid,15,15,0,10;avoid,15,16,0,10;avoid,15,17,0,10;avoid,15,18,0,10;avoid,15,19,0,10;avoid,15,20,0,10;avoid,15,21,0,10;avoid,16,13,0,10;avoid,16,14,0,10;avoid,16,15,0,10;avoid,16,16,0,10;avoid,16,17,0,10;avoid,16,18,0,10;avoid,16,19,0,10;avoid,16,20,0,10;avoid,16,21,0,10;avoid,17,13,0,10;avoid,17,14,0,10;avoid,17,15,0,10;avoid,17,16,0,10;avoid,17,17,0,10;avoid,17,18,0,10;avoid,17,19,0,10;avoid,17,20,0,10;avoid,17,21,0,10;avoid,18,13,0,10;avoid,18,14,0,10;avoid,18,15,0,10;avoid,18,16,0,10;avoid,18,17,0,10;avoid,18,18,0,10;avoid,18,19,0,10;avoid,18,20,0,10;avoid,18,21,0,10;avoid,19,13,0,10;avoid,19,14,0,10;avoid,19,15,0,10;avoid,19,16,0,10;avoid,19,17,0,10;avoid,19,18,0,10;avoid,19,19,0,10;avoid,19,20,0,10;avoid,19,21,0,10;avoid,20,13,0,10;avoid,20,14,0,10;avoid,20,15,0,10;avoid,20,16,0,10;avoid,20,17,0,10;avoid,20,18,0,10;avoid,20,19,0,10;avoid,20,20,0,10;avoid,20,21,0,10;avoid,21,13,0,10;avoid,21,14,0,10;avoid,21,15,0,10;avoid,21,16,0,10;avoid,21,17,0,10;avoid,21,18,0,10;avoid,21,19,0,10;avoid,21,20,0,10;avoid,21,21,0,10;avoid,22,13,0,10;avoid,22,14,0,10;avoid,22,15,0,10;avoid,22,16,0,10;avoid,22,17,0,10;avoid,22,18,0,10;avoid,22,19,0,10;avoid,22,20,0,10;avoid,22,21,0,10;avoid,23,13,0,10;avoid,23,14,0,10;avoid,23,15,0,10;avoid,23,16,0,10;avoid,23,17,0,10;avoid,23,18,0,10;avoid,23,19,0,10;avoid,23,20,0,10;avoid,23,21,0,10;avoid,24,13,0,10;avoid,24,14,0,10;avoid,24,15,0,10;avoid,24,16,0,10;avoid,24,17,0,10;avoid,24,18,0,10;avoid,24,19,0,10;avoid,24,20,0,10;avoid,24,21,0,10;avoid,25,13,0,10;avoid,25,14,0,10;avoid,25,15,0,10;avoid,25,16,0,10;avoid,25,17,0,10;avoid,25,18,0,10;avoid,25,19,0,10;avoid,25,20,0,10;avoid,25,21,0,10;avoid,26,13,0,10;avoid,26,14,0,10;avoid,26,15,0,10;avoid,26,16,0,10;avoid,26,17,0,10;avoid,26,18,0,10;avoid,26,19,0,10;avoid,26,20,0,10;avoid,26,21,0,10;avoid,27,13,0,10;avoid,27,14,0,10;avoid,27,15,0,10;avoid,27,16,0,10;avoid,27,17,0,10;avoid,27,18,0,10;avoid,27,19,0,10;avoid,27,20,0,10;avoid,27,21,0,10;avoid,28,13,0,10;avoid,28,14,0,10;avoid,28,15,0,10;avoid,28,16,0,10;avoid,28,17,0,10;avoid,28,18,0,10;avoid,28,19,0,10;avoid,28,20,0,10;avoid,28,21,0,10;avoid,29,13,0,10;avoid,29,14,0,10;avoid,29,15,0,10;avoid,29,16,0,10;avoid,29,17,0,10;avoid,29,18,0,10;avoid,29,19,0,10;avoid,29,20,0,10;avoid,29,21,0,10;avoid,30,13,0,10;avoid,30,14,0,10;avoid,30,15,0,10;avoid,30,16,0,10;avoid,30,17,0,10;avoid,30,18,0,10;avoid,30,19,0,10;avoid,30,20,0,10;avoid,30,21,0,10;avoid,31,13,0,10;avoid,31,14,0,10;avoid,31,15,0,10;avoid,31,16,0,10;avoid,31,17,0,10;avoid,31,18,0,10;avoid,31,19,0,10;avoid,31,20,0,10;avoid,31,21,0,10;avoid,32,13,0,10;avoid,32,14,0,10;avoid,32,15,0,10;avoid,32,16,0,10;avoid,32,17,0,10;avoid,32,18,0,10;avoid,32,19,0,10;avoid,32,20,0,10;avoid,32,21,0,10;avoid,33,13,0,10;avoid,33,14,0,10;avoid,33,15,0,10;avoid,33,16,0,10;avoid,33,17,0,10;avoid,33,18,0,10;avoid,33,19,0,10;avoid,33,20,0,10;avoid,33,21,0,10;avoid,34,13,0,10;avoid,34,14,0,10;avoid,34,15,0,10;avoid,34,16,0,10;avoid,34,17,0,10;avoid,34,18,0,10;avoid,34,19,0,10;avoid,34,20,0,10;avoid,34,21,0,10;avoid,35,13,0,10;avoid,35,14,0,10;avoid,35,15,0,10;avoid,35,16,0,10;avoid,35,17,0,10;avoid,35,18,0,10;avoid,35,19,0,10;avoid,35,20,0,10;avoid,35,21,0,10;avoid,36,13,0,10;avoid,36,14,0,10;avoid,36,15,0,10;avoid,36,16,0,10;avoid,36,17,0,10;avoid,36,18,0,10;avoid,36,19,0,10;avoid,36,20,0,10;avoid,36,21,0,10;avoid,37,13,0,10;avoid,37,14,0,10;avoid,37,15,0,10;avoid,37,16,0,10;avoid,37,17,0,10;avoid,37,18,0,10;avoid,37,19,0,10;avoid,37,20,0,10;avoid,37,21,0,10;avoid,38,13,0,10;avoid,38,14,0,10;avoid,38,15,0,10;avoid,38,16,0,10;avoid,38,17,0,10;avoid,38,18,0,10;avoid,38,19,0,10;avoid,38,20,0,10;avoid,38,21,0,10;avoid,39,13,0,10;avoid,39,14,0,10;avoid,39,15,0,10;avoid,39,16,0,10;avoid,39,17,0,10;avoid,39,18,0,10;avoid,39,19,0,10;avoid,39,20,0,10;avoid,39,21,0,10;avoid,40,13,0,10;avoid,40,14,0,10;avoid,40,15,0,10;avoid,40,16,0,10;avoid,40,17,0,10;avoid,40,18,0,10;avoid,40,19,0,10;avoid,40,20,0,10;avoid,40,21,0,10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_28",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Konrad,Warven,Warven",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_29",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 50,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Make it to the end of the river Move Konrad to the cave Rescue the lieutenant"),
+        defeat: _("Death of Konrad Death of Delfador Death of Li’sar Death of Kalenz Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "wanderer.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "legends_of_the_north.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "northern_mountains.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "breaking_the_chains.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Konrad%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("We are vanquished, for I have been defeated!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Li'sar%22%2C%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I can’t believe it should end like this!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Argh! I am finished!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! This is the end! We have been defeated!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Warven%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("At least I die an honorable death."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "have_warven",
+            value: "no",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: 16,
+            y: 10,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "A_Choice_Was_Made",
+            value: "c",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "lieutenant_sighted",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "waterfall_sighted",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 17,
+            y: 11,
+            item_name: "",
+            image: "items%2Fstorm-trident.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 55,
+            y: 3,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "spawn",
+            id: "Warven",
+            type: "Injured Lieutenant",
+            side: 4,
+            x: 44,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Warven",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Warven",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("The party traveled down the river for days, sometimes walking through the shallow water, sometimes swimming, helped by the merfolk."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("One day they saw a gruesome sight — a fleet of boats and rafts sunk or shattered among the river islands. Konrad sent some of the merfolk to investigate."),
+          },
+          {
+            tag: "message",
+            speaker: "merman-advisor",
+            text: _("These are not proper ships, but shallow-draft boats built only recently; much of their timber is green. They were sunk in battle, not by a storm. Those that were not capsized have been burned. The battle must have taken place not long ago, perhaps only a few weeks past. We’ve found no survivors. One more thing...all flew the banner of the Crown of Wesnoth."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Haven’t you found any enemy boats, ones the Wesnothians were fighting against?"),
+          },
+          {
+            tag: "message",
+            speaker: "merman-advisor",
+            text: _("No, we have not. If there were any, they are long gone."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("Perhaps the monsters Lord Kalenz alluded to sunk the boats."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("That is possible. I would guess they were seeking a way east, just as we are."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("What do we do next? How much more of the river do we still have to travel?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("The mountains north and south of the river are impassable."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("Then we have only two choices: to proceed down the river or to go back where we came from and fight our way through the orcs or the undead."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("We certainly have no time to go back! We must hurry to the home of the North Elves, to meet with our elven allies."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Delfador is right. We must go on!"),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "spawn",
+            id: "Keh_Ohn",
+            type: "Armageddon Drake",
+            side: 2,
+            x: 3,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Keh_Ohn",
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Oh my! A monster!"),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("A dragon! A big one!"),
+          },
+          {
+            tag: "message",
+            speaker: "Keh Ohn",
+            text: _("I am Keh Ohn, leader of the drakes who have settled upon these cliffs. Who are you?"),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("A talking dragon?"),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("I am beginning to understand why you were talking about monsters on our way here, Lord Kalenz."),
+          },
+          {
+            tag: "message",
+            speaker: "merman-advisor",
+            text: _("With all due respect, Your Highnesses, you are both wrong. This is not a dragon. This is a drake."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Here? But, drakes have never been seen in Wesnoth before... Are you certain of this?"),
+          },
+          {
+            tag: "message",
+            speaker: "merman-advisor",
+            text: _("I was born in the Bay of Pearls and spent my entire life on the Eastern Shore. But I have spoken with those who have traveled the Western Ocean and met drakes on their journeys. Therefore, I am certain beyond doubt that the creature flying in front of us is a drake, Delfador. Concerning the drakes having never been seen in Wesnoth, must I remind you that we are not in Wesnoth anymore? There are many unthinkable things and creatures which can be found outside of Wesnoth."),
+          },
+          {
+            tag: "message",
+            speaker: "Keh Ohn",
+            text: _("GRROAR!! Will you silly self-centered creatures show some manners and pay some attention to me?"),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Eh... well of course, Sir Drake. Let me introduce myself — I am Prince Konrad, leader of the group and heir to the throne of Wesnoth."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("And I am the Princess, Li’sar, the only daughter of the late King Garard II and Queen Asheviere. I, too, am an heir to the throne of Wesnoth!"),
+          },
+          {
+            tag: "message",
+            speaker: "Keh Ohn",
+            text: _("(releasing a torrent of fire towards Konrad and Li’sar) Soooo... It is you who sent your subordinates to attack us. Now when we’ve destroyed them, you come to do the job yourselves."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("No...There is an ongoing civil war amongst us humans. The boats were sent by our enemies, not by us, even if they were Wesnothian boats."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("The Prince speaks the truth."),
+          },
+          {
+            tag: "message",
+            speaker: "Keh Ohn",
+            text: _("I don’t know. Maybe you are telling the truth, maybe not. We drakes don’t trust you. Many of our warriors died in the battle and many more are still healing their wounds, but we still have claws. Go back now and leave us in peace. If you go further we’ll be forced to show them."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("But we cannot go back. We are on an important mission."),
+          },
+          {
+            tag: "message",
+            speaker: "Keh Ohn",
+            text: _("If you defy my warning — prepare for battle."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("So be it. We have to go down the river; we have no choice. We’ll fight our way through if necessary."),
+          },
+          {
+            tag: "message",
+            speaker: "Keh Ohn",
+            text: _("You will regret challenging us. Drakes, to arms!"),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22x%22%3A%224%22%2C%22y%22%3A%229%22%2C%22animate%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "spawn",
+            id: "Keh_Ohn",
+            type: "Armageddon Drake",
+            side: 2,
+            x: 27,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Keh_Ohn",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "temp_starting_villages_area",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EV*%22%2C%22variable%22%3A%22temp_starting_villages_area%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22x%22%3A%2214%22%2C%22y%22%3A%229%22%2C%22radius%22%3A%2210%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "temp_starting_villages_area",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:capture_village",
+                side: 2,
+                cells: "$this_item.x,$this_item.y",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "temp_starting_villages_area",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EV*%22%2C%22variable%22%3A%22temp_starting_villages_area%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22x%22%3A%2234%22%2C%22y%22%3A%227%22%2C%22radius%22%3A%2210%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "temp_starting_villages_area",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:capture_village",
+                side: 2,
+                cells: "$this_item.x,$this_item.y",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22drake_bases%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2212%22%2C%22y%22%3A%2210%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2216%22%2C%22y%22%3A%226%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2222%22%2C%22y%22%3A%227%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2223%22%2C%22y%22%3A%2213%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2228%22%2C%22y%22%3A%229%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2231%22%2C%22y%22%3A%225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2234%22%2C%22y%22%3A%2212%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2241%22%2C%22y%22%3A%2212%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22drake_bases_melee%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2238%22%2C%22y%22%3A%228%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2239%22%2C%22y%22%3A%224%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            condition: "hook",
+            hook: "predicate:variable_compare",
+            variable: "drake_bases[$i].x",
+          },
+          {
+            tag: "condition",
+            condition: "hook",
+            hook: "predicate:variable_compare",
+            variable: "drake_bases[$i].y",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            condition: "hook",
+            hook: "predicate:variable_compare",
+            variable: "drake_bases_melee[$i].x",
+          },
+          {
+            tag: "condition",
+            condition: "hook",
+            hook: "predicate:variable_compare",
+            variable: "drake_bases_melee[$i].y",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22drake_bases%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22drake_bases_melee%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "10..50",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_gold",
+            side: 1,
+            amount: "+$random",
+          },
+          {
+            tag: "message",
+            portrait: "items/gold-coins-medium.png",
+            text: _("We’ve found $random gold in the drake nest."),
+          },
+          {
+            tag: "foreach",
+            variable: "drake_bases",
+            item: "this_item",
+            index: "i",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_16",
+              },
+            ],
+          },
+          {
+            tag: "foreach",
+            variable: "drake_bases_melee",
+            item: "this_item",
+            index: "i",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_17",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Keh%20Ohn%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Keh Ohn",
+            text: _("GRRROOOOAAAAR!"),
+          },
+          {
+            tag: "message",
+            text: _("Hurrah! We’ve killed their leader!"),
+          },
+          {
+            tag: "message",
+            text: _("Our leader is dead, but it matters not! Time enough to appoint a new leader after the battle is won! Fight on to the last, comrades!"),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            portrait: "portraits/konrad-human-mad.webp",
+            text: _("Keep on going down the river. While we’re at it, let us force as many drakes as possible to pay with their lives. They defy us, and now they will meet the same fate as their leader!"),
+          },
+          {
+            tag: "message",
+            text: _("We hear and obey, My Lord."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "foreach",
+            variable: "drake_bases",
+            item: "this_item",
+          },
+          {
+            tag: "foreach",
+            variable: "drake_bases_melee",
+            item: "this_item",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_21",
+        on: "branch_if_21",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "waterfall_sighted",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("I’m glad we agree, Li’sar. Now, onward! We must reach the cave."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_22",
+        on: "branch_if_22",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "waterfall_sighted",
+            not_equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("I’m glad we agree, Li’sar. Now, onward! We must continue downstream, past these drakes."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+          },
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            share_vision: "all",
+          },
+          {
+            tag: "message",
+            text: _("I see someone at the top of the furthermost cliff!"),
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "44,15",
+            radius: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 44,
+            y: 15,
+          },
+          {
+            tag: "message",
+            text: _("It is a young human officer, barely more than a boy. He appears badly hurt but still alive."),
+          },
+          {
+            tag: "message",
+            text: _("I wonder why the drakes haven’t finished him by now? It is strange that there are not any drakes in that area."),
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Water Serpent",
+            side: 3,
+            x: 47,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Water Serpent",
+            side: 3,
+            x: 44,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Water Serpent",
+            side: 3,
+            x: 49,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Water Serpent",
+            side: 3,
+            x: 47,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Water Serpent",
+            side: 3,
+            x: 44,
+            y: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "message",
+            text: _("Grrroar"),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "unit",
+          },
+          {
+            tag: "message",
+            text: _("Well... that answers the question."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("We should try to help the injured soldier."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Must I remind you that he, like all the others who died, was sent to kill us!?"),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("Perhaps he was sent after you, but not after me. I am sure that he is still loyal to his princess — the heiress to the throne of Wesnoth!"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Li’sar, do I have to remind you again that it is Konrad, not you, who is the rightful heir?"),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("Be that as it may, I still think we should make an effort to rescue him from the unfortunate position he is in. If you help him, I’ll do my best to convince him that you are not his enemies but his friends."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Very well. If you convince him not to raise his sword against us, the Lintanir elves shall grant him safe passage."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Our main goal remains to survive ourselves, but if we can spare the troops, we might try to rescue the officer stranded on the cliff. However, I make no promises."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("That I do understand, Konrad. I am no stranger to the burden of command."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_21",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_22",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "lieutenant_sighted",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "43,43,44,44,45,45",
+            y: "14,15,14,16,14,15",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Warven",
+          },
+          {
+            tag: "spawn",
+            id: "Warven",
+            type: "Lieutenant",
+            side: 1,
+            x: 44,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Warven",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Warven",
+          },
+          {
+            tag: "message",
+            speaker: "Warven",
+            text: _("Who...who are you? A friend or a foe?"),
+          },
+          {
+            tag: "message",
+            text: _("We are friends. Don’t worry about it and don’t try to fight us — you are in no condition to fight."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("I am the Princess, Li’sar, and we are friends. Join us and wait for the healers to help you, young lieutenant."),
+          },
+          {
+            tag: "message",
+            speaker: "Warven",
+            text: _("Princess Li’sar — here? Your Highness, I am yours to command!"),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Follow us when you think you are capable and beware of monsters. We have fought many already, and there are sure to be more ahead."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "lieutenant_sighted",
+            value: "no",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 36,
+            y: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("I’ve reached the cave entrance. There seems to be a system of channels running through the mountains. Follow me, and let us hope we somehow manage to get out alive."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("That is so very encouraging..."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("I wonder what kind of monsters await us inside."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("We are soon going to find out."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("Well, there is no point in delaying any further. Let us go and find out."),
+          },
+          {
+            tag: "message",
+            speaker: "Warven",
+            text: _("Yes, my lady!"),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Everybody inside..."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 54,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "waterfall_sighted",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "message",
+            text: _("There is a cataract ahead. By the thunder of the water and the height of the spume, it must drop several hundred feet at least. We must leave the river before we are swept into it, or we will surely perish!"),
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 55,
+            y: 3,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 55,
+            y: 3,
+            item_name: "",
+            image: "projectiles%2Ficemissile-n-6.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 55,
+            y: 3,
+            item_name: "",
+            image: "projectiles%2Ficemissile-n-5.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 55,
+            y: 3,
+            item_name: "",
+            image: "projectiles%2Ficemissile-n-4.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 55,
+            y: 3,
+            item_name: "",
+            image: "projectiles%2Ficemissile-n-3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 55,
+            y: 3,
+            item_name: "",
+            image: "halo%2Felven%2Fnature-halo1.png",
+          },
+          {
+            tag: "message",
+            speaker: "merman-advisor",
+            text: _("Even we merfolk cannot swim that. The road east is blocked."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Wait. What about the tributary which flows into the river from inside the mountain? There seems to be a cave..."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Legend says that that little river comes from the land of the North Elves. It is said that it is an outflow of Everlore, which flows in the land of my home and that there is a cave system in that area with several cave entrances and springs which flow into the ground. I can say no more about it, except that it is swarming with undead and other creatures which find power in the darkness of the caves. We elves prefer not to venture into the caves; instead we put guards near the entrances to kill any foul creature foolish enough to wander outside. No elves have been inside for centuries and that area is unknown to us. Truly, I don’t recommend entering the cave if we have any other options."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Unfortunately, we have no other options. Onward into the cave!"),
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 37,
+            y: 1,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "victory",
+        once: true,
+      },
+    ],
+  },
+]

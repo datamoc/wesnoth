@@ -1,0 +1,2030 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Siege of Kal Kartha"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "northern_alliance",
+        gold: 80,
+        recruit: "Dwarvish Fighter,Dwarvish Thunderer,Dwarvish Guardsman,Dwarvish Scout,Dwarvish Ulfserker,",
+        leader: "Aiglondur",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 200,
+        recruit: "Goblin Knight,Goblin Pillager",
+        leader: "leader2",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 200,
+        recruit: "Orcish Grunt,Orcish Archer",
+        leader: "leader3",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 200,
+        recruit: "Orcish Grunt,Orcish Archer",
+        leader: "leader4",
+      },
+      {
+        tag: "side",
+        id: 5,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 200,
+        recruit: "Orcish Grunt,Orcish Assassin",
+        leader: "leader5",
+      },
+      {
+        tag: "side",
+        id: 6,
+        controller: "ai",
+        team_name: "northern_alliance",
+        gold: 125,
+        recruit: "Dwarvish Steelclad,Dwarvish Thunderguard",
+        leader: "Dulcatulos",
+      },
+      {
+        tag: "map",
+        id: "scenario_08_The_Siege_of_Kal_Kartha",
+        file: "08_The_Siege_of_Kal_Kartha.map",
+      },
+      {
+        tag: "unit",
+        id: "Aiglondur",
+        type: "Dwarvish Fighter",
+        side: 1,
+        x: 7,
+        y: 28,
+        name: _("Aiglondur"),
+      },
+      {
+        tag: "unit",
+        id: "leader2",
+        type: "Direwolf Rider",
+        side: 2,
+        x: 33,
+        y: 23,
+      },
+      {
+        tag: "unit",
+        id: "leader3",
+        type: "Orcish Warlord",
+        side: 3,
+        x: 22,
+        y: 14,
+      },
+      {
+        tag: "unit",
+        id: "leader4",
+        type: "Orcish Warlord",
+        side: 4,
+        x: 12,
+        y: 6,
+      },
+      {
+        tag: "unit",
+        id: "leader5",
+        type: "Orcish Nightblade",
+        side: 5,
+        x: 18,
+        y: 15,
+      },
+      {
+        tag: "unit",
+        id: "Dulcatulos",
+        type: "Dwarvish Steelclad",
+        side: 6,
+        x: 40,
+        y: 1,
+        name: _("Dulcatulos"),
+      },
+      {
+        tag: "event",
+        id: "carryover_61",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.9,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_62",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Aiglondur,leader2,leader3,leader4,leader5,Dulcatulos,u_15,u_16",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_63",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 30,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat any three orcish leaders"),
+        defeat: _("Death of Aiglondur or Angarthing Death of Dulcatulos Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Aiglondur",
+            object: "%7B%22id%22%3A%22side_traits_1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%2C%7B%22applyTo%22%3A%22max_experience%22%2C%22increase%22%3A%22-20%25%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "leader2",
+            object: "%7B%22id%22%3A%22side_traits_2%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%2C%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increaseDamage%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "leader3",
+            object: "%7B%22id%22%3A%22side_traits_3%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increaseDamage%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "leader4",
+            object: "%7B%22id%22%3A%22side_traits_4%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22max_experience%22%2C%22increase%22%3A%22-20%25%22%7D%2C%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increaseDamage%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_5",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "leader5",
+            object: "%7B%22id%22%3A%22side_traits_5%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22max_experience%22%2C%22increase%22%3A%22-20%25%22%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_6",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Dulcatulos",
+            object: "%7B%22id%22%3A%22side_traits_6%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22movement%22%2C%22increase%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A%22-5%25%22%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_dangerous_symphony.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "frantic.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "northerners.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Wolf%20Rider%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Wolf Rider",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Wolf Rider",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Goblin%20Spearman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Goblin Spearman",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Goblin Spearman",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22type%22%3A%22Orcish%20Warrior%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Orcish Warrior",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Orcish Warrior",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22type%22%3A%22Orcish%20Crossbowman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Orcish Crossbowman",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Orcish Crossbowman",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%224%22%2C%22type%22%3A%22Orcish%20Warrior%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Orcish Warrior",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Orcish Warrior",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%224%22%2C%22type%22%3A%22Orcish%20Crossbowman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Orcish Crossbowman",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Orcish Crossbowman",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%224%22%2C%22type%22%3A%22Orcish%20Slayer%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Orcish Slayer",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Orcish Slayer",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%224%22%2C%22type%22%3A%22Goblin%20Spearman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Goblin Spearman",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Goblin Spearman",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 4,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%225%22%2C%22type%22%3A%22Orcish%20Slayer%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Orcish Slayer",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Orcish Slayer",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%225%22%2C%22type%22%3A%22Goblin%20Spearman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Goblin Spearman",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Goblin Spearman",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 5,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "2,3,4",
+            action: "add",
+            path: "goal[]",
+            goal_kind: "goal",
+            goal_value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "2,4",
+            action: "delete",
+            path: "goal[orcs_seek_Dulcatulos]",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 6,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader6",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 6,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_36",
+        on: "branch_if_36",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Goblin Pillager",
+            side: 2,
+            x: 34,
+            y: 24,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_37",
+        on: "branch_if_37",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Goblin Knight",
+            side: 2,
+            x: 35,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_38",
+        on: "branch_if_38",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Orcish Warrior",
+            side: 3,
+            x: 19,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_39",
+        on: "branch_if_39",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Orcish Grunt",
+            side: 3,
+            x: 23,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_40",
+        on: "branch_if_40",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Orcish Crossbowman",
+            side: 4,
+            x: 9,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_41",
+        on: "branch_if_41",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Orcish Grunt",
+            side: 4,
+            x: 12,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_42",
+        on: "branch_if_42",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Orcish Assassin",
+            side: 5,
+            x: 13,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_43",
+        on: "branch_if_43",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Orcish Grunt",
+            side: 5,
+            x: 14,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_44",
+        on: "branch_if_44",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Orcish Grunt",
+            side: 3,
+            x: 24,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_45",
+        on: "branch_if_45",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_10",
+            type: "Orcish Warrior",
+            side: 3,
+            x: 26,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_46",
+        on: "branch_if_46",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_11",
+            type: "Orcish Crossbowman",
+            side: 3,
+            x: 25,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_11",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_47",
+        on: "branch_if_47",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_12",
+            type: "Dwarvish Stalwart",
+            side: 2,
+            x: 25,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_12",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_48",
+        on: "branch_if_48",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_13",
+            type: "Dwarvish Stalwart",
+            side: 2,
+            x: 35,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_13",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_49",
+        on: "branch_if_49",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_14",
+            type: "Dwarvish Steelclad",
+            side: 6,
+            x: 30,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_14",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_50",
+        on: "branch_if_50",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "loyal_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_15",
+            type: "Dwarvish Stalwart",
+            side: 6,
+            x: 34,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_15",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_15",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_51",
+        on: "branch_if_51",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "loyal_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_16",
+            type: "Dwarvish Stalwart",
+            side: 6,
+            x: 39,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_16",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_16",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Goblin Pillager",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_36",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Goblin Knight",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_37",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Orcish Warrior",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_38",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Orcish Grunt",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_39",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Orcish Crossbowman",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_40",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Orcish Grunt",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_41",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Orcish Assassin",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_42",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Orcish Grunt",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_43",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Orcish Grunt",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_44",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Orcish Warrior",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_45",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Orcish Crossbowman",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_46",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Dwarvish Stalwart",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_47",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Dwarvish Stalwart",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_48",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Dwarvish Steelclad",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_49",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "loyal_unitc",
+            value: "Dwarvish Stalwart",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_50",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "loyal_unitc",
+            value: "Dwarvish Stalwart",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_51",
+          },
+          {
+            tag: "spawn",
+            id: "u_17",
+            type: "Dwarvish Fighter",
+            side: 6,
+            x: 33,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_17",
+          },
+          {
+            tag: "spawn",
+            id: "u_18",
+            type: "Dwarvish Fighter",
+            side: 6,
+            x: 33,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_18",
+          },
+          {
+            tag: "spawn",
+            id: "u_19",
+            type: "Dwarvish Thunderer",
+            side: 6,
+            x: 33,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_19",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Angarthing",
+            unit: "Angarthing",
+            x: 6,
+            y: 27,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 1,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "ne",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_52",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Angarthing",
+            text: _("Behold! The West Gate of Kal Kartha! The largest of their many doors."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 39,
+            y: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("And under siege, as we feared — by orcs. But we are not too late! The defenders yet hold."),
+          },
+          {
+            tag: "message",
+            speaker: "leader3",
+            text: _("Ahhh... more stinky-midgets, come to get killed just like these cowards in their den."),
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("There is a mighty host between us and our kin. Let us bring them that orc’s head as a guesting-gift!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_54",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 6,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: 6,
+              },
+              {
+                tag: "predicate",
+                name: "unit_exists",
+                exists: "yes",
+                side: "2,3,4,5",
+                x: "27-98",
+                y: "0-6",
+              },
+            ],
+          },
+          {
+            tag: "gold",
+            side: 6,
+            amount: 125,
+          },
+          {
+            tag: "message",
+            speaker: "Dulcatulos",
+            text: _("Kal Kartha shall not fall!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_53",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22role%22%3A%22fallback_guard%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_55",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Dulcatulos%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("Kal Kartha is taken. Our mission has failed."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_56",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%2C3%2C4%2C5%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Useless grunts! We should have taken the gate weeks ago! Fight harder!"),
+          },
+          {
+            tag: "gold",
+            side: "2,3,4,5",
+            amount: 40,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "2,3,4,5",
+            income: 18,
+          },
+          {
+            tag: "message",
+            speaker: "Ratheln",
+            text: _("I think they’ve been reinforced. I really don’t like orcs."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_57",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%2C3%2C4%2C5%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "2,3,4,5",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Grr... nasty stinky-midgets. We know what you’re up to in there. We’ll be back."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "cutscene_retreating_enemies",
+            kill: "no",
+            side: 2,
+          },
+          {
+            tag: "foreach",
+            variable: "cutscene_retreating_enemies",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:scenario_move",
+                id: "$this_item.id",
+                x: 40,
+                y: "$($this_item.y)",
+                raw: "yes",
+              },
+              {
+                tag: "hook",
+                name: "command:kill_unit",
+                unit: "$this_item.id",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "cutscene_retreating_enemies",
+            kill: "no",
+            side: 3,
+          },
+          {
+            tag: "foreach",
+            variable: "cutscene_retreating_enemies",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:scenario_move",
+                id: "$this_item.id",
+                x: 40,
+                y: "$($this_item.y)",
+                raw: "yes",
+              },
+              {
+                tag: "hook",
+                name: "command:kill_unit",
+                unit: "$this_item.id",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "cutscene_retreating_enemies",
+            kill: "no",
+            side: 4,
+          },
+          {
+            tag: "foreach",
+            variable: "cutscene_retreating_enemies",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:scenario_move",
+                id: "$this_item.id",
+                x: "$($this_item.x)",
+                y: 1,
+                raw: "yes",
+              },
+              {
+                tag: "hook",
+                name: "command:kill_unit",
+                unit: "$this_item.id",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22side%22%3A%225%22%2C%22animate%22%3A%22no%22%2C%22fire_event%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Dulcatulos",
+            x: 35,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Dulcatulos",
+            x: 35,
+            y: 3,
+          },
+          {
+            tag: "message",
+            speaker: "Dulcatulos",
+            text: _("Hail, fellow dwarves! Well fought, and our thanks; we were sorely pressed."),
+          },
+          {
+            tag: "message",
+            speaker: "Dulcatulos",
+            text: _("I had not expected to find allies so far from peopled lands. From whence do you hail?"),
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("We come at the behest of Hamel, Lord of Knalga and Lord Companion of the Northern Alliance. We seek audience with your lord."),
+          },
+          {
+            tag: "message",
+            speaker: "Dulcatulos",
+            text: _("You are our honored guests, and I will show you to the best quarters we have myself. Then I must see to my troop’s care. Lord Karrag will have speech with you on the morrow."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_58",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Aiglondur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("I fall!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_59",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Angarthing%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("Oh no! Without a loremaster we cannot complete our mission!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_60",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Ratheln%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Ratheln",
+            text: _("Aaarrgh! What will become of my students back home..."),
+          },
+        ],
+      },
+    ],
+  },
+]

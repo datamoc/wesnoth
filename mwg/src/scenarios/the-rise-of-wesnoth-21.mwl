@@ -1,0 +1,315 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Plan"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Haldric",
+        gold: 0,
+        leader: "Prince_Haldric",
+      },
+      {
+        tag: "map",
+        id: "scenario_21_The_Plan",
+        file: "21_The_Plan.map",
+      },
+      {
+        tag: "unit",
+        id: "Prince_Haldric",
+        type: "Noble Commander",
+        side: 1,
+        x: 9,
+        y: 10,
+        name: _("Prince Haldric"),
+      },
+      {
+        tag: "event",
+        id: "carryover_4",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_5",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Prince_Haldric",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_6",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _(""),
+        defeat: _(""),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "revelation.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Lady Jessene",
+            unit: "Lady Jessene",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Commander Aethyr",
+            unit: "Commander Aethyr",
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "Prince Haldric",
+            x: 11,
+            y: 7,
+            to_x: 10,
+            to_y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "Lady Jessene",
+            x: 8,
+            y: 5,
+            to_x: 7,
+            to_y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "Commander Aethyr",
+            x: 14,
+            y: 10,
+            to_x: 13,
+            to_y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:set_unit_hidden",
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Prince Haldric",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1250,
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("So what is your plan?"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("We’re going to convince Jevyan that we gave the elves the Ruby of Fire to secure our place in this new land. Then, if the orcs return, hopefully they’ll go looking for our not-so-loyal elven allies first."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("Haldric, that’s devious. I kind of like this plan. But you spoke a pact with the elves. You’ll be expected to come to their aid."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Yes, and we may come to their aid. We’ll have to weigh our options when and if the time comes. If the orcs return in great numbers, the brunt of their assault must fall on somebody else or we will not survive it. Who knows, maybe I won’t even come to their aid at all—"),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("Many people would call you a coward if you did not. They would say that you turned your back on your pact with the elves. It’s not like you can tell people what I overheard."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-annoyed.webp",
+            text: _("Recent events have taught me one thing: that survival trumps honor. Besides, they won’t be screaming at me — I’ll be dead."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("<i>What?!</i>"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("I’ll be dead. I mean we can’t just say that we gave away the Ruby of Fire, or send Jevyan a letter. Well, we are going to say it — but that’s not the point. Jessene, you’re going to forge a very official looking treaty, in which we give the elves the Ruby of Fire, in return for our place here."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("I’m going to face Jevyan, and if rumors of his power are true he’s going to pick that treaty off my mangled corpse. Then, you’re going to destroy Jevyan after word of the treaty has spread to the orcs, but before he has a chance to read my undead mind..."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("Haldric! I won’t do it... I won’t help. What is it with your kind, always rushing to a fool’s death? Who’ll lead these people? I... <i>we</i> need you alive."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("You will. I wouldn’t have made it this far without you, Jessene. But everything turns on convincing Jevyan, it’s the only way we can possibly keep the orc hordes off our necks."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("Haldric, this is ridiculous! I—"),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "aethyr_store",
+            kill: "no",
+            id: "Commander Aethyr",
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "Commander Aethyr",
+            x: 13,
+            y: 8,
+            to_x: 12,
+            to_y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:set_unit_hidden",
+            id: "Commander Aethyr",
+            hidden: "no",
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("There is no way I’m letting you go through with this, sir! Over our dead bodies, right Jessene?"),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("Right!"),
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("I’ll do it, sir. I’ll sacrifice myself to plant the false treaty."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("No. I can’t ask you to do this."),
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("You’ve denied me honorable death twice already. Once when you arrived at Clearwater Port, and once again when your ships rescued me. I’ll not be denied in this a third time!"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-mad.webp",
+            text: _("No, this is my sacrifice to make!"),
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("Sir, my family has been slaughtered, and my home lost. All I long for is to join them. Give me this honorable death... Please, Sir! I beg you!"),
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("After this conflict is over I’ll have to suffer through the long years alone, with no honorable way of joining them. I want to look that monster Jevyan in the eye before I go! I won’t be denied!"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Very well, if you can’t be deterred. Remember, you <i>must</i> be slain by the hand of Jevyan himself. We can’t have an illiterate orc or mindless skeleton getting the treaty. We will honor your sacrifice."),
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("Honor me by destroying Jevyan! Preferably before he can do unnatural things to me. I want to rest in the ground, not be some mindless undead slave for all eternity!"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("We’ll make sure. I promise."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("We’ll have to be careful to let one of the orcish leaders escape back to the Green Isle with the knowledge that the elves ‘have’ the Ruby of Fire. Sheesh... What is your kind’s infatuation with rushing to an ‘honorable death’?"),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-rise-of-wesnoth-22",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+    ],
+  },
+]

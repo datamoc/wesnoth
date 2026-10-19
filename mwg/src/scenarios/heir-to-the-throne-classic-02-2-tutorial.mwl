@@ -1,0 +1,2096 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Wesnoth Tutorial — Part II"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "player",
+        gold: 120,
+        recruit: "Elvish Fighter,Elvish Archer,Elvish Shaman",
+        leader: "student",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 100,
+        recruit: "Orcish Grunt,Wolf Rider,Orcish Archer",
+        leader: "Thrag",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "null",
+        team_name: "player",
+      },
+      {
+        tag: "map",
+        id: "scenario_2_Tutorial",
+        file: "00_Tutorial_part_2.map",
+      },
+      {
+        tag: "unit",
+        id: "student",
+        type: "Tutorial_Fighter",
+        side: 1,
+        x: 5,
+        y: 9,
+        name: _("Konrad"),
+      },
+      {
+        tag: "unit",
+        id: "Thrag",
+        type: "Orcish Warrior",
+        side: 2,
+        x: 38,
+        y: 5,
+        name: _("Thrag"),
+      },
+      {
+        tag: "unit",
+        id: "Dumbo",
+        type: "Orcish Grunt",
+        side: 0,
+        x: 14,
+        y: 11,
+      },
+      {
+        tag: "unit",
+        id: "Galdrad",
+        type: "Elvish Champion",
+        side: 0,
+        x: 3,
+        y: 10,
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_70",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,9,2,0,2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_71",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "student,Thrag,Galdrad",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_72",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 36,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat the Orc Leader"),
+        defeat: _("Death of Konrad Death of Li’sar Death of Galdrad Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "battle-epic.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_city_falls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "casualties_of_war.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "heroes_rite.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "northerners.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "set_variable",
+            name: "lhpu_msg_i",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "low_hp_unit_message[0].value",
+            value: "I hope I have a chance to retreat after this!",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "low_hp_unit_message[1].value",
+            value: "One lucky attack by an Orcish Grunt, and I’m done for!",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "low_hp_unit_message[2].value",
+            value: "I could make use of some healing in a village.",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "low_hp_unit_message[3].value",
+            value: "I had better retreat, before I get caught out with such low health!",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "low_hp_unit_message_female[0].value",
+            value: "female^I hope I have a chance to retreat after this!",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "low_hp_unit_message_female[1].value",
+            value: "female^One lucky attack by an Orcish Grunt, and I’m done for!",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "low_hp_unit_message_female[2].value",
+            value: "female^I could make use of some healing in a village.",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "low_hp_unit_message_female[3].value",
+            value: "female^I had better retreat, before I get caught out with such low health!",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "undo_option",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Welcome back! This is the second part of the two-part tutorial. Part 2 will teach you about recalling units, abilities and weapon specials, income and upkeep, long-distance movement, zone of control, and time of day."),
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("Ho, Galdrad! Has Delfador conjured something else to beat me with? A flock of scarecrows, perhaps?"),
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("What should I do?"),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Dumbo",
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("First, we will have to deal with the Orcish Grunt stationed in the middle of the river. He should be little trouble."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Thrag",
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("By then, their leader will have recruited more units to send against us and the real fight will begin."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 14,
+            y: 3,
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("See this dark blue water? It’s too deep for either side to cross. The orcs could slowly wade through that narrow band of shallow lighter-blue water in the north; but we could stand on the shore and force them to fight us from the water, where they are exposed and we are protected by the forest."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 16,
+            y: 10,
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("The more likely attack, then, is across the bridge. That middle island is the key: it has a village for healing injured units and forests in which we fight so well."),
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("Let’s go! Attack!"),
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("You also have two new types of units to recruit this scenario: Elvish Archers and Elvish Shamans. I’ll tell you more about them when you recruit them. Personally, I would recommend a balanced force of two archers, two fighters, and a shaman."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "recruit",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Elvish%20Shaman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "$unit.profile",
+            text: _("The Shaman has the ability to <i>heal</i> friendly units around her. She also has a special attack which <i>slows</i> enemies, halving the damage they do for one turn. However, she’s physically weaker than fighters and archers, so be careful when sending her into battle."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("At the start of each turn, allied units adjacent to a Shaman will recover 4 hitpoints, which is only half of the amount that a village would provide. The Shaman doesn’t gain experience from healing, only from combat, but advancing her is worthwhile — her second-level Elvish Druid advancement has healing equivalent to a village. A detailed explanation of healing may be found in the <i>Gameplay</i> section of the help (default hotkey: <b>F1</b>)."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Weapon specials are special attack modifiers that make certain attacks more powerful. In this case, the Shaman has the Slows special on her entangle attack. When this attack successfully hits an enemy, it will halve the damage they do for one turn. Other weapon specials include First Strike, which allows that attack to always hit first no matter who attacks first, and Magical, which gives that attack a constant 70% chance to hit. A full list of abilities and weapon specials, along with traits, may be found in the help (default hotkey: <b>F1</b>)."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "recruit",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Elvish%20Shaman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "$unit.profile",
+            text: _("A unit in a village will receive healing from the village instead of from adjacent healers."),
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("Having more than one healer allows them to heal each other or to cover separate areas of the battlefield. It can also allow better tactical movement — the 2 hitpoints from rest-healing does combine with other sources of healing, so it’s often better to move a healer instead of an injured unit."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "recruit",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Elvish%20Archer%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "$unit.profile",
+            text: _("Unlike the Elvish Fighter, which has strong melee attacks, the Elvish Archer has strong ranged attacks. It’s useful to attack enemy units with strong melee attacks with strong ranged attacks, and vice versa. This allows your units to take less damage overall when your enemy counterattacks."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7_1",
+        on: "recruit",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "turn_number",
+              },
+              {
+                tag: "have_unit",
+                side: 1,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("You certainly have a fondness for shamans, I see. They will provide a lot of healing, but not much offensive potential."),
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("While none of your recruited units can move yet, you still can. You need more income; there are some villages near the keep you can capture."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8_2",
+        on: "recall",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "turn_number",
+              },
+              {
+                tag: "have_unit",
+                side: 1,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("You certainly have a fondness for shamans, I see. They will provide a lot of healing, but not much offensive potential."),
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("While none of your recruited units can move yet, you still can. You need more income; there are some villages near the keep you can capture."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "on_undo_10",
+        on: "on_undo",
+        once: false,
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "capture",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_capturer_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "turn_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: "0-39",
+            y: "0-19",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%2C%22first_time_only%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_condition%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22turn_number%22%2C%22numerical_equals%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22have_unit%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22race%22%3A%22elf%22%2C%22count%22%3A%225%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22print%22%2C%22attributes%22%3A%7B%22text%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22print%22%2C%22attributes%22%3A%7B%22text%22%3A%22You%20forgot%20to%20recruit%20troops!%20You%20can%20press%20%3Cb%3Eu%3C%2Fb%3E%20to%20undo%20your%20last%20move.%22%2C%22size%22%3A%2218%22%2C%22duration%22%3A%22unlimited%22%2C%22color%22%3A%22255%2C255%2C255%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22allow_undo%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22on_undo%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22print%22%2C%22attributes%22%3A%7B%22text%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22print%22%2C%22attributes%22%3A%7B%22text%22%3A%22Recruit%20or%20recall%20your%20troops%22%2C%22size%22%3A%2218%22%2C%22duration%22%3A%22unlimited%22%2C%22color%22%3A%22255%2C255%2C255%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22print%22%2C%22attributes%22%3A%7B%22text%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22print%22%2C%22attributes%22%3A%7B%22text%22%3A%22You%20forgot%20to%20capture%20a%20village!%20You%20can%20press%20%3Cb%3Eu%3C%2Fb%3E%20to%20undo%20your%20last%20move.%22%2C%22size%22%3A%2218%22%2C%22duration%22%3A%22unlimited%22%2C%22color%22%3A%22255%2C255%2C255%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22allow_undo%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22on_undo%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22print%22%2C%22attributes%22%3A%7B%22text%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22print%22%2C%22attributes%22%3A%7B%22text%22%3A%22Capture%20a%20village%22%2C%22size%22%3A%2218%22%2C%22duration%22%3A%22unlimited%22%2C%22color%22%3A%22255%2C255%2C255%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "turn_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("Galdrad, if I go by the ford, I could sneak up near his keep and dispatch him quickly."),
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("You could. However, elves (and orcs) have bad <i>defense</i> in water. You’ll be more vulnerable as you try to wade slowly across the ford; the enemy will have an 80% chance to hit you. Since elves have good defense in the forest, I would advise you keep to the trees and attack the orcs from there; your Fighters will only suffer a 40% chance of being hit in return, while Shamans and Archers will only incur a 30% chance."),
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("However, keep an eye on that ford. The orcs may try to sneak around behind our forces. It might do to send a few units to defend the banks, and the village there."),
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("Alright. The bridge it is, then, but I’ll be careful about the crossing."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Dumbo",
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("That Orcish Grunt is still blocking our path. He has no ranged attacks, so your archers should be able to engage him with little risk. Unfortunately, your units cannot reach him this turn, but you should not let them languish! Move them into position so they can attack next turn. There are also other villages on this side of the river. You should secure them for income and healing."),
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("I think I’ll stick around the keep for now, in order to recruit more units."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "side_turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.id",
+            equals: "student",
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("I hope I will survive the counter-attack if my units can’t take this grunt out this turn. I should order them to grab more villages if they can and move everyone closer for next turn."),
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("If one of your Shamans stands just behind you, she will heal you 4 hitpoints at the beginning of the next turn."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.id",
+            not_equals: "student",
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("I hope my units will survive the counter-attack if I can’t take this grunt out this turn. I’d better grab more villages if I can and move everyone closer for next turn."),
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("If one of your Shamans stands just behind your wounded units, she will heal each of them 4 hitpoints at the beginning of the next turn."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "attack_end",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22id%22%3A%22student%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "warn_about_units_with_low_health",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "attack_end",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "Dumbo",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "second_unit.hitpoints",
+                greater_than: 0,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 14,
+            y: 10,
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("We must occupy that island before the Wolf Riders reach it!"),
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("Can’t we just move around the orcs?"),
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "misc%2Fhighlight-hex.png",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Dumbo",
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("No. Once you move close to an enemy unit, you are in its <i>Zone of Control</i> and cannot move further that turn. To move your troops onto that island without wading slowly through the water, you’ll have to kill the Grunt."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("The hexes immediately around a unit constitute its <i>Zone of Control</i>. When an enemy unit enters those hexes, they cannot move any further that turn. (An exception are units with the <i>skirmisher</i> ability, who are unaffected by zones of control.) This can be used to create a blockade to prevent stronger enemies from reaching key locations, such as villages, even if you have limited manpower."),
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "misc%2Fhighlight-hex.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Dumbo%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("One fewer orc to deal with, and our way across the bridge is clear! I also gained experience from striking the killing blow!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_21",
+        on: "branch_if_21",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "undo_option",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Don’t forget, you can press <b>u</b> to undo most things if you make a mistake."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "16,17,18,19,20",
+            y: "10,9,9,8,8",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "turn_number",
+                less_than: 8,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("Be careful! If you stand on the bridge you are exposed to attack from multiple directions! Even though the orcs have low defense in water, they will overwhelm you with their numbers."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_21",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_23",
+        on: "branch_if_23",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2210%22%2C%22y%22%3A%223%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22owner_side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 9,
+            y: 2,
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("Don’t forget about that last village near the channel. The orcs will capture it if they try to sneak around via the ford! It will be hard to dislodge them if they do."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "capture",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_capturer_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22x%22%3A%2216%22%2C%22y%22%3A%229%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("Well done! The island village is ours. You can use the trees to set up a blockade against the orcs; they can only come across the bridge one by one without wading through the water, and you will be securely on a terrain with good defense."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_23",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_25",
+        on: "branch_if_25",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "undo_option",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Don’t forget, you can press <b>u</b> to undo most things if you make a mistake."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Ww%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("It’s very dangerous to stand in water when there are enemies about! Your unit will have an 80% chance of being hit. Get back, and wait for them to attack you!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_25",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_27",
+        on: "branch_if_27",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "undo_option",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Don’t forget, you can press <b>u</b> to undo most things if you make a mistake."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: "7-19",
+            y: "0-19",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "turn_number",
+                less_than: 8,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("You’re venturing away from your keep. You might need to recruit more units, and I doubt the orc leader will let you use his! Careful!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_27",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 4,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 4,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                x: 16,
+                y: 9,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 15,
+            y: 8,
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("We need to occupy that village, otherwise they will take it soon! Move a unit into the village to stop the orcs capturing it. Whichever unit you choose will benefit from the village’s healing, too."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 15,
+            y: 8,
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("Careful! It is now nighttime. Orcs are <i>chaotic</i>, which means their attacks are now 25% stronger. By day, their attacks are 25% weaker, which is a noticeable difference. You are <i>lawful</i>: stronger by day and weaker at night. Your elvish warriors are <i>neutral</i>: unaffected by the time of day."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_32",
+        on: "branch_if_32",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2216%22%2C%22y%22%3A%229%22%2C%22owner_side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 15,
+            y: 8,
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("Remember to retreat your wounded units to villages. Shamans can only heal 4 hitpoints per turn, while villages can heal them faster at 8 per turn. Different sources of healing are generally not combined. If a unit starts its turn next to multiple healers, or on a village and next to a healer, it will still be healed only once. Rest-healing is an exception to the rule — if a unit doesn’t do anything for a turn, it will heal 2 hitpoints in addition to any healing it may receive from villages or healers, combining for a total of up to 10 hitpoints per turn."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_33",
+        on: "branch_if_33",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "__invalid_if__",
+            not_equals: "",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 10,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 8,
+            y: 11,
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("Remember to retreat your wounded units to villages. Shamans can only heal 4 hitpoints per turn, while villages can heal them faster at 8 per turn. Different sources of healing are generally not combined. If a unit starts its turn next to multiple healers, or on a village and next to a healer, it will still be healed only once. Rest-healing is an exception to the rule — if a unit doesn’t do anything for a turn, it will heal 2 hitpoints in addition to any healing it may receive from villages or healers, combining for a total of up to 10 hitpoints per turn."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "check_income",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_32",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_33",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "check_income",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 8,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 9,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 10,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_38",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 11,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_39",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 12,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 28,
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("Hurry up and defeat the orcs before they become entrenched!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_42",
+        on: "branch_if_42",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "gold",
+            greater_than: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "spoke_about_income",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("I have enough gold to recruit more units!"),
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("Good idea!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_41",
+        on: "check_income",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "spoke_about_income",
+                equals: "no",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_gold",
+            side: 1,
+            variable: "gold",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_42",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_44",
+        on: "branch_if_44",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "reachable.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "spoke_about_orcs_crossing_river",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 11,
+            y: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("Beware of those orcs crossing the river! If they get into the forest they’ll be hard to dislodge!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_43",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "spoke_about_orcs_crossing_river",
+                equals: "no",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_reachable_locations",
+            variable: "reachable",
+            filter: "%7B%22tag%22%3A%22store_reachable_locations%22%2C%22attributes%22%3A%7B%22moves%22%3A%22max%22%2C%22range%22%3A%22vision%22%2C%22variable%22%3A%22reachable%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2210%22%2C%22y%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+            moves: "max",
+            range: "vision",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_44",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_45",
+        on: "warn_about_units_with_low_health",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "unit.hitpoints",
+                less_than: "$($unit.max_hitpoints/5)",
+              },
+              {
+                tag: "variable",
+                name: "unit.hitpoints",
+                greater_than: 0,
+              },
+              {
+                tag: "variable",
+                name: "second_unit.hitpoints",
+                greater_than: 0,
+              },
+              {
+                tag: "variable",
+                name: "lhpu_msg_i",
+                less_than_or_equal_to: 3,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("$low_hp_unit_message[$lhpu_msg_i].value"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "lhpu_msg_i",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("That unit is about one kill (8 experience points) away from gaining a level! Do not let it die!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_46",
+        on: "capture",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_capturer_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thrag%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "turn_number",
+                greater_than: 1,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Thrag",
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("Their leader has moved into that village! He’s not as stupid as I thought. The village heals him each turn and provides good defense."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_47",
+        on: "capture",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_capturer_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22x%22%3A%2216%2C11%2C9%22%2C%22y%22%3A%229%2C8%2C12%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: "$x1",
+            y: "$y1",
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("That unit has captured our village! You’d better get him out; it heals him each turn and provides good defense."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_48",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Elvish%20Shaman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Using me to attack is risky! I can slow the opponent with my ranged attack, but I hope you have a plan if I miss!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_49",
+        on: "attack_end",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "Thrag",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "second_unit.hitpoints",
+                less_than: 21,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Thrag",
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("You are close to killing their leader! Because he is second level, the unit who finishes him will gain 16 experience points. In a campaign, it’s important to decide which units you want to advance, and give those units the best chances to gain experience."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("In a campaign you may have ten or even twenty scenarios to build your army, but this tutorial will conclude after you defeat Thrag."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_51",
+        on: "branch_if_51",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.gender",
+            equals: "male",
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("We will miss $unit.name| because he had $unit.experience experience points. He would have advanced a level soon."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_52",
+        on: "branch_if_52",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.gender",
+            not_equals: "male",
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("We will miss $unit.name| because she had $unit.experience experience points. She would have advanced a level soon."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_50",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22race%22%3A%22elf%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "unit.experience",
+                greater_than: "$($unit.max_experience-13)",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_51",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_52",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_54",
+        on: "branch_if_54",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.gender",
+            equals: "male",
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("We will miss $unit.name|, but at least he was not one of our experienced troops!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_55",
+        on: "branch_if_55",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.gender",
+            not_equals: "male",
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("We will miss $unit.name|, but at least she was not one of our experienced troops!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_53",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22race%22%3A%22elf%22%2C%22type%22%3A%22Elvish%20Fighter%2C%20Elvish%20Archer%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "unit.experience",
+                less_than: 10,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_54",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_55",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_56",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22race%22%3A%22elf%22%2C%22level%22%3A%222%2C3%2C4%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("Higher level units are powerful, but not invulnerable. We’ll miss you, $unit.name|."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_57",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Elvish%20Shaman%2CElvish%20Druid%2CElvish%20Shyde%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("Losing a healer hurts all the troops! Keep them out of the enemy’s reach!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_58",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2238%22%2C%22y%22%3A%225%22%2C%22radius%22%3A%226%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Thrag",
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("Beware of the orc leader: he can do 36 hitpoints of damage at night! Attack with many units at once during the day."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_59",
+        on: "post_advance",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_advance_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Elvish%20Druid%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Advancing a level has fully healed me! I am able to heal units 8 hitpoints per turn, instead of just 4, and may also cure them of poison if they cannot reach a village! I also have gained a new <i>magical</i> attack, meaning it always has a 70% chance to hit, but it is not as powerful as the similar attack wielded by the Elvish Sorceress."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_60",
+        on: "post_advance",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_advance_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Elvish%20Sorceress%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Advancing a level has fully healed me! I cannot heal adjacent units anymore, but to compensate, I have a new, powerful faerie fire attack that deals 7 damage each for 4 strikes. It also has the <i>magical</i> weapon special, meaning it always has a 70% chance to hit."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_61",
+        on: "post_advance",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_advance_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Elvish%20Marksman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Advancing a level has fully healed me! When attacking, I always have at least a 60% chance of hitting with my longbow thanks to my <i>Marksman</i> ability, and I deal 9 damage each for 4 attacks. Use me to dislodge hard-to-hit units."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_62",
+        on: "post_advance",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_advance_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Elvish%20Ranger%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Advancing a level has fully healed me! I am good with both bow and sword, and I have a special ability: <i>Ambush</i>. I can hide in forests where enemies can only see me if they are right next to me."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_63",
+        on: "post_advance",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_advance_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Elvish%20Captain%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Advancing a level has fully healed me! I am good with both bow and sword, and I have a special ability: <i>Leadership</i>. I do less damage myself than the Elvish Hero, but my ability allows my allies to fight better. First level units around me do 25% more damage, so position me carefully!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_64",
+        on: "post_advance",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_advance_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Elvish%20Hero%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Advancing a level has fully healed me! I am particularly good with the sword, dealing 8 damage in 4 attacks. While I don’t have the Leadership abilities of the Elvish Captain, my superior fighting skills allow my attacks to do more damage!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_65",
+        on: "post_advance",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_advance_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22student%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Advancing a level has fully healed me! I have become better at using the sword, dealing 9 damage in 4 attacks. Although I do not have any special abilities, my fighting skills will allow me to beat the orcs by dealing more damage!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_66",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("You took too long! Now we’ll never be rid of these orcs!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_67",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22student%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("That... was foolish. Next time I should be more careful."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_68",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Galdrad%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Agh! Who will guide you to victory now?"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_69",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Galdrad",
+            text: _("You have beaten the orcs! Well done."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You can also refer to the in-game help browser if you ever need to refresh your memory on gameplay mechanics."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Now, continue onwards to play “Heir to the Throne, Classic”..."),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            all: "yes",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+    ],
+  },
+]

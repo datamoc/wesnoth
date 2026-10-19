@@ -1,0 +1,2504 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Morning After"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        gold: 0,
+        leader: "Kaleh",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "monsters",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "evil",
+        recruit: "Skeleton, Skeleton Archer, Blood Bat, Necrophage, Dark Adept, Deathblade",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "animals",
+      },
+      {
+        tag: "map",
+        id: "scenario_01_The_Morning_After",
+        file: "campaigns/Under_the_Burning_Suns/maps/01_The_Morning_After.map",
+      },
+      {
+        tag: "unit",
+        id: "Kaleh",
+        type: "Quenoth Youth",
+        side: 1,
+        x: 14,
+        y: 20,
+        name: _("Kaleh"),
+      },
+      {
+        tag: "unit",
+        id: "Nym",
+        type: "Quenoth Youth",
+        side: 0,
+        x: 16,
+        y: 20,
+      },
+      {
+        tag: "event",
+        id: "carryover_62",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_63",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Note: This campaign is probably not appropriate for beginners. It changes certain Wesnoth standards, such as the elves’ stats, the day/night cycle, recall costs and general approach to the difficulty levels. This campaign emphasizes role-playing elements and tends to have longer scenarios with objectives that change in the middle. For these reasons, we strongly suggest that you occasionally save your game mid-scenario, so you won’t lose all your progress if you get stuck and have to start over."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_64",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("This is the chronicle of the journey of the Quenoth Elves from their homeland in the Great Southern Desert. I write this story so that our descendants may know of our travels, remember the sacrifices we made, and profit from the hard lessons we learned."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_65",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Chapter 1: I, Kaleh, grew up amid the shifting sands, under our two suns Sela and Naia. It was a land of hot dry days and cold nights, of roaming horrors, where water was more valuable than gold. We had lived among the sands ever since the forests fell uncounted years ago. It was a hard and savage land, but we were tougher still, and we managed to survive settled around one of the rare oases. We had heavily fortified our village against marauders and were the largest encampment we knew of. My uncle, Tanuil, led us for many years, and trained us to be self-sufficient and strong against all enemies. A people struggling in an ocean of sand, we thought we were ready for anything. All that changed one fateful night, when the sky rained fire..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_66",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("I remember that night as if it were yesterday. I was not prone to dreaming, but as I slept I had a strange vision. I didn’t have long to ponder it though, because I was woken in the dark by the sound of deafening crashes, splintering wood and shouting elves. That night the sky rained flaming rocks, boulders bigger than you could imagine. They smote the landscape like lightning bolts, setting fire to whatever could burn and crushing houses, walls, and elves. There was nowhere to hide, nowhere to go for protection. I was terribly afraid, and I thought that if I tried to flee I would be smashed, so I hid and prayed to Eloh. I had never prayed before as fervently as I did that night. I heard cries and screams outside, but I could not force myself to move. Eventually the thin yellow tendrils of a sickly dawn stole over the horizon, as if Naia herself were shocked by the devastation she saw."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_67",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kaleh,Nym,Garak,Zhul",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_68",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 34,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Rescue surviving elves Defeat Xanthos"),
+        defeat: _("Death of Kaleh Death of Nym Death of Garak Death of Zhul Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "side_traits_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Kaleh",
+            object: "%7B%22id%22%3A%22side_traits_1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_villages_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_village_owner",
+            side: 1,
+            cells: "13,19",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "revelation.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "nunc_dimittis.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "elvish-theme.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22elf_pool%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Quenoth%20Fighter%22%2C%22name%22%3A%22Lreu%22%2C%22gender%22%3A%22male%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Quenoth%20Fighter%22%2C%22name%22%3A%22Piyru%22%2C%22gender%22%3A%22male%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Quenoth%20Fighter%22%2C%22name%22%3A%22Feru%22%2C%22gender%22%3A%22male%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Quenoth%20Scout%22%2C%22name%22%3A%22Danu%22%2C%22gender%22%3A%22male%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Quenoth%20Scout%22%2C%22name%22%3A%22Hamuil%22%2C%22gender%22%3A%22male%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Quenoth%20Scout%22%2C%22name%22%3A%22Anioh%22%2C%22gender%22%3A%22male%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Tauroch%20Rider%22%2C%22name%22%3A%22Vemuil%22%2C%22gender%22%3A%22male%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Tauroch%20Rider%22%2C%22name%22%3A%22Taliu%22%2C%22gender%22%3A%22male%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "total_elf_pool_gold_value",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "current_elf_pool_gold_value_received",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "seen_camps",
+            value: 0,
+          },
+          {
+            tag: "foreach",
+            variable: "elf_pool",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit_type",
+                variable: "utbs_unit_type",
+                types: "$this_item.type",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "total_elf_pool_gold_value",
+                value: "$utbs_unit_type.cost",
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 4,
+            ai_type: "forest_animals",
+            action: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "total_elf_pool_gold_value",
+            value: "$(0.4)",
+            mode: "multiply",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Hey Kaleh, are you in there?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Nym, is that you?"),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Yes, come on out already. The storm has passed. With the morning light Naia has ended the terrible night."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Has the sky really stopped falling?"),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("I already told you, the sky is clear and empty. Now come quickly, silly, others may need our help."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("What’s happened? Oh Eloh! The craters are everywhere. Everything is gone, ruined! I can hardly recognize our village. I didn’t think it could be this bad."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Come on, Kaleh, we have to go see if anyone is hurt or needs help. I think I hear people calling from the south. Now is not a time for fear, we must be strong. After all you are the nephew of Tanuil, our leader, and you must answer the call of duty. Perhaps in the light of day things won’t be as bad as you think. Let’s explore the village and see who else has survived the night."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Wait, our keep is just to the east. Our leader Tanuil must surely be recruiting others to help deal with the devastation. Perhaps we should go to the keep, before we explore the rest of the village."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "26-33",
+            y: "18-25",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Tanuil’s keep, our beautiful fortress, it is destroyed. How will we summon our people to battle?"),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("We must rally those survivors we can find amidst the rubble. It doesn’t look like anyone survived, but at least we can thank Eloh it was a quick death. But come on, we can’t dwell on the dead, we must help the living."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("But if Tanuil is dead, who will lead us?"),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("That’s a question for another time. Let’s keep exploring the wreckage."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "8-17",
+            y: "22-31",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "first_mudcrawler_encounter",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_9",
+        on: "branch_if_9",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "seen_mudcrawler",
+            equals: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "seen_mudcrawler",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "message",
+            speaker: "Vecnu",
+            text: _("Kaleh, Nym, help us!"),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            portrait: "portraits/nym_moody.webp",
+            text: _("What in Uria’s name is that?"),
+          },
+          {
+            tag: "message",
+            speaker: "Vecnu",
+            text: _("They came with the stones that fell from the sky. I know not what they are, but more seem to be emerging from the craters. If we don’t stop them there will be nothing left of our village or our people."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("To battle, my friends! There are still those left who can fight."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_10",
+        on: "branch_if_10",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "seen_mudcrawler",
+            not_equals: "no",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("There are more of our people fighting the mud monsters!"),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Then let’s join the battle!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "first_mudcrawler_encounter",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "rescued_elves",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "spawn",
+            id: "Vecnu",
+            type: "Quenoth Fighter",
+            side: 1,
+            x: 14,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Vecnu",
+          },
+          {
+            tag: "spawn",
+            id: "Eranor",
+            type: "Quenoth Fighter",
+            side: 1,
+            x: 14,
+            y: 27,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Eranor",
+          },
+          {
+            tag: "spawn",
+            id: "Seil",
+            type: "Tauroch Rider",
+            side: 1,
+            x: 11,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Seil",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Giant Mudcrawler",
+            side: 2,
+            x: 10,
+            y: 24,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Giant Mudcrawler",
+            side: 2,
+            x: 10,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Giant Mudcrawler",
+            side: 2,
+            x: 13,
+            y: 27,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Small Mudcrawler",
+            side: 2,
+            x: 14,
+            y: 28,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_9",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "11-21",
+            y: "31-36",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "second_mudcrawler_encounter",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "second_mudcrawler_encounter",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "rescued_elves",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "spawn",
+            id: "Eloshi",
+            type: "Tauroch Rider",
+            side: 1,
+            x: 17,
+            y: 33,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Eloshi",
+          },
+          {
+            tag: "spawn",
+            id: "Illuvin",
+            type: "Quenoth Scout",
+            side: 1,
+            x: 12,
+            y: 32,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Illuvin",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Giant Mudcrawler",
+            side: 2,
+            x: 18,
+            y: 33,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Giant Mudcrawler",
+            side: 2,
+            x: 14,
+            y: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "spawn",
+            id: "Raynor",
+            type: "Tauroch Rider",
+            side: 1,
+            x: 14,
+            y: 34,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Raynor",
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Giant Mudcrawler",
+            side: 2,
+            x: 17,
+            y: 34,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Giant Mudcrawler",
+            side: 2,
+            x: 13,
+            y: 33,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 12,
+            ys: 32,
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("More of these muddy crawlies, let’s get rid of them with haste."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "25-32",
+            y: "31-35",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "third_mudcrawler_encounter",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "seen_mudcrawler",
+            equals: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "seen_mudcrawler",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("Kaleh, Nym, help us!"),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            portrait: "portraits/nym_moody.webp",
+            text: _("What in Uria’s name is that?"),
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("They came with the stones that fell from the sky. I know not what they are, but more seem to be emerging from the craters. If we don’t stop them there will be nothing left of our village or our people."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("To battle, my friends! There are still those left who can fight."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "seen_mudcrawler",
+            not_equals: "no",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("But they are fighting many mud creatures. Quick, we must help them!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "third_mudcrawler_encounter",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "29,33",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "rescued_elves",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Giant Mudcrawler",
+            side: 2,
+            x: 27,
+            y: 32,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+          {
+            tag: "spawn",
+            id: "u_10",
+            type: "Giant Mudcrawler",
+            side: 2,
+            x: 27,
+            y: 33,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_10",
+          },
+          {
+            tag: "spawn",
+            id: "u_11",
+            type: "Giant Mudcrawler",
+            side: 2,
+            x: 27,
+            y: 34,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_11",
+          },
+          {
+            tag: "spawn",
+            id: "u_12",
+            type: "Giant Mudcrawler",
+            side: 2,
+            x: 28,
+            y: 32,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_12",
+          },
+          {
+            tag: "spawn",
+            id: "u_13",
+            type: "Giant Mudcrawler",
+            side: 2,
+            x: 29,
+            y: 31,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_13",
+          },
+          {
+            tag: "spawn",
+            id: "Garak",
+            type: "Quenoth Champion",
+            side: 1,
+            x: 28,
+            y: 33,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Garak",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Garak",
+          },
+          {
+            tag: "spawn",
+            id: "Jorazan",
+            type: "Quenoth Fighter",
+            side: 1,
+            x: 29,
+            y: 32,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Jorazan",
+          },
+          {
+            tag: "spawn",
+            id: "Zyar",
+            type: "Quenoth Fighter",
+            side: 1,
+            x: 28,
+            y: 33,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Zyar",
+          },
+          {
+            tag: "message",
+            text: _("This is our training ground. And look, there is Garak, the captain of the guard. He and his fighters have survived the night!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_15",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "found_garak",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22role%22%3A%22Rocky%20Horror%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Ha! They’re destroyed at last."),
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("Thanks for the help. I am glad to see that so many have survived the night. But there’s no time to talk, we must save the rest of our people and crush these earthen abominations."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "on_undo_19",
+        on: "on_undo",
+        once: false,
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "23-25",
+            y: "28-34",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "bridge_event",
+                equals: "",
+              },
+              {
+                tag: "variable",
+                name: "found_zhul",
+                equals: "",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("This bridge leads to the holy island at the center of our lake."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Hmmmm. Some of the druids that worship on the island may still be alive. We should go check."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Be careful. The bridge is broken, so we’ll have to wade through the shallow water."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "bridge_event",
+            value: "warned",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "23-25",
+            y: "28-31",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "bridge_event",
+                equals: "warned",
+              },
+            ],
+          },
+          {
+            tag: "spawn",
+            id: "u_14",
+            type: "Cuttle Fish",
+            side: 2,
+            x: 25,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_14",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("The water of the lake suddenly goes dark and unsettled, only to erupt in a swarm of tentacles the moment the first elf set foot off the island."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            portrait: "portraits/nym_moody.webp",
+            text: _("What in Uria’s name is that?"),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("I felt a great darkness in this lake, but I knew not what it was. The falling rocks must have woken it from its sleep."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Protect the priestesses, we shall send this monstrosity back to the depths it came from!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "23-25",
+            y: "26-28",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "rescued_elves",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("The great tree! It has been buried under the rocks. Our most holy sanctuary, defiled. Oh, Eloh, what shall we do?"),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Is anyone still alive?"),
+          },
+          {
+            tag: "spawn",
+            id: "Zhul",
+            type: "Quenoth Shaman",
+            side: 1,
+            x: 24,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Zhul",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Zhul",
+          },
+          {
+            tag: "spawn",
+            id: "Ryoko",
+            type: "Quenoth Mystic",
+            side: 1,
+            x: 25,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Ryoko",
+          },
+          {
+            tag: "spawn",
+            id: "Yuni",
+            type: "Quenoth Mystic",
+            side: 1,
+            x: 23,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Yuni",
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("Finally! We were worried that no one else had survived."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Mother priestess, are you all right?"),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("There’s no time to stand on ceremony. I’m fine. I’m afraid only a few of us survived, but we will lend you what skills we have. Show me to those who need healing."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("But the great tree, it has been destroyed!"),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("All things of this world come to an end, but the power of Eloh endures. A new one shall grow in its place. Come now, let us see to the needs of our people."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "found_zhul",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "30-37",
+            y: "25-32",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("These fields seem strangely vacant. Where are the dustboks?"),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("Maybe they’re hiding in the stables. Let’s go check."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "0-7",
+            y: "0-4",
+          },
+          {
+            tag: "spawn",
+            id: "u_15",
+            type: "Quenoth Dustbok",
+            side: 4,
+            x: 3,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_15",
+          },
+          {
+            tag: "spawn",
+            id: "u_16",
+            type: "Quenoth Dustbok",
+            side: 4,
+            x: 2,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_16",
+          },
+          {
+            tag: "spawn",
+            id: "u_17",
+            type: "Quenoth Dustbok",
+            side: 4,
+            x: 5,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_17",
+          },
+          {
+            tag: "message",
+            text: _("Wandering Dustboks... A pity they only come to us now."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2237%22%2C%22y%22%3A%2229%22%2C%22radius%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "stable_found",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2237%22%2C%22y%22%3A%2232%22%2C%22radius%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "stable_found",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "stable_found",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            text: _("Hey, Nisen, the rocks have stopped falling. You can come out now!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "rescued_elves",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "message",
+            speaker: "Nisen",
+            text: _("Oh, thank Eloh, I thought they would never stop."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "stable_found",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Naru",
+            text: _("Is it safe to come out? I was so scared."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Where are all the other dustboks?"),
+          },
+          {
+            tag: "message",
+            speaker: "Naru",
+            text: _("A hunting party left just yesterday, so unless the rocks fell all over the land, many of the dustboks have probably survived. The few that remained here were scared by the falling rocks and fled into the night. It took all my skill to calm Yasi and keep him from running."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("We’ll need your help in checking to see if the outer settlements survived. Who knows what kinds of damage they suffered in the night? And perhaps some of the people out in the desert have been able to round up some of the loose dusties."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("We can only hope that hunting party returns soon."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "outer_villages",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22outer_villages%22%2C%22terrain%22%3A%22*%5EVdt%2C*%5EVda%2C*%5EVdr%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2232-50%22%2C%22y%22%3A%221-12%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22x%22%3A%2213-37%22%2C%22y%22%3A%2220-34%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "total_elf_pool_gold_value",
+            value: "$outer_villages.length",
+            mode: "multiply",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "total_elf_pool_gold_value",
+            value: "$elf_pool.length",
+            mode: "divide",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_31",
+        on: "branch_if_31",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "fate",
+            less_than_or_equal_to: "$($max_fate|*0.5 - $luckiness|)",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random_elf_pool_index",
+            values: "1..$elf_pool.length",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "random_elf_pool_index",
+            value: 1,
+            mode: "sub",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$elf_pool[$random_elf_pool_index].type",
+            side: 1,
+            x: "$x1",
+            y: "$y1",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit_type",
+            variable: "utbs_unit_type",
+            types: "$elf_pool[$random_elf_pool_index].type",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "current_elf_pool_gold_value_received",
+            value: "$utbs_unit_type.cost",
+            mode: "add",
+          },
+          {
+            tag: "message",
+            text: _("Oh good, some elves have survived in this outer settlement. They’ve agreed to help us search for other survivors."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_32",
+        on: "branch_if_32",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "fate",
+            greater_than: "$($max_fate|*0.5 - $luckiness|)",
+          },
+          {
+            tag: "message",
+            text: _("The encampment is empty. I wonder what happened to the inhabitants?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_30",
+        on: "branch_if_30",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            condition: "hook",
+            hook: "predicate:variable_compare",
+            variable: "village_at_$x1|_$y1|.captured_by",
+            not_equals: "undead",
+          },
+          {
+            tag: "set_variable",
+            name: "max_fate",
+            value: 30,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "fate",
+            values: "1..$max_fate",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "expected_elf_pool_gold_value",
+            value: "$($total_elf_pool_gold_value|*$seen_camps|/$outer_villages.length|)",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "luckiness",
+            value: "$($current_elf_pool_gold_value_received - $expected_elf_pool_gold_value)",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "seen_camps",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_31",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_32",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_33",
+        on: "branch_if_33",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "village_at_$x1|_$y1|.captured_by",
+            equals: "undead",
+          },
+          {
+            tag: "message",
+            text: _("This encampment has been abandoned. There are signs of a struggle and a few bloodstains but nothing else. I fear for those elves who lived out here."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "capture",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_capturer_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22outer_villages%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "variable_compare",
+                variable: "village_at_$x1|_$y1|.visited_by_player",
+                not_equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "village_at_$x1|_$y1|.visited_by_player",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_30",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_33",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "capture",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_capturer_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22outer_villages%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "village_at_$x1|_$y1|.captured_by",
+            value: "undead",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "xanthos_appearance",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "xanthos_appearance",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "Xanthos",
+            type: "Necromancer",
+            side: 3,
+            x: 36,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Xanthos",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            gold: 300,
+            income: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: "34-38",
+            ys: "2-6",
+          },
+          {
+            tag: "message",
+            speaker: "Xanthos",
+            text: _("This place reeks of death, I could smell it from miles away. Oh, how I love it, it is the smell of power, the inevitable triumph of death over life. Puny elves, I shall use the corpses of your families to create an army of undead! All shall bow down before Xanthos the Necromancer!"),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            portrait: "portraits/nym_moody.webp",
+            text: _("His timing couldn’t be worse. I know that undead cultists often prey on small targets, but they haven’t had the guts to attack us for years. Why has Eloh heaped so much misfortune upon us?"),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("Have some more faith, girl, the goddess does not send us more than we can handle. With Eloh’s grace we shall yet triumph over this pretender."),
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("Bah, I’ve fought these dark cultists before. They can be killed just like anyone else, and our riders can easily defeat their skeleton armies."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("I have heard of your kind, foul necromancer. You travel the sands, daring to bring back and enslave those who have passed on. But we will prove to you that death is not all-powerful. You shall not desecrate the bodies of my kith and kin! You shall learn to fear the wrath of Eloh and the Quenoth Elves!"),
+          },
+          {
+            tag: "hook",
+            name: "command:place_shroud",
+            side: 1,
+            xs: "34-38",
+            ys: "2-6",
+            radius: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "29-49",
+            y: "0-11",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "xanthos_appearance",
+          },
+          {
+            tag: "message",
+            text: _("Some of our people felt crowded in the village, and wanted to live out on the open sands. They thought they could flee to the safety of our walls if danger came. I shudder to imagine what may have become of them."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "rescued_elves",
+                equals: 5,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("We’ve explored the village, and I think we’ve rescued the last of the survivors."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_39",
+        on: "branch_if_39",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "rescued_elves",
+            not_equals: 5,
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("The necromancer is dead, but I don’t think we’ve explored the entire village. There may still be elves that need rescuing. We should go back and check."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_41",
+        on: "branch_if_41",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "rescued_elves",
+            equals: 5,
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_38",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Xanthos%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "wail-long.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22animate%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22id%22%3A%22Xanthos%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("The necromancer is finally vanquished."),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("And at last the dead shall have their rest."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_39",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_41",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_42",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "hunting_party",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_43",
+        on: "hunting_party",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: "13-21",
+            ys: "0-5",
+          },
+          {
+            tag: "spawn",
+            id: "Pythos",
+            type: "Quenoth Scout",
+            side: 1,
+            x: 18,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Pythos",
+          },
+          {
+            tag: "spawn",
+            id: "Shea",
+            type: "Quenoth Fighter",
+            side: 1,
+            x: 17,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Shea",
+          },
+          {
+            tag: "spawn",
+            id: "Narn",
+            type: "Quenoth Fighter",
+            side: 1,
+            x: 18,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Narn",
+          },
+          {
+            tag: "spawn",
+            id: "Lyer",
+            type: "Quenoth Scout",
+            side: 1,
+            x: 17,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Lyer",
+          },
+          {
+            tag: "message",
+            speaker: "Pythos",
+            text: _("Hail, is anyone still alive?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Yes, and we could certainly use your help. A necromancer has been attacking us, he intends to use our fallen comrades as fodder for his evil magics. Where have you been?"),
+          },
+          {
+            tag: "message",
+            speaker: "Pythos",
+            text: _("We were out far in the sands, searching for prey and roaming orcs. As soon as we saw the rock storm we raced back as fast as we could. I only wish we could have come sooner."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("No use crying over spilt water. But we’re sure glad you’re here now."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_44",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "hunting_party",
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            text: _("It seems that we finally have some peace. But what do we do now?"),
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("Where is Tanuil and his family?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("The keep has been crushed by the rocks. We could find no survivors."),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("Too many have died this night."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            portrait: "portraits/nym_moody.webp",
+            text: _("Our village is in ruins. The walls that were built by our ancestors over generations have been demolished in a space of hours. Most of our dwellings are destroyed. And the great tree itself is no more. One thing is obvious, we cannot stay here."),
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("You are a fool to despair. This has always been our home. The water here is good, we know this land. We can rebuild; Eloh willing, we can thrive again."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            portrait: "portraits/nym_moody.webp",
+            text: _("Think for a moment. Who else has seen the rock storm? What other foes are coming to pick over the remains of our people? There is no mercy in the desert, and we have many enemies who would seek to gain in our time of weakness."),
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("Impudent girl, you should not speak so to your elders, or to your betters."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            portrait: "portraits/nym_moody.webp",
+            text: _("I have a right to speak my mind!"),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("Peace, please calm yourselves. In chaos there is nothing but death and destruction. Even in this time of trial we must show our fortitude, and follow our laws. Without laws we are like beasts in the desert, fighting over scraps of meat. Among the survivors Kaleh is by heritage the closest relative to Tanuil and thus our leader. What say you Kaleh?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Last night, before the rock storm, I heard a voice in my sleep. It sounded like sweet music, and somehow I knew it was Eloh. I still remember her exact words: <i>“You must be strong, young elf, for you enter a time of peril. The home you know will be destroyed, and you must lead your people to a new land. To the north you will find salvation and peace. Cross the desert and head to the mountains. Fear not, for I will guide you and protect you.”</i> I’m not sure why I’m the one she chose to appeal to, but if this is her will, I will see it done. Our home is gone and the desert is a harsh place. If Eloh has prepared a new home for us, then I will lead us there."),
+          },
+          {
+            tag: "message",
+            speaker: "Garak",
+            text: _("I fear what dangers lurk in the harsh sands and beyond to the north, but because you are our leader, I will follow where you go."),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("Then let us collect what supplies we can from the wreckage and head north with great haste. Our home is protection no longer, we must find a new haven for our people."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            portrait: "portraits/nym_moody.webp",
+            text: _("What about the bodies of the dead? We can’t leave them to be torn by crows or desecrated by other dark mages."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("I agree, we should not forget our dead. We should build a huge pyre and burn them with proper ceremony, so that the smoke may carry them on to the next realm."),
+          },
+          {
+            tag: "message",
+            speaker: "Zhul",
+            text: _("Kaleh, I don’t want to tarry longer than necessary, but I agree that we must see to the dead before we leave. Garak, you and your men start collecting our dead. Nym, help me find oil and wood so that we may build a pyre."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("And so it was done. The dead were laid reverently on top of what little wood we could find. But the fire was big enough to burn the bodies to ashes and speed their souls to the hereafter. I remember at the time that the death of so many of our people was not the best omen for the start of such a large journey. They were the first of our people to die in this great endeavor, but they were to be far from the last."),
+          },
+          {
+            tag: "foreach",
+            variable: "elf_pool",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$this_item.type",
+                side: 1,
+                x: "recall",
+                y: "recall",
+              },
+            ],
+          },
+          {
+            tag: "foreach",
+            variable: "outer_villages",
+            item: "this_item",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_45",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("What’s that to the north? It looks like even more undead! The rock storm must have attracted other necromancers. There’s no way we can defeat them all. We’ve run out of time. There’s no escape. Eloh save us!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_46",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kaleh%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I’m too young to die. What will happen to my people?"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_47",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Nym%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/nym_moody.webp",
+            text: _("Save me, Kaleh, I’m dying..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_48",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Zhul%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Eloh protect us, I have fallen."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_49",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Garak%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Aaargh! Curse you!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_51",
+        on: "branch_if_51",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ally_race",
+            equals: "dwarf",
+          },
+          {
+            tag: "message",
+            text: _("I go now to join my forefathers..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_52",
+        on: "branch_if_52",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ally_race",
+            not_equals: "dwarf",
+          },
+          {
+            tag: "message",
+            text: _("No, $unit.name can’t die now!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_53",
+        on: "branch_if_53",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ally_must_live",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Without his guidance, how can we escape from these infernal caves? We are lost without him!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_54",
+        on: "branch_if_54",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ally_must_live",
+            not_equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("He was a brave warrior and a true ally. He will be missed."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_50",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Grog%2CNog%2CRogrimir%2CJarl%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_51",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_52",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_53",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_54",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_55",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Esanoo%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Farewell Nym, I go to the sea god. You elves must go on without me."),
+          },
+          {
+            tag: "message",
+            speaker: "Nym",
+            portrait: "portraits/nym_moody.webp",
+            text: _("Farewell Esanoo. You were my favorite of the merfolk."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_56",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kromph%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Aaurrgghh!!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_57",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Elyssa%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("This can’t be the end, I have too much left to see."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("How could we have let her die? I’ve never seen fire magic like that before. She will be sorely missed."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_58",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recall_to_correct",
+            kill: "no",
+            side: "1, 2",
+          },
+          {
+            tag: "foreach",
+            variable: "recall_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit_type",
+                variable: "utbs_unit_type",
+                types: "$this_item.type",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                recall_cost: "$($utbs_unit_type.cost*0.70)",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_59",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recall_to_correct",
+            kill: "no",
+            side: "1, 2",
+          },
+          {
+            tag: "foreach",
+            variable: "recall_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit_type",
+                variable: "utbs_unit_type",
+                types: "$this_item.type",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                recall_cost: "$($utbs_unit_type.cost*0.55)",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_60",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recall_to_correct",
+            kill: "no",
+            side: "1, 2",
+          },
+          {
+            tag: "foreach",
+            variable: "recall_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit_type",
+                variable: "utbs_unit_type",
+                types: "$this_item.type",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                recall_cost: "$($utbs_unit_type.cost*0.40)",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_61",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recall_to_correct",
+            kill: "no",
+            side: "1, 2",
+          },
+          {
+            tag: "foreach",
+            variable: "recall_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit_type",
+                variable: "utbs_unit_type",
+                types: "$this_item.type",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                recall_cost: "$($utbs_unit_type.cost*0.40)",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]

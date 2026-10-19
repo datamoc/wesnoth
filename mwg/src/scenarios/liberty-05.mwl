@@ -1,0 +1,1123 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Hide and Seek"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good_guys",
+        share_vision: "none",
+        gold: 0,
+        recruit: "Thug,Footpad,Poacher",
+        leader: "Baldras",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "bad_guys",
+        leader: "Quentin",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "bad_guys",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "good_guys",
+        share_vision: "none",
+        leader: "Hans",
+      },
+      {
+        tag: "map",
+        id: "scenario_05_Hide_and_Seek",
+        file: "05_Hide_and_Seek.map",
+      },
+      {
+        tag: "unit",
+        id: "Baldras",
+        type: "Bandit",
+        side: 1,
+        x: 7,
+        y: 6,
+      },
+      {
+        tag: "unit",
+        id: "Quentin",
+        type: "Master Bowman",
+        side: 2,
+        x: 16,
+        y: 37,
+        name: _("Quentin"),
+      },
+      {
+        tag: "unit",
+        id: "Hans",
+        type: "Rogue",
+        side: 4,
+        x: 27,
+        y: 48,
+        name: _("Hans"),
+      },
+      {
+        tag: "event",
+        id: "carryover_21",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 1.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: 0.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_22",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/frontier.webp"),
+            text: _("22 Deeproot, 501 YW Been a tough few days since we left Elensefar with all them patrols running around. Going by boat along the Great River, we has been managing to avoid them Wesnothians, but being constantly on the lookout be real taxing. I truly be starting to feel that tiredness in my bones... old men like me should be sitting back at home, resting our grey bodies and watchin’ over them younger folk growing up. I don’t got no business here, running around as some outlaw. Maybe if I was ten years younger..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_23",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/frontier.webp"),
+            text: _("Anyway, the messenger I sent back to Relana should be in Delwyn already. We should be arriving to Carcyn soon too, to where that coward Maddock said his ‘contact’ be. Truths be told, I don’t know how this’ll be turning out, especially since I don’t be no social butterfly like sis were. Don’t like me no city folk really. But I’ll deal with them if I gots to."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_24",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Baldras,Quentin,Hans",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_25",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 28,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Enter the Grey Woods with Hans"),
+        defeat: _("Death of Baldras Death of Harper Death of Hans Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "underground.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_deep_path.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "nunc_dimittis.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_4",
+        on: "branch_if_4",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            condition: "hook",
+            hook: "predicate:variable_compare",
+            variable: "traits_without_quick[$j].trait.id",
+            equals: "$traits_without_quick[$first_trait].trait.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 12,
+            y: 37,
+            item_name: "",
+            image: "scenery%2Foak-leaning.png~FL(horiz)",
+          },
+          {
+            tag: "hook",
+            name: "command:store_side",
+            side: 1,
+            variable: "stored_side_1",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 10,
+            y: 36,
+            item_name: "",
+            image: "scenery%2Fwell.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 15,
+            y: 22,
+            item_name: "",
+            image: "items%2Fscarecrow.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 3,
+            y: 23,
+            item_name: "",
+            image: "items%2Fstraw-bale1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 4,
+            y: 23,
+            item_name: "",
+            image: "items%2Fstraw-bale2.png~FL(horiz)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 4,
+            y: 22,
+            item_name: "",
+            image: "items%2Fstraw-bale1.png~FL(horiz)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 32,
+            y: 27,
+            item_name: "",
+            image: "items%2Fstraw-bale1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 4,
+            y: 44,
+            item_name: "",
+            image: "items%2Farchery-target-right.png~FL(horiz)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 45,
+            item_name: "",
+            image: "items%2Farchery-target-right.png~FL(horiz)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 5,
+            y: 47,
+            item_name: "",
+            image: "items%2Farchery-target-right.png~FL(horiz)",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Bowman",
+            side: 2,
+            x: 1,
+            y: 44,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Bowman",
+            side: 2,
+            x: 2,
+            y: 46,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "a,b,c",
+          },
+          {
+            tag: "switch",
+            variable: "random",
+            children: [
+              {
+                tag: "case",
+                equals: "a",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "guard_locs",
+                    filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22x%22%3A%227%2C19%2C24%2C30%2C17%2C25%2C%202%2C%206%2C18%2C%202%2C24%2C13%2C16%2C%203%2C15%2C17%2C30%2C19%2C%203%2C27%2C%209%22%2C%22y%22%3A%2213%2C%209%2C10%2C13%2C18%2C21%2C22%2C23%2C27%2C28%2C30%2C32%2C32%2C37%2C37%2C38%2C38%2C41%2C42%2C43%2C47%22%2C%22variable%22%3A%22guard_locs%22%7D%2C%22children%22%3A%5B%5D%7D",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "b",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "guard_locs",
+                    filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22x%22%3A%222%2C25%2C14%2C30%2C%205%2C16%2C25%2C%206%2C%202%2C33%2C16%2C22%2C13%2C%203%2C15%2C17%2C28%2C%203%2C%207%2C21%22%2C%22y%22%3A%2210%2C10%2C13%2C13%2C19%2C20%2C21%2C23%2C28%2C28%2C31%2C31%2C32%2C37%2C37%2C38%2C39%2C42%2C48%2C48%22%2C%22variable%22%3A%22guard_locs%22%7D%2C%22children%22%3A%5B%5D%7D",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "c",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "guard_locs",
+                    filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22x%22%3A%2222%2C%207%2C16%2C26%2C15%2C%204%2C31%2C19%2C15%2C30%2C%205%2C%204%2C%208%2C15%2C17%2C27%2C19%2C%203%2C20%22%2C%22y%22%3A%2212%2C13%2C13%2C15%2C18%2C22%2C23%2C26%2C27%2C29%2C32%2C35%2C35%2C37%2C38%2C39%2C41%2C42%2C46%22%2C%22variable%22%3A%22guard_locs%22%7D%2C%22children%22%3A%5B%5D%7D",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            tag: "foreach",
+            variable: "guard_locs",
+            item: "this_item",
+            index: "i",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variables",
+                payload: "%7B%22name%22%3A%22traits_without_quick%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22trait%22%2C%22attributes%22%3A%7B%22id%22%3A%22strong%22%2C%22male_name%22%3A%22strong%22%2C%22female_name%22%3A%22female%5Estrong%22%2C%22help_text%22%3A%22%3Ci%3EStrong%3C%2Fi%3E%20units%20do%201%20more%20damage%20for%20every%20successful%20strike%20in%20melee%20combat%2C%20and%20have%201%20additional%20hitpoint.%5Cn%5Cn_%20While%20useful%20for%20any%20close-combat%20unit%2C%20strong%20is%20most%20effective%20for%20units%20who%20have%20a%20high%20number%20of%20swings%20such%20as%20the%20elvish%20fighter.%20Strong%20units%20can%20be%20very%20useful%20when%20a%20tiny%20bit%20of%20extra%20damage%20is%20all%20that%20is%20needed%20to%20turn%20a%20damaging%20stroke%20into%20a%20killing%20blow.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increase_damage%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22hitpoints%22%2C%22increase_total%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22trait%22%2C%22attributes%22%3A%7B%22id%22%3A%22resilient%22%2C%22male_name%22%3A%22resilient%22%2C%22female_name%22%3A%22female%5Eresilient%22%2C%22help_text%22%3A%22%3Ci%3EResilient%3C%2Fi%3E%20units%20have%20an%20additional%204%20hitpoints%2C%20and%20gain%201%20more%20per%20level.%5Cn%5Cn_%20Resilient%20units%20can%20be%20useful%20at%20all%20stages%20of%20a%20campaign%2C%20and%20this%20is%20a%20useful%20trait%20for%20all%20units.%20Resilient%20is%20often%20most%20helpful%20as%20a%20trait%20when%20it%20occurs%20in%20a%20unit%20that%20has%20some%20combination%20of%20low%20hitpoints%2C%20good%20defense%2C%20or%20high%20resistances.%20Resilient%20units%20are%20especially%20useful%20for%20holding%20strategic%20positions%20against%20opponents.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22hitpoints%22%2C%22increase_total%22%3A%224%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22hitpoints%22%2C%22times%22%3A%22per%20level%22%2C%22increase_total%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22trait%22%2C%22attributes%22%3A%7B%22id%22%3A%22fearless%22%2C%22male_name%22%3A%22fearless%22%2C%22female_name%22%3A%22female%5Efearless%22%2C%22description%22%3A%22Fights%20normally%20during%20unfavorable%20times%20of%20day%2Fnight%22%2C%22help_text%22%3A%22Aversion%20to%20light%20and%20dark%20holds%20no%20sway%20over%20these%20brave%20individuals.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22fearless%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22trait%22%2C%22attributes%22%3A%7B%22id%22%3A%22intelligent%22%2C%22male_name%22%3A%22intelligent%22%2C%22female_name%22%3A%22female%5Eintelligent%22%2C%22help_text%22%3A%22%3Ci%3EIntelligent%3C%2Fi%3E%20units%20require%2020%25%20less%20experience%20than%20usual%20to%20advance.%5Cn%5Cn_%20Intelligent%20units%20are%20very%20useful%20at%20the%20beginning%20of%20a%20campaign%20as%20they%20can%20advance%20to%20higher%20levels%20more%20quickly.%20Later%20in%20campaigns%20Intelligent%20is%20not%20quite%20as%20useful%20because%20the%20%3Ci%3EAfter%20Maximum%20Level%20Advancement%3C%2Fi%3E%20(AMLA)%20is%20not%20as%20significant%20a%20change%20as%20advancing%20a%20level.%20If%20you%20have%20many%20%E2%80%98maximum%20level%E2%80%99%20units%20you%20may%20wish%20to%20recall%20units%20with%20more%20desirable%20traits.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22max_experience%22%2C%22increase%22%3A%22-20%25%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "first_trait",
+                values: "0..3",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variables",
+                payload: "%7B%22name%22%3A%22this_guard_traits%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22traits_without_quick%5B%24first_trait%5D.trait%22%2C%22children%22%3A%5B%5D%7D",
+              },
+              {
+                tag: "foreach",
+                variable: "traits_without_quick",
+                item: "this_item",
+                index: "j",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_4",
+                  },
+                ],
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "second_trait",
+                values: "0..2",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variables",
+                payload: "%7B%22name%22%3A%22this_guard_traits%22%2C%22mode%22%3A%22append%22%2C%22to_variable%22%3A%22traits_without_quick%5B%24second_trait%5D.trait%22%2C%22children%22%3A%5B%5D%7D",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "random",
+                values: "Shock Trooper,Iron Mauler",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$random",
+                side: 2,
+                x: "$guard_locs[$i].x",
+                y: "$guard_locs[$i].y",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_Baldras",
+            kill: "yes",
+            id: "Baldras",
+          },
+          {
+            tag: "spawn",
+            id: "Skiff",
+            type: "Skiff",
+            side: 1,
+            x: 0,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Skiff",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Relentlessly pursued by riders patrolling the road to Elensefar, Baldras and the villagers traveled unseen along the swampy banks of the Great River to the city of Carcyn. They hid until nightfall, then crept out to find the help Lord Maddock hinted was here."),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Skiff",
+            x: 6,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "stored_Baldras",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Harper",
+            unit: "Harper",
+            x: 8,
+            y: 5,
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("Wow, is that Carcyn in the distance? Look at how grand some of them spires be!"),
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("Not since I were a young lad did I come this far south. Maybe it looks impressive now, but city life weren’t never something real nice. Them city folk be real impatient and mean. Always wantin’ some price for their help, too."),
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("Well, we need their help now, don’t we? So we got to figure out a way to get to Lord Maddock’s friend. But he didn’t say anything about who that was."),
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("Harper, when a noble lord says he don’t want some kind of relationship known, it means some kind o’ connection with the black market. We be looking for criminals, probably some thieves’ den. Or, maybe they be looking for us."),
+          },
+          {
+            tag: "spawn",
+            id: "Link",
+            type: "Thief",
+            side: 4,
+            x: 5,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Link",
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("Right on time."),
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("How do we know we can trust him?"),
+          },
+          {
+            tag: "message",
+            speaker: "Link",
+            text: _("If you were one of my quarries, your throat would be slit by now. As it is, you two are still in imminent danger. Just a week ago, the Crown sent a contingent of heavy infantry here to supervise the city. They’re patrolling the streets and forests for us."),
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("I be assuming they’ll also try to stop us if they see us."),
+          },
+          {
+            tag: "message",
+            speaker: "Link",
+            text: _("Very likely. Now hurry, you must make it past the city into the Grey Woods. There is a small path in the southeast that leads into the forest. Look for the signpost. My brother Hans will guide you from there. Avoid the soldiers if you can."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 25,
+            y: 47,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 26,
+            y: 48,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 26,
+            y: 48,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 26,
+            y: 48,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 26,
+            y: 48,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 26,
+            y: 48,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 26,
+            y: 48,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 26,
+            y: 48,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 26,
+            y: 48,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 26,
+            y: 48,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 26,
+            y: 48,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Baldras",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Link",
+            x: 4,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Link",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Skiff",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.side",
+                value: 4,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Looks like these guards be holding stationary posts. If we’re careful, we can get ourselves around them unnoticed."),
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("Harper, you younger and faster folks needs to be our eyes. Scout ahead and find a way past them guards, but make sure ya don’t get yourselves spotted..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 3,
+          },
+          {
+            tag: "message",
+            text: _("Who goes there? Halt!"),
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("They’ve seen us! <i>Run</i>!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_10",
+        on: "branch_if_10",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "second_unit.hitpoints",
+            greater_than: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("Quick, back into the shadows! Maybe we can still lose them!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "attack_end",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 3,
+          },
+          {
+            tag: "filter",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Iron%20Mauler%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22id%22%3A%22Harper%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("Uncle, we did it! We beat one of them iron monsters!"),
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("A fine job lass, but more sure gots to be coming. Let’s keep movin’."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_achievement",
+            id: "liberty_iron",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Hans%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("This way, into the forest! We’ll be able to lose them in the Grey Woods."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent%22%2C%22attributes%22%3A%7B%22id%22%3A%22Hans%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22id%22%3A%22Baldras%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Hans",
+            text: _("You can come if you wish, but we are mostly interested in speaking to Baldras."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 25,
+            y: 47,
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("I haven’t run so much in years. Feels like I be a real outlaw now, infiltrating a heavily guarded city relyin’ on nothing but the cover of darkness and my wits."),
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("It was fun, wasn’t it?"),
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("Perhaps a little."),
+          },
+          {
+            tag: "message",
+            speaker: "Hans",
+            text: _("Enough chatter, you still have some guards on your tail. We need to head deeper into the Grey Woods to lose them."),
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("Lead the way."),
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            gold: "$stored_side_1.gold",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("Blast it, we was too slow! With the sun rising already, them guards will have no trouble spotting us now..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Hans%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Hans",
+            text: _("You fools! You weren’t supposed to lead them to me..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Baldras%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("I’m coming... Erwen..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Harper%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("Unngh..."),
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("Harper, no!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Relana%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Relana",
+            text: _("I’m finished..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lord%20Maddock%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Lord Maddock",
+            text: _("How can this be?"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

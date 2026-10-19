@@ -1,0 +1,1186 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Capturing the Ogres"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good",
+        gold: 0,
+        leader: "Gweddry",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "ogres",
+      },
+      {
+        tag: "map",
+        id: "scenario_07a_Capturing_the_Ogres",
+        file: "07a_Capturing_the_Ogres.map",
+      },
+      {
+        tag: "unit",
+        id: "Gweddry",
+        type: "Frontier Sergeant",
+        side: 1,
+        x: 26,
+        y: 21,
+        name: _("Gweddry"),
+      },
+      {
+        tag: "event",
+        id: "carryover_28",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 100,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 1.0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_29",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Gweddry",
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Capture as many ogres as you can<span foreground='white'> <small>_(captured ogres will be made available for recall)</small></span>"),
+        defeat: _("Death of Gweddry, Dacyn, or Owaec"),
+      },
+      {
+        tag: "event",
+        id: "side_recall_filter_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            recall_filter: "%7B%22tag%22%3A%22filter_recall%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22trait%22%3A%22undead%22%7D%2C%22children%22%3A%5B%5D%2C%22gettext%22%3A%5B%5D%2C%22location%22%3A%7B%22file%22%3A%22C%3A%5C%5CUsers%5C%5Cmiche%5C%5Cdev%5C%5Cwesnoth-1.19.27%5C%5Cdata%5C%5Ccampaigns%5C%5CEastern_Invasion%5C%5Cscenarios%5C%5C07a_Capturing_the_Ogres.cfg%22%2C%22line%22%3A831%2C%22column%22%3A1%7D%7D%5D%2C%22gettext%22%3A%5B%5D%2C%22location%22%3A%7B%22file%22%3A%22C%3A%5C%5CUsers%5C%5Cmiche%5C%5Cdev%5C%5Cwesnoth-1.19.27%5C%5Cdata%5C%5Ccampaigns%5C%5CEastern_Invasion%5C%5Cscenarios%5C%5C07a_Capturing_the_Ogres.cfg%22%2C%22line%22%3A830%2C%22column%22%3A1%7D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Gweddry",
+            object: "%7B%22id%22%3A%22side_traits_1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "traveling_minstrels.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "journeys_end.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "side_turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 10,
+          },
+          {
+            tag: "message",
+            text: _("Gah! Raa! Get out of my way!!"),
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 2,
+            ai_type: "goto",
+            action: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_6",
+        on: "branch_if_6",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "to_recall.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "$to_recall[0].id",
+            unit: "$to_recall[0].id",
+            x: 24,
+            y: 20,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_7",
+        on: "branch_if_7",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "to_recall.length",
+            less_than_or_equal_to: 0,
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Cavalryman",
+            side: 1,
+            x: 23,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_8",
+        on: "branch_if_8",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "to_recall.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "$to_recall[0].id",
+            unit: "$to_recall[0].id",
+            x: 27,
+            y: 21,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_9",
+        on: "branch_if_9",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "to_recall.length",
+            less_than_or_equal_to: 0,
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Cavalryman",
+            side: 1,
+            x: 26,
+            y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_10",
+        on: "branch_if_10",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "to_recall.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "$to_recall[0].id",
+            unit: "$to_recall[0].id",
+            x: 25,
+            y: 23,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_11",
+        on: "branch_if_11",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "to_recall.length",
+            less_than_or_equal_to: 0,
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Cavalryman",
+            side: 1,
+            x: 24,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "to_recall.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "$to_recall[0].id",
+            unit: "$to_recall[0].id",
+            x: 28,
+            y: 22,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "to_recall.length",
+            less_than_or_equal_to: 0,
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Cavalryman",
+            side: 1,
+            x: 27,
+            y: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Terraent",
+            unit: "Terraent",
+            x: 27,
+            y: 23,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Addogin",
+            unit: "Addogin",
+            x: 27,
+            y: 23,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Hahid al-Ali",
+            unit: "Hahid al-Ali",
+            x: 27,
+            y: 23,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "to_recall",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_6",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_7",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "ne",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "to_recall",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_8",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_9",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "nw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "to_recall",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_10",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_11",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "ne",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "to_recall",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_12",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_13",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "nw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_wml%22%2C%22attributes%22%3A%7B%22upkeep%22%3A%22full%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+            side: 1,
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Ogre",
+            side: 2,
+            x: 18,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Great Ogre",
+            side: 2,
+            x: 19,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Young Ogre",
+            side: 2,
+            x: 20,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Ogre",
+            side: 2,
+            x: 20,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Young Ogre",
+            side: 2,
+            x: 22,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+          {
+            tag: "spawn",
+            id: "u_10",
+            type: "Young Ogre",
+            side: 2,
+            x: 22,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_10",
+          },
+          {
+            tag: "spawn",
+            id: "u_11",
+            type: "Young Ogre",
+            side: 2,
+            x: 24,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_11",
+          },
+          {
+            tag: "spawn",
+            id: "u_12",
+            type: "Young Ogre",
+            side: 2,
+            x: 23,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_12",
+          },
+          {
+            tag: "spawn",
+            id: "u_13",
+            type: "Ogre",
+            side: 2,
+            x: 25,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_13",
+          },
+          {
+            tag: "set_variable",
+            name: "next_ogre_escape_msg",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "next_ogre_capture_msg",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Dacyn",
+            unit: "Dacyn",
+            x: 24,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Owaec",
+            unit: "Owaec",
+            x: 26,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Dolburras",
+            unit: "Dolburras",
+            x: 28,
+            y: 19,
+          },
+          {
+            tag: "message",
+            speaker: "Gweddry",
+            text: _("Look, this valley is inhabited by a tribe of ogres. They do not seem very bright..."),
+          },
+          {
+            tag: "message",
+            text: _("Guh... human? Human come! Run!"),
+          },
+          {
+            tag: "message",
+            speaker: "Dacyn",
+            text: _("Excellent, a source of slaves. If we surround and capture them, we can use them for risky missions and preserve our more valuable soldiers."),
+          },
+          {
+            tag: "message",
+            speaker: "Owaec",
+            text: _("Slaves?! No, these shall be great warriors fighting alongside us! My Clansmen shall capture them one by one."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22race%22%3A%22ogre%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent_location%22%2C%22attributes%22%3A%7B%22count%22%3A%221-5%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22ogre_escape_msgs%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22message%22%3A%22Waah!%20Run!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22message%22%3A%22Me%20run%20life%20for!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22message%22%3A%22Ruuuunnnn!%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "message",
+            text: _("$ogre_escape_msgs[$next_ogre_escape_msg].message"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "next_ogre_escape_msg",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "next_ogre_escape_msg",
+            value: "$ogre_escape_msgs.length",
+            mode: "modulo",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%2C%22animate%22%3A%22no%22%2C%22fire_event%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "first_ogre_escapes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "first_ogre_escapes",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Gweddry",
+            text: _("We have let one escape. Let’s hope not all of them do!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "ogres_to_capture",
+            kill: "no",
+            side: 2,
+          },
+          {
+            tag: "foreach",
+            variable: "ogres_to_capture",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "ogre_name",
+                value: "$this_item.name",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variables",
+                payload: "%7B%22name%22%3A%22ogre_capture_msgs%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22message%22%3A%22%24ogre_name%20surrender!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22message%22%3A%22Don%E2%80%99t%20hurt%20%24ogre_name%7C!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22message%22%3A%22%24ogre_name%20be%20good%20will!%20Promise!%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+              {
+                tag: "message",
+                text: _("$ogre_capture_msgs[$next_ogre_capture_msg].message"),
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "next_ogre_capture_msg",
+                value: 1,
+                mode: "add",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "next_ogre_capture_msg",
+                value: "$ogre_capture_msgs.length",
+                mode: "modulo",
+              },
+              {
+                tag: "hook",
+                name: "command:kill_unit",
+                filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24this_item.x%22%2C%22y%22%3A%22%24this_item.y%22%2C%22animate%22%3A%22no%22%2C%22fire_event%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+              {
+                tag: "set_variable",
+                name: "this_item.side",
+                value: 1,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+                x: "recall",
+                y: "recall",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "new_turn",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "unit_exists",
+                exists: "no",
+                side: 2,
+              },
+            ],
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "ogres",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "switch",
+            variable: "ogres.length",
+            children: [
+              {
+                tag: "case",
+                equals: 0,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Gweddry",
+                    text: _("Taking slaves doesn’t feel right, even if it is for a good cause. I refuse to capture any of these ogres."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_achievement",
+                    id: "ei_S07a",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 1,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Gweddry",
+                    text: _("Taking slaves just doesn’t feel right. I only captured one."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Dacyn",
+                    text: _("Unfortunate, but at least we have one. Ogres are unskilled fighters but much cheaper to equip than our other soldiers, and thus <i><b>cost much less gold to recall.</b></i>"),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 2,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Gweddry",
+                    text: _("We failed to capture more than two of the ogres."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Dacyn",
+                    text: _("Unfortunate, but at least we have some. Ogres are unskilled fighters but much cheaper to equip than our other soldiers, and thus <i><b>cost much less gold to recall.</b></i>"),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 3,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Gweddry",
+                    text: _("We captured three ogres! I hope they will prove useful."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Dacyn",
+                    text: _("Well done. Ogres are unskilled fighters but much cheaper to equip than our other soldiers, and thus <i><b>cost much less gold to recall.</b></i>"),
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "foreign_defeat",
+        on: "defeat",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Wesnoth never learned the fate of Gweddry’s band, but they would soon learn the full measure of the power of Mal-Ravanal in a war that would end only in misery and death."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Gweddry%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Gweddry",
+            text: _("No! I... die..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Dacyn%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Dacyn",
+            text: _("The light fades... We are doomed..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Owaec%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Owaec",
+            text: _("I... must— Argh...!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Addogin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Addogin",
+            text: _("How did I get dragged into this mess..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Hahid%20al-Ali%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Hahid al-Ali",
+            text: _("Alas, my long, storied, and exceedingly profitable career has at last come to an end, so far from home! I only... wish I could have died on the soft sands... instead of among these primitive barbarians..."),
+          },
+          {
+            tag: "message",
+            text: _("Bar... ber... bears? Die why?"),
+          },
+          {
+            tag: "message",
+            text: _("Aye, ‘tis a sad place for one o’ us foreigners to fall. We’ll miss ye, that’s for sure."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Terraent%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Terraent",
+            text: _("And so, I give... the last thing I have to give... in service of the Light..."),
+          },
+          {
+            tag: "message",
+            speaker: "Owaec",
+            text: _("You shall be gravely missed, paladin of the Light! May you long live on in song and tale."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Dolburras%22%2C%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Dolburras",
+            text: _("Watch out behind ye— ach!"),
+          },
+          {
+            tag: "message",
+            speaker: "Gweddry",
+            text: _("Though he was not one of us, he served bravely alongside Wesnoth’s best. We must carry on the good fight."),
+          },
+        ],
+      },
+    ],
+  },
+]

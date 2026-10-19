@@ -1,0 +1,975 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Eastern Flank"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "knalgans",
+        gold: 200,
+        recruit: "Thug,Poacher,Spearman,Bowman,Gryphon,Dwarvish Fighter,Dwarvish Thunderer,Dwarvish Ulfserker,Dwarvish Scout,Footpad",
+        leader: "Tallin",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 600,
+        recruit: "Troll Whelp,Troll,Troll Rocklobber",
+        leader: "Gore",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 500,
+        recruit: "Orcish Grunt,Orcish Warrior,Orcish Archer,Orcish Crossbowman,Wolf Rider,Orcish Assassin",
+        leader: "Carron",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 500,
+        recruit: "Orcish Grunt,Orcish Warrior,Orcish Archer,Orcish Crossbowman,Wolf Rider,Orcish Assassin",
+        leader: "Rash",
+      },
+      {
+        tag: "side",
+        id: 5,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 500,
+        recruit: "Orcish Grunt,Orcish Warrior,Orcish Archer,Orcish Crossbowman,Wolf Rider,Orcish Assassin",
+        leader: "Al_Mar",
+      },
+      {
+        tag: "side",
+        id: 6,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 500,
+        recruit: "Orcish Grunt,Orcish Warrior,Orcish Archer,Orcish Crossbowman,Wolf Rider,Orcish Assassin",
+        leader: "Ha_Tang",
+      },
+      {
+        tag: "side",
+        id: 7,
+        controller: "human",
+        team_name: "knalgans",
+        gold: 200,
+        recruit: "Drake Fighter,Drake Glider,Drake Burner,Drake Clasher",
+      },
+      {
+        tag: "map",
+        id: "scenario_11a_The_Eastern_Flank",
+        file: "11a_The_Eastern_Flank.map",
+      },
+      {
+        tag: "unit",
+        id: "Tallin",
+        type: "Peasant",
+        side: 1,
+        x: 34,
+        y: 11,
+        name: _("Tallin"),
+      },
+      {
+        tag: "unit",
+        id: "Gore",
+        type: "Troll Warrior",
+        side: 2,
+        x: 7,
+        y: 14,
+        name: _("Gore"),
+      },
+      {
+        tag: "unit",
+        id: "Rakshas",
+        type: "Orcish Sovereign",
+        side: 0,
+        x: 6,
+        y: 14,
+      },
+      {
+        tag: "unit",
+        id: "u_1",
+        type: "Orcish Warlord",
+        side: 2,
+        x: 7,
+        y: 13,
+      },
+      {
+        tag: "unit",
+        id: "u_2",
+        type: "Orcish Warlord",
+        side: 2,
+        x: 5,
+        y: 13,
+      },
+      {
+        tag: "unit",
+        id: "Carron",
+        type: "Orcish Warlord",
+        side: 3,
+        x: 7,
+        y: 11,
+        name: _("Carron"),
+      },
+      {
+        tag: "unit",
+        id: "Rash",
+        type: "Orcish Warlord",
+        side: 4,
+        x: 7,
+        y: 17,
+        name: _("Rash"),
+      },
+      {
+        tag: "unit",
+        id: "Al_Mar",
+        type: "Orcish Warlord",
+        side: 5,
+        x: 10,
+        y: 13,
+        name: _("Al’Mar"),
+      },
+      {
+        tag: "unit",
+        id: "Ha_Tang",
+        type: "Orcish Warlord",
+        side: 6,
+        x: 4,
+        y: 13,
+        name: _("Ha’Tang"),
+      },
+      {
+        tag: "event",
+        id: "carryover_20",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_21",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("After breaking out of their encirclement, the party continued in pursuit of the trolls."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_22",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Following the bank of a river, they soon entered a valley. At the mouth of the valley there loomed the massive orcish fortress of Angthurim."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_23",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Tallin,Gore,Carron,Rash,Al_Mar,Ha_Tang",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_24",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 50,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat the enemy leaders"),
+        defeat: _("Death of Tallin Death of Ro’Arthian Death of Ro’Sothian Death of Eryssa Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "loyalists.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "battle.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "frantic.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_4",
+        on: "branch_if_4",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "krash.id",
+            equals: "Krash",
+          },
+          {
+            tag: "set_variable",
+            name: "krash.side",
+            value: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "krash",
+            x: "$start_loc.x",
+            y: "$start_loc.y",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "krash",
+            kill: "yes",
+            id: "Krash",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Father Morvin",
+            unit: "Father Morvin",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sister Thera",
+            unit: "Sister Thera",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Ro'Arthian",
+            unit: "Ro'Arthian",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Ro'Sothian",
+            unit: "Ro'Sothian",
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Gods of Light, look at that fortress! The castle Angthurim is even grimmer than its reputation!"),
+          },
+          {
+            tag: "message",
+            speaker: "Supporter",
+            text: _("Hey, look who is here!"),
+          },
+          {
+            tag: "message",
+            speaker: "Rakshas",
+            text: _("Where is my gold?!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("It’s Rakshas!"),
+          },
+          {
+            tag: "message",
+            speaker: "Gore",
+            text: _("Right here, Master."),
+          },
+          {
+            tag: "message",
+            speaker: "Rakshas",
+            text: _("Ahhhhh, very good, my loyal servant. You will be richly rewarded for this! Tell me, what news do you have on that human vermin that has so persistently evaded my clutches?"),
+          },
+          {
+            tag: "message",
+            speaker: "Gore",
+            text: _("We trapped him and his pitiful band of followers. By now they will have been mashed to paste and fed to the whelps."),
+          },
+          {
+            tag: "message",
+            speaker: "Rakshas",
+            text: _("Hahahaha! Very g—"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("<big>RAKSHAS!!</big>"),
+          },
+          {
+            tag: "message",
+            speaker: "Rakshas",
+            text: _("What?! YOU! YOU ANNOYING, DISGUSTING LITTLE VERMIN! DON’T YOU KNOW HOW TO DIE?!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Foul one, the only one who will be dying here is you. Stand and fight!"),
+          },
+          {
+            tag: "message",
+            speaker: "Rakshas",
+            text: _("Bah! I have better things to do than stamp out your insignificant life. Generals, bring me his head!"),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22race%22%3A%22orc%22%2C%22side%22%3A%222%22%2C%22fire_event%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Ro’Arthian, send a message to Hamel. Tell him it’s time."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Gryphon",
+            side: 1,
+            x: 31,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "message",
+            speaker: "Ro'Arthian",
+            text: _("It’s done."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Very well. Forward! Victory or death!"),
+          },
+          {
+            tag: "message",
+            speaker: "Krash",
+            text: _("Come on boys, let’s give it to ’em!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "message",
+            speaker: "Gore",
+            text: _("Move, you stupid orcs! I am trying to recruit here!"),
+          },
+          {
+            tag: "message",
+            speaker: "Rash",
+            text: _("Suit yourself, you dumb troll!"),
+          },
+          {
+            tag: "message",
+            speaker: "Sister Thera",
+            text: _("Awww, aren’t they the most loving, sharing bunch of orcs you have ever seen?"),
+          },
+          {
+            tag: "message",
+            speaker: "Eryssa",
+            text: _("(<i>Snicker</i>)"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            text: _("We have torn the heart from their eastern defenses."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Tallin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Argh! I am finished, but our campaign must... not end... crush... our... enemies... and... save... our... people..."),
+          },
+          {
+            tag: "message",
+            speaker: "Supporter",
+            text: _("No, Tallin, we can’t do it without you!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Camerin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Camerin",
+            text: _("What... how can this happen?"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("He was stark raving mad, but I am sure going to miss him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Krash%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Krash",
+            text: _("(<i>Roars in pain</i>)"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Krash!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Krash%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Father Morvin",
+            text: _("It’s no good, Tallin, he is gone."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("You wretched monsters! You are going to pay for this!"),
+          },
+          {
+            tag: "message",
+            speaker: "Camerin",
+            text: _("Awww, I liked that guy!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Elenia%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Elenia",
+            text: _("Alas! My wanderings have come to an end."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Blast it! We have lost a valuable ally!"),
+          },
+          {
+            tag: "message",
+            speaker: "Sister Thera",
+            text: _("Farewell Elenia. May you find peace in your final journey."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "last_breath",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sister%20Thera%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:find_respawn_point",
+            variable: "respawn_point",
+            respawn_near: "Tallin",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "$unit.id",
+            x: "$respawn_point.x",
+            y: "$respawn_point.y",
+            to_x: "$respawn_point.x",
+            to_y: "$respawn_point.y",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: "$respawn_point.x",
+            y: "$respawn_point.y",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: "full",
+            animate: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "last_breath",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Father%20Morvin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:find_respawn_point",
+            variable: "respawn_point",
+            respawn_near: "Tallin",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "$unit.id",
+            x: "$respawn_point.x",
+            y: "$respawn_point.y",
+            to_x: "$respawn_point.x",
+            to_y: "$respawn_point.y",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: "$respawn_point.x",
+            y: "$respawn_point.y",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: "full",
+            animate: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Stalrag%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Stalrag",
+            text: _("Farewell, my friends. I now go to join my fallen brothers."),
+          },
+          {
+            tag: "message",
+            speaker: "Shinsplitter",
+            text: _("No, Stalrag! Without you what will become of the Shinsplitters?"),
+          },
+          {
+            tag: "message",
+            speaker: "Stalrag",
+            text: _("Shinsplitters... join Tallin... He is your new... leader... trust... and... serve... him... as... you... have... served... me."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Your death shall not go unavenged, brave Stalrag. DEATH TO THE ORCS!!"),
+          },
+          {
+            tag: "message",
+            speaker: "Shinsplitter",
+            text: _("DIE, YOU FOUL SCUM!!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Ro'Sothian%2CRo'Arthian%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            text: _("I have had enough! Come on brother, let’s get outta here."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 35,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Ro'Sothian%2CRo'Arthian%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Dang it! They’re gone, and the creatures they control are leaving too. Without them, this is hopeless."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Eryssa%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Eryssa",
+            text: _("Alas, you must continue your mission without me!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("How could this happen? We can’t possibly go on without her..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22role%22%3A%22Supporter%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]

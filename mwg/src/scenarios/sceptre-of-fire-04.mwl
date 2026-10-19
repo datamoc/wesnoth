@@ -1,0 +1,2968 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Gathering Materials"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "dwarves",
+        gold: 180,
+        recruit: "Dwarvish Fighter,Dwarvish Thunderer,Dwarvish Guardsman,Dwarvish Scout,Dwarvish Miner",
+        leader: "Rugnur",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "trolls1",
+        gold: 120,
+        recruit: "Troll Whelp,Troll,Troll Rocklobber",
+        leader: "leader_2",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "trolls2",
+        gold: 132,
+        recruit: "Cave Goblin,Vampire Bat,Young Ogre,Ogre",
+        leader: "leader_3",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "trolls3",
+        gold: 120,
+        recruit: "Goblin Spearman,Goblin Rouser,Goblin Impaler",
+        leader: "leader_4",
+      },
+      {
+        tag: "map",
+        id: "scenario_4_Gathering_Materials",
+        file: "sceptre-of-fire-04.generated.map",
+      },
+      {
+        tag: "unit",
+        id: "Rugnur",
+        type: "Dwarvish Fighter",
+        side: 1,
+        x: 0,
+        y: 0,
+      },
+      {
+        tag: "unit",
+        id: "leader_2",
+        type: "Troll",
+        side: 2,
+        x: 0,
+        y: 0,
+      },
+      {
+        tag: "unit",
+        id: "leader_3",
+        type: "Gray Bogeyman",
+        side: 3,
+        x: 0,
+        y: 0,
+      },
+      {
+        tag: "unit",
+        id: "leader_4",
+        type: "Goblin Pillager",
+        side: 4,
+        x: 0,
+        y: 0,
+      },
+      {
+        tag: "event",
+        id: "carryover_80",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,,,0,2,%7B%22side%22%3A1%7D;goal,,,0,2,%7B%22side%22%3A1%7D;goal,,,0,2,%7B%22side%22%3A1%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_81",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Those who had worked the eastern mines were brave indeed. The mines were often infested with trolls and other vile creatures, who thrived in the dark and gloom of the caves."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_82",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("And braver still were Rugnur and his companions, who had to visit those tunnels after years of abandonment."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_83",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Rugnur,leader_2,leader_3,leader_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_84",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Bring 1 load of gold and 2 loads of coal to the starting castle"),
+        defeat: _("Death of Rugnur Death of Thursagan Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "underground.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "suspense.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Rugnur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Gahahh..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Haldric%20II%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("Maghah..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Alanin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Alanin",
+            text: _("Ahhgg..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Baglur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Baglur",
+            text: _("Gaanngh..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Krawg%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Krawg",
+            text: _("Kraa..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("Ayahahh..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 4,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Troll%20Rocklobber%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Troll Rocklobber",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Troll Rocklobber",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Troll%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Troll",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Troll",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22type%22%3A%22Ogre%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Ogre",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Ogre",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%224%22%2C%22type%22%3A%22Goblin%20Rouser%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Goblin Rouser",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Goblin Rouser",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%224%22%2C%22type%22%3A%22Goblin%20Impaler%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Goblin Impaler",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Goblin Impaler",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_sfe_moveto",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22K*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "rune_customer",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "sof_rune_shop",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_rune_shop_flavor_text",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22K*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("My tools are ready. Step closer, if you want to witness my rune-work."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_sfe_side1turn",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                id: "Thursagan",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "rune_customer",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "sof_rune_shop",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_thursagan_exithex",
+        on: "exit_hex",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22K*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1|",
+            y: "$y1|",
+            item_name: "",
+            image: "rune_shop_overlay",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_22",
+        on: "branch_if_22",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ex_rune_customer.id",
+            equals: "$this_item.id",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "index_TEMP",
+            value: "$i|",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_sfe_exithex",
+        on: "exit_hex",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22race%22%3A%22dwarf%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22K*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1|",
+            y: "$y1|",
+            item_name: "",
+            image: "rune_shop_overlay",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "ex_rune_customer",
+            kill: "no",
+            id: "$unit.id",
+          },
+          {
+            tag: "foreach",
+            variable: "rune_customer",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_22",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_sfe_2moveto",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22race%22%3A%22dwarf%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22K*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "rune_customer",
+            kill: "no",
+            id: "$unit.id",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "sof_rune_shop",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_23",
+        on: "branch_if_23",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.variables.no_rune",
+            not_equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$this_item.x|",
+            y: "$this_item.y|",
+            item_name: "rune_shop_overlay",
+            image: "scenery%2Fsummoning-circle%5B4%2C5%2C6%5D.png~CS(80%2C120%2C240)~O(0.6)%3A%5B200%2C250%2C200%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20scenery%2Fsummoning-circle%5B4%2C5%2C6%5D.png~CS(40%2C90%2C200)~O(0.9)%3A%5B150%2C180%2C120%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20scenery%2Fsummoning-circle%5B4%2C5%2C6%5D.png~CS(40%2C90%2C200)~O(0.1)%3A%5B250%2C300%2C250%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20scenery%2Fsummoning-circle%5B4%2C5%2C6%5D.png~CS(40%2C90%2C200)~O(0.3)%3A%5B250%2C300%2C250%5D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "rc_select",
+        on: "select",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22rune_customer%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_rune_shop",
+        on: "sof_rune_shop",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "rune_shop_overlay",
+          },
+          {
+            tag: "foreach",
+            variable: "rune_customer",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_23",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_25",
+        on: "branch_if_25",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EBr%2F%22%2C%22x%22%3A%22%24cart_1.x%7C%22%2C%22y%22%3A%22%24cart_1.y%7C%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$cart_1.x|",
+            y: "$cart_1.y|",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-ne.png~CROP(0%2C24%2C72%2C48)%2C0%2C2)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_26",
+        on: "branch_if_26",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EBr%5C%5C%22%2C%22x%22%3A%22%24cart_1.x%7C%22%2C%22y%22%3A%22%24cart_1.y%7C%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$cart_1.x|",
+            y: "$cart_1.y|",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-ne.png~FL(horiz)~CROP(0%2C24%2C72%2C48)%2C0%2C2)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_27",
+        on: "branch_if_27",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "__invalid_if__",
+            not_equals: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$cart_1.x|",
+            y: "$cart_1.y|",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-n.png~CROP(0%2C20%2C72%2C52)%2C0%2C1)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_29",
+        on: "branch_if_29",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EBr%2F%22%2C%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-ne.png~CROP(0%2C24%2C72%2C48)%2C0%2C2)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_30",
+        on: "branch_if_30",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EBr%5C%5C%22%2C%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-ne.png~FL(horiz)~CROP(0%2C24%2C72%2C48)%2C0%2C2)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_31",
+        on: "branch_if_31",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "__invalid_if__",
+            not_equals: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-n.png~CROP(0%2C20%2C72%2C52)%2C0%2C1)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "attack",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "cart1.load",
+                equals: "$unit.id",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "cart1.load",
+            value: "empty",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "cart1.x",
+            value: "$x1",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "cart1.y",
+            value: "$y1",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "sof_mine_cart_passenger_cart1",
+            id: "$passenger_cart1.id",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_29",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_30",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_31",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_33",
+        on: "branch_if_33",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EBr%2F%22%2C%22x%22%3A%22%24x2%22%2C%22y%22%3A%22%24y2%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-ne.png~CROP(0%2C24%2C72%2C48)%2C0%2C2)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_34",
+        on: "branch_if_34",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EBr%5C%5C%22%2C%22x%22%3A%22%24x2%22%2C%22y%22%3A%22%24y2%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-ne.png~FL(horiz)~CROP(0%2C24%2C72%2C48)%2C0%2C2)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_35",
+        on: "branch_if_35",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "__invalid_if__",
+            not_equals: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-n.png~CROP(0%2C20%2C72%2C52)%2C0%2C1)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32",
+        on: "attack",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "cart1.load",
+                equals: "$second_unit.id",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "cart1.load",
+            value: "empty",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "cart1.x",
+            value: "$x2",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "cart1.y",
+            value: "$y2",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "sof_mine_cart_passenger_cart1",
+            id: "$passenger_cart1.id",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_33",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_34",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_35",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "scenario_end",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "sof_mine_cart_passenger_cart1",
+            id: "$passenger_cart1.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_38",
+        on: "branch_if_38",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EBr%2F%22%2C%22x%22%3A%22%24cart_2.x%7C%22%2C%22y%22%3A%22%24cart_2.y%7C%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$cart_2.x|",
+            y: "$cart_2.y|",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-ne.png~CROP(0%2C24%2C72%2C48)%2C0%2C2)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_39",
+        on: "branch_if_39",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EBr%5C%5C%22%2C%22x%22%3A%22%24cart_2.x%7C%22%2C%22y%22%3A%22%24cart_2.y%7C%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$cart_2.x|",
+            y: "$cart_2.y|",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-ne.png~FL(horiz)~CROP(0%2C24%2C72%2C48)%2C0%2C2)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_40",
+        on: "branch_if_40",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "__invalid_if__",
+            not_equals: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$cart_2.x|",
+            y: "$cart_2.y|",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-n.png~CROP(0%2C20%2C72%2C52)%2C0%2C1)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_42",
+        on: "branch_if_42",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EBr%2F%22%2C%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-ne.png~CROP(0%2C24%2C72%2C48)%2C0%2C2)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_43",
+        on: "branch_if_43",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EBr%5C%5C%22%2C%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-ne.png~FL(horiz)~CROP(0%2C24%2C72%2C48)%2C0%2C2)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_44",
+        on: "branch_if_44",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "__invalid_if__",
+            not_equals: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-n.png~CROP(0%2C20%2C72%2C52)%2C0%2C1)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_41",
+        on: "attack",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "cart2.load",
+                equals: "$unit.id",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "cart2.load",
+            value: "empty",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "cart2.x",
+            value: "$x1",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "cart2.y",
+            value: "$y1",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "sof_mine_cart_passenger_cart2",
+            id: "$passenger_cart2.id",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_42",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_43",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_44",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_46",
+        on: "branch_if_46",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EBr%2F%22%2C%22x%22%3A%22%24x2%22%2C%22y%22%3A%22%24y2%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-ne.png~CROP(0%2C24%2C72%2C48)%2C0%2C2)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_47",
+        on: "branch_if_47",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EBr%5C%5C%22%2C%22x%22%3A%22%24x2%22%2C%22y%22%3A%22%24y2%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-ne.png~FL(horiz)~CROP(0%2C24%2C72%2C48)%2C0%2C2)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_48",
+        on: "branch_if_48",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "__invalid_if__",
+            not_equals: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "misc%2Fblank-hex.png~BLIT(misc%2Fmine-cart-n.png~CROP(0%2C20%2C72%2C52)%2C0%2C1)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_45",
+        on: "attack",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "cart2.load",
+                equals: "$second_unit.id",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "cart2.load",
+            value: "empty",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "cart2.x",
+            value: "$x2",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "cart2.y",
+            value: "$y2",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "sof_mine_cart_passenger_cart2",
+            id: "$passenger_cart2.id",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_46",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_47",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_48",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_49",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_50",
+        on: "scenario_end",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "sof_mine_cart_passenger_cart2",
+            id: "$passenger_cart2.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "alanin",
+            kill: "yes",
+            id: "Alanin",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "krawg",
+            kill: "yes",
+            id: "Krawg",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "adjacent_cavewall",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22adjacent_cavewall%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22radius%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_radius%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22X*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "adjacent_cavewall",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_terrain",
+                terrain: "Uu",
+                cells: "$this_item.x,$this_item.y",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "resource_return_locations",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22radius%22%3A%224%22%2C%22variable%22%3A%22resource_return_locations%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_radius%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Cud%2CKud%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:terrain_mask",
+            x: 1,
+            y: 1,
+            mask: "_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Uh%5EBr%7C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Uh%5EBr%7C%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20Uu%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%5EBr%5C%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Uu%5ETf%2C%20Uh%5EBr%7C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Cud%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ww%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%5EBr%7C%2C%20Tb%5ETf%2C%20Uh%5EBr%5C%2C%20_f%5EBr%5C%2C%20_f%2C%20_f%5EBr%2F%2C%20_f%5EBr%5C%2C%20_f%5EBr%2F%2C%20_f%5EBr%7C%2C%20_f%5EBr%5C%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Uu%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20Uh%2C%20Ww%2C%20Uh%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20Ww%2C%20_f%2C%20_f%2C%20Uh%2C%20Tb%5ETf%2C%20_f%2C%20_f%5EBr%7C%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%5EBr%2F%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%5EBr%5C%2C%20_f%5EBr%5C%2C%20_f%2C%20Uh%2C%20_f%2C%20Uu%5ETf%2C%20Uu%5EIi%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20Ww%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Cud%2C%20_f%2C%20Uh%5EBr%5C%2C%20_f%5EBr%5C%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%5EBr%2F%2C%20_f%5EBr%2F%2C%20_f%5EBr%5C%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Tb%5ETf%2C%20_f%2C%20Uu%5EIi%2C%20_f%2C%20_f%2C%20Tb%5EBr%7C%2C%20_f%2C%20_f%2C%20Uh%2C%20Re%2C%20Re%2C%20Re%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%5C%2C%20_f%5EBr%5C%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Cud%2C%20Tb%5ETf%2C%20_f%2C%20_f%5EBr%2F%2C%20_f%5EBr%2F%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%5EBr%5C%2C%20_f%5EBr%5C%2C%20_f%2C%20_f%0A_f%2C%20Tb%5ETf%2C%20Uh%2C%20_f%2C%20_f%2C%20Uh%2C%20Tb%5ETf%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20Uh%2C%20_f%2C%20Re%2C%20Uh%2C%20_f%2C%20Re%2C%20Uh%2C%20Uu%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%5EBr%5C%2C%20_f%5EBr%5C%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%2F%2C%20_f%5EBr%2F%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ww%5EBr%7C%2C%20Ww%2C%20_f%2C%20Re%2C%20_f%2C%20_f%2C%20Cud%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20Uu%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Uh%5EBr%5C%2C%20_f%5EBr%5C%2C%20Uu%5ETf%2C%20Uh%5EBr%2F%2C%20_f%5EBr%2F%2C%20_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20_f%0A_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20Cud%2C%20Uh%2C%20Uh%2C%20Uh%2C%20Ww%5EBr%7C%2C%20Ww%2C%20_f%2C%20Re%2C%20Re%2C%20Uu%5ETf%2C%20Uh%2C%20_f%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%2C%20Ww%2C%20Ww%2C%20Ww%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%5C%2C%20Uh%5EBr%5C%2C%20Uu%5ETf%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20Re%2C%20Uh%2C%20Re%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ww%2C%20Uh%2C%20Ww%2C%20Ww%2C%20_f%2C%20Uh%2C%20_f%2C%20Uu%5ETf%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20Uh%2C%20Uu%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%5EBr%7C%2C%20Re%2C%20_f%2C%20Re%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Cud%2C%20Uh%2C%20_f%2C%20Uh%2C%20Ww%2C%20Ww%2C%20Uh%2C%20Ww%2C%20_f%2C%20_f%2C%20_f%2C%20Uu%5EIi%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%5EBr%2F%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20Tb%5ETf%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Uu%5ETf%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Ww%2C%20Ww%2C%20Uu%5ETf%2C%20Uh%2C%20Uh%2C%20Uh%2C%20Uh%2C%20_f%2C%20Uu%5ETf%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%2F%2C%20_f%5EBr%2F%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Re%2C%20Re%2C%20Uh%5EBr%7C%2C%20_f%2C%20Uu%5ETf%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%5EBr%2F%2C%20_f%2C%20Uh%2C%20_f%2C%20Uu%5ETf%2C%20_f%2C%20_f%5EBr%2F%2C%20_f%5EBr%2F%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20Uu%5ETf%2C%20_f%2C%20Uh%2C%20_f%2C%20Re%2C%20_f%2C%20Re%5EBr%7C%2C%20_f%2C%20_f%2C%20Uu%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Uh%2C%20Uu%5ETf%2C%20Uh%2C%20Uh%2C%20Uh%2C%20_f%2C%20Cud%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20Uh%5EBr%2F%2C%20Uh%2C%20_f%5EBr%5C%2C%20_f%5EBr%5C%2C%20_f%2C%20_f%5EBr%2F%2C%20Uh%5EBr%2F%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Uh%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Re%5EBr%2F%2C%20Re%5EBr%7C%2C%20_f%5EBr%5C%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Uh%2C%20Tb%5ETf%2C%20_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20Uh%2C%20Tb%5ETf%2C%20_f%2C%20Uu%5ETf%2C%20_f%5EBr%5C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20Cud%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%2F%2C%20_f%5EBr%2F%2C%20_f%2C%20Re%2C%20Re%2C%20Uh%5EBr%5C%2C%20_f%5EBr%5C%2C%20Uh%2C%20Uh%2C%20_f%2C%20Uu%5EIi%2C%20_f%2C%20Re%2C%20Re%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20Uh%5EBr%7C%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%5EBr%2F%2C%20_f%5EBr%2F%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%5EBr%5C%2C%20_f%5EBr%5C%2C%20Uu%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20Re%2C%20_f%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20Uh%5EBr%2F%2C%20Re%5EBr%2F%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%5EBr%2F%2C%20_f%5EBr%2F%2C%20_f%5EBr%7C%2C%20_f%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20Uu%5ETf%2C%20_f%2C%20Uh%2C%20_f%2C%20Uh%5EBr%5C%2C%20_f%5EBr%5C%2C%20Uh%2C%20_f%2C%20Re%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%2F%2C%20_f%5EBr%2F%2C%20Uh%2C%20Uh%5EBr%5C%2C%20Re%5EBr%5C%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20Uh%5EBr%2F%2C%20_f%5EBr%2F%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20Uh%2C%20Uu%5ETf%2C%20Uu%5ETf%2C%20_f%2C%20Uh%2C%20Uu%5ETf%2C%20Uu%5EIi%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Re%5EBr%5C%2C%20Re%5EBr%5C%2C%20_f%2C%20Uh%2C%20Tb%5ETf%2C%20_f%5EBr%2F%2C%20_f%5EBr%2F%2C%20_f%2C%20Uh%2C%20Uh%2C%20Re%2C%20Re%2C%20_f%5EBr%5C%2C%20_f%2C%20Uh%2C%20Uh%2C%20Tb%5ETf%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%5EBr%2F%2C%20_f%5EBr%2F%2C%20_f%2C%20_f%2C%20Uu%5ETf%2C%20Uu%5EIi%2C%20_f%5EBr%2F%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Cud%2C%20Uh%2C%20Re%2C%20_f%2C%20Uh%5EBr%5C%2C%20_f%5EBr%2F%2C%20_f%5EBr%2F%2C%20_f%2C%20_f%2C%20_f%2C%20Uu%5EIi%2C%20Re%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%5EBr%7C%2C%20Ww%2C%20_f%2C%20Ww%2C%20Ww%2C%20_f%2C%20Uu%5ETf%2C%20Uu%5ETf%2C%20Uh%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20Re%2C%20_f%2C%20Uh%5EBr%2F%2C%20_f%5EBr%2F%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ww%2C%20Uh%2C%20Ww%5EBr%7C%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20Cud%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20Ww%2C%20Ww%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%2F%2C%20_f%5EBr%2F%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ww%2C%20Ww%2C%20Uh%5EBr%7C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%5C%2C%20_f%5EBr%5C%2C%20_f%2C%20_f%2C%20Cud%2C%20_f%2C%20Ww%2C%20_f%2C%20Ww%2C%20_f%2C%20_f%2C%20_f%5EBr%2F%2C%20Uh%5EBr%2F%2C%20Uh%5EBr%5C%2C%20_f%2C%20Uu%5ETf%2C%20Uu%5ETf%2C%20Cud%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20Uh%2C%20Uh%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%5EBr%7C%2C%20Tb%5ETf%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%5C%2C%20Uh%5EBr%5C%2C%20_f%2C%20Uu%5ETf%2C%20_f%2C%20Ww%2C%20_f%2C%20_f%5EBr%2F%2C%20Uh%5EBr%2F%2C%20Uu%5ETf%2C%20_f%2C%20Uh%2C%20_f%5EBr%5C%2C%20_f%5EBr%5C%2C%20_f%2C%20_f%2C%20Ww%2C%20Uh%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20Uh%2C%20Uh%2C%20Re%5EBr%7C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%5EBr%5C%2C%20_f%5EBr%5C%2C%20_f%2C%20Uh%5EBr%2F%2C%20_f%5EBr%2F%2C%20Uh%2C%20Uh%2C%20Uh%2C%20_f%2C%20Uh%2C%20Uu%5ETf%2C%20_f%2C%20_f%5EBr%5C%2C%20_f%5EBr%5C%2C%20Ww%2C%20_f%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%5EBr%7C%2C%20Re%2C%20Uh%2C%20Uu%5EIi%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Re%2C%20Uu%5ETf%2C%20Uh%5EBr%7C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Ww%2C%20_f%5EBr%5C%2C%20_f%5EBr%7C%2C%20Uh%2C%20Uu%5ETf%2C%20_f%2C%20_f%2C%20Cud%2C%20Uh%2C%20_f%5EBr%7C%2C%20Re%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20Re%2C%20Re%2C%20Uu%5ETf%2C%20_f%5EBr%7C%2C%20_f%2C%20_f%2C%20Uu%5EIi%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Ww%2C%20_f%2C%20Uh%5EBr%7C%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Re%5EBr%7C%2C%20Re%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Re%2C%20Re%5EBr%7C%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Uu%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%5C%2C%20Uh%5EBr%5C%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20Re%5EBr%7C%2C%20_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uu%5ETf%2C%20Uh%2C%20_f%2C%20_f%2C%20Re%2C%20Re%5EBr%7C%2C%20Uh%5EBr%5C%2C%20_f%2C%20_f%2C%20_f%2C%20Cud%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uu%5EIi%2C%20_f%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%5EBr%5C%2C%20Uh%5EBr%5C%2C%20Uu%5ETf%2C%20_f%2C%20_f%5EBr%7C%2C%20Uh%2C%20_f%2C%20Uu%5ETf%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20Uu%5EIi%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20Re%2C%20_f%2C%20Uh%5EBr%5C%2C%20Uh%5EBr%5C%2C%20_f%2C%20Uu%5ETf%2C%20_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%5C%2C%20_f%5EBr%5C%2C%20_f%5EBr%7C%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%5C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Uu%5ETf%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20Uh%2C%20_f%2C%20Uu%5ETf%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%5EBr%7C%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20Uh%2C%20Uu%5ETf%2C%20Tb%5ETf%2C%20Uu%5ETf%2C%20Uu%5ETf%2C%20Uh%2C%20Cud%2C%20_f%2C%20Uh%2C%20Uh%5EBr%7C%2C%20Uu%5EIi%2C%20Uh%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0AUh%2C%20_f%2C%20_f%2C%20_f%2C%20Cud%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20Uh%5EBr%2F%2C%20Ww%5EBr%7C%2C%20_f%5EBr%5C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Uu%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20Uh%5EBr%7C%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20Uu%5ETf%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20Uh%2C%20_f%2C%20_f%2C%20Uh%5EBr%5C%2C%20_f%5EBr%5C%2C%20Uh%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Uh%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%5EBr%2F%2C%20Uh%5EBr%7C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20Uu%5EIi%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%5C%2C%20_f%5EBr%5C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%5EBr%2F%2C%20_f%5EBr%2F%2C%20_f%2C%20_f%2C%20Uh%2C%20Uu%5ETf%2C%20Uu%5EIi%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20Uh%5EBr%7C%2C%20_f%2C%20Uu%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%5EBr%5C%2C%20_f%5EBr%5C%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%5EBr%2F%2C%20Uh%5EBr%2F%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20Uu%5ETf%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uu%5ETf%2C%20Uh%5EBr%5C%2C%20_f%5EBr%2F%2C%20Uh%5EBr%2F%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20Tb%5ETf%2C%20_f%2C%20Uh%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Uh%5EBr%7C%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Tb%5ETf%2C%20_f%2C%20Uh%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%2F%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%5C%2C%20_f%5EBr%5C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%2F%2C%20_f%5EBr%2F%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%5C%2C%20_f%5EBr%5C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%2F%2C%20_f%5EBr%2F%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%5C%2C%20_f%5EBr%7C%2C%20_f%5EBr%2F%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%7C%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%5EBr%2F%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20Uh%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%2C%20_f%0A",
+            border: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "possible_coal_1_locations",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22radius%22%3A%225%22%2C%22variable%22%3A%22possible_coal_1_locations%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_radius%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22!%2CXu%2CQxu%2C*%5EV*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "possible_coal_1_locations",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22possible_coal_1_locations%22%2C%22variable%22%3A%22possible_coal_1_locations%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Kud%2CCud%2CRe%2C*%5EBr*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "1..$possible_coal_1_locations.length",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "random",
+            value: 1,
+            mode: "sub",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "coal_1.x",
+            value: "$possible_coal_1_locations[$random].x",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "coal_1.y",
+            value: "$possible_coal_1_locations[$random].y",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "possible_coal_2_locations",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22radius%22%3A%225%22%2C%22variable%22%3A%22possible_coal_2_locations%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%224%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_radius%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22!%2CXu%2CQxu%2C*%5EV*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "possible_coal_2_locations",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22possible_coal_2_locations%22%2C%22variable%22%3A%22possible_coal_2_locations%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Kud%2CCud%2CRe%2C*%5EBr*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "1..$possible_coal_2_locations.length",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "random",
+            value: 1,
+            mode: "sub",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "coal_2.x",
+            value: "$possible_coal_2_locations[$random].x",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "coal_2.y",
+            value: "$possible_coal_2_locations[$random].y",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "possible_gold_locations",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22possible_gold_locations%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22radius%22%3A%2212%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_radius%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22!%2CXu%2CQxu%2C*%5EV*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22radius%22%3A%228%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_radius%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22!%2CXu%2CQxu%2C*%5EV*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "possible_gold_locations",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22possible_gold_locations%22%2C%22variable%22%3A%22possible_gold_locations%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Kud%2CCud%2CRe%2C*%5EBr*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "1..$possible_gold_locations.length",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "random",
+            value: 1,
+            mode: "sub",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "gold_1.x",
+            value: "$possible_gold_locations[$random].x",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "gold_1.y",
+            value: "$possible_gold_locations[$random].y",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$gold_1.x",
+            y: "$gold_1.y",
+            item_name: "",
+            image: "items%2Fgold.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$coal_1.x",
+            y: "$coal_1.y",
+            item_name: "",
+            image: "items%2Fcoal.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$coal_2.x",
+            y: "$coal_2.y",
+            item_name: "",
+            image: "items%2Fcoal.png",
+          },
+          {
+            tag: "set_variable",
+            name: "coalin",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "goldin",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "possible_cart1_locations",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EBr*%22%2C%22variable%22%3A%22possible_cart1_locations%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22radius%22%3A%227%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "possible_cart2_locations",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22possible_cart2_locations%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EBr*%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22radius%22%3A%2215%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "1..$possible_cart1_locations.length",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "random",
+            value: 1,
+            mode: "sub",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "cart_1.x",
+            value: "$possible_cart1_locations[$random].x",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "cart_1.y",
+            value: "$possible_cart1_locations[$random].y",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "1..$possible_cart2_locations.length",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "random",
+            value: 1,
+            mode: "sub",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "cart_2.x",
+            value: "$possible_cart2_locations[$random].x",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "cart_2.y",
+            value: "$possible_cart2_locations[$random].y",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_25",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_26",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_27",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22cart1%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22load%22%3A%22empty%22%2C%22x%22%3A%22%24cart_1.x%7C%22%2C%22y%22%3A%22%24cart_1.y%7C%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_38",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_39",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_40",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22cart2%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22load%22%3A%22empty%22%2C%22x%22%3A%22%24cart_2.x%7C%22%2C%22y%22%3A%22%24cart_2.y%7C%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_51",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Baglur",
+            unit: "Baglur",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Thursagan",
+            unit: "Thursagan",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Kinan",
+            unit: "Kinan",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Rynan",
+            unit: "Rynan",
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Well, these are the eastern mines, rich in quality minerals, but also home to trolls and other denizens of the darkness. Mining can take a while, this won’t be easy."),
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("For me to make the artifact Haldric wants, I need a special type of gold. I know not exactly where it can be found, but Baglur said these mines were the source of it."),
+          },
+          {
+            tag: "message",
+            speaker: "Baglur",
+            text: _("Aye, these mines yield the needed gold, but also the only coal that wi’ melt that gold."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("So we’re down here to get both the gold and coal. Simple enough, even if we have to fight for it."),
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("Yes, although we will have to hire the miners — they don’t work for free. And you need to protect them while they do their work."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Hrmm, that’s a good point... Well, these are old mines, not frontier caverns, we should be able to use the rails and carts, if we’re smart about it."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_53",
+        on: "attack_end",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_side%22%2C%22attributes%22%3A%7B%22controller%22%3A%22ai%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_side%22%2C%22attributes%22%3A%7B%22controller%22%3A%22ai%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("We’re not facing a united enemy, maybe we can use that to our advantage."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_52",
+        on: "attack_end",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_54",
+        on: "reminder_to_recruit_miners",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "unit_exists",
+                exists: "no",
+                type: "Dwarvish Miner",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("Don’t forget to recruit the miners. Our warriors can clear the tunnels of trolls and worse, but once we find the gold and coal we need the miners to acquire it."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_55",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "reminder_to_recruit_miners",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_57",
+        on: "branch_if_57",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "money_for_recruitment",
+            less_than: 65,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "reminder_to_recruit_miners",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_56_1",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_gold",
+            side: 1,
+            variable: "money_for_recruitment",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_57",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_59",
+        on: "branch_if_59",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "money_for_recruitment",
+            less_than: 65,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "reminder_to_recruit_miners",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_58_2",
+        on: "recall",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_gold",
+            side: 1,
+            variable: "money_for_recruitment",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_59",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_60",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: "$coal_1.x",
+            y: "$coal_1.y",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22Here%20is%20some%20of%20the%20coal%20that%20we%20need!%20Send%20a%20miner%20here%20to%20take%20it!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22allow_undo%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Here is some of the coal that we need! Send a miner here to take it!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_61",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            type: "Dwarvish Miner",
+            x: "$coal_1.x",
+            y: "$coal_1.y",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22I%20have%20all%20the%20coal%20I%20can%20carry...%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22unit.status.has_coal%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22unstore_unit%22%2C%22attributes%22%3A%7B%22variable%22%3A%22unit%22%2C%22find_vacant%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22unit_overlay%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%2C%22image%22%3A%22misc%2Fcoal-icon.png%22%2C%22object_id%22%3A%22coal_icon%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22remove_item%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22label%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24coal_1.x%22%2C%22y%22%3A%22%24coal_1.y%22%2C%22text%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22coal_1.x%22%2C%22value%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22coal_1.y%22%2C%22value%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I have all the coal I can carry..."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unit.status.has_coal",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "unit",
+          },
+          {
+            tag: "hook",
+            name: "command:unit_overlay",
+            image: "misc/coal-icon.png",
+            object_id: "coal_icon",
+            x: "$x1",
+            y: "$y1",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "set_variable",
+            name: "coal_1.x",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "coal_1.y",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_62",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            type: "Dwarvish Miner",
+            x: "$coal_2.x",
+            y: "$coal_2.y",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22I%20have%20all%20the%20coal%20I%20can%20carry...%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22unit.status.has_coal%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22unstore_unit%22%2C%22attributes%22%3A%7B%22variable%22%3A%22unit%22%2C%22find_vacant%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22unit_overlay%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%2C%22image%22%3A%22misc%2Fcoal-icon.png%22%2C%22object_id%22%3A%22coal_icon%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22remove_item%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22label%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24coal_2.x%22%2C%22y%22%3A%22%24coal_2.y%22%2C%22text%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22coal_2.x%22%2C%22value%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22coal_2.y%22%2C%22value%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I have all the coal I can carry..."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unit.status.has_coal",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "unit",
+          },
+          {
+            tag: "hook",
+            name: "command:unit_overlay",
+            image: "misc/coal-icon.png",
+            object_id: "coal_icon",
+            x: "$x1",
+            y: "$y1",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "set_variable",
+            name: "coal_2.x",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "coal_2.y",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_63",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "$gold_1.x",
+            y: "$gold_1.y",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22Here%20is%20the%20mine%20of%20precious%20gold!%20Send%20a%20miner%20here%20to%20take%20it!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22allow_undo%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Here is the mine of precious gold! Send a miner here to take it!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_64",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            type: "Dwarvish Miner",
+            x: "$gold_1.x",
+            y: "$gold_1.y",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22I%20have%20all%20the%20gold%20I%20can%20carry...%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22unit.status.has_gold%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22unstore_unit%22%2C%22attributes%22%3A%7B%22variable%22%3A%22unit%22%2C%22find_vacant%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22unit_overlay%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%2C%22image%22%3A%22misc%2Fgold-icon.png%22%2C%22object_id%22%3A%22gold_icon%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22remove_item%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22label%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24gold_1.x%22%2C%22y%22%3A%22%24gold_1.y%22%2C%22text%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22gold_1.x%22%2C%22value%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22gold_1.y%22%2C%22value%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I have all the gold I can carry..."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unit.status.has_gold",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "unit",
+          },
+          {
+            tag: "hook",
+            name: "command:unit_overlay",
+            image: "misc/gold-icon.png",
+            object_id: "gold_icon",
+            x: "$x1",
+            y: "$y1",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "set_variable",
+            name: "gold_1.x",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "gold_1.y",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_65",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Dwarvish%20Miner%22%2C%22status%22%3A%22has_coal%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "items%2Fcoal.png",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "hex_$x1|_$y1|_coal",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_67",
+        on: "branch_if_67",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            condition: "hook",
+            hook: "predicate:variable_compare",
+            variable: "hex_$x1|_$y1|_coal",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            text: _("I have all the coal I can carry..."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unit.status.has_coal",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "unit",
+          },
+          {
+            tag: "hook",
+            name: "command:unit_overlay",
+            image: "misc/coal-icon.png",
+            object_id: "coal_icon",
+            x: "$x1",
+            y: "$y1",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_68",
+        on: "branch_if_68",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "hex_$x1|_$y1|_coal",
+            not_equals: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_66",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Dwarvish%20Miner%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22status%22%3A%22has_coal%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22status%22%3A%22has_gold%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_67",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_68",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_69",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Dwarvish%20Miner%22%2C%22status%22%3A%22has_gold%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "items%2Fgold.png",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "hex_$x1|_$y1|_gold",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_71",
+        on: "branch_if_71",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            condition: "hook",
+            hook: "predicate:variable_compare",
+            variable: "hex_$x1|_$y1|_gold",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            text: _("I have all the gold I can carry..."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unit.status.has_gold",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "unit",
+          },
+          {
+            tag: "hook",
+            name: "command:unit_overlay",
+            image: "misc/gold-icon.png",
+            object_id: "gold_icon",
+            x: "$x1",
+            y: "$y1",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_72",
+        on: "branch_if_72",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "hex_$x1|_$y1|_gold",
+            not_equals: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_70",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Dwarvish%20Miner%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22status%22%3A%22has_coal%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22status%22%3A%22has_gold%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_71",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_72",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_75",
+        on: "branch_if_75",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "goldin",
+            greater_than_or_equal_to: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("This is all we need from these mines. Now we should go back further west, where there are no trolls and ogres, and mine there."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_74",
+        on: "branch_if_74",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "coalin",
+            greater_than_or_equal_to: 2,
+          },
+          {
+            tag: "message",
+            text: _("That’s the last load of coal we need."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_75",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_73",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Dwarvish%20Miner%22%2C%22status%22%3A%22has_coal%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22resource_return_locations%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("My load of coal is delivered!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unit.status.has_coal",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "unit",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "coal_icon",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "coalin",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_74",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_78",
+        on: "branch_if_78",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "coalin",
+            greater_than_or_equal_to: 2,
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("This is all we need from these mines. Now we should go back further west, where there are no trolls and ogres, and mine there."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_77",
+        on: "branch_if_77",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "goldin",
+            greater_than_or_equal_to: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_78",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_76",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Dwarvish%20Miner%22%2C%22status%22%3A%22has_gold%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22resource_return_locations%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Here’s the gold."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unit.status.has_gold",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "unit",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "gold_icon",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "goldin",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_77",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_79",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "alanin",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "krawg",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+            side: 1,
+            clear_variable: "swiftness_rune,accuracy_rune,force_rune",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22type%22%3A%22Dwarvish%20Miner%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "Dwarvish Miner",
+          },
+        ],
+      },
+    ],
+  },
+]

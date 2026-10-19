@@ -1,0 +1,4009 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Great River"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "wesnoth",
+        gold: 35,
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "saurians",
+        leader: "Ysaxis",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "saurians",
+        gold: 0,
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "saurians",
+        share_vision: "none",
+        gold: 0,
+      },
+      {
+        tag: "map",
+        id: "scenario_07_The_Great_River",
+        file: "07_The_Great_River.map",
+      },
+      {
+        tag: "unit",
+        id: "Ysaxis",
+        type: "Saurian Ambusher",
+        side: 2,
+        x: 35,
+        y: 13,
+        name: _("Ysaxis"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_91",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_92",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/fort-wp.png"),
+            text: _("The entry of Clan Blackcrest into the war opens up a new front further west, demanding swift response. Wesnoth fully mobilizes, and a series of bloody battles at the Ford of Abez end in deadlock for both sides. The ford is heavily fortified, and river commerce grinds to a halt. Many years pass, with neither side able to gain an advantage."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_93",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/baby-wp.png"),
+            text: _("Meanwhile, Asheviere gives birth to a healthy baby boy — the Crown Prince Eldred. Under heavy pressure from both parents and via the tutelage of General Lionel, Eldred rapidly matures into a princeling soldier. Prince Arand takes Eldred under his wing, and working in tandem the uncle and nephew are able to stabilize the eastern front around Fort Garard. Whitefang orcs still firmly hold the hills, but limited settlement begins."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_94",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/river-wp.png"),
+            text: _("Delfador grows older, wiser, and significantly more powerful. He makes a name for himself as the king’s premier war-mage, and quickly gains a reputation as a ferocious fighter. His bold maneuvers break through orcish lines several times at the Ford of Abez, but continually become stymied by saurian reinforcements."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_95",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/graves-wp.png"),
+            text: _("As Wesnoth’s casualties continue to mount, and with no end in sight, Delfador decides to take matters into his own hands. The war-mage prepares a force of mercenary northmen to sneak behind enemy lines and determine the nature of Clan Blackcrest’s orc-saurian alliance..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_96",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Ysaxis,Delfador,Lynyan",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_97",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 25,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Destroy the signal beacon Don’t be seen by a goblin or saurian during their turn Then, defeat all enemies Defeat enemies before any escape"),
+        defeat: _("A goblin or saurian sees you during their turn Death of Delfador Turns run out Any enemy reaches the west edge of the map Death of Delfador Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Ysaxis",
+            object: "%7B%22id%22%3A%22side_traits_2%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%2C%7B%22applyTo%22%3A%22movement%22%2C%22increase%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A%22-5%25%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "wanderer.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_6",
+        on: "branch_if_6",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "stored_deoran2.length",
+            equals: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_deoran2",
+            kill: "yes",
+            id: "Deoran",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_7",
+        on: "branch_if_7",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Saurian Ambusher",
+            side: 2,
+            x: 34,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_8",
+        on: "branch_if_8",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Saurian Skirmisher",
+            side: 2,
+            x: 32,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_9",
+        on: "branch_if_9",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Saurian Skirmisher",
+            side: 2,
+            x: 31,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_10",
+        on: "branch_if_10",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Saurian Skirmisher",
+            side: 2,
+            x: 33,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_11",
+        on: "branch_if_11",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Saurian Ambusher",
+            side: 2,
+            x: 35,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Goblin Spearman",
+            side: 2,
+            x: 31,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Goblin Spearman",
+            side: 2,
+            x: 22,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Goblin Spearman",
+            side: 2,
+            x: 18,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_10",
+            type: "Goblin Spearman",
+            side: 2,
+            x: 9,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_11",
+            type: "Saurian Devotee",
+            side: 3,
+            x: 4,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_11",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_12",
+            type: "Saurian Devotee",
+            side: 3,
+            x: 24,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_12",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_18",
+        on: "branch_if_18",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_13",
+            type: "Saurian Devotee",
+            side: 3,
+            x: 19,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_13",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_19",
+        on: "branch_if_19",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_14",
+            type: "Saurian Devotee",
+            side: 3,
+            x: 15,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_14",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_20",
+        on: "branch_if_20",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_15",
+            type: "Goblin Spearman",
+            side: 2,
+            x: 10,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_15",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_21",
+        on: "branch_if_21",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_16",
+            type: "Saurian Devotee",
+            side: 2,
+            x: 11,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_16",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_22",
+        on: "branch_if_22",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_17",
+            type: "Goblin Spearman",
+            side: 2,
+            x: 15,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_17",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_23",
+        on: "branch_if_23",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_18",
+            type: "Goblin Rouser",
+            side: 2,
+            x: 16,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_18",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "attack_end",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            type: "Goblin Spearman",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "sleeping_goblins",
+            id: "$second_unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "turn_refresh",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 3,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "$unit.id",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.moves",
+                value: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22role%22%3A%22patrol1%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22role%22%3A%22patrol2%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22role%22%3A%22patrol3%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22role%22%3A%22patrol4%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%225%2C12%2C%2025%2C32%2C%2013%2C20%2C%2015%2C21%22%2C%22y%22%3A%228%2C%207%2C%2017%2C17%2C%2013%2C14%2C%20%203%2C%206%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "$unit.id",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.moves",
+                value: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:get_global_variable",
+            namespace: "TheDeceiversGambit",
+            from_global: "stored_deoran2",
+            to_local: "stored_deoran2",
+          },
+          {
+            tag: "hook",
+            name: "command:get_global_variable",
+            namespace: "TheDeceiversGambit",
+            from_global: "stored_units_s06",
+            to_local: "stored_units_s06",
+          },
+          {
+            tag: "hook",
+            name: "command:get_global_variable",
+            namespace: "TheDeceiversGambit",
+            from_global: "stored_methor",
+            to_local: "stored_methor",
+          },
+          {
+            tag: "hook",
+            name: "command:get_global_variable",
+            namespace: "TheDeceiversGambit",
+            from_global: "stored_garard",
+            to_local: "stored_garard",
+          },
+          {
+            tag: "hook",
+            name: "command:get_global_variable",
+            namespace: "TheDeceiversGambit",
+            from_global: "stored_familiar",
+            to_local: "stored_familiar",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_6",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Beacon",
+            side: 4,
+            x: 13,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Saurian Ambusher",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_7",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Saurian Skirmisher",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_8",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Saurian Skirmisher",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_9",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Saurian Skirmisher",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_10",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Saurian Ambusher",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_11",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Goblin Spearman",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_12",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Goblin Spearman",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_13",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Goblin Spearman",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_14",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Goblin Spearman",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_15",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Saurian Devotee",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Saurian Devotee",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Saurian Devotee",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_18",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Saurian Devotee",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_19",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Re",
+            cells: "",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Goblin Spearman",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_20",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Saurian Devotee",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_21",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Goblin Spearman",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_22",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Goblin Rouser",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_23",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Goblin%20Spearman%22%7D%2C%22children%22%3A%5B%5D%7D",
+            type: "Goblin Spearman",
+            object: "%7B%22id%22%3A%22sleeping_goblins%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_trait",
+            role: "patrol1",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            moves: 7,
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22role%22%3A%22patrol1%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22role%22%3A%22patrol2%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22role%22%3A%22patrol3%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22role%22%3A%22patrol4%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+            object: "%7B%22id%22%3A%22intelligent%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22max_experience%22%2C%22increase%22%3A%22-20%25%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            hitpoints: 1,
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: "full",
+            restore_statuses: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 3,
+            ai_type: "patrol",
+            action: "add",
+            waypoint_x: "5,6,7,8,9,10,11,12",
+            waypoint_y: "8,8,9,8,8, 7, 7, 7",
+            filter: "%7B%22role%22%3A%22patrol1%22%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 3,
+            ai_type: "patrol",
+            action: "add",
+            waypoint_x: "25,26,27,28,29,30,31,32",
+            waypoint_y: "17,17,18,17,17,16,17,17",
+            filter: "%7B%22role%22%3A%22patrol2%22%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 3,
+            ai_type: "patrol",
+            action: "add",
+            waypoint_x: "13,14,15,16,17,18,19,20",
+            waypoint_y: "13,13,14,13,13,13,14,14",
+            filter: "%7B%22role%22%3A%22patrol3%22%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 3,
+            ai_type: "patrol",
+            action: "add",
+            waypoint_x: "16,17,18,19,19,19,20,21",
+            waypoint_y: "2, 2, 2, 3, 4, 5, 5, 6",
+            filter: "%7B%22role%22%3A%22patrol4%22%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_magic_missile",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_shield",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_stasis",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_find_familiar",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_mnemonic",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_chill_touch",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_levitate",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_panacea",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_animate_mud",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_fireball2",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_enervate",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_blizzard",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_counterspell",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_polymorph",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_glamour",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_fireball3",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_dancing_daggers",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_animate_fire",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "unlock_contingency",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "spawn",
+            id: "Delfador",
+            type: "Delfador L3",
+            side: 1,
+            x: 10,
+            y: 23,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Delfador",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Delfador",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Delfador",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "ne",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:allow_extra_recruit",
+            id: "Delfador",
+            types: "Footpad,Thief,Rogue Mage",
+          },
+          {
+            tag: "spawn",
+            id: "Lynyan",
+            type: "Thief",
+            side: 1,
+            x: 11,
+            y: 23,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Lynyan",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Lynyan",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lynyan%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Lynyan",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "spawn",
+            id: "Ritharran",
+            type: "Rogue Mage",
+            side: 1,
+            x: 9,
+            y: 23,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Ritharran",
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "1-14,26",
+            radius: 6,
+            multiturn: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 0,
+            y: 26,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "mousemove_synced",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "mousemove",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "select",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "mousemove",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30_1",
+        on: "mousemove",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Delfador",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31_2",
+        on: "recruit",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Delfador",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32_3",
+        on: "recall",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Delfador",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33_4",
+        on: "side_turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Delfador",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Alright men—"),
+          },
+          {
+            tag: "message",
+            speaker: "Lynyan",
+            text: _("And wom’n!"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("—and women. I’ve selected you because you’re fast, you’re stealthy, and most importantly: you work for cheap. <span size='x-small'>Lousy Eldred wouldn’t give me any of my veterans.</span>"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("This is the perfect time for us to cross! It’s dawn, which means most of the orcs and saurians will be sleeping, and there’s a heavy winter fog to cover our movements. We should have time to clear this saurian outpost and sneak past the frontline before the main orcish army wakes at nightfall."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("But first, our objective must be to destroy this outpost’s signal beacon."),
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "13,2",
+            multiturn: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 13,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 14,
+            y: 3,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 14,
+            y: 3,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 14,
+            y: 3,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 14,
+            y: 3,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 14,
+            y: 3,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 14,
+            y: 3,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 14,
+            y: 3,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 14,
+            y: 3,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 14,
+            y: 3,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 14,
+            y: 3,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 14,
+            y: 3,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Even through the fog, a beacon fire that large will be visible for miles. If the orcish host at the Ford of Abez is alerted before we can get through to the swamp, we’ll be slaughtered!"),
+          },
+          {
+            tag: "message",
+            speaker: "Ritharran",
+            text: _("Hey genius, you forget about the river? I got expelled long before learning how to levitate, and the girl ’haint swimming that far even if’t it weren’t the middle of winter."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Delfador",
+            x: 12,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "skill_blizzard",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Delfador",
+            x: 10,
+            y: 23,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 100,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Delfador",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "ne",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 400,
+          },
+          {
+            tag: "message",
+            speaker: "Ritharran",
+            text: _("Oh."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 2,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.moves",
+                value: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "attack",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "attack_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22special_id_active%22%3A%22magical%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_magical",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+            object: "%7B%22id%22%3A%22force_cth_magical%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_37",
+        on: "branch_if_37",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "hit_once",
+            not_equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "hit_once",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_38",
+        on: "branch_if_38",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "hit_once",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_magical",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+            object: "%7B%22id%22%3A%22force_cth_magical%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "attacker_hits",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "attack_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22special_id_active%22%3A%22magical%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_37",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_38",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_39",
+        on: "attacker_misses",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "attack_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22special_id_active%22%3A%22magical%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_magical",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+            object: "%7B%22id%22%3A%22force_cth_magical%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40",
+        on: "attack_end",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_magical",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_41",
+        on: "attack",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "attack_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22special_id_active%22%3A%22magical%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_nonmagic",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+            object: "%7B%22id%22%3A%22force_cth_nonmagic%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_42",
+        on: "attacker_hits",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "attack_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22special_id_active%22%3A%22magical%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22defense%22%3A%2240-60%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_nonmagic",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+            object: "%7B%22id%22%3A%22force_cth_nonmagic%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_43",
+        on: "attacker_misses",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "attack_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22special_id_active%22%3A%22magical%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22defense%22%3A%2240-60%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_nonmagic",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "$unit.id",
+            object: "%7B%22id%22%3A%22force_cth_nonmagic%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_44",
+        on: "attack_end",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "force_cth_nonmagic",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_46",
+        on: "skill_blizzard_end",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "refresh_vision",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_47_1",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "vision_indicator",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_48_2",
+        on: "refresh_vision",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "vision_indicator",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_49_1",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "no_highlights",
+                not_equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_enemies",
+            kill: "no",
+            side: "2,3",
+          },
+          {
+            tag: "foreach",
+            variable: "stored_enemies",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_items",
+                variable: "existing_indicators",
+                item_name: "vision_indicator",
+                x: "",
+                y: "",
+              },
+              {
+                tag: "hook",
+                name: "command:store_reachable_locations",
+                variable: "stored_vision",
+                filter: "%7B%22tag%22%3A%22store_reachable_locations%22%2C%22attributes%22%3A%7B%22range%22%3A%22vision%22%2C%22variable%22%3A%22stored_vision%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22existing_indicators%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                moves: "",
+                range: "vision",
+              },
+              {
+                tag: "foreach",
+                variable: "stored_vision",
+                item: "this_item",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:add_item",
+                    x: "$hex.x",
+                    y: "$hex.y",
+                    item_name: "vision_indicator",
+                    image: "scenery%2Fvision-indicator.png~O(0.6)~NO_TOD_SHIFT()",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_50_2",
+        on: "refresh_vision",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "no_highlights",
+                not_equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_enemies",
+            kill: "no",
+            side: "2,3",
+          },
+          {
+            tag: "foreach",
+            variable: "stored_enemies",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_items",
+                variable: "existing_indicators",
+                item_name: "vision_indicator",
+                x: "",
+                y: "",
+              },
+              {
+                tag: "hook",
+                name: "command:store_reachable_locations",
+                variable: "stored_vision",
+                filter: "%7B%22tag%22%3A%22store_reachable_locations%22%2C%22attributes%22%3A%7B%22range%22%3A%22vision%22%2C%22variable%22%3A%22stored_vision%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22existing_indicators%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                moves: "",
+                range: "vision",
+              },
+              {
+                tag: "foreach",
+                variable: "stored_vision",
+                item: "this_item",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:add_item",
+                    x: "$hex.x",
+                    y: "$hex.y",
+                    item_name: "vision_indicator",
+                    image: "scenery%2Fvision-indicator.png~O(0.6)~NO_TOD_SHIFT()",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_51",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%2C3%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "$unit.id",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "refresh_vision",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_45",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%2C3%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Take care! If that guard spots us on its turn, it’ll alert all the others."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "refresh_vision",
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Delfador",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_52",
+        on: "exit_hex",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22role%22%3A%22patrol1%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22role%22%3A%22patrol2%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22role%22%3A%22patrol3%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22role%22%3A%22patrol4%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_vision%22%2C%22attributes%22%3A%7B%22visible%22%3A%22yes%22%2C%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Lynyan",
+            text: _("That one’s patrollin’ back an’ forth! Those lizards sure are ugly..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_53",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%2C3%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "$unit",
+            text: _("Urk—"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Excellent! That one perished swiftly, before it had a chance to raise the alarm."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_54",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 20,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("We must move swiftly! The fog is already starting to clear."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_55",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: "2,3",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "check_notice_delfador",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_56_1",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "check_notice_delfador",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_57_2",
+        on: "side_turn_end",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "check_notice_delfador",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_61",
+        on: "branch_if_61",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            condition: "hook",
+            hook: "predicate:variable_compare",
+            variable: "$unit.race",
+            equals: "lizard",
+          },
+          {
+            tag: "message",
+            speaker: "$unit.id",
+            text: _("Look, it’sss that wisssard again! Light the fire, sssound the alarm!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_62",
+        on: "branch_if_62",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "$unit.race",
+            not_equals: "lizard",
+          },
+          {
+            tag: "message",
+            speaker: "$unit.id",
+            text: _("Look, it’s that wizard again! Light the fire, sound the alarm!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_60",
+        on: "branch_if_60",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "spotted.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "refresh_vision",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "sleeping_goblins",
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "$unit.x,$unit.y",
+            radius: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: "$spotted[0].x",
+            y: "$spotted[0].y",
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 4,
+              },
+              {
+                tag: "hook",
+                name: "command:remove_item",
+                x: "$spotted[0].x",
+                y: "$spotted[0].y",
+                item_name: "",
+                image: "",
+              },
+              {
+                tag: "hook",
+                name: "command:delay",
+                time: 400,
+              },
+              {
+                tag: "hook",
+                name: "command:add_item",
+                x: "$spotted[0].x",
+                y: "$spotted[0].y",
+                item_name: "",
+                image: "scenery%2Fhighlight-hex.png",
+              },
+              {
+                tag: "hook",
+                name: "command:delay",
+                time: 400,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_61",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_62",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "notice_delfador",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_59",
+        on: "branch_if_59",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "delfador_spotted_locs.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "enemy_units",
+            kill: "no",
+            side: "2,3",
+          },
+          {
+            tag: "foreach",
+            variable: "enemy_units",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_reachable_locations",
+                variable: "spotted",
+                filter: "%7B%22tag%22%3A%22store_reachable_locations%22%2C%22attributes%22%3A%7B%22range%22%3A%22vision%22%2C%22variable%22%3A%22spotted%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                moves: "",
+                range: "vision",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_60",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_58",
+        on: "check_notice_delfador",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_reachable_locations",
+            variable: "delfador_spotted_locs",
+            filter: "%7B%22tag%22%3A%22store_reachable_locations%22%2C%22attributes%22%3A%7B%22range%22%3A%22vision%22%2C%22variable%22%3A%22delfador_spotted_locs%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%2C3%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+            moves: "",
+            range: "vision",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_59",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_63",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Beacon%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "beacon_dies",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_64",
+        on: "beacon_dies",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("The beacon is destroyed! And just in time too: the fog is lifting."),
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "vision_indicator",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            fog: "no",
+          },
+          {
+            tag: "message",
+            speaker: "Ysaxis",
+            text: _("Look, it’sss that wisssard again! Light the fire, sssound the alarm!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "notice_delfador",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_65",
+        on: "turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 25,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Beacon",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("I’ve tarried too long, the fog is already clearing!"),
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "vision_indicator",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            fog: "no",
+          },
+          {
+            tag: "message",
+            speaker: "Ysaxis",
+            text: _("Look, it’sss that wisssard again! Light the fire, sssound the alarm!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "notice_delfador",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_66",
+        on: "notice_delfador",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "sleeping_goblins",
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "34,12",
+            radius: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_68",
+        on: "mousemove_synced",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "mousemove",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_69",
+        on: "select",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "mousemove",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_70_1",
+        on: "mousemove",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Delfador",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_71_2",
+        on: "recruit",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Delfador",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_72_3",
+        on: "recall",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Delfador",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_73_4",
+        on: "side_turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Delfador",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_67",
+        on: "play_part2",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22type%22%3A%22Beacon%22%2C%22animate%22%3A%22no%22%2C%22fire_event%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            fog: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "",
+            x: 11,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "",
+            x: 12,
+            y: 5,
+          },
+          {
+            tag: "message",
+            speaker: "goblin1",
+            text: _("Eeek! It’s gone!"),
+          },
+          {
+            tag: "message",
+            speaker: "Ysaxis",
+            text: _("$part2_message+_ No matter, my sssaurians will ssslip past and warn the army! Everyone, essscape to the west!"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("They’re making a run for it! Don’t let a single one get away, or this outpost will be swarming with orcs!"),
+          },
+          {
+            tag: "hook",
+            name: "command:modify_turns",
+            value: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 3,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.side",
+                value: 2,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.role",
+                value: "",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.role",
+                value: "",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.role",
+                value: "",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.role",
+                value: "",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 2,
+            ai_type: "goto",
+            action: "add",
+            filter: "%7B%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[healing]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[villages]",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_74",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 32,
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("We must defeat these saurians and escape before nightfall, or the main orcish camp will wake and be upon us!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_75",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: "2-3",
+            x: 0,
+          },
+          {
+            tag: "message",
+            speaker: "$unit",
+            text: _(""),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("One of them has gotten away to warn the orcish army! I hate running from a fight, but we have to retreat..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_76",
+        on: "turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 35,
+          },
+          {
+            tag: "spawn",
+            id: "u_19",
+            type: "Orcish Grunt",
+            side: 2,
+            x: 0,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_19",
+          },
+          {
+            tag: "spawn",
+            id: "u_20",
+            type: "Orcish Crossbowman",
+            side: 2,
+            x: 1,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_20",
+          },
+          {
+            tag: "spawn",
+            id: "u_21",
+            type: "Orcish Archer",
+            side: 2,
+            x: 0,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_21",
+          },
+          {
+            tag: "spawn",
+            id: "u_22",
+            type: "Goblin Pillager",
+            side: 2,
+            x: 1,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_22",
+          },
+          {
+            tag: "spawn",
+            id: "u_23",
+            type: "Orcish Warrior",
+            side: 2,
+            x: 2,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_23",
+          },
+          {
+            tag: "spawn",
+            id: "u_24",
+            type: "Orcish Warlord",
+            side: 2,
+            x: 2,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_24",
+          },
+          {
+            tag: "message",
+            text: _("<i>Yaawwnn</i> ...what’s all this noise about?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("We’ve taken too long, now it’s nighttime and the orcish camp has awoken! I hate running from a fight, but we have to retreat..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_77",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Ysaxis%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Ysaxis",
+            text: _("Cursssesss..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_80",
+        on: "branch_if_80",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "second_unit.id",
+            equals: "familiar",
+          },
+          {
+            tag: "message",
+            text: _("Kraa!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_81",
+        on: "branch_if_81",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "second_unit.type",
+            equals: "Mudcrawler",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22second_unit.type%22%2C%22equals%22%3A%22Giant%20Mudcrawler%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Glob glob glob."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_82",
+        on: "branch_if_82",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "second_unit.type",
+            equals: "Fire Guardian",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22second_unit.type%22%2C%22equals%22%3A%22Fire%20Wraith%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Fsss crackle hiss."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_79",
+        on: "branch_if_79",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "second_unit.id",
+            equals: "familiar",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22second_unit.type%22%2C%22equals%22%3A%22Mudcrawler%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22second_unit.type%22%2C%22equals%22%3A%22Giant%20Mudcrawler%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22second_unit.type%22%2C%22equals%22%3A%22Fire%20Guardian%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22second_unit.type%22%2C%22equals%22%3A%22Fire%20Wraith%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_80",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_81",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_82",
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Ah-ha, got you!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_83",
+        on: "branch_if_83",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22second_unit.id%22%2C%22equals%22%3A%22familiar%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22second_unit.type%22%2C%22equals%22%3A%22Mudcrawler%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22second_unit.type%22%2C%22equals%22%3A%22Giant%20Mudcrawler%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22second_unit.type%22%2C%22equals%22%3A%22Fire%20Guardian%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22second_unit.type%22%2C%22equals%22%3A%22Fire%20Wraith%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Ah-ha, got you!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_84",
+        on: "branch_if_84",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "lua_condition",
+                code: "return wesnoth.current.turn<=20",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_achievement",
+            id: "tdg_s07",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_78",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "unit_exists",
+                exists: "no",
+                side: "2-3",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_79",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_83",
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Victory is won! We have done well to remain undetected — the way forward remains clear. Now onwards to the Swamp of Dread, to find out why these saurians are fighting alongside orcs..."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_84",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "herodeath_delfador12",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%2C%22level%22%3A%220-2%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("No, it can’t end yet! I have so much left to do..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "herodeath_delfador3",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%2C%22level%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("No! Magic, why have you failed me..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "herodeath_delfador4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%2C%22level%22%3A%224-99%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("If only I had been a little wiser..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "herodeath_methor",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Methor%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "message",
+            speaker: "Methor",
+            text: _("War, pain, death... I tried so hard to change things..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "herodeath_deoran",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Deoran%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("I have failed my kingdom and my duty..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_85",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Garard%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Garard",
+            text: _("A horse! A horse! My kingdom for a horse..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_86",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Asheviere%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Asheviere",
+            text: _("It’s finally over..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_87",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lionel%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Lionel",
+            text: _("Blasted orcs..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "herodeath_kalenz",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Nobody can cheat death forever..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "herodeath_chantal",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Chantal%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Chantal",
+            text: _("Deoran, I never had a chance to tell you—"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_88",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24companion_id%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lynyan%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_89",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24companion_id%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Barin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "message",
+            speaker: "Barin",
+            text: _("I shoulda never left my swamp..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_90",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kaylan%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "message",
+            speaker: "Kaylan",
+            text: _("I am grievously injured; I can be of no further aid in your quest. Fight on without me, Delfador!"),
+          },
+        ],
+      },
+    ],
+  },
+]

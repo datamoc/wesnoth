@@ -1,0 +1,1410 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Siege of Elensefar"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "elves",
+        gold: 150,
+        leader: "Konrad",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "orcs",
+        gold: 160,
+        recruit: "Orcish Warrior,Orcish Grunt,Orcish Assassin,Orcish Crossbowman,Orcish Archer",
+        leader: "Agadla",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "orcs",
+        gold: 120,
+        recruit: "Skeleton Archer,Skeleton",
+        leader: "Muff_Jaanal",
+      },
+      {
+        tag: "map",
+        id: "scenario_06_The_Siege_of_Elensefar",
+        file: "06_The_Siege_of_Elensefar.map",
+      },
+      {
+        tag: "unit",
+        id: "Konrad",
+        type: "Commander",
+        side: 1,
+        x: 16,
+        y: 43,
+        name: _("Konrad"),
+      },
+      {
+        tag: "unit",
+        id: "Agadla",
+        type: "Orcish Warlord",
+        side: 2,
+        x: 16,
+        y: 26,
+        name: _("Agadla"),
+      },
+      {
+        tag: "unit",
+        id: "Muff_Jaanal",
+        type: "Dark Sorcerer",
+        side: 3,
+        x: 17,
+        y: 2,
+        name: _("Muff Jaanal"),
+      },
+      {
+        tag: "unit",
+        id: "u_1",
+        type: "Elvish Fighter",
+        side: 1,
+        x: 16,
+        y: 43,
+      },
+      {
+        tag: "unit",
+        id: "u_2",
+        type: "Elvish Fighter",
+        side: 1,
+        x: 16,
+        y: 43,
+      },
+      {
+        tag: "event",
+        id: "carryover_27",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 1.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: 0.25,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_28",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Konrad,Agadla,Muff_Jaanal,Reglok,Gelgar,Gamlel,Reglok,Gelgar,Gamlel,Darglen,Reglok,Gelgar,Gamlel,u_3,u_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_29",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 36,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat all enemy leaders"),
+        defeat: _("Death of Konrad Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_city_falls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "breaking_the_chains.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "battle.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "vengeful.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "casualties_of_war.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "legends_of_the_north.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Orcish%20Warrior%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Orcish Warrior",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Orcish Warrior",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Orcish%20Crossbowman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Orcish Crossbowman",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Orcish Crossbowman",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 13,
+            y: 12,
+            item_name: "",
+            image: "scenery%2Frock1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 25,
+            y: 28,
+            item_name: "",
+            image: "scenery%2Frock2.png",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "Thief",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("The party arrived at Elensefar at last, but found that the city had already fallen to the savage orcs."),
+          },
+          {
+            tag: "message",
+            speaker: "Advisor",
+            text: _("My lord! It seems the city has already fallen!"),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("This is terrible news! We must retake the city!"),
+          },
+          {
+            tag: "message",
+            speaker: "Advisor",
+            text: _("There are so many of them. This will not be easy! And look to the north! It seems that the undead are allied with the orcs!"),
+          },
+          {
+            tag: "message",
+            speaker: "Muff Jaanal",
+            text: _("Here come the elves! Our newly forged alliance with the orcs will give us the power to crush them with ease!"),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("We must take the city, and destroy the evil undead before reinforcements arrive!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11_opt0",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Reglok",
+            text: _("Excellent. Two hours past midnight meet us on the west bank of the river, across from Elensefar’s docks."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "thieves_ford",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 5,
+            y: 31,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 32,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 6,
+            y: 32,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 32,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 32,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 6,
+            y: 32,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 32,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 32,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 6,
+            y: 32,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 32,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 32,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EV*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22x%22%3A%2216%22%2C%22y%22%3A%2226%22%2C%22radius%22%3A%225%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("As the banner was raised, sounds of fighting could be heard from across the city."),
+          },
+          {
+            tag: "spawn",
+            id: "Reglok",
+            type: "Rogue",
+            side: 1,
+            x: 15,
+            y: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Reglok",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Reglok",
+          },
+          {
+            tag: "spawn",
+            id: "Gelgar",
+            type: "Thief",
+            side: 1,
+            x: 13,
+            y: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Gelgar",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Gelgar",
+          },
+          {
+            tag: "spawn",
+            id: "Gamlel",
+            type: "Thief",
+            side: 1,
+            x: 19,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Gamlel",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Gamlel",
+          },
+          {
+            tag: "spawn",
+            id: "Darglen",
+            type: "Thief",
+            side: 1,
+            x: 17,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Darglen",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Darglen",
+          },
+          {
+            tag: "message",
+            speaker: "Reglok",
+            text: _("Let’s expel these invaders! Today, the city is ours again!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11_opt1",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Reglok",
+            text: _("Very well. When you raise your red banner over any building in the city proper, we will see the sign and attack from the city’s northern gate."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Agreed. But, will you be able to see our flag if it’s dark?"),
+          },
+          {
+            tag: "message",
+            speaker: "Reglok",
+            text: _("Yes, we will see it. In fact, we prefer to fight at night. I pray you do not lead us into slaughter."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Do not fear, friends. There will be a slaughter here, but it will be orcish blood staining the streets."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 4,
+          },
+          {
+            tag: "spawn",
+            id: "Reglok",
+            type: "Rogue",
+            side: 1,
+            x: 22,
+            y: 39,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Reglok",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Reglok",
+          },
+          {
+            tag: "spawn",
+            id: "Gelgar",
+            type: "Thief",
+            side: 1,
+            x: 21,
+            y: 38,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Gelgar",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Gelgar",
+          },
+          {
+            tag: "spawn",
+            id: "Gamlel",
+            type: "Thief",
+            side: 1,
+            x: 23,
+            y: 39,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Gamlel",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Gamlel",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1250,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("As night began to fall, three dark figures crept out of the forest."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            portrait: "portraits/konrad-elvish-mad.webp",
+            text: _("Halt! Who goes there, friend or foe?"),
+          },
+          {
+            tag: "message",
+            speaker: "Reglok",
+            text: _("Greetings, friend. We are from the Elensefar Thieves’ Guild. We would like to help you against the orcs!"),
+          },
+          {
+            tag: "message",
+            speaker: "Advisor",
+            text: _("Thieves, hmmm? Who says we can trust such as you?"),
+          },
+          {
+            tag: "message",
+            speaker: "Gamlel",
+            text: _("We would understand if you didn’t trust us, of course, but it is in our mutual interest to rid the city of the orcs!"),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Very well. You may join us."),
+          },
+          {
+            tag: "message",
+            speaker: "Reglok",
+            text: _("We will serve you well, for we respect the help you are providing to our city. You shall find that there is honor, even among thieves."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Yes, but where is your fighting force? How can you help us?"),
+          },
+          {
+            tag: "message",
+            speaker: "Gelgar",
+            text: _("We survive by stealth. We can help you sneak into the city and surround the orcs. Alternatively, we can lay in wait until you give us a signal then ambush the orcs’ rear."),
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "Konrad",
+                text: _("Hmm... I have to consider this..."),
+              },
+              {
+                tag: "choice",
+                text: _("Help us infiltrate the city. We can do the rest."),
+                event: "ev_11_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("I want you to reinforce us once we break through their line."),
+                event: "ev_11_opt1",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22type%22%3A%22Thief%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22type%22%3A%22Rogue%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "allow",
+            types: "Thief",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You can now recruit Thieves!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "thieves_ford",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 6,
+            y: 32,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 5,
+            y: 31,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("On the banks of Elensefar’s port district, three shadowy figures appeared."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("To Konrad’s surprise, they quickly made their way across the river’s mouth. The turbulent waters hid a nearly invisible ford, wide enough for two soldiers to march shoulder-to-shoulder."),
+          },
+          {
+            tag: "spawn",
+            id: "Reglok",
+            type: "Rogue",
+            side: 1,
+            x: 6,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Reglok",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Reglok",
+          },
+          {
+            tag: "spawn",
+            id: "Gelgar",
+            type: "Thief",
+            side: 1,
+            x: 5,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Gelgar",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Gelgar",
+          },
+          {
+            tag: "spawn",
+            id: "Gamlel",
+            type: "Thief",
+            side: 1,
+            x: 5,
+            y: 30,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Gamlel",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Gamlel",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Wwf",
+            cells: "7,29;7-8,31-32",
+          },
+          {
+            tag: "message",
+            speaker: "Reglok",
+            text: _("Very few people know that the river can be forded here. The orcs have yet to discover this place. Bring your forces into the city, quickly now, and you can flank them."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_14",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "delfador_store.id",
+            equals: "Delfador",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "delfador_store",
+            x: "recall",
+            y: "recall",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "kalenz_store.id",
+            equals: "Kalenz",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "kalenz_store",
+            x: "recall",
+            y: "recall",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Konrad",
+            portrait: "portraits/konrad-elvish-glad.webp",
+            text: _("Finally, we have retaken the city! Let us rest here, friends."),
+          },
+          {
+            tag: "message",
+            speaker: "Thief",
+            text: _("Victory! The thieves of Elensefar will be in your service, my lord."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("The party rested for three days, after which an old friend returned."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "delfador_store.profile",
+            value: "portraits/delfador.webp~RIGHT()",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Delfador",
+            unit: "Delfador",
+            x: 24,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Kalenz",
+            unit: "Kalenz",
+            x: 22,
+            y: 16,
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Greetings, friends. I see that you have rescued the city! I knew that you could do it."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            portrait: "portraits/konrad-elvish-glad.webp",
+            text: _("Delfador! So good to see you! Where have you been?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("I have been meeting with the Ka’lian, the Great Council of the Elves. This is Kalenz, a great lord of the Northern Elves who came to the Council to offer us the support of his people."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Greetings, friend."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Delfador, we have captured this city, but surely Asheviere’s men will come and attack us! What should we do?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("The Ka’lian has met and decided: we must capture the Sceptre of Fire."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("The Sceptre of Fire? What’s that?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            portrait: "portraits/delfador-mentoring.webp",
+            text: _("The Sceptre of Fire is the most ancient artifact of the realm of Wesnoth. It was forged by the dwarves of Knalga at the request of King Haldric II. It took their finest smiths years to make it, but soon after it was completed, the makers were chased underground, attacked by the elves. None know exactly what occurred, but the Sceptre was lost somewhere in the great caverns. Years have passed, and the fortunes of the dwarves have waxed and waned, but the Sceptre has never been found."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("But what has this to do with me?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("When Garard II, your uncle, was deciding upon a successor, he issued an edict that whichever member of the royal family could retrieve the Sceptre of Fire would rule the land."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Oh, and you want me to get this Sceptre?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("We will help you retrieve it, my lord."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Time is short. We think that Asheviere is also searching for the Sceptre, to help seal her place as ruler. But if you find the Sceptre first, the people will support you as the king."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Me? King?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Yes, Konrad. I believe you will be king one day. Now let us make haste!"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("We cannot go to Wesmere, for Asheviere’s orcs have the approaches ringed about with steel; Kalenz and I barely escaped, and Chantal cannot get out. Until we are stronger, we must go where the orcs are not."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "11-12,15-16",
+            y: "2-3,4-5",
+          },
+          {
+            tag: "message",
+            speaker: "Muff Jaanal",
+            text: _("So you endeavor to fight me in my home. Foolish."),
+          },
+          {
+            tag: "gold",
+            side: 3,
+            amount: 40,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Uu",
+            cells: "12,1",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "skeleton-big-die.ogg",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Revenant",
+            side: 3,
+            x: 12,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_3",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Uu",
+            cells: "21,1",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "skeleton-big-die.ogg",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Skeleton",
+            side: 3,
+            x: 21,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Konrad%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("We are vanquished, for I have been defeated!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Li'sar%22%2C%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I can’t believe it should end like this!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Argh! I am finished!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! This is the end! We have been defeated!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Warven%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("At least I die an honorable death."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "have_warven",
+            value: "no",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_25",
+        on: "branch_if_25",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "delfador_store.id",
+            equals: "Delfador",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "delfador_store",
+            x: "recall",
+            y: "recall",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_26",
+        on: "branch_if_26",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "kalenz_store.id",
+            equals: "Kalenz",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "kalenz_store",
+            x: "recall",
+            y: "recall",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "allow",
+            types: "Thief",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_25",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_26",
+          },
+        ],
+      },
+    ],
+  },
+]

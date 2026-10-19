@@ -1,0 +1,5195 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("scenario name^Underground Channels"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "konrad",
+        gold: 75,
+        leader: "Konrad",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "undead",
+        gold: 400,
+        recruit: "Ghoul,Skeleton Archer",
+        leader: "leader2",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "saurians",
+        gold: 150,
+        recruit: "Saurian Skirmisher,Saurian Augur",
+        leader: "leader3",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "konrad",
+        gold: 60,
+        recruit: "Wose",
+        leader: "Haralamdum",
+      },
+      {
+        tag: "side",
+        id: 5,
+        controller: "ai",
+        team_name: "konrad",
+        gold: 75,
+      },
+      {
+        tag: "map",
+        id: "scenario_",
+        file: "44_Underground_Channels.map",
+      },
+      {
+        tag: "unit",
+        id: "Konrad",
+        type: "Fighter",
+        side: 1,
+        x: 10,
+        y: 27,
+        name: _("Konrad"),
+      },
+      {
+        tag: "unit",
+        id: "leader2",
+        type: "Death Knight",
+        side: 2,
+        x: 25,
+        y: 8,
+      },
+      {
+        tag: "unit",
+        id: "leader3",
+        type: "Saurian Javelineer",
+        side: 3,
+        x: 35,
+        y: 26,
+      },
+      {
+        tag: "unit",
+        id: "Haralamdum",
+        type: "Ancient Wose",
+        side: 4,
+        x: 3,
+        y: 3,
+        name: _("Haralamdum"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_5",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 5,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_126",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_127",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Konrad,leader2,leader3,Haralamdum",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_128",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat the undead leader"),
+        defeat: _("Turns run out Death of Haralamdum Death of Konrad Death of Konrad or Delfador Death of Konrad or Li’sar Death of Konrad, Delfador, or Li’sar"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Konrad",
+            object: "%7B%22id%22%3A%22side_traits_1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22max_experience%22%2C%22increase%22%3A%22-20%25%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "leader3",
+            object: "%7B%22id%22%3A%22side_traits_3%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%2C%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increaseDamage%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Haralamdum",
+            object: "%7B%22id%22%3A%22side_traits_4%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22max_experience%22%2C%22increase%22%3A%22-20%25%22%7D%2C%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increaseDamage%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "if_6",
+        on: "branch_if_6",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "bm_tod.id",
+          },
+          {
+            tag: "hook",
+            name: "command:replace_schedule",
+            schedule: "%7B%22tag%22%3A%22replace_schedule%22%2C%22attributes%22%3A%7B%22current_time%22%3A%22%24(%20(7%2B0)%256%20)%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dawn%22%2C%22name%22%3A%22Dawn%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dawn.png%22%2C%22red%22%3A%22-25%22%2C%22green%22%3A%22-15%22%2C%22blue%22%3A%220%22%2C%22sound%22%3A%22ambient%2Fmorning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22morning%22%2C%22name%22%3A%22Morning%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-morning.png%22%2C%22lawful_bonus%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22afternoon%22%2C%22name%22%3A%22Afternoon%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-afternoon.png%22%2C%22lawful_bonus%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dusk%22%2C%22name%22%3A%22Dusk%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dusk.png%22%2C%22red%22%3A%2210%22%2C%22green%22%3A%22-20%22%2C%22blue%22%3A%22-35%22%2C%22sound%22%3A%22ambient%2Fnight.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22first_watch%22%2C%22name%22%3A%22First%20Watch%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-firstwatch.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22second_watch%22%2C%22name%22%3A%22Second%20Watch%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-secondwatch.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+            current_time: "$( (7+0)%6 )",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_7",
+        on: "branch_if_7",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "bm_tod.id",
+          },
+          {
+            tag: "hook",
+            name: "command:replace_schedule",
+            schedule: "%7B%22tag%22%3A%22replace_schedule%22%2C%22attributes%22%3A%7B%22current_time%22%3A%22%24(%20(7%2B0)%256%20)%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dawn%22%2C%22name%22%3A%22Dawn%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dawn.png%22%2C%22red%22%3A%220%22%2C%22green%22%3A%22-10%22%2C%22blue%22%3A%22-5%22%2C%22sound%22%3A%22ambient%2Fmorning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22morning%22%2C%22name%22%3A%22Morning%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-morning.png%22%2C%22lawful_bonus%22%3A%2225%22%2C%22red%22%3A%225%22%2C%22green%22%3A%225%22%2C%22blue%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22midday%22%2C%22name%22%3A%22Midday%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fschedule-midday.png%22%2C%22lawful_bonus%22%3A%2225%22%2C%22red%22%3A%225%22%2C%22green%22%3A%225%22%2C%22blue%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22afternoon%22%2C%22name%22%3A%22Afternoon%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-afternoon.png%22%2C%22lawful_bonus%22%3A%2225%22%2C%22red%22%3A%225%22%2C%22green%22%3A%225%22%2C%22blue%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dusk%22%2C%22name%22%3A%22Dusk%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dusk.png%22%2C%22red%22%3A%2210%22%2C%22green%22%3A%22-20%22%2C%22blue%22%3A%22-35%22%2C%22sound%22%3A%22ambient%2Fnight.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22midnight%22%2C%22name%22%3A%22Midnight%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fschedule-midnight.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+            current_time: "$( (7+0)%6 )",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_8",
+        on: "branch_if_8",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "bm_tod.id",
+          },
+          {
+            tag: "hook",
+            name: "command:replace_schedule",
+            schedule: "%7B%22tag%22%3A%22replace_schedule%22%2C%22attributes%22%3A%7B%22current_time%22%3A%22%24(%20(7%2B0)%256%20)%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dawn%22%2C%22name%22%3A%22Dawn%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dawn.png%22%2C%22red%22%3A%22-25%22%2C%22green%22%3A%22-15%22%2C%22blue%22%3A%220%22%2C%22sound%22%3A%22ambient%2Fmorning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22morning%22%2C%22name%22%3A%22Morning%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-morning.png%22%2C%22lawful_bonus%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22afternoon%22%2C%22name%22%3A%22Afternoon%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-afternoon.png%22%2C%22lawful_bonus%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dusk%22%2C%22name%22%3A%22Dusk%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dusk.png%22%2C%22red%22%3A%2210%22%2C%22green%22%3A%22-20%22%2C%22blue%22%3A%22-35%22%2C%22sound%22%3A%22ambient%2Fnight.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22first_watch%22%2C%22name%22%3A%22First%20Watch%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-firstwatch.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22second_watch%22%2C%22name%22%3A%22Second%20Watch%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-secondwatch.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+            current_time: "$( (7+0)%6 )",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_9",
+        on: "branch_if_9",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "bm_tod.id",
+          },
+          {
+            tag: "hook",
+            name: "command:replace_schedule",
+            schedule: "%7B%22tag%22%3A%22replace_schedule%22%2C%22attributes%22%3A%7B%22current_time%22%3A%22%24(%20(7%2B0)%256%20)%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dawn%22%2C%22name%22%3A%22Dawn%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dawn.png%22%2C%22red%22%3A%22-30%22%2C%22green%22%3A%22-15%22%2C%22blue%22%3A%225%22%2C%22sound%22%3A%22ambient%2Fmorning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22midday%22%2C%22name%22%3A%22Midday%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fschedule-midday.png%22%2C%22lawful_bonus%22%3A%2225%22%2C%22red%22%3A%22-5%22%2C%22green%22%3A%22-5%22%2C%22blue%22%3A%225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dusk%22%2C%22name%22%3A%22Dusk%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dusk.png%22%2C%22red%22%3A%225%22%2C%22green%22%3A%22-20%22%2C%22blue%22%3A%22-30%22%2C%22sound%22%3A%22ambient%2Fnight.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22first_watch%22%2C%22name%22%3A%22First%20Watch%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-firstwatch.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22midnight%22%2C%22name%22%3A%22Midnight%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fschedule-midnight.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22second_watch%22%2C%22name%22%3A%22Second%20Watch%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-secondwatch.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+            current_time: "$( (7+0)%6 )",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_6",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_7",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_8",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_9",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_11",
+        on: "branch_if_11",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "bm_tod.id",
+          },
+          {
+            tag: "hook",
+            name: "command:replace_schedule",
+            schedule: "%7B%22tag%22%3A%22replace_schedule%22%2C%22attributes%22%3A%7B%22current_time%22%3A%22%24(%20(7%2B0)%256%20)%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dawn%22%2C%22name%22%3A%22Dawn%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dawn.png%22%2C%22red%22%3A%22-25%22%2C%22green%22%3A%22-15%22%2C%22blue%22%3A%220%22%2C%22sound%22%3A%22ambient%2Fmorning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22morning%22%2C%22name%22%3A%22Morning%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-morning.png%22%2C%22lawful_bonus%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22afternoon%22%2C%22name%22%3A%22Afternoon%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-afternoon.png%22%2C%22lawful_bonus%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dusk%22%2C%22name%22%3A%22Dusk%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dusk.png%22%2C%22red%22%3A%2210%22%2C%22green%22%3A%22-20%22%2C%22blue%22%3A%22-35%22%2C%22sound%22%3A%22ambient%2Fnight.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22first_watch%22%2C%22name%22%3A%22First%20Watch%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-firstwatch.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22second_watch%22%2C%22name%22%3A%22Second%20Watch%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-secondwatch.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+            current_time: "$( (7+0)%6 )",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "bm_tod.id",
+          },
+          {
+            tag: "hook",
+            name: "command:replace_schedule",
+            schedule: "%7B%22tag%22%3A%22replace_schedule%22%2C%22attributes%22%3A%7B%22current_time%22%3A%22%24(%20(7%2B0)%256%20)%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dawn%22%2C%22name%22%3A%22Dawn%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dawn.png%22%2C%22red%22%3A%220%22%2C%22green%22%3A%22-10%22%2C%22blue%22%3A%22-5%22%2C%22sound%22%3A%22ambient%2Fmorning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22morning%22%2C%22name%22%3A%22Morning%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-morning.png%22%2C%22lawful_bonus%22%3A%2225%22%2C%22red%22%3A%225%22%2C%22green%22%3A%225%22%2C%22blue%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22midday%22%2C%22name%22%3A%22Midday%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fschedule-midday.png%22%2C%22lawful_bonus%22%3A%2225%22%2C%22red%22%3A%225%22%2C%22green%22%3A%225%22%2C%22blue%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22afternoon%22%2C%22name%22%3A%22Afternoon%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-afternoon.png%22%2C%22lawful_bonus%22%3A%2225%22%2C%22red%22%3A%225%22%2C%22green%22%3A%225%22%2C%22blue%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dusk%22%2C%22name%22%3A%22Dusk%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dusk.png%22%2C%22red%22%3A%2210%22%2C%22green%22%3A%22-20%22%2C%22blue%22%3A%22-35%22%2C%22sound%22%3A%22ambient%2Fnight.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22midnight%22%2C%22name%22%3A%22Midnight%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fschedule-midnight.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+            current_time: "$( (7+0)%6 )",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "bm_tod.id",
+          },
+          {
+            tag: "hook",
+            name: "command:replace_schedule",
+            schedule: "%7B%22tag%22%3A%22replace_schedule%22%2C%22attributes%22%3A%7B%22current_time%22%3A%22%24(%20(7%2B0)%256%20)%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dawn%22%2C%22name%22%3A%22Dawn%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dawn.png%22%2C%22red%22%3A%22-25%22%2C%22green%22%3A%22-15%22%2C%22blue%22%3A%220%22%2C%22sound%22%3A%22ambient%2Fmorning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22morning%22%2C%22name%22%3A%22Morning%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-morning.png%22%2C%22lawful_bonus%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22afternoon%22%2C%22name%22%3A%22Afternoon%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-afternoon.png%22%2C%22lawful_bonus%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dusk%22%2C%22name%22%3A%22Dusk%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dusk.png%22%2C%22red%22%3A%2210%22%2C%22green%22%3A%22-20%22%2C%22blue%22%3A%22-35%22%2C%22sound%22%3A%22ambient%2Fnight.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22first_watch%22%2C%22name%22%3A%22First%20Watch%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-firstwatch.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22second_watch%22%2C%22name%22%3A%22Second%20Watch%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-secondwatch.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+            current_time: "$( (7+0)%6 )",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "bm_tod.id",
+          },
+          {
+            tag: "hook",
+            name: "command:replace_schedule",
+            schedule: "%7B%22tag%22%3A%22replace_schedule%22%2C%22attributes%22%3A%7B%22current_time%22%3A%22%24(%20(7%2B0)%256%20)%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dawn%22%2C%22name%22%3A%22Dawn%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dawn.png%22%2C%22red%22%3A%22-30%22%2C%22green%22%3A%22-15%22%2C%22blue%22%3A%225%22%2C%22sound%22%3A%22ambient%2Fmorning.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22midday%22%2C%22name%22%3A%22Midday%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fschedule-midday.png%22%2C%22lawful_bonus%22%3A%2225%22%2C%22red%22%3A%22-5%22%2C%22green%22%3A%22-5%22%2C%22blue%22%3A%225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dusk%22%2C%22name%22%3A%22Dusk%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dusk.png%22%2C%22red%22%3A%225%22%2C%22green%22%3A%22-20%22%2C%22blue%22%3A%22-30%22%2C%22sound%22%3A%22ambient%2Fnight.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22first_watch%22%2C%22name%22%3A%22First%20Watch%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-firstwatch.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22midnight%22%2C%22name%22%3A%22Midnight%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fschedule-midnight.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22second_watch%22%2C%22name%22%3A%22Second%20Watch%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-secondwatch.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-75%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-13%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+            current_time: "$( (7+0)%6 )",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10_2",
+        on: "refresh_schedule",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_11",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_12",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_13",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_14",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "underground.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "nunc_dimittis.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_deep_path.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "into_the_shadows.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "unit_placed",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_placed_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22ability%22%3A%22transmutation%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "refresh_transmutation",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22ability%22%3A%22transmutation%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "refresh_transmutation",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18_1",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19_2",
+        on: "refresh_transmutation",
+        once: false,
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader2",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Deathblade%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Deathblade",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Deathblade",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Necrophage%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Necrophage",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Necrophage",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Banebow%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Banebow",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Banebow",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Ghost%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Ghost",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Ghost",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_31",
+        on: "branch_if_31",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "autoenrage2_timer",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_33",
+        on: "branch_if_33",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "gold",
+            less_than_or_equal_to: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 2,
+            ai_type: "zone_guardian",
+            action: "add",
+            filter: "%7B%22side%22%3A%222%22%2C%22canrecruit%22%3A%22yes%22%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 2,
+            ai_type: "zone_guardian",
+            action: "add",
+            filter: "%7B%22side%22%3A%222%22%2C%22canrecruit%22%3A%22no%22%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "enrage2",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:store_gold",
+            side: 2,
+            variable: "gold",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_33",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "side_2_enraged",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_32",
+        on: "branch_if_32",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "autoenrage2_timer",
+            greater_than_or_equal_to: 4,
+          },
+          {
+            tag: "gold",
+            side: 2,
+            amount: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "already_autoenraged2",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_30",
+        on: "branch_if_30",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "already_autoenraged2",
+            not_equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_31",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "getArmyValue_stored_units",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "autoenrage_player_army",
+            value: 0,
+          },
+          {
+            tag: "foreach",
+            variable: "getArmyValue_stored_units",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:unit_worth",
+                filter: "%7B%22tag%22%3A%22unit_worth%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24this_item.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "autoenrage_player_army",
+                value: "$( $cost * $health/100 )",
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "getArmyValue_stored_units",
+            kill: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "autoenrage_ai_army",
+            value: 0,
+          },
+          {
+            tag: "foreach",
+            variable: "getArmyValue_stored_units",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:unit_worth",
+                filter: "%7B%22tag%22%3A%22unit_worth%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24this_item.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "autoenrage_ai_army",
+                value: "$( $cost * $health/100 )",
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_32",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "autoenrage2_timer",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "autoenrage2_cleanup",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "if_38",
+        on: "branch_if_38",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "healthy_bodyguards.length",
+            greater_than_or_equal_to: "$bodyguard_target",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_37",
+        on: "branch_if_37",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "reachable.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "$candidate.id",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.role",
+                value: "bodyguard",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "$candidate.id",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.side",
+                value: 2,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "healthy_bodyguards",
+            kill: "no",
+            id: "$candidate.id",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_38",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_39",
+        on: "branch_if_39",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "radius",
+            greater_than: 8,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_36",
+        on: "branch_if_36",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "threat_reaches_leader.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22possible_goals%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2225%22%2C%22y%22%3A%228%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2225%22%2C%22y%22%3A%228%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2224%22%2C%22y%22%3A%227%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2229%22%2C%22y%22%3A%227%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2225%22%2C%22y%22%3A%227%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2225%22%2C%22y%22%3A%229%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2224%22%2C%22y%22%3A%228%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2226%22%2C%22y%22%3A%228%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22skip_checks%22%3A%22yes%22%2C%22x%22%3A%2225%22%2C%22y%22%3A%228%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "possible_goals",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "goalX",
+                value: "$goal.x",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "goalY",
+                value: "$goal.y",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:micro_ai",
+                side: 2,
+                ai_type: "messenger_escort",
+                action: "delete",
+              },
+              {
+                tag: "hook",
+                name: "command:micro_ai",
+                side: 2,
+                ai_type: "messenger_escort",
+                action: "add",
+                waypoint_x: "$goalX",
+                waypoint_y: "$goalY",
+                filter: "%7B%22role%22%3A%22bodyguard%22%7D",
+              },
+              {
+                tag: "hook",
+                name: "command:store_unit",
+                variable: "MODIFY_UNIT_store",
+                kill: "yes",
+                not_id: "leader2",
+              },
+              {
+                tag: "foreach",
+                variable: "MODIFY_UNIT_store",
+                item: "this_item",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_dynamic",
+                    variable: "this_item.role",
+                    value: "bodyguard",
+                    mode: "value",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:unstore_unit",
+                    variable: "this_item",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "healthy_bodyguards",
+            kill: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "radius",
+            value: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "bodyguard_target",
+            value: 6,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "healthy_bodyguards.length",
+                less_than: "$bodyguard_target",
+              },
+              {
+                tag: "hook",
+                name: "command:store_unit",
+                variable: "candidates",
+                kill: "no",
+                not_id: "bridgeGuardSE,bridgeGuardNE,bridgeGuardN,bridgeGuardNW,bridgeGuardSW,bridgeGuardS",
+              },
+              {
+                tag: "foreach",
+                variable: "candidates",
+                item: "this_item",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:store_reachable_locations",
+                    variable: "reachable",
+                    filter: "%7B%22tag%22%3A%22store_reachable_locations%22%2C%22attributes%22%3A%7B%22moves%22%3A%22max%22%2C%22variable%22%3A%22reachable%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24candidate.id%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24goalX%22%2C%22y%22%3A%22%24goalY%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+                    moves: "max",
+                    range: "",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_37",
+                  },
+                ],
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "radius",
+                value: 1,
+                mode: "add",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_39",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[spread_poison]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[high_xp_attack]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[combat]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "spread_poison",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "high_xp_attack",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "combat",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[leader_shares_keep]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "goal[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[grouping].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[aggression].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[caution].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[leader_value].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_30",
+          },
+          {
+            tag: "hook",
+            name: "command:store_reachable_locations",
+            variable: "threat_reaches_leader",
+            filter: "%7B%22tag%22%3A%22store_reachable_locations%22%2C%22attributes%22%3A%7B%22range%22%3A%22vision%22%2C%22variable%22%3A%22threat_reaches_leader%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%2C%24lisar_side%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22leader2%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+            moves: "",
+            range: "vision",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_36",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader3",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 3,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_41",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_42",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22type%22%3A%22Saurian%20Spearthrower%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Saurian Spearthrower",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Saurian Spearthrower",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_45",
+        on: "branch_if_45",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "autoenrage3_timer",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_47",
+        on: "branch_if_47",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "gold",
+            less_than_or_equal_to: 35,
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 3,
+            ai_type: "zone_guardian",
+            action: "add",
+            filter: "%7B%22side%22%3A%223%22%2C%22canrecruit%22%3A%22yes%22%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 3,
+            ai_type: "zone_guardian",
+            action: "add",
+            filter: "%7B%22side%22%3A%223%22%2C%22canrecruit%22%3A%22no%22%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_48",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "enrage3",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:store_gold",
+            side: 3,
+            variable: "gold",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_47",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "side_3_enraged",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_46",
+        on: "branch_if_46",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "autoenrage3_timer",
+            greater_than_or_equal_to: 4,
+          },
+          {
+            tag: "gold",
+            side: 3,
+            amount: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "already_autoenraged3",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_44",
+        on: "branch_if_44",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "already_autoenraged3",
+            not_equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_45",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "getArmyValue_stored_units",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "autoenrage_player_army",
+            value: 0,
+          },
+          {
+            tag: "foreach",
+            variable: "getArmyValue_stored_units",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:unit_worth",
+                filter: "%7B%22tag%22%3A%22unit_worth%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24this_item.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "autoenrage_player_army",
+                value: "$( $cost * $health/100 )",
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "getArmyValue_stored_units",
+            kill: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "autoenrage_ai_army",
+            value: 0,
+          },
+          {
+            tag: "foreach",
+            variable: "getArmyValue_stored_units",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:unit_worth",
+                filter: "%7B%22tag%22%3A%22unit_worth%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24this_item.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "autoenrage_ai_army",
+                value: "$( $cost * $health/100 )",
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_46",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_49",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "autoenrage3_timer",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "autoenrage3_cleanup",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "if_52",
+        on: "branch_if_52",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "healthy_bodyguards.length",
+            greater_than_or_equal_to: "$bodyguard_target",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_51",
+        on: "branch_if_51",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "reachable.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "$candidate.id",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.role",
+                value: "bodyguard",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "$candidate.id",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.side",
+                value: 3,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "healthy_bodyguards",
+            kill: "no",
+            id: "$candidate.id",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_52",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_53",
+        on: "branch_if_53",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "radius",
+            greater_than: 8,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_50",
+        on: "branch_if_50",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "threat_reaches_leader.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22possible_goals%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2235%22%2C%22y%22%3A%2226%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2235%22%2C%22y%22%3A%2227%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2236%22%2C%22y%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x%22%3A%2234%22%2C%22y%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22skip_checks%22%3A%22yes%22%2C%22x%22%3A%2235%22%2C%22y%22%3A%2226%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "possible_goals",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "goalX",
+                value: "$goal.x",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "goalY",
+                value: "$goal.y",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:micro_ai",
+                side: 3,
+                ai_type: "messenger_escort",
+                action: "delete",
+              },
+              {
+                tag: "hook",
+                name: "command:micro_ai",
+                side: 3,
+                ai_type: "messenger_escort",
+                action: "add",
+                waypoint_x: "$goalX",
+                waypoint_y: "$goalY",
+                filter: "%7B%22role%22%3A%22bodyguard%22%7D",
+              },
+              {
+                tag: "hook",
+                name: "command:store_unit",
+                variable: "MODIFY_UNIT_store",
+                kill: "yes",
+                not_id: "leader3",
+              },
+              {
+                tag: "foreach",
+                variable: "MODIFY_UNIT_store",
+                item: "this_item",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_dynamic",
+                    variable: "this_item.role",
+                    value: "bodyguard",
+                    mode: "value",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:unstore_unit",
+                    variable: "this_item",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "healthy_bodyguards",
+            kill: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "radius",
+            value: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "bodyguard_target",
+            value: 6,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "healthy_bodyguards.length",
+                less_than: "$bodyguard_target",
+              },
+              {
+                tag: "hook",
+                name: "command:store_unit",
+                variable: "candidates",
+                kill: "no",
+                not_id: "bridgeGuardSE,bridgeGuardNE,bridgeGuardN,bridgeGuardNW,bridgeGuardSW,bridgeGuardS",
+              },
+              {
+                tag: "foreach",
+                variable: "candidates",
+                item: "this_item",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:store_reachable_locations",
+                    variable: "reachable",
+                    filter: "%7B%22tag%22%3A%22store_reachable_locations%22%2C%22attributes%22%3A%7B%22moves%22%3A%22max%22%2C%22variable%22%3A%22reachable%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24candidate.id%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24goalX%22%2C%22y%22%3A%22%24goalY%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+                    moves: "max",
+                    range: "",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_51",
+                  },
+                ],
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "radius",
+                value: 1,
+                mode: "add",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_53",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_43",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[spread_poison]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[high_xp_attack]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[combat]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "spread_poison",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "high_xp_attack",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "combat",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[leader_shares_keep]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "delete",
+            path: "goal[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "delete",
+            path: "aspect[grouping].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "delete",
+            path: "aspect[aggression].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "delete",
+            path: "aspect[caution].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 3,
+            action: "delete",
+            path: "aspect[leader_value].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_44",
+          },
+          {
+            tag: "hook",
+            name: "command:store_reachable_locations",
+            variable: "threat_reaches_leader",
+            filter: "%7B%22tag%22%3A%22store_reachable_locations%22%2C%22attributes%22%3A%7B%22range%22%3A%22vision%22%2C%22variable%22%3A%22threat_reaches_leader%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%2C%24lisar_side%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22leader3%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+            moves: "",
+            range: "vision",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_50",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_54",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 4,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader4",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 4,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_55",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_56",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%224%22%2C%22type%22%3A%22Wose%20Shaman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Wose Shaman",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Wose Shaman",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_57",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[spread_poison]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[high_xp_attack]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[combat]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "spread_poison",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "high_xp_attack",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "combat",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[leader_shares_keep]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "goal[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "aspect[grouping].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "aspect[aggression].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "aspect[caution].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 4,
+            action: "delete",
+            path: "aspect[leader_value].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_59",
+        on: "branch_if_59",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "status_s43",
+            equals: "completed",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+            income: "$( 24*2 + 2 )",
+          },
+          {
+            tag: "gold",
+            side: "$lisar_side",
+            amount: 50,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_58",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "set_variable",
+            name: "lisar_side",
+            value: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 5,
+            recruit: "Elite Heavy Infantryman",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_59",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_60",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+            controller: "human",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_61",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: "$lisar_side",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "$lisar_side",
+            action: "delete",
+            path: "stage[main_loop].candidate_action[spread_poison]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "$lisar_side",
+            action: "delete",
+            path: "stage[main_loop].candidate_action[high_xp_attack]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "$lisar_side",
+            action: "delete",
+            path: "stage[main_loop].candidate_action[combat]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "$lisar_side",
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "spread_poison",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "$lisar_side",
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "high_xp_attack",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "$lisar_side",
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "combat",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "$lisar_side",
+            action: "delete",
+            path: "stage[main_loop].candidate_action[leader_shares_keep]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "$lisar_side",
+            action: "delete",
+            path: "goal[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "$lisar_side",
+            action: "delete",
+            path: "aspect[grouping].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "$lisar_side",
+            action: "delete",
+            path: "aspect[aggression].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "$lisar_side",
+            action: "delete",
+            path: "aspect[caution].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "$lisar_side",
+            action: "delete",
+            path: "aspect[leader_value].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_64",
+        on: "branch_if_64",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "message.length",
+            greater_than: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("$message"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_63",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 21,
+            y: 6,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22fire_event%22%2C%22attributes%22%3A%7B%22name%22%3A%22explain_gold_pickup%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22message%22%2C%22value%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22message.length%22%2C%22greater_than%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Konrad%22%2C%22message%22%3A%22%24message%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22message%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22sound%22%2C%22attributes%22%3A%7B%22name%22%3A%22gold.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22gold%22%2C%22attributes%22%3A%7B%22side%22%3A%22%24unit.side%22%2C%22amount%22%3A%22100%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22remove_item%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24unit.x%22%2C%22y%22%3A%22%24unit.y%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22label%22%2C%22attributes%22%3A%7B%22x%22%3A%2222%22%2C%22y%22%3A%227%22%2C%22text%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22redraw%22%2C%22attributes%22%3A%7B%22clear_shroud%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "explain_gold_pickup",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "message",
+            value: "",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_64",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "gold.ogg",
+          },
+          {
+            tag: "gold",
+            side: "$unit.side",
+            amount: 100,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$unit.x",
+            y: "$unit.y",
+            item_name: "",
+            image: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_66",
+        on: "branch_if_66",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "message.length",
+            greater_than: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("$message"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_65",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 31,
+            y: 4,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22fire_event%22%2C%22attributes%22%3A%7B%22name%22%3A%22explain_gold_pickup%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22message%22%2C%22value%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22message.length%22%2C%22greater_than%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Konrad%22%2C%22message%22%3A%22%24message%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22message%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22sound%22%2C%22attributes%22%3A%7B%22name%22%3A%22gold.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22gold%22%2C%22attributes%22%3A%7B%22side%22%3A%22%24unit.side%22%2C%22amount%22%3A%22100%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22remove_item%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24unit.x%22%2C%22y%22%3A%22%24unit.y%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22label%22%2C%22attributes%22%3A%7B%22x%22%3A%2232%22%2C%22y%22%3A%225%22%2C%22text%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22redraw%22%2C%22attributes%22%3A%7B%22clear_shroud%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "explain_gold_pickup",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "message",
+            value: "",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_66",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "gold.ogg",
+          },
+          {
+            tag: "gold",
+            side: "$unit.side",
+            amount: 100,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$unit.x",
+            y: "$unit.y",
+            item_name: "",
+            image: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_68",
+        on: "branch_if_68",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "message.length",
+            greater_than: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("$message"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_67",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 33,
+            y: 8,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22fire_event%22%2C%22attributes%22%3A%7B%22name%22%3A%22explain_gold_pickup%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22message%22%2C%22value%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22message.length%22%2C%22greater_than%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Konrad%22%2C%22message%22%3A%22%24message%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22message%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22sound%22%2C%22attributes%22%3A%7B%22name%22%3A%22gold.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22gold%22%2C%22attributes%22%3A%7B%22side%22%3A%22%24unit.side%22%2C%22amount%22%3A%22100%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22remove_item%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24unit.x%22%2C%22y%22%3A%22%24unit.y%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22label%22%2C%22attributes%22%3A%7B%22x%22%3A%2234%22%2C%22y%22%3A%229%22%2C%22text%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22redraw%22%2C%22attributes%22%3A%7B%22clear_shroud%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "explain_gold_pickup",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "message",
+            value: "",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_68",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "gold.ogg",
+          },
+          {
+            tag: "gold",
+            side: "$unit.side",
+            amount: 100,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$unit.x",
+            y: "$unit.y",
+            item_name: "",
+            image: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_69",
+        on: "branch_if_69",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Elder Wose",
+            side: 4,
+            x: 3,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_70",
+        on: "branch_if_70",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Elder Wose",
+            side: 4,
+            x: 1,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_71",
+        on: "branch_if_71",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Elder Wose",
+            side: 4,
+            x: 4,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_72",
+        on: "branch_if_72",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Elder Wose",
+            side: 4,
+            x: 10,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_73",
+        on: "branch_if_73",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lisar%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22side%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22have_unit%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lisar%22%2C%22search_recall_list%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22side%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Lisar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.status.poisoned",
+                value: "no",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Lisar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.status.slowed",
+                value: "no",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_Lisar",
+            kill: "NOT_SIDE=999",
+            id: "Lisar",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_Lisar.hitpoints",
+            value: "$stored_Lisar.max_hitpoints",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_Lisar.moves",
+            value: "$stored_Lisar.max_moves",
+            mode: "value",
+          },
+          {
+            tag: "set_variable",
+            name: "stored_Lisar.attacks_left",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_62",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_time_area",
+            area: "%7B%22tag%22%3A%22time_area%22%2C%22attributes%22%3A%7B%22x%22%3A%225%2C%20%20%20%206%2C%20%20%20%207%2C%20%20%20%208%2C%20%20%20%209%2C%20%20%20%2010%2C%20%20%2011%2C%20%20%2012%2C%20%20%2013%2C%20%20%2014%2C%20%20%2015%2C%20%20%2016%2C%20%2017%2C%2017%2C%20%20%2018-44%2C%20%2045%2C%20%2046%2C%20%2047%2C%20%2048%2C%20%2049-99%22%2C%22y%22%3A%2217-24%2C15-27%2C15-28%2C14-99%2C14-99%2C13-99%2C13-99%2C12-99%2C12-99%2C11-99%2C11-99%2C9-99%2C2-5%2C9-99%2C%20%200-99%2C%20%202-99%2C3-99%2C8-99%2C8-99%2C11-99%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22underground%22%2C%22name%22%3A%22Underground%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fschedule-underground.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-60%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-25%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 22,
+            y: 7,
+            item_name: "",
+            image: "items%2Fgold-coins-medium.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 32,
+            y: 5,
+            item_name: "",
+            image: "items%2Fgold-coins-medium.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 34,
+            y: 9,
+            item_name: "",
+            image: "items%2Fgold-coins-medium.png",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Elder Wose",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_69",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Elder Wose",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_70",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Elder Wose",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_71",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Elder Wose",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_72",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 9,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: "-1-3",
+            ys: "17-98",
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "0-4,18-99",
+            multiturn: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: "4-5",
+            ys: "21-98",
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "5-6,22-99",
+            multiturn: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_73",
+          },
+          {
+            tag: "set_variable",
+            name: "stored_Lisar.side",
+            value: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "stored_Lisar",
+            x: 11,
+            y: 27,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            side: "$lisar_side",
+            facing: "nw",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lisar%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Lisar",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Konrad",
+            unit: "Konrad",
+            x: 10,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Delfador",
+            unit: "Delfador",
+            x: 10,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Kalenz",
+            unit: "Kalenz",
+            x: 10,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Moremirmu",
+            unit: "Moremirmu",
+            x: 10,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Harper",
+            unit: "Harper",
+            x: 10,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Jeniver",
+            unit: "Jeniver",
+            x: 10,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Ulfdain",
+            unit: "Ulfdain",
+            x: 10,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Chantal",
+            unit: "Chantal",
+            x: 10,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Dosh",
+            unit: "Dosh",
+            x: 10,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Haldiel",
+            unit: "Haldiel",
+            x: 10,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Simyr",
+            unit: "Simyr",
+            x: 10,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Seimus",
+            unit: "Seimus",
+            x: 10,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Elrian",
+            unit: "Elrian",
+            x: 10,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "blackwing",
+            unit: "blackwing",
+            x: 10,
+            y: 26,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_74",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Here we are! Whatever evil lurks within these caves, we shall put an end to it."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 750,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "wose-die.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "wose-die.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 250,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            fog: "yes",
+            shroud: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Haralamdum",
+            text: _("Well, I say ... hmm dum har ... young Master Delfador?"),
+          },
+          {
+            tag: "message",
+            speaker: "Haralamdum",
+            text: _("Harum-alam-alam. So it is! Hmm hmm alam ... how is ... hum ... the ambassador? He was here ... hmm ... just the other day."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("That was many years ago, I’m afraid. You are the woses who once resided at the Grey Grove? I see you have learned the language of men."),
+          },
+          {
+            tag: "message",
+            speaker: "Haralamdum",
+            text: _("Hmm ... yes ... alam ... alam dum ... very useful ... language ... yes ... hum ... now these undead ... harum ... very troubling."),
+          },
+          {
+            tag: "message",
+            speaker: "Haralamdum",
+            text: _("I am sure ... dum hum ... you could help rid us of these ... alam hurum ... infernal undead ... yes, harum-alam-alam. Afterwards, we could perhaps... hmm ... help you too. Har alam dum."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_76",
+        on: "branch_if_76",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lisar%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22side%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22have_unit%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lisar%22%2C%22search_recall_list%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22side%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Lisar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.status.poisoned",
+                value: "no",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Lisar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.status.slowed",
+                value: "no",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_Lisar",
+            kill: "yes",
+            id: "Lisar",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_Lisar.hitpoints",
+            value: "$stored_Lisar.max_hitpoints",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_Lisar.moves",
+            value: "$stored_Lisar.max_moves",
+            mode: "value",
+          },
+          {
+            tag: "set_variable",
+            name: "stored_Lisar.attacks_left",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_75",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: "$lisar_side",
+          },
+          {
+            tag: "hook",
+            name: "command:store_gold",
+            side: "$lisar_side",
+            variable: "lisar_gold",
+          },
+          {
+            tag: "message",
+            speaker: "Lisar",
+            text: _("Konrad, this entrance is nearly flooded, and is too narrow for both our armies to enter. My soldiers and I will search for another way in."),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Lisar",
+            x: 11,
+            y: 27,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_76",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_77",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                id: "Jeniver",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Jeniver",
+            text: _("It’s so exciting to finally see woses up close! I hear they have a spectacular resistance to poison! Wose sap... curing — yes, if I could just extract a bucket of wose sap I’m certain I could learn their secrets."),
+          },
+          {
+            tag: "message",
+            speaker: "Jeniver",
+            text: _("Now, err, well, of course sap extraction would be problematic from a live specimen, them being our allies and all. But, ah, we are on a battlefield. <b><i>We</i></b> don’t have to be the ones doing the cutting."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("You’re asking me to help you rob the dead. Don’t you think that’s a bit ghoulish, Jeniver?"),
+          },
+          {
+            tag: "message",
+            speaker: "Jeniver",
+            text: _("But just imagine the possibilities! I ask you to help me stand next to a wose when it dies. If I can, I’m sure — yes I’m sure I can gather enough sap to begin curing poisons."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "st_jeniver_troll_flesh_taken",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_78",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22race%22%3A%22wose%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent%22%2C%22attributes%22%3A%7B%22id%22%3A%22Jeniver%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Jeniver",
+            text: _("It’s falling over! Oh, now’s my chance to collect some sap!"),
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "magicmissile.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "magicmissile.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Jeniver%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Jeniver",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Konrad",
+          },
+          {
+            tag: "message",
+            speaker: "Jeniver",
+            text: _("It works! It works! Oh, I knew it! Now, err, I suppose I’d better quickly get back to the battle before the woses wonder what I was doing with their friend."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_80",
+        on: "branch_if_80",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lisar%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22side%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22have_unit%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lisar%22%2C%22search_recall_list%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22side%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Lisar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.status.poisoned",
+                value: "no",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Lisar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.status.slowed",
+                value: "no",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_Lisar",
+            kill: "NOT_SIDE=999",
+            id: "Lisar",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_Lisar.hitpoints",
+            value: "$stored_Lisar.max_hitpoints",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_Lisar.moves",
+            value: "$stored_Lisar.max_moves",
+            mode: "value",
+          },
+          {
+            tag: "set_variable",
+            name: "stored_Lisar.attacks_left",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_82",
+        on: "branch_if_82",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Warven%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22side%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22have_unit%22%2C%22attributes%22%3A%7B%22id%22%3A%22Warven%22%2C%22search_recall_list%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22side%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Warven",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.status.poisoned",
+                value: "no",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Warven",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.status.slowed",
+                value: "no",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_Warven",
+            kill: "NOT_SIDE=999",
+            id: "Warven",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_Warven.hitpoints",
+            value: "$stored_Warven.max_hitpoints",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_Warven.moves",
+            value: "$stored_Warven.max_moves",
+            mode: "value",
+          },
+          {
+            tag: "set_variable",
+            name: "stored_Warven.attacks_left",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_81",
+        on: "branch_if_81",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "status_s43",
+            equals: "completed",
+          },
+          {
+            tag: "condition",
+            variable: "stored_Warven.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_82",
+          },
+          {
+            tag: "set_variable",
+            name: "stored_Warven.side",
+            value: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "stored_Warven",
+            x: 47,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            side: "$lisar_side",
+            facing: "se",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Warven%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Warven",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Warven",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.role",
+                value: "warven",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_83",
+        on: "branch_if_83",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22status_s43%22%2C%22equals%22%3A%22completed%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22stored_Warven.length%22%2C%22greater_than%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Elite Heavy Infantryman",
+            side: "NaN",
+            x: 46,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_85",
+        on: "branch_if_85",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "lisar_control_explained",
+            not_equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Lisar",
+            text: _("We’re allies now, cousin, and although I’m not pleased about it we must learn to work together. If you believe we’ll fight better by your taking direct command of my army, I’m willing to allow it."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "lisar_control_explained",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader_lisar_side",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: "$lisar_side",
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: "refresh",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_87",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_88",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%22%24lisar_side%22%2C%22type%22%3A%22Elite%20Shock%20Trooper%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Elite Shock Trooper",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Elite Shock Trooper",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_89",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_90",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%22%24lisar_side%22%2C%22type%22%3A%22Elite%20Fencer%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Elite Fencer",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Elite Fencer",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_91",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_92",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%22%24lisar_side%22%2C%22type%22%3A%22Elite%20Bowman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Elite Bowman",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Elite Bowman",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_86",
+        on: "lisar_choose_ai_control",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            recall_cost: 9999,
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%22%24lisar_side%22%7D%2C%22children%22%3A%5B%5D%7D",
+            side: "$lisar_side",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_94",
+        on: "branch_if_94",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "status_s43",
+            equals: "completed",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+            income: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_95",
+        on: "branch_if_95",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "status_s43",
+            not_equals: "completed",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+            income: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_93",
+        on: "lisar_choose_human_control",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            recall_cost: 20,
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%22%24lisar_side%22%7D%2C%22children%22%3A%5B%5D%7D",
+            side: "$lisar_side",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+            recruit: "Elite Bowman,Elite Fencer,Elite Heavy Infantryman",
+            controller: "human",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_94",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_95",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_96",
+        on: "branch_if_96",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "status_s43",
+            equals: "completed",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_side.base_income",
+            value: 4,
+            mode: "sub",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_97",
+        on: "branch_if_97",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "status_s43",
+            not_equals: "completed",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_side.base_income",
+            value: 2,
+            mode: "sub",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_84_1_opt0",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "lisar_choose_ai_control",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_84_1_opt1",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "lisar_choose_human_control",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_84_1",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: "$($lisar_side-1)",
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: "end",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                id: "Lisar",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_85",
+          },
+          {
+            tag: "hook",
+            name: "command:store_side",
+            side: "$lisar_side",
+            variable: "stored_side",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_96",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_97",
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "narrator",
+                portrait: "portraits/konrad-$konrad_portrait_base|.webp",
+                text: _(""),
+              },
+              {
+                tag: "choice",
+                text: _(""),
+                event: "ev_84_1_opt0",
+              },
+              {
+                tag: "choice",
+                text: _(""),
+                event: "ev_84_1_opt1",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_99",
+        on: "branch_if_99",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "lisar_control_explained",
+            not_equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Lisar",
+            text: _("We’re allies now, cousin, and although I’m not pleased about it we must learn to work together. If you believe we’ll fight better by your taking direct command of my army, I’m willing to allow it."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "lisar_control_explained",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader_lisar_side",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: "$lisar_side",
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: "refresh",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_101",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_102",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%22%24lisar_side%22%2C%22type%22%3A%22Elite%20Shock%20Trooper%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Elite Shock Trooper",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Elite Shock Trooper",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_103",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_104",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%22%24lisar_side%22%2C%22type%22%3A%22Elite%20Fencer%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Elite Fencer",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Elite Fencer",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_105",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_106",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%22%24lisar_side%22%2C%22type%22%3A%22Elite%20Bowman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Elite Bowman",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Elite Bowman",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_100",
+        on: "lisar_choose_ai_control",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            recall_cost: 9999,
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%22%24lisar_side%22%7D%2C%22children%22%3A%5B%5D%7D",
+            side: "$lisar_side",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_108",
+        on: "branch_if_108",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "status_s43",
+            equals: "completed",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+            income: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_109",
+        on: "branch_if_109",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "status_s43",
+            not_equals: "completed",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+            income: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_107",
+        on: "lisar_choose_human_control",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            recall_cost: 20,
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%22%24lisar_side%22%7D%2C%22children%22%3A%5B%5D%7D",
+            side: "$lisar_side",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+            recruit: "Elite Bowman,Elite Fencer,Elite Heavy Infantryman",
+            controller: "human",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_108",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_109",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_110",
+        on: "branch_if_110",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "status_s43",
+            equals: "completed",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_side.base_income",
+            value: 4,
+            mode: "sub",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_111",
+        on: "branch_if_111",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "status_s43",
+            not_equals: "completed",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_side.base_income",
+            value: 2,
+            mode: "sub",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_98_2_opt0",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "lisar_choose_ai_control",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_98_2_opt1",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "lisar_choose_human_control",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_98_2",
+        on: "lisar_choose_controller",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                id: "Lisar",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_99",
+          },
+          {
+            tag: "hook",
+            name: "command:store_side",
+            side: "$lisar_side",
+            variable: "stored_side",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_110",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_111",
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "narrator",
+                portrait: "portraits/konrad-$konrad_portrait_base|.webp",
+                text: _(""),
+              },
+              {
+                tag: "choice",
+                text: _(""),
+                event: "ev_98_2_opt0",
+              },
+              {
+                tag: "choice",
+                text: _(""),
+                event: "ev_98_2_opt1",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_79",
+        on: "side_turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: "$($lisar_side-1)",
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_80",
+          },
+          {
+            tag: "set_variable",
+            name: "stored_Lisar.side",
+            value: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "stored_Lisar",
+            x: 49,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            side: "$lisar_side",
+            facing: "sw",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lisar%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Lisar",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_81",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_83",
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: "$lisar_side",
+            ai_type: "zone_guardian",
+            action: "add",
+            filter: "%7B%22role%22%3A%22warven%22%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+            gold: "$lisar_gold",
+            hidden: "no",
+            fog: "yes",
+            shroud: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Lisar",
+            text: _("Everyone ready? Good. Now that Konrad has distracted them from the west, we’ll push in from the east."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "lisar_choose_controller",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_112",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "32-35",
+            y: "0-2",
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("The river is clean and fresh in this direction. There are no undead to hunt this way."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_113",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "say_smalltalk",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_114",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Look, saurians! What business do you have in these caves?"),
+          },
+          {
+            tag: "message",
+            text: _("Fssssh! Ssslay you! Ssslay you all!"),
+          },
+          {
+            tag: "message",
+            speaker: "Lisar",
+            portrait: "portraits/lisar-mad.webp",
+            text: _("I don’t think diplomacy will get us far with these ones."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_116",
+        on: "branch_if_116",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "bm_whirlpool_disable_achievements",
+            not_equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:set_achievement",
+            id: "h2tt_s44",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_115",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22leader3%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%2C%24lisar_side%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_116",
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("The aggressive saurians are vanquished, but the undead are the greater evil here. We must not waver!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_117",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22leader2%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Master. Is away. I guard. I will fight. Until Iliah. Malal returns."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            portrait: "portraits/delfador-mad.webp",
+            text: _("Your master Malal is gone, you undead fool! Go back to your eternal rest."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Iliah-Malal? That is the lich we fought in the swamp. What would one of his minions be doing here? And why is it so powerful!?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("It speaks of guarding — perhaps Malal has a sanctuary hidden somewhere else in these hills. I do not think we have time to search for it, though. Perhaps a task for another hero, another time."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_118",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 30,
+            y: 13,
+            item_name: "",
+            image: "items%2Fbook1.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_119",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 29,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 30,
+            y: 13,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("There is an old book here, labeled <i>“Isaac Mallat — Journal.”</i> The running water has washed away most of the ink, but one passage is still readable..."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<i>_ —died in my arms. My own brother! He could have been saved!! This imbecile king’s quarantine will be the end of us all. _ I’m sure I’m not contagious. I’m sure there’s some way to cure it. If I sneak out of the village and make my way north to—</i>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_121",
+        on: "branch_if_121",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "i",
+            less_than: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "i",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "$KILL_COUNT_unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_120",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22leader2%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "KILL_COUNT_stored_units",
+            kill: "no",
+            side: 2,
+          },
+          {
+            tag: "set_variable",
+            name: "KILL_COUNT_i",
+            value: 0,
+          },
+          {
+            tag: "foreach",
+            variable: "KILL_COUNT_stored_units",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_121",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22canrecruit%22%3A%22no%22%2C%22animate%22%3A%22no%22%2C%22fire_event%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "message",
+            speaker: "Haralamdum",
+            text: _("Har hum har ... hmm ... well ... har alam dum ... good."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            portrait: "portraits/konrad-$konrad_portrait_base-glad.webp",
+            text: _("Those undead will bother you no more, Sir Wose. Will you join us? We march towards Weldyn, to depose the dark queen Asheviere."),
+          },
+          {
+            tag: "message",
+            speaker: "Haralamdum",
+            text: _("March? So hasty. Harum-alam-alam ... no, we are not soldiers ... harum ... not at all. And we are not ... hum ... not many."),
+          },
+          {
+            tag: "message",
+            speaker: "Haralamdum",
+            text: _("Hmm ... but there was something ... something to help ..."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Haralamdum",
+            text: _("Har dum ... oh, yes, the dust."),
+          },
+          {
+            tag: "message",
+            speaker: "Haralamdum",
+            text: _("Dust carried ... har alam dum ... by a skeleton. Something magical. I put it ... harum ... where did I put it..."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "gold.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("I see it — a pouch of powdered sapphire! A valuable component for all kinds of spells. I used the last of my supply in the defense of Elensefar, and have sorely missed it since. Thank you for your gift, Haralamdum."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            portrait: "portraits/delfador-mentoring.webp",
+            text: _("Konrad, with this I can conjure up powerful earthen elementals. Malal must have stashed it away here. Now it is ours."),
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Konrad",
+          },
+          {
+            tag: "hook",
+            name: "command:allow_extra_recruit",
+            id: "Delfador",
+            types: "Granite Golem",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_123",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("The woses have been defeated! The undead have won."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_122",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Haralamdum%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Haralamdum",
+            text: _("Harum ... huff ..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_124",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 32,
+          },
+          {
+            tag: "message",
+            speaker: "Lisar",
+            text: _("We should hurry, Konrad. There are storm clouds on the horizon. If we take too long to finish our battle and it starts to rain, this entire cave system might flood."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_125",
+        on: "side_turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: "$lisar_side",
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 40,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "lightning.ogg",
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

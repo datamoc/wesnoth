@@ -1,0 +1,1875 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Flaming Sword"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good guys",
+        gold: 180,
+        recruit: "Merman Citizen, Merman Fighter, Merman Hunter, Mermaid Initiate",
+        leader: "Kai_Krellis",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "bad guys",
+        gold: 440,
+        recruit: "Blood Bat, Ghost",
+        leader: "Mal-Govon",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "good guys",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "null",
+        team_name: "Caladon",
+        gold: 0,
+      },
+      {
+        tag: "map",
+        id: "scenario_10_The_Flaming_Sword",
+        file: "The_Flaming_Sword.map",
+      },
+      {
+        tag: "unit",
+        id: "Kai_Krellis",
+        type: "Merman Child King",
+        side: 1,
+        x: 6,
+        y: 27,
+        name: _("Kai Krellis"),
+      },
+      {
+        tag: "unit",
+        id: "Mal-Govon",
+        type: "Lich",
+        side: 2,
+        x: 37,
+        y: 3,
+        name: _("Mal-Govon"),
+      },
+      {
+        tag: "event",
+        id: "carryover_45",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "avoid,20,17,0,10;avoid,19,16,0,10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_46",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Caladon led them just a little way up the shore. Despite its name, the swamp was not actually desolate on the outskirts. A hardy population of humans coaxed a living out of the damp soil."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_47",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kai_Krellis,Mal-Govon,Lyllan,Trudd,Dorcyn",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_48",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 31,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Pry the flaming sword from the dead hand of its owner"),
+        defeat: _("Death of Kai Krellis Death of Cylanna Death of Caladon Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Blood%20Bat%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Blood Bat",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Blood Bat",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Dread%20Bat%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Dread Bat",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Dread Bat",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Wraith%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Wraith",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Wraith",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Shadow%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Shadow",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Shadow",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Bone%20Shooter%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Bone Shooter",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Bone Shooter",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 2,
+            mode: "allow",
+            types: "Blood Bat, Dread Bat, Ghost, Wraith, Shadow, Bone Shooter, Deathblade, Ghoul, Necrophage, Chocobone",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_city_falls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Cylanna",
+            unit: "Cylanna",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Gwabbo",
+            unit: "Gwabbo",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Teeloa",
+            unit: "Teeloa",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Keshan",
+            unit: "Keshan",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Inky",
+            unit: "Inky",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Tyegea",
+            unit: "Tyegea",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Friendly Bat",
+            unit: "Friendly Bat",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Undead Bat",
+            unit: "Undead Bat",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Fearsome Bat",
+            unit: "Fearsome Bat",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            role: "spy",
+            unit: "",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "spy_unit",
+            kill: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            income: "$spy_unit.level",
+          },
+          {
+            tag: "set_variable",
+            name: "sword_x",
+            value: 999,
+          },
+          {
+            tag: "set_variable",
+            name: "sword_y",
+            value: 999,
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22flaming_sword1%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "flaming_sword1",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Caladon",
+            unit: "Caladon",
+            x: 8,
+            y: 27,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "Siddry_stored",
+            equals: "no",
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 20,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+          {
+            tag: "message",
+            speaker: "$spy_unit.id",
+            text: _("<small>(_ (whisper) Kai, I heard Caladon muttering about the sword. I think he may try to take it for himself.)</small>"),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("<small>(_ Thank you, $spy_unit.name|. I will keep that in mind, but it may be hard for us to stop him with that teleporting trick he has.)</small>"),
+          },
+          {
+            tag: "message",
+            speaker: "Caladon",
+            text: _("Here we are. There’s a castle up ahead in the fog. That’s where Agnovon has the sword."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("The lich is Agnovon?"),
+          },
+          {
+            tag: "message",
+            speaker: "Caladon",
+            text: _("Well, he calls himself Mal-Govon now, but yes. He called this land the KINGDOM of Agnovon. He was its first king. And its last. And each one in between too! He kept getting older and older, but he never died. Well, NOW he’s dead of course. He still putters around in that castle over there, but he hasn’t really cared about keeping his kingdom under control for a good long while. I bet I can wake him up, though. Watch THIS!"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Suddenly, Caladon’s strident voice shrieked out louder than seemed possible, as if there were dozens of men shouting at once."),
+          },
+          {
+            tag: "message",
+            speaker: "Caladon",
+            text: _("AGNOVON, I’VE COME FOR YOUR SWORD! TODAY YOU WILL REMEMBER FEAR! Heh heh. Nice trick, huh?"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("A voice came back like wind moaning through dry leaves. Though it was only whispered, all heard it better than they wanted."),
+          },
+          {
+            tag: "message",
+            speaker: "Mal-Govon",
+            text: _("What I remember, you old fool, is you leaving behind the smoldering bodies of the orcs you had hired to steal my sword. Now, you bring merfolk to do your dirty work. When they lie expiring like gasping fish on the shore, will you not flee again? Do not speak to <i>me</i> of fear."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("We are here of our own accord, and we will take that sword."),
+          },
+          {
+            tag: "message",
+            speaker: "Mal-Govon",
+            text: _("The merman speaks. Tell it to go away, Caladon, if it doesn’t want to get hurt."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("That does it. Attack!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "message",
+            speaker: "Caladon",
+            text: _("A word of warning, young Kai. I carry a staff of righteous FLAME. If you let me die, I will take YOU all with me!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_19",
+        on: "branch_if_19",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "Siddry_stored",
+            not_equals: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "Siddry_stored.x",
+            value: 19,
+          },
+          {
+            tag: "set_variable",
+            name: "Siddry_stored.y",
+            value: 19,
+          },
+          {
+            tag: "set_variable",
+            name: "Siddry_stored.hitpoints",
+            value: 37,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "Siddry_stored.moves",
+            value: "$Siddry_stored.max_moves",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "Siddry_stored.attacks_left",
+            value: "$Siddry_stored.max_attacks",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "Siddry_stored",
+          },
+          {
+            tag: "message",
+            speaker: "Siddry",
+            text: _("Kai Krellis! What are you doing here? I thought you were traveling south when I met you."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Friend Siddry!"),
+          },
+          {
+            tag: "message",
+            speaker: "Howyrth",
+            text: _("You know each other?!"),
+          },
+          {
+            tag: "message",
+            speaker: "Siddry",
+            text: _("Kai Krellis is the one who saved me from slavery, Howyrth. I told him I would repay him if I could, and here is my chance. My friends and I will join you in your fight, Kai Krellis. We are yours to command, and we refuse to be paid."),
+          },
+          {
+            tag: "spawn",
+            id: "Lyllan",
+            type: "Footpad",
+            side: 1,
+            x: 17,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Lyllan",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Lyllan",
+          },
+          {
+            tag: "spawn",
+            id: "Trudd",
+            type: "Thug",
+            side: 1,
+            x: 17,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Trudd",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Trudd",
+          },
+          {
+            tag: "spawn",
+            id: "Dorcyn",
+            type: "Thug",
+            side: 1,
+            x: 19,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Dorcyn",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Dorcyn",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_20",
+        on: "branch_if_20",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "Siddry_stored",
+            equals: "no",
+          },
+          {
+            tag: "spawn",
+            id: "Dorcyn",
+            type: "Footpad",
+            side: 1,
+            x: 17,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Dorcyn",
+          },
+          {
+            tag: "message",
+            speaker: "Dorcyn",
+            text: _("I’ll join you right now! That monster is just unnatural."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2217%22%2C%22y%22%3A%2219%22%2C%22radius%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "spawn",
+            id: "Howyrth",
+            type: "Outlaw",
+            side: 3,
+            x: 17,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Howyrth",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Howyrth",
+            text: _("Hello there! Who are you? Were you the ones shouting about taking a sword?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("I am Kai Krellis of Jotha. I am attempting to defeat Mal-Govon and take his sword. Will you join us in battle against a common enemy?"),
+          },
+          {
+            tag: "message",
+            speaker: "Howyrth",
+            text: _("I don’t know if that creature really is our enemy. He has never bothered us, and I should stay at my post anyway. However, I’m sure many townsfolk would welcome the extra income if you want to hire them. I guess we would be happy to get rid of the monster just in case."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You can now recruit human villagers, but you will not be able to recall them in future scenarios."),
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "allow",
+            types: "Trapper, Bandit, Poacher, Thug, Footpad, Peasant, Woodsman, Ruffian",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_19",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_20",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mal-Govon%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Mal-Govon",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "items%2Fflame-sword.png",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("The merfolk clapped their hands over their ears as a terrible wail echoed off the castle walls."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 600,
+          },
+          {
+            tag: "message",
+            speaker: "Caladon",
+            text: _("Correction. Now I have the sword!"),
+          },
+          {
+            tag: "hook",
+            name: "command:remove_trait",
+            id: "Caladon",
+            trait_id: "loyal",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            side: 4,
+            canrecruit: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Caladon%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Caladon",
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "Caladon",
+            x: "$x1",
+            y: "$y1",
+            to_x: "$x1",
+            to_y: "$y1",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 700,
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22flaming_sword2%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "flaming_sword2",
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22drop_staff%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "drop_staff",
+          },
+          {
+            tag: "message",
+            speaker: "Caladon",
+            text: _("It’s MINE! The Flaming Sword of Agnovon IS ALL MINE! I can feel warmth SPREADING through me!"),
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22healer%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22hitpoints%22%2C%22healFull%22%3Atrue%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "healer",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "heal.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 400,
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("What? We won that sword!"),
+          },
+          {
+            tag: "message",
+            speaker: "Caladon",
+            text: _("Well, it’s true that you helped, so I won’t kill you. But I don’t trust you, so leave my realm. Go on. I will grant you some time. The benevolence of Caladon will be LEGENDARY! Heh heh, HA!"),
+          },
+          {
+            tag: "message",
+            speaker: "$staff_tip_off",
+            text: _("<small>(_ Kai! He dropped his staff! We can attack him whenever we want now!)</small>"),
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("<small>(_ We can pretend we are going to leave though. That would buy me some time to heal the wounded.)</small>"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "Caladon_leader_status",
+            value: "passive",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_23",
+        on: "branch_if_23",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "Caladon_leader_status",
+            equals: "passive",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22Caladon_leader_status%22%2C%22equals%22%3A%22impatient%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            controller: "ai",
+          },
+          {
+            tag: "message",
+            speaker: "Caladon",
+            text: _("You DARE attack ME! You will regret that. Witness the POWER of the Flaming Sword of Caladon! I call on the ELEMENT OF FIRE to DO MY BIDDING!"),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "Caladon_stored",
+            kill: "no",
+            id: "Caladon",
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 6,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "Caladon_leader_status",
+            value: "leader",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "attack",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_defender_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%224%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_23",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_25",
+        on: "branch_if_25",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "side_number",
+            equals: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22Caladon_leader_status%22%2C%22equals%22%3A%22passive%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            controller: "ai",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "Caladon_leader_status",
+            value: "impatient",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_25",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_28",
+        on: "branch_if_28",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "Caladon_leader_status",
+            equals: "leader",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "Caladon_stored",
+            kill: "no",
+            id: "Caladon",
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 2,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_29",
+        on: "branch_if_29",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "Caladon_leader_status",
+            equals: "impatient",
+          },
+          {
+            tag: "message",
+            speaker: "Caladon",
+            text: _("You haven’t left yet? My patience is at an END! Witness the POWER of the Flaming Sword of Caladon! I call on the ELEMENT OF FIRE to DO MY BIDDING!"),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "Caladon_stored",
+            kill: "no",
+            id: "Caladon",
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 6,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "Caladon_leader_status",
+            value: "leader",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_27",
+        on: "branch_if_27",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "side_number",
+            equals: 4,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22Caladon_leader_status%22%2C%22not_equals%22%3A%22dead%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_28",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_29",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_27",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Caladon%22%2C%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "lightning.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "rumble.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            all: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 100,
+          },
+          {
+            tag: "set_variable",
+            name: "alpha",
+            value: 255,
+          },
+          {
+            tag: "set_variable",
+            name: "delta",
+            value: 2,
+          },
+          {
+            tag: "set_variable",
+            name: "REPEAT_i",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "REPEAT_i",
+                less_than: 12,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "delta",
+                value: 3,
+                mode: "sub",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "alpha",
+                value: "$delta",
+                mode: "add",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "REPEAT_i",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Caladon%22%2C%22side%22%3A%224%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "sword_x",
+            value: "$x1",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "sword_y",
+            value: "$y1",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$sword_x",
+            y: "$sword_y",
+            item_name: "",
+            image: "items%2Fflame-sword.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 600,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Now we can finally grab that sword."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "$sword_x",
+            y: "$sword_y",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22I%20am%20not%20going%20with%20you.%20One%20of%20your%20people%20should%20take%20the%20sword.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22allow_undo%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I am not going with you. One of your people should take the sword."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "$sword_x",
+            y: "$sword_y",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Kai%20Krellis%22%2C%22message%22%3A%22This%20is%20not%20food.%20And%20it%20is%20definitely%20not%20a%20toy.%20Leave%20it.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22allow_undo%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("This is not food. And it is definitely not a toy. Leave it."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34_opt0",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "get_sword",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34_opt1",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "if_35",
+        on: "branch_if_35",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "get_sword",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22flaming_sword3%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "flaming_sword3",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37_opt0",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "get_sword",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37_opt1",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "if_38",
+        on: "branch_if_38",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "get_sword",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22flaming_sword3%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "flaming_sword3",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_39",
+        on: "branch_if_39",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "get_sword",
+            not_equals: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "$sword_x",
+            y: "$sword_y",
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                text: _(""),
+              },
+              {
+                tag: "choice",
+                text: _("I’ll carry the sword."),
+                event: "ev_37_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("Let someone else have it."),
+                event: "ev_37_opt1",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_38",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_39",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_36",
+        on: "branch_if_36",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "get_sword",
+            not_equals: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "$sword_x",
+            y: "$sword_y",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%2C%22first_time_only%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22narrator%22%2C%22message%22%3A%22This%20sword%20is%208%C3%974%2C%20magical%2C%20with%20%3Ci%3Efire%3C%2Fi%3E%20damage.%22%2C%22image%22%3A%22wesnoth-icon.png%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22option%22%2C%22attributes%22%3A%7B%22label%22%3A%22I%E2%80%99ll%20carry%20this%20sword%20and%20destroy%20undead%20with%20blasts%20of%20flame.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22command%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22get_sword%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22option%22%2C%22attributes%22%3A%7B%22label%22%3A%22This%20sword%20is%20not%20right%20for%20me.%20Let%20someone%20else%20have%20it.%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22get_sword%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22object%22%2C%22attributes%22%3A%7B%22id%22%3A%22flaming_sword3%22%2C%22name%22%3A%22Flaming%20Sword%22%2C%22image%22%3A%22items%2Fflame-sword.png%22%2C%22duration%22%3A%22forever%22%2C%22silent%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24sword_x%22%2C%22y%22%3A%22%24sword_y%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22remove_item%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24sword_x%22%2C%22y%22%3A%22%24sword_y%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22new_attack%22%2C%22name%22%3A%22flaming%20sword%22%2C%22description%22%3A%22flaming%20sword%22%2C%22icon%22%3A%22attacks%2Fsword-flaming.png%22%2C%22type%22%3A%22fire%22%2C%22range%22%3A%22melee%22%2C%22damage%22%3A%228%22%2C%22number%22%3A%224%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22specials%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22chance_to_hit%22%2C%22attributes%22%3A%7B%22id%22%3A%22magical%22%2C%22name%22%3A%22magical%22%2C%22description%22%3A%22This%20attack%20always%20has%20a%2070%25%20chance%20to%20hit%20regardless%20of%20the%20defensive%20ability%20of%20the%20unit%20being%20attacked.%22%2C%22special_note%22%3A%22This%20unit%20has%20magical%20attacks%2C%20which%20always%20have%20a%20high%20chance%20of%20hitting%20an%20opponent.%22%2C%22value%22%3A%2270%22%2C%22cumulative%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22overlay%22%2C%22add%22%3A%22overlays%2Fflame-sword-icon.png%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22get_sword%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22sword_x%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22sword_y%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22endlevel%22%2C%22attributes%22%3A%7B%22result%22%3A%22victory%22%2C%22bonus%22%3A%22yes%22%2C%22carryover_add%22%3A%22yes%22%2C%22carryover_percentage%22%3A%2240%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22allow_undo%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%2C%22first_time_only%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24sword_x%22%2C%22y%22%3A%22%24sword_y%22%2C%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22option%22%2C%22attributes%22%3A%7B%22label%22%3A%22I%E2%80%99ll%20carry%20the%20sword.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22command%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22get_sword%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22option%22%2C%22attributes%22%3A%7B%22label%22%3A%22Let%20someone%20else%20have%20it.%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22get_sword%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22object%22%2C%22attributes%22%3A%7B%22id%22%3A%22flaming_sword3%22%2C%22name%22%3A%22Flaming%20Sword%22%2C%22image%22%3A%22items%2Fflame-sword.png%22%2C%22duration%22%3A%22forever%22%2C%22silent%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24sword_x%22%2C%22y%22%3A%22%24sword_y%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22remove_item%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24sword_x%22%2C%22y%22%3A%22%24sword_y%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22new_attack%22%2C%22name%22%3A%22flaming%20sword%22%2C%22description%22%3A%22flaming%20sword%22%2C%22icon%22%3A%22attacks%2Fsword-flaming.png%22%2C%22type%22%3A%22fire%22%2C%22range%22%3A%22melee%22%2C%22damage%22%3A%228%22%2C%22number%22%3A%224%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22specials%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22chance_to_hit%22%2C%22attributes%22%3A%7B%22id%22%3A%22magical%22%2C%22name%22%3A%22magical%22%2C%22description%22%3A%22This%20attack%20always%20has%20a%2070%25%20chance%20to%20hit%20regardless%20of%20the%20defensive%20ability%20of%20the%20unit%20being%20attacked.%22%2C%22special_note%22%3A%22This%20unit%20has%20magical%20attacks%2C%20which%20always%20have%20a%20high%20chance%20of%20hitting%20an%20opponent.%22%2C%22value%22%3A%2270%22%2C%22cumulative%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22overlay%22%2C%22add%22%3A%22overlays%2Fflame-sword-icon.png%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22get_sword%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22sword_x%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22sword_y%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22endlevel%22%2C%22attributes%22%3A%7B%22result%22%3A%22victory%22%2C%22bonus%22%3A%22yes%22%2C%22carryover_add%22%3A%22yes%22%2C%22carryover_percentage%22%3A%2240%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22allow_undo%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("This sword is 8×4, magical, with <i>fire</i> damage."),
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                text: _(""),
+              },
+              {
+                tag: "choice",
+                text: _("I’ll carry this sword and destroy undead with blasts of flame."),
+                event: "ev_34_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("This sword is not right for me. Let someone else have it."),
+                event: "ev_34_opt1",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_35",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_36",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "Trapper, Bandit, Poacher, Thug, Footpad, Peasant, Woodsman, Ruffian",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_41",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Cylanna%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Cylanna! I need you!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Tyegëa will never forgive me. We are lost."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_42",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kai%20Krellis%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("We are lost without our king!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_43",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Caladon%22%2C%22side%22%3A%224%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Caladon",
+            text: _("CURSE you merfolk!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "Caladon_leader_status",
+            value: "dead",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_44",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Caladon%22%2C%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Caladon",
+            text: _("Aghh! Die!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("He has that staff of..."),
+          },
+        ],
+      },
+    ],
+  },
+]

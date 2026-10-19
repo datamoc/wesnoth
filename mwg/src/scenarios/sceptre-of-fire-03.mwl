@@ -1,0 +1,2130 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Searching for the Runecrafter"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "dwarves",
+        gold: 140,
+        recruit: "Dwarvish Fighter,Dwarvish Thunderer,Dwarvish Guardsman,Dwarvish Scout",
+        leader: "Rugnur",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "monsters",
+      },
+      {
+        tag: "map",
+        id: "scenario_3_Searching_for_the_Runecrafter",
+        file: "3_Searching_for_the_Runecrafter.map",
+      },
+      {
+        tag: "unit",
+        id: "Rugnur",
+        type: "Dwarvish Fighter",
+        side: 1,
+        x: 6,
+        y: 27,
+      },
+      {
+        tag: "event",
+        id: "carryover_39",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_40",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("It was a couple more weeks of marching along the tracks before a chill breeze touched Rugnur’s group, washing over them from a side tunnel leading up to the surface. Had they reached the Northlands?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_41",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/cave-rails-beam.webp"),
+            text: _("Much to his chagrin, Alanin was dispatched to scout further up the rails, but he soon came back and claimed the rails ended — the main tunnel was unfinished to the north. For this reason, Rugnur led the dwarves up the cold passage and began to search for the runesmith named Thursagan. Thursagan, the Sage of Fire."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_42",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Rugnur,Krawg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_43",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 20,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Find Thursagan and convince him to come back to the dwarvish city Find Thursagan and convince him to come back to the dwarvish city, then bring him back to the caves Move Thursagan to the signpost"),
+        defeat: _("Death of Rugnur Death of Alanin Death of Baglur Death of Krawg Death of Thursagan Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "wanderer.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "elvish-theme.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Rugnur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Gahahh..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Haldric%20II%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("Maghah..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Alanin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Alanin",
+            text: _("Ahhgg..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Baglur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Baglur",
+            text: _("Gaanngh..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Krawg%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Krawg",
+            text: _("Kraa..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("Ayahahh..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_sfe_moveto",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22K*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "rune_customer",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "sof_rune_shop",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_rune_shop_flavor_text",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22K*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("My tools are ready. Step closer, if you want to witness my rune-work."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_sfe_side1turn",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                id: "Thursagan",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "rune_customer",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "sof_rune_shop",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_thursagan_exithex",
+        on: "exit_hex",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22K*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1|",
+            y: "$y1|",
+            item_name: "",
+            image: "rune_shop_overlay",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_9",
+        on: "branch_if_9",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ex_rune_customer.id",
+            equals: "$this_item.id",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "index_TEMP",
+            value: "$i|",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_sfe_exithex",
+        on: "exit_hex",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22race%22%3A%22dwarf%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22K*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1|",
+            y: "$y1|",
+            item_name: "",
+            image: "rune_shop_overlay",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "ex_rune_customer",
+            kill: "no",
+            id: "$unit.id",
+          },
+          {
+            tag: "foreach",
+            variable: "rune_customer",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_9",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_sfe_2moveto",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22race%22%3A%22dwarf%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22K*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "rune_customer",
+            kill: "no",
+            id: "$unit.id",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "sof_rune_shop",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_10",
+        on: "branch_if_10",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.variables.no_rune",
+            not_equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$this_item.x|",
+            y: "$this_item.y|",
+            item_name: "rune_shop_overlay",
+            image: "scenery%2Fsummoning-circle%5B4%2C5%2C6%5D.png~CS(80%2C120%2C240)~O(0.6)%3A%5B200%2C250%2C200%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20scenery%2Fsummoning-circle%5B4%2C5%2C6%5D.png~CS(40%2C90%2C200)~O(0.9)%3A%5B150%2C180%2C120%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20scenery%2Fsummoning-circle%5B4%2C5%2C6%5D.png~CS(40%2C90%2C200)~O(0.1)%3A%5B250%2C300%2C250%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20scenery%2Fsummoning-circle%5B4%2C5%2C6%5D.png~CS(40%2C90%2C200)~O(0.3)%3A%5B250%2C300%2C250%5D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "rc_select",
+        on: "select",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22rune_customer%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_rune_shop",
+        on: "sof_rune_shop",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "rune_shop_overlay",
+          },
+          {
+            tag: "foreach",
+            variable: "rune_customer",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_10",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "typeofenemy",
+            equals: "Wolf,Frost Stoat",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 5,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 5,
+            y: 5,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "typeofenemy",
+            equals: "Wolf,Frost Stoat",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 15,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 15,
+            y: 15,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "typeofenemy",
+            equals: "Wolf,Frost Stoat",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 25,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 25,
+            y: 25,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "typeofenemy",
+            equals: "Wolf,Frost Stoat",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 30,
+            y: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 30,
+            y: 18,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "set_variable",
+            name: "thursagan_hunt",
+            value: -5,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "typeofenemy",
+            values: "Frost Stoat,Icemonax,Wolf,Wolf,Great Wolf,Troll Whelp,Troll Whelp,Troll",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 5,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_12",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "typeofenemy",
+            values: "Frost Stoat,Icemonax,Wolf,Wolf,Great Wolf,Troll Whelp,Troll Whelp,Troll",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 15,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_13",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "typeofenemy",
+            values: "Frost Stoat,Icemonax,Wolf,Wolf,Great Wolf,Troll Whelp,Troll Whelp,Troll",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 25,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_14",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "typeofenemy",
+            values: "Frost Stoat,Icemonax,Wolf,Wolf,Great Wolf,Troll Whelp,Troll Whelp,Troll",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 30,
+            y: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_15",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "typeofenemy",
+            equals: "Wolf,Frost Stoat",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 20,
+            y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 20,
+            y: 20,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "typeofenemy",
+            values: "Frost Stoat,Icemonax,Wolf,Wolf,Great Wolf,Troll Whelp,Troll Whelp,Troll",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 20,
+            y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_19",
+        on: "branch_if_19",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "typeofenemy",
+            equals: "Wolf,Frost Stoat",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 10,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 10,
+            y: 10,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_20",
+        on: "branch_if_20",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "typeofenemy",
+            equals: "Wolf,Frost Stoat",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 30,
+            y: 30,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 30,
+            y: 30,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "typeofenemy",
+            values: "Frost Stoat,Icemonax,Wolf,Wolf,Great Wolf,Troll Whelp,Troll Whelp,Troll",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 10,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_19",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "typeofenemy",
+            values: "Frost Stoat,Icemonax,Wolf,Wolf,Great Wolf,Troll Whelp,Troll Whelp,Troll",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 30,
+            y: 30,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_20",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 10,
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Snow Golem",
+            side: 2,
+            x: 1,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Great Wolf",
+            side: 2,
+            x: 24,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_23",
+        on: "branch_if_23",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "typeofenemy",
+            equals: "Wolf,Frost Stoat",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 18,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 18,
+            y: 6,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_24",
+        on: "branch_if_24",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "typeofenemy",
+            equals: "Wolf,Frost Stoat",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 30,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 30,
+            y: 7,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "typeofenemy",
+            values: "Frost Stoat,Icemonax,Wolf,Wolf,Great Wolf,Troll Whelp,Troll Whelp,Troll",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 18,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_23",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "typeofenemy",
+            values: "Frost Stoat,Icemonax,Wolf,Wolf,Great Wolf,Troll Whelp,Troll Whelp,Troll",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 30,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_24",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Baglur",
+            unit: "Baglur",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Alanin",
+            unit: "Alanin",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Alanin",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.profile",
+                value: "portraits/alanin.webp~BLIT(portraits/alanin-winter-overlay.webp,0,0)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Alanin",
+            text: _("Now where are we going, anyway? I’ve had to ride down cold, dark, unknown caves... it’s been quite harrowing, this trip had better be worth all that!"),
+          },
+          {
+            tag: "message",
+            speaker: "Baglur",
+            text: _("We need to find the sage Thursagan and convince him to return to the citadel with us. He’s somewhere up here."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Well, how are we supposed to find him?"),
+          },
+          {
+            tag: "message",
+            speaker: "Baglur",
+            text: _("His will probably be the only house up here. No one else is insane enough to live this far north! Even the elves won’t challenge us here."),
+          },
+          {
+            tag: "message",
+            speaker: "Alanin",
+            text: _("Elves may not challenge us, but I’ve heard of many other dangers lurking in the far Northlands. Wolves and trolls, but even the snow and ice itself comes alive! We should be careful!"),
+          },
+          {
+            tag: "message",
+            speaker: "Baglur",
+            text: _("Right, we’ll probably have to fight our way through to his house. But we need to find it first."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "0-31,16-31",
+            y: "0-20,0-30",
+          },
+          {
+            tag: "spawn",
+            id: "Krawg",
+            type: "Gryphon",
+            side: 1,
+            x: 4,
+            y: 23,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Krawg",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Krawg",
+          },
+          {
+            tag: "message",
+            speaker: "Krawg",
+            text: _("Kwill yooo spakkk wit uus?!"),
+          },
+          {
+            tag: "message",
+            speaker: "Alanin",
+            text: _("Aah! What is that?!"),
+          },
+          {
+            tag: "message",
+            speaker: "Baglur",
+            text: _("Is that... is that a gryphon?"),
+          },
+          {
+            tag: "message",
+            speaker: "Krawg",
+            text: _("Screech! <i>(Makes eye contact, bobs and cocks head.)</i>"),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("It’s talking to us! What do you want, gryphon?"),
+          },
+          {
+            tag: "message",
+            speaker: "Krawg",
+            text: _("Krawg! <i>(Looks out over the icy taiga, turns gaze back toward the dwarves.)</i>"),
+          },
+          {
+            tag: "message",
+            speaker: "Krawg",
+            text: _("Urrrsagan?"),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Well, um, yes, Thursagan. Why, can you help us find him?"),
+          },
+          {
+            tag: "message",
+            speaker: "Krawg",
+            text: _("Yes... <i>(Quickly shifts gaze to nearby woods, adopts a hostile stance, then glances back at the dwarves.)</i>"),
+          },
+          {
+            tag: "message",
+            speaker: "Baglur",
+            text: _("Aye, trolls and wolves are closing in... sure, Krawg, we’ll help you fight them."),
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 19,
+            y: 14,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22%24unit.id%22%2C%22message%22%3A%22This%20is%20just%20an%20empty%20shack%2C%20where%20could%20that%20old%20Runecrafter%20be%20hiding...%20Wait%2C%20this%20scrap%20of%20wood%20is%20actually%20a%20trap%20door!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Baglur%22%2C%22message%22%3A%22C%E2%80%99mon%20out%2C%20Thursagan!%20We%20need%E2%80%99ya%20help%20with%20some%20serious%20business!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22%24unit.id%22%2C%22message%22%3A%22It%E2%80%99s%20no%20good%2C%20he%E2%80%99s%20not%20hiding%20under%20it%2C%20there%E2%80%99s%20just%20this%20collapsed%20tunnel.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Rugnur%22%2C%22message%22%3A%22We%20have%20to%20find%20him!%20Fan%20out!%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Alanin%22%2C%22message%22%3A%22I%20don%E2%80%99t%20like%20this%2C%20we%20should%20stick%20together.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22thursagan_hunt%22%2C%22value%22%3A%225%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "$unit.id",
+            text: _("This is just an empty shack, where could that old Runecrafter be hiding... Wait, this scrap of wood is actually a trap door!"),
+          },
+          {
+            tag: "message",
+            speaker: "Baglur",
+            text: _("C’mon out, Thursagan! We need’ya help with some serious business!"),
+          },
+          {
+            tag: "message",
+            speaker: "$unit.id",
+            text: _("It’s no good, he’s not hiding under it, there’s just this collapsed tunnel."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("We have to find him! Fan out!"),
+          },
+          {
+            tag: "message",
+            speaker: "Alanin",
+            text: _("I don’t like this, we should stick together."),
+          },
+          {
+            tag: "set_variable",
+            name: "thursagan_hunt",
+            value: 5,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 15,
+            y: 16,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "portraits/thursagan.webp",
+            text: _("Ah! Go away!"),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Was that Thursagan? Finding him wasn’t as difficult as I thought it would be."),
+          },
+          {
+            tag: "message",
+            speaker: "Baglur",
+            text: _("Och, but it donna mean much unless he stops running away from us."),
+          },
+          {
+            tag: "set_variable",
+            name: "thursagan_hunt",
+            value: -1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EEshy%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22type%22%3A%22Gryphon%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "thursagan_hunt",
+                less_than: -3,
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "thursagan_hunt",
+            value: -1,
+          },
+          {
+            tag: "message",
+            speaker: "$unit.id",
+            text: _("An empty shack... I thought I’d found the Runecrafter, but there’s no sign of anyone having been here recently."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_31",
+        on: "branch_if_31",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "typeofenemy",
+            equals: "Wolf,Frost Stoat",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 19,
+            y: 30,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 19,
+            y: 30,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_32",
+        on: "branch_if_32",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "typeofenemy",
+            equals: "Wolf,Frost Stoat",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 1,
+            y: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 1,
+            y: 21,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_33",
+        on: "branch_if_33",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "typeofenemy",
+            equals: "Wolf,Frost Stoat",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 31,
+            y: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 31,
+            y: 21,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_34",
+        on: "branch_if_34",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "typeofenemy",
+            equals: "Wolf,Frost Stoat",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 1,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 1,
+            y: 15,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_35",
+        on: "branch_if_35",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "typeofenemy",
+            equals: "Wolf,Frost Stoat",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 32,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$typeofenemy",
+            side: 2,
+            x: 32,
+            y: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EEshy%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2220%22%2C%22y%22%3A%2215%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22type%22%3A%22Gryphon%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "thursagan_hunt",
+                greater_than: 0,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "thursagan_hunt",
+            value: -1,
+            mode: "add",
+          },
+          {
+            tag: "message",
+            speaker: "$unit.id",
+            text: _("Another empty shack... But there is this suspicious slab of wood. Let’s see what’s underneath, shall we?"),
+          },
+          {
+            tag: "switch",
+            variable: "thursagan_hunt",
+            children: [
+              {
+                tag: "case",
+                equals: 3,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "narrator",
+                    portrait: "portraits/thursagan.webp",
+                    text: _("What do you people want?! Leave me alone!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Rugnur",
+                    text: _("Old sage, we come with a message from Lord Durstorn. He asks you to come back to the city."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "narrator",
+                    portrait: "portraits/thursagan.webp",
+                    text: _("Ha! That fool thinks he can order me around. Why does he want me to go back, anyway?"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Baglur",
+                    text: _("We have entered into a bargain with the King of Wesnoth to craft a sceptre for him."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "narrator",
+                    portrait: "portraits/thursagan.webp",
+                    text: _("Oh, and now I suppose Durstorn wants me to craft it, eh? Well I’m not going to."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "$unit.id",
+                    text: _("He just ducked back down underground..."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:play_sound",
+                    file: "rumble.ogg",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:scroll_to",
+                    x: 4,
+                    y: -1,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:scroll_to",
+                    x: -11,
+                    y: -1,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:scroll_to",
+                    x: 4,
+                    y: 4,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:scroll_to",
+                    x: -1,
+                    y: -11,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:scroll_to",
+                    x: -1,
+                    y: 4,
+                  },
+                  {
+                    tag: "message",
+                    speaker: "$unit.id",
+                    text: _("... and collapsed the tunnel. He got away!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Rugnur",
+                    text: _("He can’t get far, can he?"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Baglur",
+                    text: _("Aye, the search continues."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 1,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "narrator",
+                    portrait: "portraits/thursagan.webp",
+                    text: _("You are playing a dangerous game! I gave you my answer, now leave me be!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Rugnur",
+                    text: _("You don’t want to make a sceptre to contain the power of the Ruby of Fire? It would be quite a challenge, I could see why you wouldn’t want to touch it!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "narrator",
+                    portrait: "portraits/thursagan.webp",
+                    text: _("Whoa, now! The Ruby of Fire, what is that, some worthless Wesnothian gem?"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Baglur",
+                    text: _("It is a Wesnothian gem, but it is also supposedly the most powerful magical artifact ever seen. Even an untrained hand can use it to cast fiery bolts as powerful as those of arch mages."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "narrator",
+                    portrait: "portraits/thursagan.webp",
+                    text: _("Oh, really? And what does the King of Wesnoth want us to do with it?"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Rugnur",
+                    text: _("Contain and intensify its power."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "narrator",
+                    portrait: "portraits/thursagan.webp",
+                    text: _("I see. The king would cast fire like a mage. Well, good for him. Send him my regards!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "$unit.id",
+                    text: _("He just ducked back down underground..."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:play_sound",
+                    file: "rumble.ogg",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:scroll_to",
+                    x: 4,
+                    y: -1,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:scroll_to",
+                    x: -11,
+                    y: -1,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:scroll_to",
+                    x: 4,
+                    y: 4,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:scroll_to",
+                    x: -1,
+                    y: -11,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:scroll_to",
+                    x: -1,
+                    y: 4,
+                  },
+                  {
+                    tag: "message",
+                    speaker: "$unit.id",
+                    text: _("... and collapsed the tunnel. He got away!"),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 0,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "narrator",
+                    portrait: "portraits/thursagan.webp",
+                    text: _("You people just don’t seem to understand! I’m out here because I want no part of the nonsense of kings and those who crave power!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Rugnur",
+                    text: _("No wait, I wasn’t clear! We need to contain this power, build some sort of magical cage!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Alanin",
+                    text: _("The Ruby causes madness, it is said. A magical cage that could protect the King would help us all."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Baglur",
+                    text: _("Aye, a cage, and we can’t do it on our own, Thursagan. We need your skill and expertise!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "narrator",
+                    portrait: "portraits/thursagan.webp",
+                    text: _("Hrmph, so you need to deliver this power to the king, but also seek to contain that foolish man... I see your dilemma, and I do love a challenge, so let’s build this powerful artifact. I expect it will take years."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:play_music",
+                    file: "knolls.ogg",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Baglur",
+                    text: _("Good. Now, there are still wild animals here... we have to get back into the caves."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_rand",
+                    variable: "typeofenemy",
+                    values: "Frost Stoat,Icemonax,Wolf,Wolf,Great Wolf,Troll Whelp,Troll Whelp,Troll",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_dynamic",
+                    type: "$typeofenemy",
+                    side: 2,
+                    x: 19,
+                    y: 30,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_31",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_rand",
+                    variable: "typeofenemy",
+                    values: "Frost Stoat,Icemonax,Wolf,Wolf,Great Wolf,Troll Whelp,Troll Whelp,Troll",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_dynamic",
+                    type: "$typeofenemy",
+                    side: 2,
+                    x: 1,
+                    y: 21,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_32",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_rand",
+                    variable: "typeofenemy",
+                    values: "Frost Stoat,Icemonax,Wolf,Wolf,Great Wolf,Troll Whelp,Troll Whelp,Troll",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_dynamic",
+                    type: "$typeofenemy",
+                    side: 2,
+                    x: 31,
+                    y: 21,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_33",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_rand",
+                    variable: "typeofenemy",
+                    values: "Frost Stoat,Icemonax,Wolf,Wolf,Great Wolf,Troll Whelp,Troll Whelp,Troll",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_dynamic",
+                    type: "$typeofenemy",
+                    side: 2,
+                    x: 1,
+                    y: 15,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_34",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_variable_rand",
+                    variable: "typeofenemy",
+                    values: "Frost Stoat,Icemonax,Wolf,Wolf,Great Wolf,Troll Whelp,Troll Whelp,Troll",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_dynamic",
+                    type: "$typeofenemy",
+                    side: 2,
+                    x: 32,
+                    y: 1,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_35",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:modify_turns",
+                    add: 10,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:scroll_to",
+                    x: 3,
+                    y: 27,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:add_item",
+                    x: 4,
+                    y: 28,
+                    item_name: "",
+                    image: "scenery%2Fsignpost.png",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:delay",
+                    time: 300,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:remove_item",
+                    x: 4,
+                    y: 28,
+                    item_name: "",
+                    image: "",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:add_item",
+                    x: 4,
+                    y: 28,
+                    item_name: "",
+                    image: "",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:delay",
+                    time: 300,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:add_item",
+                    x: 4,
+                    y: 28,
+                    item_name: "",
+                    image: "scenery%2Fsignpost.png",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:delay",
+                    time: 300,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:remove_item",
+                    x: 4,
+                    y: 28,
+                    item_name: "",
+                    image: "",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:add_item",
+                    x: 4,
+                    y: 28,
+                    item_name: "",
+                    image: "",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:delay",
+                    time: 300,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:add_item",
+                    x: 4,
+                    y: 28,
+                    item_name: "",
+                    image: "scenery%2Fsignpost.png",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:delay",
+                    time: 300,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:remove_item",
+                    x: 4,
+                    y: 28,
+                    item_name: "",
+                    image: "",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:add_item",
+                    x: 4,
+                    y: 28,
+                    item_name: "",
+                    image: "",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:delay",
+                    time: 300,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:add_item",
+                    x: 4,
+                    y: 28,
+                    item_name: "",
+                    image: "scenery%2Fsignpost.png",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:scroll_to",
+                    x: "$x1",
+                    y: "$y1",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:show_objectives",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: "4-7",
+            y: "24-28",
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("If we want to make this work, we will need every rune-blasted edge we can get. If I have some time to set up shop at a keep, I can prepare a little rune-craft for your troops. My goods do not come cheap though, I will not stoop to trifling apprentice-work..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 3,
+            y: 27,
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Well, we can finally get back in our caves — away from these trolls and ogres! Come on, let’s head back south, to the city."),
+          },
+          {
+            tag: "hook",
+            name: "command:remove_trait",
+            id: "Baglur",
+            trait_id: "loyal",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            canrecruit: "no",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Baglur%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Baglur",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+            side: 1,
+            clear_variable: "swiftness_rune,accuracy_rune,force_rune",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_38",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Baglur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

@@ -1,0 +1,2566 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("A Small Favor — III"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "intruders",
+        share_vision: "shroud",
+        gold: 0,
+        leader: "Malin_Keshar",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "defenders",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "intruders",
+        share_vision: "none",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "defenders",
+      },
+      {
+        tag: "map",
+        id: "scenario_07c_A_Small_Favor3",
+        file: "07c_A_Small_Favor3.map",
+      },
+      {
+        tag: "unit",
+        id: "Malin_Keshar",
+        type: "Malin Keshar",
+        side: 1,
+        x: 30,
+        y: 14,
+        name: _("Malin Keshar"),
+      },
+      {
+        tag: "unit",
+        id: "u_1",
+        type: "Silver Mage",
+        side: 2,
+        x: 10,
+        y: 8,
+      },
+      {
+        tag: "unit",
+        id: "u_2",
+        type: "Silver Mage",
+        side: 2,
+        x: 12,
+        y: 6,
+      },
+      {
+        tag: "event",
+        id: "hide_side_2",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_42",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 100,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.8,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,,,0,20,%7B%22id%22%3A%5B%22Darken%20Volk%22%5D%7D;goal,,,0,20,%7B%22id%22%3A%5B%22Darken%20Volk%22%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_43",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Malin_Keshar",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_44",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 18,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Retrieve the book and escape Escape via the tunnel in the northeast cellar Escape via the tunnel in the northeast cellar Escape the manor (Malin reaches the tunnel in the northeast cellar before Darken Volk)"),
+        defeat: _("Death of Malin Keshar Death of Darken Volk Turns run out Death of Malin Keshar Death of Darken Volk Turns run out Death of Malin Keshar Death of Darken Volk Turns run out Darken Volk reaches the tunnel before Malin does Death of Malin Keshar Death of Darken Volk Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_city_falls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_king_is_dead.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%2C3%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EPr*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EPr%2Fo%2C*%5EPr%5C%5Co%2C*%5EPr%7Co%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "door_to_open",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22*%5EPr*%22%2C%22variable%22%3A%22door_to_open%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent_location%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "$door_to_open.terrain|o",
+            cells: "$door_to_open.x,$door_to_open.y",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "items%2Fbook5.png",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22guardtypetable%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Shock%20Trooper%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Spearman%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Duelist%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Pikeman%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Swordsman%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Swordsman%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Pikeman%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Duelist%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Heavy%20Infantryman%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Spearman%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Fencer%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22magetypetable%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Mage%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22White%20Mage%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Mage%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Red%20Mage%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Red%20Mage%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22White%20Mage%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Red%20Mage%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Mage%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Mage%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22type%22%3A%22Mage%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_0",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Urb%2CUrb%5EE*%2CUr%2CUr%5EE*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2227-35%22%2C%22y%22%3A%221-7%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2220-35%2C24%22%2C%22y%22%3A%2216-20%2C15%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2225-29%22%2C%22y%22%3A%2213-20%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2230-35%22%2C%22y%22%3A%2211-20%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_2",
+            value: 7,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_2",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_0",
+                variable: "_mwg_random_pick_1",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$guardtypetable[$($loc.n % $guardtypetable.length)].type",
+                side: 2,
+                id: "Unit",
+                x: "",
+                y: "po:",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_2",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_3",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Urb%2CUrb%5EE*%2CUr%2CUr%5EE*%2CIsr%2CIsr%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2227-35%22%2C%22y%22%3A%221-7%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2220-35%2C24%22%2C%22y%22%3A%2216-20%2C15%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2225-29%22%2C%22y%22%3A%2213-20%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2230-35%22%2C%22y%22%3A%2211-20%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_5",
+            value: 7,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_5",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_3",
+                variable: "_mwg_random_pick_4",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$magetypetable[$($loc.n % $magetypetable.length)].type",
+                side: 2,
+                x: "$loc.x",
+                y: "$loc.y",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_5",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "hasBook",
+            value: "none",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Darken Volk",
+            unit: "Darken Volk",
+            x: 26,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            side: 3,
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Darken%20Volk%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Darken Volk",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "units_inside_manor",
+            kill: "no",
+          },
+          {
+            tag: "foreach",
+            variable: "units_inside_manor",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:recall_unit",
+                id: "$this_item.id",
+                unit: "$this_item.id",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24this_item.id%22%7D%2C%22children%22%3A%5B%5D%7D",
+                id: "$this_item.id",
+                object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Draug",
+            side: 3,
+            x: 25,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Deathblade",
+            side: 3,
+            x: 25,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Necrophage",
+            side: 3,
+            x: 25,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Banebow",
+            side: 3,
+            x: 25,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "message",
+            speaker: "Darken Volk",
+            text: _("The book is very close, somewhere to the northwest."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_7",
+        on: "branch_if_7",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            greater_than: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "dest",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22location_id%22%3A%22book_start%22%2C%22variable%22%3A%22dest%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_8",
+        on: "branch_if_8",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            less_than_or_equal_to: 4,
+          },
+          {
+            tag: "set_variable",
+            name: "dest.x",
+            value: 16,
+          },
+          {
+            tag: "set_variable",
+            name: "dest.y",
+            value: 14,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_6",
+        on: "branch_if_6",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "hasBook",
+            equals: "none",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_7",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_8",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_9",
+        on: "branch_if_9",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "hasBook",
+            not_equals: "none",
+          },
+          {
+            tag: "set_variable",
+            name: "dest.x",
+            value: 31,
+          },
+          {
+            tag: "set_variable",
+            name: "dest.y",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_10",
+        on: "branch_if_10",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "darken_goto.step.length",
+            greater_than: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "index",
+            value: "$(min($stored_Darken.max_moves,$darken_goto.step.length-1))",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_Darken.goto_x",
+            value: "$darken_goto.step[$index].x",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_Darken.goto_y",
+            value: "$darken_goto.step[$index].y",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_11",
+        on: "branch_if_11",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "darken_goto.step.length",
+            less_than_or_equal_to: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_Darken.goto_x",
+            value: "$dest.x",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_Darken.goto_y",
+            value: "$dest.y",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_Darken",
+            kill: "no",
+            id: "Darken Volk",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_6",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_9",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_10",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_11",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "stored_Darken",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 3,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "hasBook",
+                equals: "none",
+              },
+              {
+                tag: "have_unit",
+                side: 3,
+              },
+              {
+                tag: "predicate",
+                name: "unit_exists",
+                exists: "no",
+                side: 2,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22location_id%22%3A%22book_start%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            greater_than_or_equal_to: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "0..2",
+          },
+          {
+            tag: "switch",
+            variable: "random",
+            children: [
+              {
+                tag: "case",
+                equals: 0,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_6",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_8",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_8",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_6",
+                        variable: "_mwg_random_pick_7",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$guardtypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$guardtypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_8",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_9",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_11",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_11",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_9",
+                        variable: "_mwg_random_pick_10",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$guardtypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$guardtypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_11",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 1,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_12",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_14",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_14",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_12",
+                        variable: "_mwg_random_pick_13",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$magetypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$magetypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_14",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_15",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_17",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_17",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_15",
+                        variable: "_mwg_random_pick_16",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$guardtypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$guardtypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_17",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 2,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_18",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_20",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_20",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_18",
+                        variable: "_mwg_random_pick_19",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$guardtypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$guardtypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_20",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_21",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_23",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_23",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_21",
+                        variable: "_mwg_random_pick_22",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$magetypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$magetypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_23",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_mod",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "0..3",
+          },
+          {
+            tag: "switch",
+            variable: "random",
+            children: [
+              {
+                tag: "case",
+                equals: 0,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_24",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_26",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_26",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_24",
+                        variable: "_mwg_random_pick_25",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$guardtypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$guardtypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_26",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 1,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_27",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_29",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_29",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_27",
+                        variable: "_mwg_random_pick_28",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$guardtypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$guardtypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_29",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_30",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_32",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_32",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_30",
+                        variable: "_mwg_random_pick_31",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$guardtypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$guardtypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_32",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 2,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_33",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_35",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_35",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_33",
+                        variable: "_mwg_random_pick_34",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$magetypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$magetypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_35",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 3,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_36",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_38",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_38",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_36",
+                        variable: "_mwg_random_pick_37",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$guardtypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$guardtypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_38",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_39",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_41",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_41",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_39",
+                        variable: "_mwg_random_pick_40",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$magetypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$magetypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_41",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            greater_than_or_equal_to: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "turn_mod",
+            value: "$(($turn_number - 6) % 2)",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_18",
+        on: "branch_if_18",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_mod",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "0..3",
+          },
+          {
+            tag: "switch",
+            variable: "random",
+            children: [
+              {
+                tag: "case",
+                equals: 0,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_42",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_44",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_44",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_42",
+                        variable: "_mwg_random_pick_43",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$guardtypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$guardtypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_44",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_45",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_47",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_47",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_45",
+                        variable: "_mwg_random_pick_46",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$guardtypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$guardtypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_47",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 1,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_48",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_50",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_50",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_48",
+                        variable: "_mwg_random_pick_49",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$guardtypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$guardtypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_50",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 2,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_51",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_53",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_53",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_51",
+                        variable: "_mwg_random_pick_52",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$magetypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$magetypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_53",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 3,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_54",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_56",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_56",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_54",
+                        variable: "_mwg_random_pick_55",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$guardtypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$guardtypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_56",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:store_locations",
+                    variable: "_mwg_random_locations_57",
+                    filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233-34%2C35%22%2C%22y%22%3A%2217-18%2C18-19%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "_mwg_random_remaining_59",
+                    value: 1,
+                  },
+                  {
+                    tag: "while",
+                    children: [
+                      {
+                        tag: "condition",
+                        variable: "_mwg_random_remaining_59",
+                        greater_than: 0,
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:random_location",
+                        source: "_mwg_random_locations_57",
+                        variable: "_mwg_random_pick_58",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_rand",
+                        variable: "ind",
+                        values: "1..$magetypetable.length",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "ind",
+                        value: 1,
+                        mode: "sub",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:spawn_dynamic",
+                        type: "$magetypetable[$ind].type",
+                        side: 4,
+                        x: "$loc.x",
+                        y: "$loc.y",
+                      },
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "_mwg_random_remaining_59",
+                        value: -1,
+                        mode: "add",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            greater_than_or_equal_to: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "turn_mod",
+            value: "$(($turn_number - 2) % 3)",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_18",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_14",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_15",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "city_guard_dialogue",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "city_guard_dialogue2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "city_guard_dialogue",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "turn_number",
+                equals: 2,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Darken Volk",
+            text: _("The guards continue to pursue us."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "city_guard_dialogue2",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "turn_number",
+                equals: 10,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("The guards are catching up to us."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 14,
+            y: 9,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("<i>Beware that, when fighting monsters, you yourself do not become a monster...</i>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 6,
+            y: 10,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("<i>Death is the twilight that follows the light of day. Life fades with the setting sun into darkness. Existence churns and the soul is reborn into endless night.</i>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 17,
+            y: 3,
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("There are quite a few failed potions around here."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 21,
+            y: 11,
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("This coffin is empty."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "19,22,24",
+            y: "12,10,11",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22Malin%20Keshar%22%2C%22message%22%3A%22Be%20careful%20around%20those%20urns.%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Be careful around those urns."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 10,
+            y: 16,
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Fancy, but I’ve no use for a new cloak right now."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            type: "Draug",
+            x: 26,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "skeleton-big-hit-1.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 27,
+            y: 9,
+            item_name: "",
+            image: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            type: "Banebow",
+            x: 28,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "skeleton-big-hit-2.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 29,
+            y: 9,
+            item_name: "",
+            image: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            type: "Banebow",
+            x: 29,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "skeleton-big-hit-1.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 30,
+            y: 9,
+            item_name: "",
+            image: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            type: "Chocobone",
+            x: 26,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "skeleton-big-hit-3.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 27,
+            y: 10,
+            item_name: "",
+            image: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22canrecruit%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22location_id%22%3A%22book_start%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "hasBook",
+                equals: "none",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: "28-31",
+            y: "0-2",
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Let’s get out of here."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Malin%20Keshar%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22location_id%22%3A%22book_start%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "hasBook",
+                equals: "none",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "hasBook",
+            value: "Malin",
+            mode: "value",
+          },
+          {
+            tag: "message",
+            speaker: "Darken Volk",
+            text: _("Hand that over."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Can’t it wait until we’re away from all these guards?"),
+          },
+          {
+            tag: "message",
+            speaker: "Darken Volk",
+            text: _("... Fine. There is a small tunnel in the cellar to the northeast. It will lead us far enough out of the city that we can escape pursuit."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "Darken Volk",
+            side: 3,
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("We’ve got the book, but how do we get out of here?"),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Darken Volk",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Wait, you aren’t leaving me behind, are you?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: "29-30",
+            y: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Darken Volk",
+            text: _("You have served me well, boy."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("As he heads into the tunnel, Darken Volk collapses the entrance, leaving Malin to be captured and executed by the city guards."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: "28-31",
+            y: "0-2",
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Let’s get out of here."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Darken%20Volk%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22location_id%22%3A%22book_start%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "hasBook",
+                equals: "none",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "hasBook",
+            value: "Darken",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_38",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: "28-32",
+            ys: "-1-3",
+          },
+          {
+            tag: "spawn",
+            id: "RGuard",
+            type: "Royal Guard",
+            side: 4,
+            x: 31,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "RGuard",
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Pikeman",
+            side: 4,
+            x: 29,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Longbowman",
+            side: 4,
+            x: 29,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Swordsman",
+            side: 4,
+            x: 30,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+          {
+            tag: "spawn",
+            id: "u_10",
+            type: "Mage of Light",
+            side: 4,
+            x: 30,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_10",
+          },
+          {
+            tag: "message",
+            speaker: "RGuard",
+            text: _("Surround those necromancers! They cannot escape now!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_39",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Darken Volk",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.side",
+                value: 1,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Malin%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I’m not ready to die yet..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_41",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Darken%20Volk%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! I was so close... to achieving my goal... of so many years..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

@@ -1,0 +1,1443 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Ka’lian"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Haldric",
+        gold: 0,
+        leader: "Prince_Haldric",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "Elves",
+        leader: "Lady_Dionli",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "Elves",
+        leader: "Lord_Logalmier",
+      },
+      {
+        tag: "side",
+        id: 4,
+        team_name: "Elves",
+        leader: "Lord_Aryad",
+      },
+      {
+        tag: "map",
+        id: "scenario_16_The_Kalian",
+        file: "16_The_Kalian.map",
+      },
+      {
+        tag: "unit",
+        id: "Prince_Haldric",
+        type: "Noble Commander",
+        side: 1,
+        x: 13,
+        y: 14,
+        name: _("Prince Haldric"),
+      },
+      {
+        tag: "unit",
+        id: "Lady_Dionli",
+        type: "Autumn Shyde",
+        side: 2,
+        x: 11,
+        y: 12,
+        name: _("Lady Dionli"),
+      },
+      {
+        tag: "unit",
+        id: "Lord_Logalmier",
+        type: "Elvish Champion Kalian",
+        side: 3,
+        x: 13,
+        y: 10,
+        name: _("Lord Logalmier"),
+      },
+      {
+        tag: "unit",
+        id: "Lord_Aryad",
+        type: "Elvish Sharpshooter",
+        side: 4,
+        x: 15,
+        y: 12,
+        name: _("Lord Aryad"),
+      },
+      {
+        tag: "event",
+        id: "carryover_20",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_21",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Prince_Haldric,Lady_Dionli,Lord_Logalmier,Lord_Aryad,Lord_El_Isomithir,Commander_Aethyr",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_22",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 30,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _(""),
+        defeat: _(""),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "traveling_minstrels.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Lady Jessene",
+            unit: "Lady Jessene",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Burin the Lost",
+            unit: "Burin the Lost",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sir Ruddry",
+            unit: "Sir Ruddry",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sir Ladoc",
+            unit: "Sir Ladoc",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Minister Edren",
+            unit: "Minister Edren",
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "Prince Haldric",
+            x: 13,
+            y: 21,
+            to_x: 12,
+            to_y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "Lady Jessene",
+            x: 15,
+            y: 20,
+            to_x: 14,
+            to_y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "Burin the Lost",
+            x: 11,
+            y: 21,
+            to_x: 10,
+            to_y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "Sir Ruddry",
+            x: 12,
+            y: 21,
+            to_x: 11,
+            to_y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "Sir Ladoc",
+            x: 12,
+            y: 21,
+            to_x: 11,
+            to_y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:teleport",
+            id: "Minister Edren",
+            x: 15,
+            y: 22,
+            to_x: 14,
+            to_y: 21,
+          },
+          {
+            tag: "spawn",
+            id: "Lord_El_Isomithir",
+            type: "Elvish Marshal",
+            side: 4,
+            x: 12,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Lord_El_Isomithir",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Lord_El_Isomithir",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_4",
+        on: "branch_if_4",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "the_dragon",
+          },
+          {
+            tag: "message",
+            speaker: "Lord Logalmier",
+            text: _("I fear my kin are too easy on you. I decree that you should be made to fight the Dragon of the Green Swamp and its saurian minions. If you can defeat him, you will have truly earned your place in this land."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_5",
+        on: "branch_if_5",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "a_beach",
+          },
+          {
+            tag: "message",
+            speaker: "Lady Dionli",
+            text: _("There is a group of saurians, friends of the dragon I’m sure, who are trading metal with the nagas of the sea. We should put a stop to this. They are located on a beach near here."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_6",
+        on: "branch_if_6",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "troll_hole",
+          },
+          {
+            tag: "message",
+            speaker: "Lord Aryad",
+            text: _("We are having a problem with a troll-hole in the Brown Hills. While I find the thought of those dwarves stumbling on the trolls vaguely amusing, this should make an adequate quest for you."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_7",
+        on: "branch_if_7",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "cursed_isle",
+          },
+          {
+            tag: "message",
+            speaker: "Lord El'Isomithir",
+            text: _("Long ago, a clan of elves on the Isle of Tears fell under the sway of a dark curse. Their souls still haunt that place and no elf will go there. You should clear this isle, and put their souls to rest."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "_opt0",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-annoyed.webp",
+            text: _("Lord Logalmier, I shall defeat your dragon."),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-rise-of-wesnoth-17a",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "_opt1",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-mad.webp",
+            text: _("Those cold blooded monsters will feel my wrath!"),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-rise-of-wesnoth-17b",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "_opt2",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("So what exactly is a troll?"),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-rise-of-wesnoth-17c",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "_opt3",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-annoyed.webp",
+            text: _("Undead. Bah! We’re pros at fighting them."),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-rise-of-wesnoth-17d",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_8",
+        on: "branch_if_8",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "the_dragon",
+          },
+          {
+            tag: "message",
+            speaker: "Lord Logalmier",
+            text: _("I fear my kin are too easy on you. I decree that you should be made to fight the Dragon of the Green Swamp and its saurian minions. If you can defeat him, you will have truly earned your place in this land."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_9",
+        on: "branch_if_9",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "a_beach",
+          },
+          {
+            tag: "message",
+            speaker: "Lady Dionli",
+            text: _("There is a group of saurians, friends of the dragon I’m sure, who are trading metal with the nagas of the sea. We should put a stop to this. They are located on a beach near here."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_10",
+        on: "branch_if_10",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "troll_hole",
+          },
+          {
+            tag: "message",
+            speaker: "Lord Aryad",
+            text: _("We are having a problem with a troll-hole in the Brown Hills. While I find the thought of those dwarves stumbling on the trolls vaguely amusing, this should make an adequate quest for you."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_11",
+        on: "branch_if_11",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "cursed_isle",
+          },
+          {
+            tag: "message",
+            speaker: "Lord El'Isomithir",
+            text: _("Long ago, a clan of elves on the Isle of Tears fell under the sway of a dark curse. Their souls still haunt that place and no elf will go there. You should clear this isle, and put their souls to rest."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "_opt0",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-annoyed.webp",
+            text: _("Lord Logalmier, I shall defeat your dragon."),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-rise-of-wesnoth-17a",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "_opt1",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-mad.webp",
+            text: _("Those cold blooded monsters will feel my wrath!"),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-rise-of-wesnoth-17b",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "_opt2",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("So what exactly is a troll?"),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-rise-of-wesnoth-17c",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "_opt3",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-annoyed.webp",
+            text: _("Undead. Bah! We’re pros at fighting them."),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-rise-of-wesnoth-17d",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "the_dragon",
+          },
+          {
+            tag: "message",
+            speaker: "Lord Logalmier",
+            text: _("I fear my kin are too easy on you. I decree that you should be made to fight the Dragon of the Green Swamp and its saurian minions. If you can defeat him, you will have truly earned your place in this land."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "a_beach",
+          },
+          {
+            tag: "message",
+            speaker: "Lady Dionli",
+            text: _("There is a group of saurians, friends of the dragon I’m sure, who are trading metal with the nagas of the sea. We should put a stop to this. They are located on a beach near here."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "troll_hole",
+          },
+          {
+            tag: "message",
+            speaker: "Lord Aryad",
+            text: _("We are having a problem with a troll-hole in the Brown Hills. While I find the thought of those dwarves stumbling on the trolls vaguely amusing, this should make an adequate quest for you."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "cursed_isle",
+          },
+          {
+            tag: "message",
+            speaker: "Lord El'Isomithir",
+            text: _("Long ago, a clan of elves on the Isle of Tears fell under the sway of a dark curse. Their souls still haunt that place and no elf will go there. You should clear this isle, and put their souls to rest."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "_opt0",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-annoyed.webp",
+            text: _("Lord Logalmier, I shall defeat your dragon."),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-rise-of-wesnoth-17a",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "_opt1",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-mad.webp",
+            text: _("Those cold blooded monsters will feel my wrath!"),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-rise-of-wesnoth-17b",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "_opt2",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("So what exactly is a troll?"),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-rise-of-wesnoth-17c",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "_opt3",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-annoyed.webp",
+            text: _("Undead. Bah! We’re pros at fighting them."),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-rise-of-wesnoth-17d",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "the_dragon",
+          },
+          {
+            tag: "message",
+            speaker: "Lord Logalmier",
+            text: _("I fear my kin are too easy on you. I decree that you should be made to fight the Dragon of the Green Swamp and its saurian minions. If you can defeat him, you will have truly earned your place in this land."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "a_beach",
+          },
+          {
+            tag: "message",
+            speaker: "Lady Dionli",
+            text: _("There is a group of saurians, friends of the dragon I’m sure, who are trading metal with the nagas of the sea. We should put a stop to this. They are located on a beach near here."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_18",
+        on: "branch_if_18",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "troll_hole",
+          },
+          {
+            tag: "message",
+            speaker: "Lord Aryad",
+            text: _("We are having a problem with a troll-hole in the Brown Hills. While I find the thought of those dwarves stumbling on the trolls vaguely amusing, this should make an adequate quest for you."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_19",
+        on: "branch_if_19",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "cursed_isle",
+          },
+          {
+            tag: "message",
+            speaker: "Lord El'Isomithir",
+            text: _("Long ago, a clan of elves on the Isle of Tears fell under the sway of a dark curse. Their souls still haunt that place and no elf will go there. You should clear this isle, and put their souls to rest."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "_opt0",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-annoyed.webp",
+            text: _("Lord Logalmier, I shall defeat your dragon."),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-rise-of-wesnoth-17a",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "_opt1",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-mad.webp",
+            text: _("Those cold blooded monsters will feel my wrath!"),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-rise-of-wesnoth-17b",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "_opt2",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("So what exactly is a troll?"),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-rise-of-wesnoth-17c",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "_opt3",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-annoyed.webp",
+            text: _("Undead. Bah! We’re pros at fighting them."),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-rise-of-wesnoth-17d",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Haldric and his companions find themselves before the Ka’lian, or the Council of Elven Lords."),
+          },
+          {
+            tag: "switch",
+            variable: "num_done",
+            children: [
+              {
+                tag: "case",
+                equals: 0,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Lord Logalmier",
+                    text: _("Dionli, why have you brought these humans before us?"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lady Dionli",
+                    text: _("They are of the same people as the Prince of Southbay. They come as refugees. I can see a use for them."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lord Aryad",
+                    text: _("What use would that be? What need could we have for the shortliveds here?"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lady Dionli",
+                    text: _("The dwarves have come to the Brown Hills. While they live long, even they grow like weeds when in an empty field. There is trouble brewing."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lady Dionli",
+                    text: _("It is better to be the greater of three than the lesser of two. The Prince of Southbay was good, he was a credit to his people. Maybe these ones are made of the same stuff."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lord El'Isomithir",
+                    text: _("But why then do they come as refugees? Speak, human."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Prince Haldric",
+                    text: _("Our people come in peace. There was a war in our homeland. We are refugees. We come seeking a new home, since our island to the west and north is now forfeit."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lord El'Isomithir",
+                    text: _("So you come to steal our land? We know your kind, humans of the west-north."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Prince Haldric",
+                    text: _("We only wish to live in peace. The dwarves are peoples of mountain and hill, the elves are people of the forests, we only seek some of the space in between."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lady Dionli",
+                    text: _("I suggest that we grant these humans the plains to the north and south of the Great River."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lord Aryad",
+                    text: _("They should be put to the test before such a grant is made."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lord El'Isomithir",
+                    text: _("A quest for each of us then?"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lady Dionli",
+                    text: _("Agreed."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lord Aryad",
+                    text: _("Agreed."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lord Logalmier",
+                    text: _("Agreed. (<i>Sigh</i>)"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Prince Haldric",
+                    text: _("Umm, agreed."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lord Aryad",
+                    text: _("Well then, human. Each of us lords has a specific quest for you. If you complete them all you will be granted all of the plains in our domain and the hills south of the Great River; if not you will be forced to depart. So, which quest do you wish to undertake first?"),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_4",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_5",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_6",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_7",
+                  },
+                  {
+                    tag: "dialogue",
+                    children: [
+                      {
+                        tag: "message",
+                        speaker: "Prince Haldric",
+                        text: _("In the name of peace between our peoples:"),
+                      },
+                      {
+                        tag: "choice",
+                        text: _("I think I’ll fight the dragon!"),
+                        event: "_opt0",
+                      },
+                      {
+                        tag: "choice",
+                        text: _("Let’s get those saurians and nagas on that beach!"),
+                        event: "_opt1",
+                      },
+                      {
+                        tag: "choice",
+                        text: _("Let’s clear out that troll hole!"),
+                        event: "_opt2",
+                      },
+                      {
+                        tag: "choice",
+                        text: _("Let’s put those souls on the cursed isle to rest!"),
+                        event: "_opt3",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 1,
+                children: [
+                  {
+                    tag: "switch",
+                    variable: "last_done",
+                    children: [
+                      {
+                        tag: "case",
+                        equals: "Dragon",
+                        children: [
+                          {
+                            tag: "message",
+                            speaker: "Lord Logalmier",
+                            text: _("Ahh, you have defeated the dragon, man of the west-north, you are truly impressive for a human."),
+                          },
+                        ],
+                      },
+                      {
+                        tag: "case",
+                        equals: "Hole",
+                        children: [
+                          {
+                            tag: "message",
+                            speaker: "Lord Aryad",
+                            text: _("So, you have defeated the trolls. Welcome back, Haldric."),
+                          },
+                        ],
+                      },
+                      {
+                        tag: "case",
+                        equals: "Isle",
+                        children: [
+                          {
+                            tag: "message",
+                            speaker: "Lord El'Isomithir",
+                            text: _("Finally, the souls of our poor kin may rest. Thank you."),
+                          },
+                        ],
+                      },
+                      {
+                        tag: "case",
+                        equals: "Beach",
+                        children: [
+                          {
+                            tag: "message",
+                            speaker: "Lady Dionli",
+                            text: _("Our beaches are free again. I knew I could trust you, Haldric."),
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lord Logalmier",
+                    text: _("Very good, but this is just the start, human. There is still much more for you to do."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_8",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_9",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_10",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_11",
+                  },
+                  {
+                    tag: "dialogue",
+                    children: [
+                      {
+                        tag: "message",
+                        speaker: "Prince Haldric",
+                        text: _("In the name of peace between our peoples:"),
+                      },
+                      {
+                        tag: "choice",
+                        text: _("I think I’ll fight the dragon!"),
+                        event: "_opt0",
+                      },
+                      {
+                        tag: "choice",
+                        text: _("Let’s get those saurians and nagas on that beach!"),
+                        event: "_opt1",
+                      },
+                      {
+                        tag: "choice",
+                        text: _("Let’s clear out that troll hole!"),
+                        event: "_opt2",
+                      },
+                      {
+                        tag: "choice",
+                        text: _("Let’s put those souls on the cursed isle to rest!"),
+                        event: "_opt3",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 2,
+                children: [
+                  {
+                    tag: "switch",
+                    variable: "last_done",
+                    children: [
+                      {
+                        tag: "case",
+                        equals: "Dragon",
+                        children: [
+                          {
+                            tag: "message",
+                            speaker: "Lord Logalmier",
+                            text: _("Ahh, you have defeated the dragon, man of the west-north, you are truly impressive for a human."),
+                          },
+                        ],
+                      },
+                      {
+                        tag: "case",
+                        equals: "Hole",
+                        children: [
+                          {
+                            tag: "message",
+                            speaker: "Lord Aryad",
+                            text: _("So, you have defeated the trolls. Welcome back, Haldric."),
+                          },
+                        ],
+                      },
+                      {
+                        tag: "case",
+                        equals: "Isle",
+                        children: [
+                          {
+                            tag: "message",
+                            speaker: "Lord El'Isomithir",
+                            text: _("Finally, the souls of our poor kin may rest. Thank you."),
+                          },
+                        ],
+                      },
+                      {
+                        tag: "case",
+                        equals: "Beach",
+                        children: [
+                          {
+                            tag: "message",
+                            speaker: "Lady Dionli",
+                            text: _("Our beaches are free again. I knew I could trust you, Haldric."),
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lord Logalmier",
+                    text: _("You are victorious again. You may yet earn your place in this land."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_12",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_13",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_14",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_15",
+                  },
+                  {
+                    tag: "dialogue",
+                    children: [
+                      {
+                        tag: "message",
+                        speaker: "Prince Haldric",
+                        text: _("In the name of peace between our peoples:"),
+                      },
+                      {
+                        tag: "choice",
+                        text: _("I think I’ll fight the dragon!"),
+                        event: "_opt0",
+                      },
+                      {
+                        tag: "choice",
+                        text: _("Let’s get those saurians and nagas on that beach!"),
+                        event: "_opt1",
+                      },
+                      {
+                        tag: "choice",
+                        text: _("Let’s clear out that troll hole!"),
+                        event: "_opt2",
+                      },
+                      {
+                        tag: "choice",
+                        text: _("Let’s put those souls on the cursed isle to rest!"),
+                        event: "_opt3",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 3,
+                children: [
+                  {
+                    tag: "switch",
+                    variable: "last_done",
+                    children: [
+                      {
+                        tag: "case",
+                        equals: "Dragon",
+                        children: [
+                          {
+                            tag: "message",
+                            speaker: "Lord Logalmier",
+                            text: _("Ahh, you have defeated the dragon, man of the west-north, you are truly impressive for a human."),
+                          },
+                        ],
+                      },
+                      {
+                        tag: "case",
+                        equals: "Hole",
+                        children: [
+                          {
+                            tag: "message",
+                            speaker: "Lord Aryad",
+                            text: _("So, you have defeated the trolls. Welcome back, Haldric."),
+                          },
+                        ],
+                      },
+                      {
+                        tag: "case",
+                        equals: "Isle",
+                        children: [
+                          {
+                            tag: "message",
+                            speaker: "Lord El'Isomithir",
+                            text: _("Finally, the souls of our poor kin may rest. Thank you."),
+                          },
+                        ],
+                      },
+                      {
+                        tag: "case",
+                        equals: "Beach",
+                        children: [
+                          {
+                            tag: "message",
+                            speaker: "Lady Dionli",
+                            text: _("Our beaches are free again. I knew I could trust you, Haldric."),
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lord Logalmier",
+                    text: _("Ahh, my young prince, you’re not as soft as I thought."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_16",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_17",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_18",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_19",
+                  },
+                  {
+                    tag: "dialogue",
+                    children: [
+                      {
+                        tag: "message",
+                        speaker: "Prince Haldric",
+                        text: _("In the name of peace between our peoples:"),
+                      },
+                      {
+                        tag: "choice",
+                        text: _("I think I’ll fight the dragon!"),
+                        event: "_opt0",
+                      },
+                      {
+                        tag: "choice",
+                        text: _("Let’s get those saurians and nagas on that beach!"),
+                        event: "_opt1",
+                      },
+                      {
+                        tag: "choice",
+                        text: _("Let’s clear out that troll hole!"),
+                        event: "_opt2",
+                      },
+                      {
+                        tag: "choice",
+                        text: _("Let’s put those souls on the cursed isle to rest!"),
+                        event: "_opt3",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 4,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Lady Dionli",
+                    text: _("You were successful, Prince Haldric. I knew you could do it."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lord Logalmier",
+                    text: _("Man of the west-north, you have earned your place on this great continent."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lord Aryad",
+                    text: _("As per our agreement, you and your people—"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lord El'Isomithir",
+                    text: _("—may stay."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lord Logalmier",
+                    text: _("We hereby grant you the plains to the north of the Great River, and the plains and hills to the south of the Great River. Be kind to the land. In a time of need we may call upon you, remember our generosity."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Prince Haldric",
+                    text: _("Fair enough. I decree a ‘Pact of Mutual Aid’ between our peoples. But— aren’t you setting us in conflict with the dwarves?"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lord Logalmier",
+                    text: _("No. The dwarves have returned to the north. But humans mine as well, no? They are your resources to guard now. In the future we would be willing to trade with you."),
+                  },
+                  {
+                    tag: "spawn",
+                    id: "Commander_Aethyr",
+                    type: "Lieutenant",
+                    side: 1,
+                    x: 18,
+                    y: 23,
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:spawn_unit",
+                    unit: "Commander_Aethyr",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:make_loyal",
+                    unit: "Commander_Aethyr",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:delay",
+                    time: 500,
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lord Logalmier",
+                    text: _("Who is this?"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Prince Haldric",
+                    text: _("It’s Commander Aethyr, of Clearwater Port. I was sure you perished in the fighting there."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Commander Aethyr",
+                    text: _("No, sir. I was leading the final survivors of Clearwater Port. We were making our last stand at the lighthouse when one of your ships came. One of my men conked me on the head, then I woke up at sea."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Commander Aethyr",
+                    text: _("I come bearing news. Some ‘old friends’ have decided to make an appearance. You should go ‘greet’ them."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Lady Jessene",
+                    text: _("<small>(_I fear our friend has said too much. You go on ahead, I’ll catch up with you.)</small>"),
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "__next_scenario",
+                    value: "the-rise-of-wesnoth-18",
+                  },
+                  {
+                    tag: "win",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]

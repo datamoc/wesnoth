@@ -1,0 +1,1148 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Squidville"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good",
+        gold: 0,
+        leader: "Mal_Keshar",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "monster",
+        gold: 0,
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "monster",
+        gold: 0,
+      },
+      {
+        tag: "map",
+        id: "scenario_11_Squidville",
+        file: "11_Squidville.map",
+      },
+      {
+        tag: "unit",
+        id: "Mal_Keshar",
+        type: "Mal Keshar",
+        side: 1,
+        x: 6,
+        y: 2,
+        name: _("Mal Keshar"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_2",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_14",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.2,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: 0.8,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_15",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Mal_Keshar",
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Hunt down Inky"),
+        defeat: _(""),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "nunc_dimittis.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "underground.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "did_soul_eater_die1",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22ability%22%3A%22did_soul_eater1%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: 4,
+            animate: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x2%22%2C%22y%22%3A%22%24y2%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "did_soul_eater_die2",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22ability%22%3A%22did_soul_eater2%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: 8,
+            animate: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x2%22%2C%22y%22%3A%22%24y2%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "did_soul_eater_die3",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22ability%22%3A%22did_soul_eater3%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: 12,
+            animate: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x2%22%2C%22y%22%3A%22%24y2%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "runit",
+            kill: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:harm_unit",
+            amount: 1,
+            kill: "no",
+            animate: "no",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22ability%22%3A%22did_starving%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "set_variable",
+            name: "squidVille",
+            value: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "inkyVille",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mal%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Mal Keshar",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22movement_costs%22%2C%22movementCosts%22%3A%7B%22shallow_water%22%3A1%2C%22deep_water%22%3A2%7D%2C%22replace%22%3Atrue%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("This cuttlefish will not escape me any longer! Hunt her down!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Mal Keshar",
+            x: 3,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 550,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 350,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 350,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 350,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 350,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("..."),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Right, I got dragged down here without any of my minions. I suppose I will have to do this myself."),
+          },
+          {
+            tag: "set_variable",
+            name: "foundInky",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "10,14",
+            y: "3,2",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Tentacle of the Deep",
+            side: 2,
+            x: 10,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Tentacle of the Deep",
+            side: 2,
+            x: 11,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Tentacle of the Deep",
+            side: 2,
+            x: 13,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Tentacle of the Deep",
+            side: 2,
+            x: 14,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Tentacle of the Deep",
+            side: 2,
+            x: 15,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Why are these tentacles so large..?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 19,
+            y: 25,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("(<i>huff huff huff</i>)"),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("..."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("I can see... the colors of the universe..!"),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("The stars go whirly whirl and turn into..."),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("... glowy mushrooms lighting up this dank gloom, blue and green, loomy bloomy big shroomy..."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("... hi hi ho ho the shrooms go marching lo..."),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("... wait for me shroomies..!"),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Mal Keshar",
+            x: 18,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 17,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Mal Keshar",
+            x: 17,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 16,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Mal Keshar",
+            x: 16,
+            y: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("(<i>huff huff</i>)"),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("... wait what am I doing? A skeleton cannot taste or smell or eat anything. These shrooms do not work on me. Do you think I am a fool? Am I just some kind of bad actor hired for amusement? What kind of sadistic higher power makes poor old lonely liches like me suffer so much just for the sake of entertainment? How revolting. I hope your sick enjoyment at my predicament is worth it, you monster."),
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Mal Keshar",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 18,
+            y: 28,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "zombie-hit-1.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "zombie-hit-5.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 600,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "zombie-attack.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 600,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "zombie-hit-3.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 800,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("... what a horrendous pile of flesh. Even for a ghoul, this thing is beyond disgusting. Maybe I can send it to a quick death against all those Foolish Heroes."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "2,4,11,5,12,3,10,16,12,19",
+            y: "20,21,19,17,18,14,15,17,13,13",
+          },
+          {
+            tag: "switch",
+            variable: "inkyVille",
+            children: [
+              {
+                tag: "case",
+                equals: 1,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:play_sound",
+                    file: "water-blast.wav",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("You are not the creature I seek!"),
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "inkyVille",
+                    value: 2,
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 2,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:play_sound",
+                    file: "mud-glob.ogg",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("Oh for the love of... not these slimy things again..."),
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "inkyVille",
+                    value: 3,
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 3,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:play_sound",
+                    file: "water-blast.wav",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "inkyVille",
+                    value: 4,
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 4,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:play_sound",
+                    file: "water-blast.wav",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("... wait a second, is this creature even supposed to live in this kind of habitat?"),
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "inkyVille",
+                    value: 5,
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 5,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:play_sound",
+                    file: "water-blast.wav",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "inkyVille",
+                    value: 6,
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 6,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:play_sound",
+                    file: "horse-hit-1.ogg",
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("The creatures down here keep getting stranger and stranger."),
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "inkyVille",
+                    value: 7,
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 7,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:play_sound",
+                    file: "water-blast.wav",
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "inkyVille",
+                    value: 8,
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 8,
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:play_sound",
+                    file: "water-blast.wav",
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:delay",
+                    time: 500,
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("Aha!"),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Mal Keshar",
+                    text: _("Finally, I have found you! Now hold still for just a moment..."),
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "inkyVille",
+                    value: 9,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Inky%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Inky",
+            text: _("Bloub°°°"),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Ha! I have you now!"),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "water-blast.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("... what’s that sound?"),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "water-blast.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "squishy-hit.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Where did you come from? Get off of me!"),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "squishy-hit.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "squishy-hit.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "water-blast.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Uh oh."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "squishy-hit.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "squishy-hit.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "squishy-hit.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("I’m getting out of here!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_achievement",
+            id: "did_tentacle",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Mal Keshar",
+            x: 6,
+            y: 0,
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mal%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Aaargh, so many tentacles! Aieeeeee!!!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mal%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "victory",
+        once: true,
+      },
+    ],
+  },
+]

@@ -1,0 +1,2071 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Rise of Wesnoth"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Haldric",
+        gold: 300,
+        leader: "Prince_Haldric",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "orcs",
+        gold: 200,
+        recruit: "Revenant,Deathblade,Bone Shooter,Skeleton,Skeleton Archer,Vampire Bat,Walking Corpse,Soulless,Blood Bat,Ghoul,Necrophage",
+        leader: "Lich-Lord_Jevyan",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "orcs",
+        gold: 125,
+        recruit: "Naga Fighter,Vampire Bat",
+        leader: "Tan-Vragish",
+      },
+      {
+        tag: "side",
+        id: 4,
+        team_name: "orcs",
+        gold: 180,
+        recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Wolf Rider, Orcish Crossbowman, Goblin Pillager, Goblin Knight, Orcish Slayer, Orcish Warrior, Troll Whelp, Troll, Troll Rocklobber, Goblin Spearman",
+        leader: "Ut_Tan-Grorag",
+      },
+      {
+        tag: "side",
+        id: 5,
+        team_name: "orcs",
+        gold: 180,
+        recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Wolf Rider, Orcish Crossbowman, Goblin Pillager, Goblin Knight, Orcish Slayer, Orcish Warrior, Troll Whelp, Troll, Troll Rocklobber, Goblin Spearman",
+        leader: "Tan-Erinak",
+      },
+      {
+        tag: "side",
+        id: 6,
+        team_name: "orcs",
+        gold: 180,
+        recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Wolf Rider, Orcish Crossbowman, Goblin Pillager, Goblin Knight, Orcish Slayer, Orcish Warrior, Troll Whelp, Troll, Troll Rocklobber, Goblin Spearman",
+        leader: "Tan-Prodash",
+      },
+      {
+        tag: "map",
+        id: "scenario_22_The_Rise_of_Wesnoth",
+        file: "22_The_Rise_of_Wesnoth.map",
+      },
+      {
+        tag: "unit",
+        id: "Prince_Haldric",
+        type: "Noble Commander",
+        side: 1,
+        x: 38,
+        y: 2,
+        name: _("Prince Haldric"),
+      },
+      {
+        tag: "unit",
+        id: "Lich-Lord_Jevyan",
+        type: "Jevyan Cloaked",
+        side: 2,
+        x: 42,
+        y: 40,
+        name: _("Lich-Lord Jevyan"),
+      },
+      {
+        tag: "unit",
+        id: "Tan-Vragish",
+        type: "Orcish Warlord",
+        side: 3,
+        x: 10,
+        y: 36,
+        name: _("Tan-Vragish"),
+      },
+      {
+        tag: "unit",
+        id: "Ut_Tan-Grorag",
+        type: "Orcish Warlord",
+        side: 4,
+        x: 26,
+        y: 31,
+        name: _("Ut’Tan-Grorag"),
+      },
+      {
+        tag: "unit",
+        id: "Tan-Erinak",
+        type: "Orcish Warlord",
+        side: 5,
+        x: 41,
+        y: 27,
+        name: _("Tan-Erinak"),
+      },
+      {
+        tag: "unit",
+        id: "Tan-Prodash",
+        type: "Orcish Warlord",
+        side: 6,
+        x: 11,
+        y: 15,
+        name: _("Tan-Prodash"),
+      },
+      {
+        tag: "event",
+        id: "carryover_56",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.75,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: 0.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,41,39,0,10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_57",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Prince_Haldric,Lich-Lord_Jevyan,Tan-Vragish,Ut_Tan-Grorag,Tan-Erinak,Tan-Prodash,Familiar,Abraxas,u_1,u_2,u_3,u_4",
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Commander Aethyr sacrifices himself to Lich-Lord Jevyan and Destroy Lich-Lord Jevyan and Defeat all enemy leaders except for one"),
+        defeat: _("Death of Prince Haldric Death of Lady Jessene Death of Commander Aethyr by somebody other than Jevyan Fail to leave one enemy leader behind"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "undead_siege.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knalgan_theme.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "vengeful.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "undead_siege.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "battle.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_city_falls.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Prince%20Haldric%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("I can’t be finished yet... I still have so much more to do."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22King%20Eldaric%20IV%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("It is not yet my time! No!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Jessene%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! I’ll not go so easil—"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Outlaw%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Bah! I’m not dying today! <i>Poof</i>! (<i>The Lady Outlaw vanishes in a puff of smoke.</i>)"),
+          },
+          {
+            tag: "set_variable",
+            name: "have_lady",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "lady_store",
+            kill: "yes",
+            id: "Lady Outlaw",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Burin%20the%20Lost%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("Fool of a boy. I never should have followed him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ruddry%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Hail the Kings, may their bloodlines continue beyond my time!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ladoc%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("For Land and Lord, I sacrifice all!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Minister%20Edren%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("May the Lords of Light protect us all."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lord%20Typhon%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("Without him the bottoms of our ships will be completely vulnerable..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 4,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 5,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 6,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 5,
+            y: 38,
+            item_name: "",
+            image: "units%2Ftransport%2Ftransport-galleon.png~RC(magenta%3Egreen)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 21,
+            y: 35,
+            item_name: "",
+            image: "units%2Ftransport%2Ftransport-galleon.png~RC(magenta%3Epurple)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 38,
+            y: 27,
+            item_name: "",
+            image: "units%2Ftransport%2Ftransport-galleon.png~RC(magenta%3Eblack)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 19,
+            item_name: "",
+            image: "units%2Ftransport%2Ftransport-galleon.png~RC(magenta%3Ebrown)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 21,
+            y: 37,
+            item_name: "",
+            image: "units%2Ftransport%2Ftransport-galleon.png~RC(magenta%3Eblue)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 22,
+            y: 39,
+            item_name: "",
+            image: "units%2Ftransport%2Ftransport-galleon.png~RC(magenta%3Eblue)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 23,
+            y: 44,
+            item_name: "",
+            image: "units%2Ftransport%2Ftransport-galleon.png~RC(magenta%3Eblue)",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Lady Jessene",
+            unit: "Lady Jessene",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Burin the Lost",
+            unit: "Burin the Lost",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sir Ruddry",
+            unit: "Sir Ruddry",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sir Ladoc",
+            unit: "Sir Ladoc",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Minister Edren",
+            unit: "Minister Edren",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Commander Aethyr",
+            unit: "Commander Aethyr",
+          },
+          {
+            tag: "hook",
+            name: "command:unit_overlay",
+            id: "Commander Aethyr",
+            image: "misc/treaty-icon.png",
+          },
+          {
+            tag: "spawn",
+            id: "Familiar",
+            type: "Familiar",
+            side: 2,
+            x: 39,
+            y: 38,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Familiar",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Familiar",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Haldric approaches the place where Lich-Lord Jevyan has made landfall. The final confrontation looms before him."),
+          },
+          {
+            tag: "message",
+            speaker: "Lich-Lord Jevyan",
+            text: _("You cannot win. Give me the Ruby of Fire and I will go in peace."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("This ends here, Jevyan. Even if I believed your words I couldn’t give you the Ruby of Fire."),
+          },
+          {
+            tag: "message",
+            speaker: "Lich-Lord Jevyan",
+            text: _("Bah! Even if you have learned to conceal the power of the Ruby of Fire you will deliver it unto me in death!"),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("You’re a fool, Jevyan. How do you think we secured our place here? We had to give the elves the Ruby of Fire. We just signed a treaty with the elves ensuring our place here."),
+          },
+          {
+            tag: "message",
+            speaker: "Lich-Lord Jevyan",
+            text: _("No! I don’t believe it. Only a fool would give away an artifact of such power."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-mad.webp",
+            text: _("A fool, or a desperate band of refugees!"),
+          },
+          {
+            tag: "message",
+            speaker: "Lich-Lord Jevyan",
+            text: _("Casting fire is the least of the Ruby’s abilities. You are twice a fool, for having failed to plumb more than its most trivial use and for having given it away."),
+          },
+          {
+            tag: "message",
+            speaker: "Burin the Lost",
+            text: _("You shouldn’t give such toys to elves! Bah! It matters little to me. I’m no wizard. All I got is my axe. Heh, heh. It’s all I need — prepare to die, orcish scum!"),
+          },
+          {
+            tag: "message",
+            speaker: "Minister Edren",
+            text: _("Ha. Let all of the minions of Darkness be cast down!"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-mad.webp",
+            text: _("It matters little, because here you fall!"),
+          },
+          {
+            tag: "message",
+            speaker: "Sir Ruddry",
+            text: _("For all of the good people of Clearwater Port!"),
+          },
+          {
+            tag: "message",
+            speaker: "Sir Ladoc",
+            text: _("For the honor of Southbay!"),
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("We don’t need some magic trinket to beat you! Prepare to meet your fate, you decrepit sack of bones! For the honor of all of the people of the west-north!"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-mad.webp",
+            text: _("Charge!"),
+          },
+          {
+            tag: "message",
+            speaker: "Ut'Tan-Grorag",
+            text: _("I hate it when my prey gets chatty! Get them, it’s a long boat ride back home!"),
+          },
+          {
+            tag: "message",
+            speaker: "Lich-Lord Jevyan",
+            text: _("We shall soon see if you have the Ruby of Fire!"),
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            type: "Jevyan Cloaked",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Jevyan%20Cloaked%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "message",
+            speaker: "Familiar",
+            text: _("<i>Clack</i>! <i>Clack!</i>"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("<small>(_Commander, you remember the plan right?)</small>"),
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("<small>(_Yes, sir. I am ready.)</small>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22id%22%3A%22Prince%20Haldric%2CLady%20Jessene%2CCommander%20Aethyr%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("He’s raising our dead! Be careful!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22id%22%3A%22Commander%20Aethyr%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22type%22%3A%22Walking%20Corpse%2CSoulless%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Commander%20Aethyr%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("Feel my wrath, Jevyan, I’m coming for you! No piece of paper in my pocket is going to stop me from destroying you. For my family! For the people of Clearwater Port!"),
+          },
+          {
+            tag: "message",
+            speaker: "Lich-Lord Jevyan",
+            text: _("All life is finite; you will be made to serve along with the rest."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Burin%20the%20Lost%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Burin the Lost",
+            text: _("Come on, stay still, just for a second..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Jessene%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("For the Wesfolk!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%2C3%2C4%2C5%2C6%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_defender_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22id%22%3A%22Commander%20Aethyr%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("Be careful, Commander!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Familiar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Familiar",
+            text: _("<i>Clack</i>! <i>Clack!</i>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lich-Lord%20Jevyan%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                id: "Commander Aethyr",
+                side: 1,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("You deny me my honorable death? Our foes are not yet convinced that the elves have the ruby."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lich-Lord%20Jevyan%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "3,4,5,6",
+              },
+              {
+                tag: "predicate",
+                name: "unit_exists",
+                exists: "no",
+                id: "Commander Aethyr",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Tan-Vragish",
+            text: _("Da old bag o’ bones is gone, but you haven’t beat us yet!"),
+          },
+          {
+            tag: "message",
+            speaker: "Ut'Tan-Grorag",
+            text: _("We took yer home, now we’ll take yer lives!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tan-Erinak",
+            text: _("The elfses have da fire ruby, and you have nothing!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tan-Prodash",
+            text: _("We will suck the marrow from your bones human!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%2C4%2C5%2C6%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "3,4,5,6",
+              },
+              {
+                tag: "have_unit",
+                id: "Lich-Lord Jevyan",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "message",
+            speaker: "Tan-Vragish",
+            text: _("The battle is going against us!"),
+          },
+          {
+            tag: "message",
+            speaker: "Ut'Tan-Grorag",
+            text: _("Our forces are being routed! We should flee back to the Green Isle!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tan-Erinak",
+            text: _("It goes poorly for us!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tan-Prodash",
+            text: _("Defeated, by humans?"),
+          },
+          {
+            tag: "message",
+            speaker: "Lich-Lord Jevyan",
+            text: _("Fight on, you cowardly orcish worms!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%2C3%2C4%2C5%2C6%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "3,4,5,6",
+              },
+              {
+                tag: "predicate",
+                name: "unit_exists",
+                exists: "no",
+                id: "Lich-Lord Jevyan",
+              },
+              {
+                tag: "predicate",
+                name: "unit_exists",
+                exists: "no",
+                id: "Commander Aethyr",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "last_orc_leader",
+            kill: "no",
+            side: "3,4,5,6",
+          },
+          {
+            tag: "switch",
+            variable: "last_orc_leader.side",
+            children: [
+              {
+                tag: "case",
+                equals: 3,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Tan-Vragish",
+                    text: _("Da old bag of bones has been crushed, and our cause is lost. We know da elfses have da fire ruby. Retreat!"),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_variables",
+                    payload: "%7B%22name%22%3A%22escape_boat%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x1%22%3A%225%22%2C%22y1%22%3A%2238%22%2C%22x2%22%3A%221%22%2C%22y2%22%3A%2238%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 4,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Ut'Tan-Grorag",
+                    text: _("Da elfses have the fire ruby, we must flee. To da ships!"),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_variables",
+                    payload: "%7B%22name%22%3A%22escape_boat%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x1%22%3A%2221%22%2C%22y1%22%3A%2235%22%2C%22x2%22%3A%2214%22%2C%22y2%22%3A%2242%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 5,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Tan-Erinak",
+                    text: _("We have many kinsmen on the Green Isle— we will return for the Ruby of Fire!"),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_variables",
+                    payload: "%7B%22name%22%3A%22escape_boat%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x1%22%3A%2238%22%2C%22y1%22%3A%2227%22%2C%22x2%22%3A%2212%22%2C%22y2%22%3A%2227%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 6,
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Tan-Prodash",
+                    text: _("We must get back to the Green Isle. The elfses have the Ruby of Fire and our assault has been stopped."),
+                  },
+                  {
+                    tag: "hook",
+                    name: "command:set_variables",
+                    payload: "%7B%22name%22%3A%22escape_boat%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22x1%22%3A%226%22%2C%22y1%22%3A%2219%22%2C%22x2%22%3A%221%22%2C%22y2%22%3A%2224%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_unit_hidden",
+            side: "$last_orc_leader.side",
+            hidden: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$escape_boat.x1",
+            y: "$escape_boat.y1",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "ambient/ship.ogg",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%2C4%2C5%2C6%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "3,4,5,6",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("The plan revolved around some orcs making it back to the Green Isle to tell their kin that the elves have the Ruby of Fire so we wouldn’t have to bear the brunt of the next invasion."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("What have we done?"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%2C4%2C5%2C6%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "gold",
+            side: 2,
+            amount: 80,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Commander%20Aethyr%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lich-Lord%20Jevyan%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("My love, my family, I’ll be there soo—"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-mad.webp",
+            text: _("Aethyr! No! He was critical for convincing Jevyan that the elves have the Ruby of Fire."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Commander%20Aethyr%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lich-Lord%20Jevyan%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("Jevyan— I spit upon thee. Your end awaits. My love, my family, I’ll be there soo—"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Commander%20Aethyr%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lich-Lord%20Jevyan%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Lich-Lord Jevyan",
+            text: _("Fool. You are no match for my power. What! What’s this? A treaty. That’s elf script."),
+          },
+          {
+            tag: "message",
+            speaker: "Lich-Lord Jevyan",
+            text: _("No. Why? You fools, you gave the Ruby of Fire to the elves. But that won’t save you from me. I will destroy you, then I will deal with the elves."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-mad.webp",
+            text: _("We’ll see about that. For the honor of Commander Aethyr, forward!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lich-Lord%20Jevyan%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Lich-Lord Jevyan",
+            text: _("I am fallen before my plans have reached fruition. A curse upon you Haldric, may you and your descendants know nothing but strife!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "new_turn",
+        once: false,
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 10,
+          },
+          {
+            tag: "spawn",
+            id: "Abraxas",
+            type: "Naga Warrior",
+            side: 2,
+            x: 3,
+            y: 33,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Abraxas",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Abraxas",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Abraxas",
+          },
+          {
+            tag: "message",
+            speaker: "Abraxas",
+            text: _("It’s the Prince Haldric! Jevyan, you never said you came to destroy this monster. We will help you."),
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Naga Fighter",
+            side: 3,
+            x: 2,
+            y: 33,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Naga Fighter",
+            side: 2,
+            x: 2,
+            y: 34,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Naga Fighter",
+            side: 3,
+            x: 1,
+            y: 32,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Naga Fighter",
+            side: 2,
+            x: 1,
+            y: 34,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_4",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 3,
+            mode: "allow",
+            types: "Naga Fighter",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_38",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Familiar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Familiar",
+            text: _("<i>Clack</i>! <i>Splat</i>!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_39",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Familiar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Ahh... That almost makes it all worth while!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40",
+        on: "spawn_corpses",
+        once: false,
+        children: [
+          {
+            tag: "message",
+            speaker: "Lich-Lord Jevyan",
+            text: _("Rise, rise from the ground!"),
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_0",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22S*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22x%22%3A%2242%22%2C%22y%22%3A%2240%22%2C%22radius%22%3A%2214%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_2",
+            value: 9,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_2",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_0",
+                variable: "_mwg_random_pick_1",
+              },
+              {
+                tag: "hook",
+                name: "command:play_sound",
+                file: "zombie-hit-[1~6].ogg",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_2",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_41",
+        on: "spawn_skeletons",
+        once: false,
+        children: [
+          {
+            tag: "message",
+            speaker: "Lich-Lord Jevyan",
+            text: _("Come in from the deep my loyal soldiers!"),
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_3",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Ww%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22radius%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22filter_adjacent_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Wo%22%2C%22adjacent%22%3A%22nw%2Csw%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22radius%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_5",
+            value: 5,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_5",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_3",
+                variable: "_mwg_random_pick_4",
+              },
+              {
+                tag: "hook",
+                name: "command:store_locations",
+                variable: "skele_from",
+                filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Wo%22%2C%22variable%22%3A%22skele_from%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22radius%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22filter_adjacent_location%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24skele_loc.x%22%2C%22y%22%3A%22%24skele_loc.y%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+              {
+                tag: "switch",
+                variable: "skele_type",
+                children: [
+                  {
+                    tag: "case",
+                    equals: "Skeleton",
+                    children: [
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "skele_type",
+                        value: "Skeleton Archer",
+                        mode: "value",
+                      },
+                    ],
+                  },
+                  {
+                    tag: "case",
+                    equals: "Skeleton Archer",
+                    children: [
+                      {
+                        tag: "hook",
+                        name: "command:set_variable_dynamic",
+                        variable: "skele_type",
+                        value: "Skeleton",
+                        mode: "value",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                tag: "hook",
+                name: "command:scroll_to",
+                x: "$skele_loc.x",
+                y: "$skele_loc.y",
+              },
+              {
+                tag: "hook",
+                name: "command:play_sound",
+                file: "water-blast.wav",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$skele_type",
+                side: 2,
+                x: "$skele_loc.x",
+                y: "$skele_loc.y",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_5",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_42_1",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "next_corpse_spawn_turn",
+            values: "$($turn_number + 1)..$($turn_number + 5)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_43_2",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "next_corpse_spawn_turn",
+            values: "$($turn_number + 1)..$($turn_number + 5)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_44_3",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "next_corpse_spawn_turn",
+            values: "$($turn_number + 1)..$($turn_number + 5)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_45_4",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 23,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "next_corpse_spawn_turn",
+            values: "$($turn_number + 1)..$($turn_number + 5)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_46_5",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 30,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "next_corpse_spawn_turn",
+            values: "$($turn_number + 1)..$($turn_number + 5)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_47_6",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 37,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "next_corpse_spawn_turn",
+            values: "$($turn_number + 1)..$($turn_number + 5)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_48_7",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 44,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "next_corpse_spawn_turn",
+            values: "$($turn_number + 1)..$($turn_number + 5)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_49",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "turn_number",
+              },
+              {
+                tag: "have_unit",
+                id: "Lich-Lord Jevyan",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "spawn_corpses",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_50_1",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "next_skeleton_spawn_turn",
+            values: "$($turn_number + 1)..$($turn_number + 4)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_51_2",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "next_skeleton_spawn_turn",
+            values: "$($turn_number + 1)..$($turn_number + 4)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_52_3",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "next_skeleton_spawn_turn",
+            values: "$($turn_number + 1)..$($turn_number + 4)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_53_4",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 36,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "next_skeleton_spawn_turn",
+            values: "$($turn_number + 1)..$($turn_number + 4)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_54",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "turn_number",
+              },
+              {
+                tag: "have_unit",
+                id: "Lich-Lord Jevyan",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "spawn_skeletons",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_55",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("We did it! We won!"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Jevyan is destroyed, but at a terrible price. Let’s put Commander Aethyr to rest and discuss what is to come in the following days."),
+          },
+        ],
+      },
+    ],
+  },
+]

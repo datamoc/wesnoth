@@ -1,0 +1,3864 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Choice in the Fog"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good",
+        gold: 70,
+        recruit: "Spearman,Bowman",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "bandits",
+        gold: 30,
+        recruit: "Poacher",
+        leader: "Afalas",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "undead",
+        gold: 32,
+        recruit: "Walking Corpse",
+        leader: "Gruth",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "undead",
+        gold: 32,
+        recruit: "Walking Corpse",
+        leader: "Gerd",
+      },
+      {
+        tag: "side",
+        id: 5,
+        controller: "ai",
+        team_name: "undead",
+        gold: 32,
+        recruit: "Walking Corpse",
+        leader: "Gral",
+      },
+      {
+        tag: "side",
+        id: 6,
+        controller: "ai",
+        team_name: "undead",
+        gold: 32,
+        recruit: "Walking Corpse",
+        leader: "Grish",
+      },
+      {
+        tag: "side",
+        id: 7,
+        controller: "ai",
+        team_name: "undead",
+        gold: 32,
+        recruit: "Walking Corpse",
+        leader: "Gart",
+      },
+      {
+        tag: "side",
+        id: 8,
+        controller: "ai",
+        team_name: "undead",
+        gold: 64,
+        recruit: "Skeleton Archer",
+        leader: "Gruu",
+      },
+      {
+        tag: "side",
+        id: 9,
+        controller: "null",
+        team_name: "undead,bandits",
+      },
+      {
+        tag: "map",
+        id: "scenario_04_Choice_in_the_Fog",
+        file: "04_Choice_in_the_Fog.map",
+      },
+      {
+        tag: "unit",
+        id: "Afalas",
+        type: "Outlaw",
+        side: 2,
+        x: 23,
+        y: 10,
+        name: _("Urza Afalas"),
+      },
+      {
+        tag: "unit",
+        id: "Gruth",
+        type: "Bone Shooter",
+        side: 3,
+        x: 12,
+        y: 17,
+        name: _("Gruth"),
+      },
+      {
+        tag: "unit",
+        id: "Gerd",
+        type: "Bone Shooter",
+        side: 4,
+        x: 6,
+        y: 25,
+        name: _("Gerd"),
+      },
+      {
+        tag: "unit",
+        id: "Gral",
+        type: "Bone Shooter",
+        side: 5,
+        x: 22,
+        y: 24,
+        name: _("Gral"),
+      },
+      {
+        tag: "unit",
+        id: "Grish",
+        type: "Bone Shooter",
+        side: 6,
+        x: 29,
+        y: 1,
+        name: _("Grish"),
+      },
+      {
+        tag: "unit",
+        id: "Gart",
+        type: "Bone Shooter",
+        side: 7,
+        x: 37,
+        y: 12,
+        name: _("Gart"),
+      },
+      {
+        tag: "unit",
+        id: "Gruu",
+        type: "Ghast",
+        side: 8,
+        x: 34,
+        y: 21,
+        name: _("Gruu"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_9",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 9,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_85",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_86",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "revelation.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/black-forest.webp"),
+            text: _("<span color=' <<'> + _Ethiliel led the South Guard through the southern forest. The deep woods became overcast with unnatural shadow as they traveled, shrouded with eerie silence and uncanny stillness. Grey darkness sapped all color from their murky surroundings, with every movement and sound muted in the thick fog. Their small company kept vigilant watch on the dense forest and on each other, wary of the foreboding ambience. Finally, Ethiliel told them to halt and pitch camp — they had reached the Black River, beyond which no elf or man would willingly pass.</span>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_87",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Afalas,Gruth,Gerd,Gral,Grish,Gart,Gruu",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_88",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 15,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Find the final Urza brother Defeat Urza Afalas Defeat Mebrin"),
+        defeat: _("Death of Deoran or Captain Mari Death of Deoran or Sir Gerrick Death of Deoran or Minister Hylas Death of Deoran, Captain Mari, or Ethiliel Death of Deoran, Sir Gerrick, or Ethiliel Death of Deoran, Minister Hylas, or Ethiliel Turns run out Death of Deoran or Captain Mari Death of Deoran or Sir Gerrick Death of Deoran or Minister Hylas Death of Deoran, Captain Mari, or Ethiliel Death of Deoran, Sir Gerrick, or Ethiliel Death of Deoran, Minister Hylas, or Ethiliel Death of Deoran or Captain Mari Death of Deoran or Sir Gerrick Death of Deoran or Minister Hylas Death of Deoran, Captain Mari, or Ethiliel Death of Deoran, Sir Gerrick, or Ethiliel Death of Deoran, Minister Hylas, or Ethiliel"),
+      },
+      {
+        tag: "event",
+        id: "side_traits_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Afalas",
+            object: "%7B%22id%22%3A%22side_traits_2%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%2C%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increaseDamage%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "into_the_shadows.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "nunc_dimittis.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "suspense.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Thug%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Thug",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Thug",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader2",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[spread_poison]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[high_xp_attack]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[combat]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "spread_poison",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "high_xp_attack",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "combat",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[leader_shares_keep]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "goal[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[grouping].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[aggression].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[caution].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[leader_value].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[leader_aggression].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader3",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 3,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_10",
+        on: "branch_if_10",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "recruited_unit_random_variation",
+            not_equals: "none",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "prerecruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22type%22%3A%22Walking%20Corpse%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "recruited_unit_random_variation",
+            values: "none,none,none,mounted",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 4,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader4",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 4,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "recruited_unit_random_variation",
+            not_equals: "none",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "prerecruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%224%22%2C%22type%22%3A%22Walking%20Corpse%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "recruited_unit_random_variation",
+            values: "none,none,none,mounted",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_13",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 5,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader5",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 5,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "recruited_unit_random_variation",
+            not_equals: "none",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "prerecruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%225%22%2C%22type%22%3A%22Walking%20Corpse%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "recruited_unit_random_variation",
+            values: "none,none,none,mounted",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 6,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader6",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 6,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_19",
+        on: "branch_if_19",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "recruited_unit_random_variation",
+            not_equals: "none",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "prerecruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%226%22%2C%22type%22%3A%22Walking%20Corpse%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "recruited_unit_random_variation",
+            values: "none,none,none,mounted",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_19",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 7,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader7",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 7,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_22",
+        on: "branch_if_22",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "recruited_unit_random_variation",
+            not_equals: "none",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "prerecruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%227%22%2C%22type%22%3A%22Walking%20Corpse%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "recruited_unit_random_variation",
+            values: "none,none,none,mounted",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_22",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%228%22%2C%22type%22%3A%22Ghoul%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Ghoul",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Ghoul",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "3,4,5,6,7,8",
+            action: "delete",
+            path: "stage[main_loop].candidate_action[spread_poison]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "3,4,5,6,7,8",
+            action: "delete",
+            path: "stage[main_loop].candidate_action[high_xp_attack]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "3,4,5,6,7,8",
+            action: "delete",
+            path: "stage[main_loop].candidate_action[combat]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "3,4,5,6,7,8",
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "spread_poison",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "3,4,5,6,7,8",
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "high_xp_attack",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "3,4,5,6,7,8",
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "combat",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "3,4,5,6,7,8",
+            action: "delete",
+            path: "stage[main_loop].candidate_action[leader_shares_keep]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "3,4,5,6,7,8",
+            action: "delete",
+            path: "goal[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "3,4,5,6,7,8",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "3,4,5,6,7,8",
+            action: "delete",
+            path: "aspect[grouping].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "3,4,5,6,7,8",
+            action: "delete",
+            path: "aspect[aggression].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "3,4,5,6,7,8",
+            action: "delete",
+            path: "aspect[caution].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "3,4,5,6,7,8",
+            action: "delete",
+            path: "aspect[leader_value].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: "3,4,5,6,7,8",
+            action: "delete",
+            path: "aspect[leader_aggression].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "3,4,5,6,7,8",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "3,4,5,6,7,8",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "3,4,5,6,7,8",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "3,4,5,6,7,8",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "3,4,5,6,7,8",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "3,4,5,6,7,8",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "3,4,5,6,7,8",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "3,4,5,6,7,8",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "3,4,5,6,7,8",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_27",
+        on: "branch_if_27",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Thug",
+            side: 2,
+            x: 21,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_28",
+        on: "branch_if_28",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Poacher",
+            side: 2,
+            x: 24,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_29",
+        on: "branch_if_29",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Poacher",
+            side: 2,
+            x: 28,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_30",
+        on: "branch_if_30",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Thug",
+            side: 2,
+            x: 24,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_31",
+        on: "branch_if_31",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Walking Corpse",
+            side: 3,
+            x: 8,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_32",
+        on: "branch_if_32",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Walking Corpse",
+            side: 3,
+            x: 12,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_33",
+        on: "branch_if_33",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Walking Corpse",
+            side: 4,
+            x: 5,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_34",
+        on: "branch_if_34",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Walking Corpse",
+            side: 4,
+            x: 2,
+            y: 24,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_35",
+        on: "branch_if_35",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Walking Corpse",
+            side: 4,
+            x: 2,
+            y: 23,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_36",
+        on: "branch_if_36",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_10",
+            type: "Walking Corpse",
+            side: 5,
+            x: 19,
+            y: 23,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_37",
+        on: "branch_if_37",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_11",
+            type: "Walking Corpse",
+            side: 7,
+            x: 35,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_11",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_38",
+        on: "branch_if_38",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_12",
+            type: "Walking Corpse",
+            side: 7,
+            x: 32,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_12",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Thug",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_27",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Poacher",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_28",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Poacher",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_29",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Thug",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_30",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_31",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_32",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_33",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_34",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_35",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_36",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_37",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_38",
+          },
+          {
+            tag: "hook",
+            name: "command:set_time_area",
+            area: "%7B%22tag%22%3A%22time_area%22%2C%22attributes%22%3A%7B%22x%22%3A%2228-99%22%2C%22y%22%3A%2223-99%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22underground%22%2C%22name%22%3A%22Underground%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fschedule-underground.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-60%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-25%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 3,
+            ys: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 2,
+            y: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_39",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Deoran",
+            unit: "Deoran",
+            x: 4,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Deoran",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Ethiliel",
+            unit: "Ethiliel",
+            x: 5,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Ethiliel",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "$companion_id",
+            unit: "$companion_id",
+            x: 3,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "$companion_id",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("It’s so cold here! And this fog is so thick. This is quite a change from fighting bandits in the farmlands near Westin!"),
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            text: _("Indeed. Before us lies the Black River — and so too must Mebrin, great sage of the elves. He is here! I feel wisps of his magic reaching out to me from nearby..."),
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            text: _("Listen well, humans, for the great sage Mebrin is ancient, and has no love for your kind. He personally bore witness to Lich-Lord Jevyan and his terrible invasion, in days back when the land was still young. Should anyone truly understand the undead and how the Urzas learned to summon them, it will be Mebrin."),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("With the three elder Urza brothers defeated, only the youngest remains to oppose us. Mebrin must be his captive, and these woods must be filled with bandits and undead. Dangerous though the task may be, I promise to help rescue your sage, Ethiliel."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "s04_phase",
+            value: "intro",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "u_13",
+            type: "Thug",
+            side: 9,
+            x: 15,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_13",
+          },
+          {
+            tag: "spawn",
+            id: "u_14",
+            type: "Walking Corpse",
+            side: 9,
+            x: 15,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_14",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_41",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.moves",
+                value: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_42",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 3,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.moves",
+                value: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_44",
+        on: "attack_end",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22role%22%3A%22cutscene_thug%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22role%22%3A%22cutscene_corpse%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "s04_phase",
+                equals: "intro",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("We should find their leader, the final Urza brother. That will surely shed some light on the situation."),
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 2,
+            ai_type: "zone_guardian",
+            action: "add",
+            filter: "%7B%22role%22%3A%22cutscene_thug%22%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_43",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22role%22%3A%22cutscene_thug%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.side",
+                value: 2,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.side",
+                value: 3,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_45",
+        on: "choice",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.side",
+                value: 2,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.side",
+                value: 3,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_46",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Afalas%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "s04_phase",
+                equals: "intro",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Afalas",
+            text: _("These undead are too much! I am slain..."),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("We came here to fight the bandits, but for them to have perished on their own? Something feels very wrong here..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_47",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Afalas%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "choice",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_48",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2223%22%2C%22y%22%3A%2210%22%2C%22radius%22%3A%225%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "choice",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_49",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2237%22%2C%22y%22%3A%2212%22%2C%22radius%22%3A%2215%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "choice",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_50_opt0",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "elf_alliance",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_50_opt1",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "bandit_alliance",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_50",
+        on: "choice",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 22,
+            ys: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "22,9",
+            radius: 2,
+          },
+          {
+            tag: "message",
+            speaker: "Afalas",
+            text: _("I see torches movin’ in the fog... Thank th’ light, it’s living men!"),
+          },
+          {
+            tag: "message",
+            speaker: "Afalas",
+            text: _("Please, please, just hear me out. I knows my men and I’ve done evil, and I knows that you seek to destroy us out of revenge. Ah’m sorry my brothers attacked you. It was never my intention to cause everyone so much suffering."),
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            portrait: "portraits/ethiliel-mad.webp",
+            text: _("It was “never your intention”!? You loathsome vermin locked me in a cage! You dragged Mebrin off in chains; my kind, gentle teacher! Deoran, why are we stooping so low as to even speak with this pig?"),
+          },
+          {
+            tag: "message",
+            speaker: "Afalas",
+            text: _("I swear I ain’t your enemy! I’ll gladly tell ye what I know. I admit that near a year ago, me brothers and I ventured into the valley of the elves in secret, to plunder and steal. Many we killed. It was wrong, I know, and I am sorry for it."),
+          },
+          {
+            tag: "message",
+            speaker: "Afalas",
+            text: _("But there was one who we captured; a powerful and magical sage. Away from his people, he offered to teach us the secrets o’ summonin’ the dead. I saw the folly in doing such a thing, but my brothers were weak an’ foolish, and soon fell under the sway of the corrupting magic — becomin’ thralls of the very elf they’d sought to enslave. They called him “master”, and went from here to do his bidding."),
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            portrait: "portraits/ethiliel-mad.webp",
+            text: _("A complete and utter lie from complete and utter scum. I studied magic under Mebrin for many decades and know him well — my teacher would never lead undead, he would destroy them!"),
+          },
+          {
+            tag: "message",
+            speaker: "Afalas",
+            text: _("It’s true that Mebrin was more powerful than any of the corpses we raised, yet he didn’t resist ’em. They took him into the caves, and soon after skeletal horrors started to emerge."),
+          },
+          {
+            tag: "message",
+            speaker: "Afalas",
+            text: _("Now my boys and I have returned to try an’ put a stop to it, but there’s just too many. Unless ye helps me now, Mebrin’s undead may soon be strong enough to besiege Westin itself!"),
+          },
+          {
+            tag: "message",
+            speaker: "Afalas",
+            text: _("I knows I’m a criminal. My men and I have committed wrongdoing’s in the past, but at least in the fight against the undead, we can be your friends! They’re as much our enemies as they’re yours!"),
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            text: _("Deoran, you would trust the word of a thief and murderer over me, your friend and ally? This criminal will abandon you the moment he finds a chance!"),
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            text: _("Think of the destruction this man and his brothers wrought on your people. Think of the horrors they inflicted upon me, caged and left to suffer amidst the stinking corpses of my friends! Believe the truths you have seen, not the lies you have heard. No fake niceties can reverse the deaths that have already happened; no atonement taken now can set right the transgressions that have already come to pass!"),
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "Deoran",
+                text: _("Peace, let me think! <i>If I listen to Ethiliel I must fight the bandits, but if I ally with the bandits Ethiliel will surely abandon us...</i>"),
+              },
+              {
+                tag: "choice",
+                text: _("Side with Ethiliel"),
+                event: "ev_50_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("Side with Afalas"),
+                event: "ev_50_opt1",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_turns",
+            value: 30,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_52",
+        on: "branch_if_52",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_15",
+            type: "Walking Corpse",
+            side: 8,
+            x: 29,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_15",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_53",
+        on: "branch_if_53",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_16",
+            type: "Walking Corpse",
+            side: 8,
+            x: 32,
+            y: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_16",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_54",
+        on: "branch_if_54",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_17",
+            type: "Walking Corpse",
+            side: 8,
+            x: 35,
+            y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_17",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_51",
+        on: "elf_alliance",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "s04_phase",
+            value: "elf_alliance",
+            mode: "value",
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("Your crimes are too great, Urza Afalas, and your word cannot be trusted. You will fall alongside the undead you helped create!"),
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            portrait: "portraits/ethiliel-mad.webp",
+            text: _("You will pay for taking Mebrin from us! Once I rescue him from your clutches, I never again intend to leave his side."),
+          },
+          {
+            tag: "message",
+            speaker: "Afalas",
+            text: _("Then this parley is over! You may have caused the doom of all of us!"),
+          },
+          {
+            tag: "hook",
+            name: "command:reset_fog",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            gold: 80,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_52",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_53",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_54",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_55",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2233%22%2C%22y%22%3A%2219%22%2C%22radius%22%3A%224%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "s04_phase",
+                equals: "elf_alliance",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("This must be the cave the bandit spoke about, but there is no sign of Mebrin. Perhaps Afalas really was lying."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_56_opt0",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_56_opt1",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_56_opt0",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_56_opt1",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_56",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%228%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "s04_phase",
+                equals: "elf_alliance",
+              },
+            ],
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "Deoran",
+                text: _("The ghoul guarding the cave is defeated! I agreed to help Ethiliel bring Urza Afalas to justice, but perhaps there would be merit in venturing further inside..."),
+              },
+              {
+                tag: "choice",
+                text: _("Continue fighting Urza Afalas"),
+                event: "ev_56_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("Enter the cave"),
+                event: "ev_56_opt1",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            text: _("Deoran, what are you doing? You would abandon our fight and let this criminal walk free!?"),
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "narrator",
+                portrait: "wesnoth-icon.png",
+                text: _("Author’s note — this is a “secret” path, and somewhat more challenging than the regular options. Are you sure you want to proceed?"),
+              },
+              {
+                tag: "choice",
+                text: _("Continue fighting Urza Afalas"),
+                event: "ev_56_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("Enter the cave"),
+                event: "ev_56_opt1",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("I’m sorry, Ethiliel, but fighting these bandits doesn’t feel right. My soldiers and I are going to descend down into this cave, to find out the truth for ourselves."),
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            text: _("And how shall I defeat Urza Afalas without your help? He will surely escape, free from justice for his foul deeds! Was this your plan all along, to string me along with false promises?"),
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            portrait: "portraits/ethiliel-mad.webp",
+            text: _("Humans! All you humans are the same! I should never have expected your kind to help me find Mebrin. Deoran, even your vile conspiracies shall not keep the elves from our greatest sage. Soon all of you humans shall learn that the Aethenwood protects its own!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Ethiliel",
+            x: 2,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_ethiliel",
+            kill: "yes",
+            id: "Ethiliel",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("Well, that could have gone better... I only hope that we will find the truth of the matter down in these caves."),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-south-guard-05c",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_57",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Afalas%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "s04_phase",
+                equals: "elf_alliance",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Afalas",
+            text: _("You... have doomed us all..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_58",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Afalas%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "s04_phase",
+                equals: "elf_alliance",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22animate%22%3A%22no%22%2C%22fire_event%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            text: _("Justice. Thank you for your aid, Deoran. I know it was hard for you to turn against your own kind — you have earned my respect."),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("I’ve searched all the tents, but cannot find Mebrin anywhere in the bandit camp. Ethiliel, do you still sense his magic nearby?"),
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            text: _("Yes I do, and without that distracting criminal on my mind I can feel Mebrin clearer than ever. I sense joy. I sense power... I sense..."),
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            text: _("..."),
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            text: _("...Humans, we should leave."),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("What? But what about rescuing—"),
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            text: _("We need to leave, now!!"),
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-south-guard-05b",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_60",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[spread_poison]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[high_xp_attack]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[combat]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "spread_poison",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "high_xp_attack",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "add",
+            path: "stage[main_loop].candidate_action[]",
+            candidate: "combat",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "stage[main_loop].candidate_action[leader_shares_keep]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "goal[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[grouping].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[aggression].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[caution].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[leader_value].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_ai",
+            side: 2,
+            action: "delete",
+            path: "aspect[leader_aggression].facet[*]",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader8",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 8,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_59",
+        on: "bandit_alliance",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "s04_phase",
+            value: "bandit_alliance",
+            mode: "value",
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("I am sorry Ethiliel, but Afalas’s words ring true. If Mebrin has truly fallen to undeath, then mankind must unite against him."),
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            text: _("You would free me from one Urza, only to betray me to another? All you humans are the same! You are no better than these outlaws, the very pigs who defiled your dead and sacked your farms."),
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            portrait: "portraits/ethiliel-mad.webp",
+            text: _("Deoran, even your conspiring with criminals shall not keep from us our greatest sage. Soon all of you vile humans shall learn that the Aethenwood protects its own!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Ethiliel",
+            x: 2,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_ethiliel",
+            kill: "yes",
+            id: "Ethiliel",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            profile: "portraits/urza-afalas.webp",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Afalas%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Afalas",
+          },
+          {
+            tag: "message",
+            speaker: "Afalas",
+            text: _("That must’ve been a tough decision. Thank ye."),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("Don’t make me regret it. Guide us to Mebrin, and we will verify your story ourselves."),
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            team_name: "good",
+          },
+          {
+            tag: "hook",
+            name: "command:reset_fog",
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 33,
+            ys: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 29,
+            ys: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 33,
+            y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Afalas",
+            text: _("The old elf’s cave is southeast of m’ camp. My outlaws’ll fight his shamblin’ hordes, but I leave it up to you soldiers to push into Mebrin’s cave and strike the finishin’ blow."),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22side%22%3A%228%22%2C%22canrecruit%22%3A%22yes%22%2C%22animate%22%3A%22no%22%2C%22fire_event%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "spawn",
+            id: "Mebrin",
+            type: "Lich",
+            side: 8,
+            x: 33,
+            y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Mebrin",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 8,
+            recruit: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_61",
+        on: "attacker_hits",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22id%22%3A%22Afalas%22%2C%22formula%22%3A%22self.hitpoints%20%3C%20self.max_hitpoints%2F2%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "afalas_flees",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_62",
+        on: "defender_hits",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Afalas%22%2C%22formula%22%3A%22self.hitpoints%20%3C%20self.max_hitpoints%2F2%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "afalas_flees",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_63",
+        on: "afalas_flees",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "s04_phase",
+                equals: "bandit_alliance",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Afalas",
+            text: _("Ack! Thank you for your help with the dead, but my men an’ I have given all we have. Now, there’s something I have to make right."),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Afalas",
+            x: 2,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_afalas",
+            kill: "yes",
+            id: "Afalas",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22animate%22%3A%22no%22%2C%22fire_event%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("I suppose that’s what I get for relying on outlaws... We’ll have to finish Mebrin and his undead on our own."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "afalas_fled",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_64",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mebrin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "trigger_mebrin",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_65",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2232%22%2C%22y%22%3A%2221%22%2C%22radius%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "trigger_mebrin",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_67",
+        on: "branch_if_67",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_18",
+            type: "Skeleton Archer",
+            side: 6,
+            x: 29,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_18",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_68",
+        on: "branch_if_68",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_19",
+            type: "Skeleton",
+            side: 6,
+            x: 32,
+            y: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_19",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_69",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_70",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%228%22%2C%22type%22%3A%22Skeleton%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Skeleton",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Skeleton",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_66",
+        on: "trigger_mebrin",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "s04_phase",
+                equals: "bandit_alliance",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mebrin",
+            text: _("Who comes... My old tormentors?"),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("I am Deoran, soldier of the South Guard! We have come to put an end to your villainy, Mebrin of the elves — if that is who you are."),
+          },
+          {
+            tag: "message",
+            speaker: "Mebrin",
+            text: _("Mebrin? No, I am called Mal M’Brin now, mortals. It is the name I took when I unchained myself from the shallow-mindedness of my kind and passed over into enlightenment."),
+          },
+          {
+            tag: "message",
+            speaker: "Mebrin",
+            text: _("There is infinity at the brink of death... I have touched the void at the heart of all things, and I have begun to probe the mystic arts far beyond what any living elf knows."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Skeleton Archer",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_67",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Skeleton",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_68",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 8,
+            recruit: "Skeleton Archer",
+          },
+          {
+            tag: "message",
+            speaker: "Mebrin",
+            text: _("Rise, my minions, and let all vermin tremble! The race of man shall be stricken off the face of the green world. Your corpses will serve me! Your bones will dance for my pleasure! I’ll make humanity into the mindless slaves that you all deserve to be!"),
+          },
+          {
+            tag: "message",
+            speaker: "Afalas",
+            text: _("I done enough evil in my life. Time t’ do somethin’ good fer a change."),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            portrait: "portraits/deoran-mad.webp",
+            text: _("Attack!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_71",
+        on: "new_turn",
+        once: false,
+      },
+      {
+        tag: "event",
+        id: "ev_72",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2232%22%2C%22y%22%3A%2218%22%2C%22radius%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "enable_tutorial_elements",
+                equals: "yes",
+              },
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22time_of_day.id%22%2C%22equals%22%3A%22first_watch%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22time_of_day.id%22%2C%22equals%22%3A%22second_watch%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+              {
+                tag: "variable",
+                name: "s04_phase",
+                equals: "bandit_alliance",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mebrin",
+            text: _("Yes, yes, step into the mouth of my cave. Fight me in the dead of night, when I am at my best!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_74",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 8,
+          },
+          {
+            tag: "message",
+            speaker: "Mebrin",
+            text: _("You dare strike me?! Puny humans, I’m darkness incarnate! I’m power beyond your comprehension!"),
+          },
+          {
+            tag: "message",
+            speaker: "Mebrin",
+            text: _("<b><i>You</i></b> think you can destroy <b><i>me</i></b>? Were Ethiliel here I might have held back, but you humans are nothing but a worthless blight upon this wretched world. Suffer and die."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_73",
+        on: "attack_end",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "Mebrin",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "s04_phase",
+                equals: "bandit_alliance",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_75",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mebrin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "s04_phase",
+                equals: "bandit_alliance",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mebrin",
+            text: _("Ah ha, ha ha ha ha. You think I am beaten so easily, beaten by mere mortals? I should flee down into my caves, should summon my great armies up from below..."),
+          },
+          {
+            tag: "message",
+            speaker: "Mebrin",
+            text: _("But why bother? I am no stranger to pain, Deoran of the humans. At least peace may finally come... for me. But not for you..."),
+          },
+          {
+            tag: "message",
+            speaker: "Mebrin",
+            text: _("You have only sown the seeds of your own destruction, for Ethiliel will avenge me. I felt her emotions, felt her intentions, <b><i>fed</i></b> her intentions... Accursed humans, you may have struck me down, but I have already won my revenge..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_76",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mebrin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "s04_phase",
+                equals: "bandit_alliance",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: "full",
+            restore_statuses: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Afalas%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Afalas",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_afalas",
+            kill: "no",
+            id: "Afalas",
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "the-south-guard-05a",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_77",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "if_79",
+        on: "branch_if_79",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "s04_phase",
+            equals: "elf_alliance",
+          },
+          {
+            tag: "message",
+            speaker: "Ethiliel",
+            text: _("Do not delay, Deoran! If we do not finish off this vermin Afalas soon, he shall surely make his escape!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_80",
+        on: "branch_if_80",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "s04_phase",
+            equals: "bandit_alliance",
+          },
+          {
+            tag: "message",
+            speaker: "Afalas",
+            text: _("Better hurry, Deoran. Whatever Mebrin’s plans are, he gets closer to finishin’ them every day. We’ve got to finish him off soon!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_78",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 25,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_79",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_80",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _You are running out of turns to complete this scenario! See your objectives by pressing Ctrl+J, and remember that the turn limit can be seen in the top-left-hand corner.</span>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_81",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("We have moved so slowly! If the last Urza brother was ever here, he has surely fled by now, and we still have no answers..."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _You have run out of turns to complete the scenario, and have been defeated!</span>"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_83",
+        on: "branch_if_83",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "s04_phase",
+            equals: "elf_alliance",
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 20,
+            ys: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "20,6",
+            radius: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 21,
+            ys: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "21,4",
+            radius: 2,
+          },
+          {
+            tag: "spawn",
+            id: "u_20",
+            type: "Boat",
+            side: 2,
+            x: 23,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_20",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "ambient/ship.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "",
+            x: 19,
+            y: 6,
+          },
+          {
+            tag: "message",
+            portrait: "portaits/humans/ruffian.webp",
+            text: _("Hey, boss, it’s me. Anyone still alive out here?"),
+          },
+          {
+            tag: "message",
+            speaker: "Afalas",
+            text: _("Finally, what took ye so long! C’mon, let’s get us all out o’ here afore that crazy elf lady kills any more o’ us!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Afalas",
+            x: 20,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Afalas",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "",
+            x: 34,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22animate%22%3A%22no%22%2C%22fire_event%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("Urza Afalas has fled up the river! If he ever held Mebrin prisoner, the gentle sage is now far beyond our reach..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_84",
+        on: "branch_if_84",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "s04_phase",
+            equals: "bandit_alliance",
+          },
+          {
+            tag: "spawn",
+            id: "u_21",
+            type: "Vampire Bat",
+            side: 6,
+            x: 29,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_21",
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 31,
+            ys: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "31,18",
+            radius: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "",
+            x: 32,
+            y: 18,
+          },
+          {
+            tag: "message",
+            speaker: "messenger",
+            text: _("Neep, neep!"),
+          },
+          {
+            tag: "message",
+            speaker: "Mebrin",
+            text: _("Ah ha, ha ha ha ha. You have tarried too long, mayflies! My messenger brings news — your beloved town of Westin has been destroyed!"),
+          },
+          {
+            tag: "message",
+            speaker: "Deoran",
+            text: _("What? How is this possible! With the undead armies fighting us here, how could Westin have already fallen?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_82",
+        on: "side_turn_end",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 30,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_83",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_84",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<span color=' <<'> + _You have run out of turns to complete the scenario, and have been defeated!</span>"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

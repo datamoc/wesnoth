@@ -1,0 +1,1308 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Guarded Castle"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good",
+        gold: 120,
+        recruit: "Horseman,Bowman,Spearman,Footpad",
+        leader: "Arvith",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "evil",
+        gold: 50,
+        recruit: "Skeleton,Skeleton Archer,Vampire Bat,Ghost,Dark Adept,Ghoul,Walking Corpse",
+        leader: "Rotharik",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "evil",
+      },
+      {
+        tag: "map",
+        id: "scenario_03_Guarded_Castle",
+        file: "03_Guarded_Castle.map",
+      },
+      {
+        tag: "unit",
+        id: "Arvith",
+        type: "Knight",
+        side: 1,
+        x: 34,
+        y: 30,
+        name: _("Arvith"),
+      },
+      {
+        tag: "unit",
+        id: "Rotharik",
+        type: "Dark Sorcerer",
+        side: 2,
+        x: 19,
+        y: 5,
+        name: _("Rotharik"),
+      },
+      {
+        tag: "unit",
+        id: "Guard_leader",
+        type: "Assassin",
+        side: 0,
+        x: 27,
+        y: 25,
+      },
+      {
+        tag: "unit",
+        id: "u_1",
+        type: "Bandit",
+        side: 0,
+        x: 29,
+        y: 24,
+      },
+      {
+        tag: "unit",
+        id: "u_2",
+        type: "Bandit",
+        side: 0,
+        x: 27,
+        y: 23,
+      },
+      {
+        tag: "unit",
+        id: "u_3",
+        type: "Bandit",
+        side: 0,
+        x: 26,
+        y: 27,
+      },
+      {
+        tag: "unit",
+        id: "Knago-Brek",
+        type: "Orcish Warrior",
+        side: 0,
+        x: 18,
+        y: 16,
+      },
+      {
+        tag: "unit",
+        id: "u_4",
+        type: "Orcish Grunt",
+        side: 0,
+        x: 17,
+        y: 15,
+      },
+      {
+        tag: "unit",
+        id: "u_5",
+        type: "Orcish Grunt",
+        side: 0,
+        x: 19,
+        y: 15,
+      },
+      {
+        tag: "unit",
+        id: "u_6",
+        type: "Orcish Warrior",
+        side: 0,
+        x: 14,
+        y: 16,
+      },
+      {
+        tag: "unit",
+        id: "u_7",
+        type: "Orcish Warrior",
+        side: 0,
+        x: 22,
+        y: 16,
+      },
+      {
+        tag: "event",
+        id: "carryover_30",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_31",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("19 Scryer’s Bloom, 363 YW Excerpt from the journal of Rotharik the Clanless The last of Mordak’s servants arrived this morning bearing the news of his death, as well as a bundle so well-bound it was barely recognizable as a man. Mordak was always reckless. This whole desperate scheme was his, and I suppose I could blame him for everything that we have suffered through if it still mattered. It was he who brought the wrath of the orcs down on us, too. But all the same, he managed to accomplish what he set out to do. I still cannot believe the finality of what has happened; until now we had always managed to make it through somehow. We had hoped to deliver the mage to Tairach in return for our lives. I do not know what the warlord wants with this man, but he matches the description. I suppose that Mordak’s plan would have worked perfectly if not for the appearance of the horse warriors. Now they are coming here, led by a man rumored to be this mage’s brother. If that is true, he will stop at nothing, no more than would I if they held Mordak."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_32",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("19 Scryer’s Bloom, 363 YW Excerpt from the journal of Rotharik the Clanless I have done what I can to fortify this dilapidated castle. The orcs who came with us stand guard at the gates, and I am gathering all of my servants to me in the inner sanctum. But ill fate awaits. Whether I defeat this horse-warrior or no, the orcs will still come for me; they have been scouring the borderlands and raiding the northern farm country in search of us. Yet for some reason I fear these brothers more. If Mordak were here it would be different, but we are broken... and these two men are whole. In each other, in the ties that bind them, they have strength."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_33",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Arvith,Rotharik",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_34",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 24,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Rescue Baran Kill the dark sorcerer to get the cell key Move Arvith to the cell with his brother to free him"),
+        defeat: _("Death of Arvith Death of Baran Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knalgan_theme.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "suspense.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "siege_of_laurelmor.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "weight_of_revenge.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_4",
+        on: "branch_if_4",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "first_password",
+            not_equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "first_password",
+            not_equals: 2,
+          },
+          {
+            tag: "condition",
+            variable: "first_password",
+            not_equals: 3,
+          },
+          {
+            tag: "condition",
+            variable: "first_password",
+            not_equals: 4,
+          },
+          {
+            tag: "set_variable",
+            name: "first_password",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_5",
+        on: "branch_if_5",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "second_password",
+            not_equals: 1,
+          },
+          {
+            tag: "condition",
+            variable: "second_password",
+            not_equals: 2,
+          },
+          {
+            tag: "condition",
+            variable: "second_password",
+            not_equals: 3,
+          },
+          {
+            tag: "condition",
+            variable: "second_password",
+            not_equals: 4,
+          },
+          {
+            tag: "set_variable",
+            name: "second_password",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_4",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_5",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Uu^Xo",
+            cells: "4,4;5,9",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 1,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "nw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6_opt0",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "password_picked",
+            value: "Sithrak!",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6_opt1",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "password_picked",
+            value: "Eleben!",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6_opt2",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "password_picked",
+            value: "Jarlom!",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6_opt3",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "password_picked",
+            value: "Hamik!",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_7",
+        on: "branch_if_7",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "password_picked",
+            equals: "$first_password",
+          },
+          {
+            tag: "message",
+            speaker: "Guard_leader",
+            text: _("Pass, friend."),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Guard_leader",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: "-1,0-1,2-3,4-5,6,7,8-9,10-11,12,13-14,15,16,17,18,19,20,21,22-23,24,25-26,27-28,29-31,32,33-34,35-36,37",
+            ys: "10-31,11-31,12-31,13-31,14-31,15-31,16-31,17-31,18-31,17-31,16-31,17-31,16-31,17-31,16-31,17-31,16-31,17-31,18-31,17-31,16-31,12-31,13-31,12-31,11-31,10-31",
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("The adept didn’t lead us astray after all. I’ll keep my word, distasteful as it may be; cut him loose, and let’s be rid of him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_8",
+        on: "branch_if_8",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "password_picked",
+            not_equals: "$first_password",
+          },
+          {
+            tag: "message",
+            speaker: "Guard_leader",
+            text: _("Wrong! Die!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Arvith and his men halt outside of the castle, gazing for a moment at the hulking mass of stone looming in the fog. There is movement in the mist."),
+          },
+          {
+            tag: "message",
+            speaker: "Guard_leader",
+            text: _("Halt! Friend or foe? Give the password."),
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "Arvith",
+                text: _("The password is"),
+              },
+              {
+                tag: "choice",
+                text: _("Sithrak!"),
+                event: "ev_6_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("Eleben!"),
+                event: "ev_6_opt1",
+              },
+              {
+                tag: "choice",
+                text: _("Jarlom!"),
+                event: "ev_6_opt2",
+              },
+              {
+                tag: "choice",
+                text: _("Hamik!"),
+                event: "ev_6_opt3",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_7",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_8",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Knago-Brek",
+            text: _("Haha! We not kill people for long time. Weapon wants blood. We now kill humans!"),
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("My sword-arm shall have a say in who will do the dying. Come on, men, let’s kill some orcs."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Knago-Brek%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("One less braggart orc in the world."),
+          },
+          {
+            tag: "message",
+            text: _("Captain, what are <i>orcs</i> doing this far south?"),
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("Good question. Perhaps my brother will have found out."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 3,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "second_wave",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "Guard2_leader",
+            type: "Rogue",
+            side: 2,
+            x: 15,
+            y: 23,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Guard2_leader",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Thug",
+            side: 2,
+            x: 16,
+            y: 23,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Bandit",
+            side: 2,
+            x: 15,
+            y: 23,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+          {
+            tag: "spawn",
+            id: "u_10",
+            type: "Bandit",
+            side: 2,
+            x: 16,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13_opt0",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "password_picked",
+            value: "Akranbral!",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13_opt1",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "password_picked",
+            value: "Drakanal!",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13_opt2",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "password_picked",
+            value: "Xaskanat!",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13_opt3",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "password_picked",
+            value: "Katklagad!",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "password_picked",
+            equals: "$second_password",
+          },
+          {
+            tag: "message",
+            speaker: "Guard2_leader",
+            text: _("Thanks! Irritating little formality, isn’t it?"),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Guard2_leader",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "u_8",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "u_9",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "u_10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "password_picked",
+            not_equals: "$second_password",
+          },
+          {
+            tag: "message",
+            speaker: "Guard2_leader",
+            text: _("That’s the wrong password! These aren’t our relief! Get them!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "second_challenge",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Guard2_leader",
+            text: _("Are you our relief arriving? Does this mean we get to leave here now?"),
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("Um, yes. Fine. You can go."),
+          },
+          {
+            tag: "message",
+            speaker: "Guard2_leader",
+            text: _("Um, you’re supposed to give the password."),
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "Arvith",
+                text: _("Oh, of course. I had nearly forgotten."),
+              },
+              {
+                tag: "choice",
+                text: _("Akranbral!"),
+                event: "ev_13_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("Drakanal!"),
+                event: "ev_13_opt1",
+              },
+              {
+                tag: "choice",
+                text: _("Xaskanat!"),
+                event: "ev_13_opt2",
+              },
+              {
+                tag: "choice",
+                text: _("Katklagad!"),
+                event: "ev_13_opt3",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_14",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_15",
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("I think I should better support my men at the front to make sure we can free my brother."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Rotharik%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Your hand or Tairach’s, death is still death... (argh)"),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Rotharik",
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("‘Tairach’? Who or what is Tairach?"),
+          },
+          {
+            tag: "message",
+            text: _("There’s a key in his robes."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "-1,0-1,2-3,4-5,6,7,8-9,10-11,12,13-14,15,16,17,18,19,20,21,22-23,24,25-26,27-28,29-31,32,33-34,35-36,37",
+            y: "0-9,0-10,0-11,0-12,0-13,0-14,0-15,0-16,0-17,0-14,0-15,0-14,0-14,0-15,0-15,0-15,0-15,0-14,0-17,0-16,0-15,0-11,0-12,0-11,0-10,0-9",
+          },
+          {
+            tag: "message",
+            text: _("This castle seems as dark as a cave!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 33,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "gold.ogg",
+          },
+          {
+            tag: "message",
+            text: _("Look what I have found in here! I can count fifty pieces of gold."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 50,
+          },
+          {
+            tag: "hook",
+            name: "command:set_achievement",
+            id: "treasure",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 34,
+            y: 4,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 34,
+            y: 4,
+            item_name: "",
+            image: "items%2Fchest-plain-open.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2229%22%2C%22y%22%3A%223%22%2C%22radius%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "magic-dark.ogg",
+          },
+          {
+            tag: "spawn",
+            id: "u_11",
+            type: "Soulless",
+            side: 2,
+            x: 28,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_11",
+          },
+          {
+            tag: "message",
+            text: _("What sort of creature have I summoned here?!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_21",
+        on: "branch_if_21",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "baran_store.id",
+            equals: "Baran",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "baran_store",
+            x: "recall",
+            y: "recall",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_22",
+        on: "branch_if_22",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.id",
+            equals: "Arvith",
+          },
+          {
+            tag: "message",
+            speaker: "Baran",
+            text: _("It’s good to see you, Arvith."),
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("And you too, brother."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_23",
+        on: "branch_if_23",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.id",
+            not_equals: "Arvith",
+          },
+          {
+            tag: "message",
+            speaker: "Baran",
+            text: _("You must be one of Arvith’s men. Please help me get out of this dungeon."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                x: 5,
+                y: 5,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 2,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_21",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Baran",
+            unit: "Baran",
+            x: 3,
+            y: 3,
+          },
+          {
+            tag: "message",
+            text: _("I found Baran. He is in this cell."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_22",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_23",
+          },
+          {
+            tag: "message",
+            speaker: "Baran",
+            text: _("The accursed dark sorcerer Rotharik has imprisoned me behind this magically enhanced iron gate. It can only be opened with the correct key. You must get it from him to free me."),
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: "4,5",
+            y: "5,4",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "unit_exists",
+                exists: "no",
+                id: "Rotharik",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 5,
+            y: 5,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Uu",
+            cells: "4,4",
+          },
+          {
+            tag: "message",
+            speaker: "Baran",
+            text: _("Thank you for saving me. I... was not certain you would come."),
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("Have you no faith in your brother, Baran?"),
+          },
+          {
+            tag: "message",
+            speaker: "Baran",
+            text: _("It’s not that. Perhaps I deserved to rot here. I failed you. I failed you again."),
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("That is as may be. But you are my brother still. And... I never doubted you would have come for me."),
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("It was no great trial, after all. A few elves, one or two dark sorcerers, a gang of orcs and some undead. Really just a day’s work for the company."),
+          },
+          {
+            tag: "message",
+            speaker: "Baran",
+            text: _("Thank you for coming to my aid. Let us return to the village."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_26",
+        on: "branch_if_26",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "baran_store.id",
+            equals: "Baran",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "baran_store",
+            x: "recall",
+            y: "recall",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_26",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Baran%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Baran",
+            text: _("It is over, I am vanquished."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Arvith%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("All is lost now that I am dead..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Rotharik",
+            text: _("You are too late! Your brother is already dead! Muahahaha...!"),
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("Argh!!"),
+          },
+        ],
+      },
+    ],
+  },
+]

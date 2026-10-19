@@ -1,0 +1,39 @@
+{
+  "name": "mwg-wesnoth",
+  "version": "1.19.27",
+  "private": true,
+  "type": "module",
+  "description": "Battle for Wesnoth, ported onto the mwg framework. GPL-2.0-or-later, same as the game it ports.",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "dev": "vite",
+    "build": "node --max-old-space-size=8192 ./node_modules/typescript/bin/tsc --noEmit && node --max-old-space-size=8192 ./node_modules/vite/bin/vite.js build && node --max-old-space-size=8192 tools/emit.mjs",
+    "check": "tsc --noEmit",
+    "test": "node --test \"tests/**/*.test.ts\"",
+    "verify": "node tools/verify-browser.mjs",
+    "verify:all": "node tools/verify-all-scenarios.mjs",
+    "multiplayer:server": "node tools/multiplayer-server.mjs",
+    "data": "node tools/compile-wesnoth-data.ts && node tools/compile-scenario.ts && node tools/compile-campaign.ts && node tools/compile-i18n.ts && node tools/compile-lua.ts",
+    "convert": "node tools/wesnoth-to-mwl.ts",
+    "lua:translate": "node tools/translate-campaign-lua.ts",
+    "compat:baseline": "node tools/compat-baseline.mjs",
+    "release": "npm run check && npm test && npm run build && npm run verify && npm run verify -- --serve && npm run verify -- --mobile",
+    "perf:baseline": "node tools/perf-baseline.ts"
+  },
+  "dependencies": {
+    "@datamoc/pyroeis": "^0.6.0",
+    "mwg": "npm:@datamoc/mw_games@^0.36.0",
+    "pixi.js": "^8.20.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-replace": "^6.0.3",
+    "@types/node": "^26.4.1",
+    "rollup-plugin-polyfill-node": "^0.13.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.3",
+    "ws": "^8.21.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

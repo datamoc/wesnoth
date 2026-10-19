@@ -1,0 +1,691 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Peoples in Decline"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Haldric",
+        gold: 180,
+        leader: "Prince_Haldric",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "Drake",
+        gold: 110,
+        recruit: "Drake Burner,Drake Clasher,Drake Glider,Fire Drake,Drake Arbiter,Drake Fighter,Drake Warrior",
+        leader: "Kegrid",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "Drake",
+        gold: 110,
+        recruit: "Drake Burner,Drake Clasher,Drake Glider,Fire Drake,Drake Flare,Drake Fighter,Drake Warrior",
+        leader: "Garash",
+      },
+      {
+        tag: "side",
+        id: 4,
+        team_name: "Drake",
+        gold: 110,
+        recruit: "Drake Burner,Drake Clasher,Drake Glider,Fire Drake,Drake Thrasher,Drake Fighter,Drake Warrior",
+        leader: "Merkush",
+      },
+      {
+        tag: "side",
+        id: 5,
+        team_name: "Drake",
+      },
+      {
+        tag: "map",
+        id: "scenario_13_Peoples_in_Decline",
+        file: "13_Peoples_in_Decline.map",
+      },
+      {
+        tag: "unit",
+        id: "Prince_Haldric",
+        type: "Noble Commander",
+        side: 1,
+        x: 11,
+        y: 10,
+        name: _("Prince Haldric"),
+      },
+      {
+        tag: "unit",
+        id: "Kegrid",
+        type: "Drake Flameheart",
+        side: 2,
+        x: 13,
+        y: 23,
+        name: _("Kegrid"),
+      },
+      {
+        tag: "unit",
+        id: "Garash",
+        type: "Drake Flameheart",
+        side: 3,
+        x: 25,
+        y: 18,
+        name: _("Garash"),
+      },
+      {
+        tag: "unit",
+        id: "Merkush",
+        type: "Drake Flameheart",
+        side: 4,
+        x: 22,
+        y: 10,
+        name: _("Merkush"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_5",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 5,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_19",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.75,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_20",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "underground.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Several days later Prince Haldric departs in his ship, the Eldaric, his home and the Green Isle lost to him forever. Before him lay a vast expanse of stormy seas, and the mysterious island that Lady Jessene has mentioned, and even more exotic lands even further to the East."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_21",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/trow_story_13-Peoples_in_Decline.webp"),
+            text: _("The island that King Haldric and his crew are approaching was at one time a volcano that is now slowly sinking into the sea. The elder Crown Prince of Southbay had managed to establish a foothold on this Island, despite the belligerent nature of its reptilian inhabitants. There will be little left of that foothold by now."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_22",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Prince_Haldric,Kegrid,Garash,Merkush,Familiar",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_23",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 30,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat all enemy leaders"),
+        defeat: _("Death of Prince Haldric Death of Lady Jessene Death of Lord Typhon Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knalgan_theme.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "wanderer.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Prince%20Haldric%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("I can’t be finished yet... I still have so much more to do."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22King%20Eldaric%20IV%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("It is not yet my time! No!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Jessene%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! I’ll not go so easil—"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Outlaw%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Bah! I’m not dying today! <i>Poof</i>! (<i>The Lady Outlaw vanishes in a puff of smoke.</i>)"),
+          },
+          {
+            tag: "set_variable",
+            name: "have_lady",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "lady_store",
+            kill: "yes",
+            id: "Lady Outlaw",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Burin%20the%20Lost%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("Fool of a boy. I never should have followed him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ruddry%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Hail the Kings, may their bloodlines continue beyond my time!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ladoc%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("For Land and Lord, I sacrifice all!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Minister%20Edren%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("May the Lords of Light protect us all."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lord%20Typhon%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("Without him the bottoms of our ships will be completely vulnerable..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: 16,
+            y: 17,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 17,
+            y: 18,
+            item_name: "",
+            image: "items%2Fstorm-trident.png",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Lady Jessene",
+            unit: "Lady Jessene",
+            x: 10,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Burin the Lost",
+            unit: "Burin the Lost",
+            x: 11,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sir Ruddry",
+            unit: "Sir Ruddry",
+            x: 9,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sir Ladoc",
+            unit: "Sir Ladoc",
+            x: 9,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Minister Edren",
+            unit: "Minister Edren",
+            x: 10,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Lord Typhon",
+            unit: "Lord Typhon",
+            x: 9,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 10,
+            y: 9,
+            item_name: "",
+            image: "scenery%2Fgalleon.png~RC(magenta%3Ered)",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("After some time at sea an island is spotted. The Eldaric docks at a crude port that appears to be deserted."),
+          },
+          {
+            tag: "message",
+            speaker: "Burin the Lost",
+            text: _("Land! Land! Bless the Lords of Light!"),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("This is the Elder Prince’s island all right. We had a heck of a time pacifying the drakes who live here. Oh my, it looks like they’ve rearmed!"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("We come in peace. We only seek to re-provision our ships."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("<small>(_I don’t think diplomacy is going to work.)</small>"),
+          },
+          {
+            tag: "message",
+            speaker: "Garash",
+            text: _("So, prey, you have come to trouble us again. Prepare to die! For the glory of Morogor!"),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("<small>(_Do I need to say, <i>“I told you so”</i>?)</small>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "new_turn",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "xx1",
+            values: "18..19",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "yy1",
+            values: "16..19",
+          },
+          {
+            tag: "message",
+            text: _("Look out, a serpent has emerged from the deep."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Bitey the Serpent",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 16,
+            y: 17,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Well, it looks like their warriors have given up the fight. We should be able to re-provision the ships now."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("The nice thing is, they’ll go back to guarding this island after we’re gone for a while. It’ll make a good way of preventing others from following us."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("This island is slowly sinking. Hmm, I wonder what they’ll do when it gets too small for them?"),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("They seem rather intelligent. They’re certainly belligerent and numerous. I’m sure they’ll eventually evacuate. Just like us right now."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("I don’t find that thought very comforting."),
+          },
+          {
+            tag: "spawn",
+            id: "Familiar",
+            type: "Familiar",
+            side: 4,
+            x: 3,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Familiar",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Familiar",
+          },
+          {
+            tag: "message",
+            speaker: "Familiar",
+            text: _("<i>Clack</i>! <i>Clack!</i>"),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Familiar",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("The fleet is starving, we’ll never pacify this island before we all die!"),
+          },
+        ],
+      },
+    ],
+  },
+]

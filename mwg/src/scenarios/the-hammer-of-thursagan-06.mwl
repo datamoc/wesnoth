@@ -1,0 +1,1385 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Fear"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "northern_alliance",
+        gold: 80,
+        recruit: "Dwarvish Fighter,Dwarvish Thunderer,Dwarvish Guardsman,Dwarvish Scout,Dwarvish Ulfserker,",
+        leader: "Aiglondur",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "northern_alliance",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "northern_alliance",
+        share_vision: "none",
+      },
+      {
+        tag: "map",
+        id: "scenario_06_Fear",
+        file: "06_Fear.map",
+      },
+      {
+        tag: "unit",
+        id: "Aiglondur",
+        type: "Dwarvish Fighter",
+        side: 1,
+        x: 2,
+        y: 16,
+        name: _("Aiglondur"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_2",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_25",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 1,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_26",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Aiglondur",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_27",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 20,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat the enemy leader"),
+        defeat: _("Death of Aiglondur or Angarthing Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Aiglondur",
+            object: "%7B%22id%22%3A%22side_traits_1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%2C%7B%22applyTo%22%3A%22max_experience%22%2C%22increase%22%3A%22-20%25%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "suspense.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_5",
+        on: "branch_if_5",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Dwarvish Masked Sentinel",
+            side: 2,
+            x: 30,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_6",
+        on: "branch_if_6",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Dwarvish Masked Steelclad",
+            side: 2,
+            x: 30,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_7",
+        on: "branch_if_7",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Dwarvish Masked Steelclad",
+            side: 2,
+            x: 30,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_8",
+        on: "branch_if_8",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Dwarvish Masked Berserker",
+            side: 2,
+            x: 30,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_9",
+        on: "branch_if_9",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Dwarvish Masked Berserker",
+            side: 2,
+            x: 30,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_10",
+        on: "branch_if_10",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Dwarvish Masked Steelclad",
+            side: 2,
+            x: 30,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_11",
+        on: "branch_if_11",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Dwarvish Masked Thunderguard",
+            side: 2,
+            x: 30,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Dwarvish Masked Steelclad",
+            side: 2,
+            x: 30,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Dwarvish Masked Thunderguard",
+            side: 2,
+            x: 24,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "generic_unitc",
+            not_equals: "none",
+          },
+          {
+            tag: "spawn",
+            id: "u_10",
+            type: "Dwarvish Masked Steelclad",
+            side: 2,
+            x: 24,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Dwarvish Masked Sentinel",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_5",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Dwarvish Masked Steelclad",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_6",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Dwarvish Masked Steelclad",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_7",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Dwarvish Masked Berserker",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_8",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Dwarvish Masked Berserker",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_9",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Dwarvish Masked Steelclad",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_10",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Dwarvish Masked Thunderguard",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_11",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Dwarvish Masked Steelclad",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_12",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Dwarvish Masked Thunderguard",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_13",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "generic_unitc",
+            value: "Dwarvish Masked Steelclad",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_14",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_trait",
+            side: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+            side: 2,
+            object: "%7B%22id%22%3A%22resilient%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: "full",
+            restore_statuses: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+            side: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 13,
+            y: 10,
+            item_name: "",
+            image: "items%2Fdwarven-keep-tile.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 8,
+            y: 12,
+            item_name: "",
+            image: "scenery%2Fvillage-human-burned1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 14,
+            y: 8,
+            item_name: "",
+            image: "scenery%2Fvillage-human-burned2.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 23,
+            y: 20,
+            item_name: "",
+            image: "scenery%2Fvillage-human-burned3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 26,
+            y: 13,
+            item_name: "",
+            image: "scenery%2Fvillage-human-burned1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 27,
+            y: 9,
+            item_name: "",
+            image: "scenery%2Fvillage-human-burned2.png",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Angarthing",
+            unit: "Angarthing",
+            x: 1,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 1,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "ne",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Angarthing",
+            text: _("The maps show a village nearby. Their keep should be just ahead, but something doesn’t feel right."),
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("It’s too quiet... and I think I smell traces of smoke on the wind. There has been fire near here recently, and not a clean one."),
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("Look sharp for the inhabitants here. They might have something to tell us."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "capture_ollin",
+        on: "capture",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_capturer_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "banishment",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "moveto_ollin",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22C*%5E*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "banishment",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sighted_ollin",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "banishment",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "new_turn",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("I have never seen the formal banishment before. One reads of it in the old tales, of course, but to hear it with one’s own ears? It was... unsettling."),
+          },
+          {
+            tag: "message",
+            speaker: "Angarthing",
+            text: _("It is not something we do often. The last such was in my grandsire’s time. But look upon the human’s wrists if you have any doubt it was merited."),
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("Shackles. Scars. No, Angarthing, I would not doubt you, even if it were my place to doubt a loremaster."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "banishment",
+        once: true,
+        children: [
+          {
+            tag: "set_variable",
+            name: "fade_duration_remaining",
+            value: 250,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "fade_duration_remaining",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "fade_duration_remaining",
+                value: 5,
+                mode: "sub",
+              },
+              {
+                tag: "set_variable",
+                name: "volume",
+                value: 100,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "volume",
+                value: "$fade_duration_remaining",
+                mode: "multiply",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "volume",
+                value: 250,
+                mode: "divide",
+              },
+              {
+                tag: "hook",
+                name: "command:volume",
+                music: "$volume",
+              },
+              {
+                tag: "hook",
+                name: "command:delay",
+                time: 5,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:volume",
+            music: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "silence.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 15,
+            ys: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "15,9",
+            radius: 1,
+            multiturn: "no",
+          },
+          {
+            tag: "spawn",
+            id: "Ollin",
+            type: "Peasant",
+            side: 3,
+            x: 15,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Ollin",
+          },
+          {
+            tag: "message",
+            speaker: "Ollin",
+            text: _("Don’t kill me, masters! Please don’t kill me!"),
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("You’re in no danger from us. What lies to the east of here?"),
+          },
+          {
+            tag: "message",
+            speaker: "Ollin",
+            text: _("You wear no mask. You... you’re not with them?"),
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("What are you talking about?"),
+          },
+          {
+            tag: "message",
+            speaker: "Ollin",
+            text: _("The masked dwarves. Killing, burning, kidnapping. Look..."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "STORE_UNIT_VAR_store",
+            kill: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "maskX",
+            value: "$STORE_UNIT_VAR_store.x",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "STORE_UNIT_VAR_store",
+            kill: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "maskY",
+            value: "$STORE_UNIT_VAR_store.y",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: "$maskX",
+            y: "$maskY",
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: "$maskX",
+            ys: "$maskY",
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "$maskX,$maskY",
+            radius: 2,
+            multiturn: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "masked_speaker",
+            text: _("Fellow dwarves, hail! We’re looking for a human refugee, a male with a broken arm. Have you seen him? Our master demands his life."),
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("He is here. How has he wronged your master, that you seek his death?"),
+          },
+          {
+            tag: "message",
+            speaker: "masked_speaker",
+            text: _("Does it matter? He is only a dirtgrubbing human, not fit to polish the boots of the true people."),
+          },
+          {
+            tag: "message",
+            speaker: "Angarthing",
+            text: _("What is your name, masked one? Will you stand behind your deed? I am a witness."),
+          },
+          {
+            tag: "message",
+            speaker: "masked_speaker",
+            text: _("A witness? My name is... my name is not important. My deed will speak its own truth."),
+          },
+          {
+            tag: "message",
+            speaker: "Angarthing",
+            text: _("You speak without honor. Mine is the power of our ancient Law; speak your name and give up your murder, or the Law will cast you forth. I am a witness!"),
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            team_name: "evil",
+          },
+          {
+            tag: "message",
+            speaker: "masked_speaker",
+            text: _("If you were a witness of the true people, you would not let a dirtgrubber hide behind your robes. I deny you!"),
+          },
+          {
+            tag: "message",
+            speaker: "Angarthing",
+            text: _("The Law speaks: you are cast out. You are un-dwarf. I AM A WITNESS!"),
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("Up axes!"),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Ollin",
+          },
+          {
+            tag: "hook",
+            name: "command:place_shroud",
+            side: 1,
+            xs: "$maskX",
+            ys: "$maskY",
+            radius: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knalgan_theme.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "battle.ogg",
+          },
+          {
+            tag: "set_variable",
+            name: "fade_duration_remaining",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "fade_duration_remaining",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "fade_duration_remaining",
+                value: 5,
+                mode: "sub",
+              },
+              {
+                tag: "set_variable",
+                name: "volume",
+                value: 100,
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "volume",
+                value: "$fade_duration_remaining",
+                mode: "multiply",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "volume",
+                value: 0,
+                mode: "divide",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "volume",
+                value: "$(100-$volume)",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:volume",
+                music: "$volume",
+              },
+              {
+                tag: "hook",
+                name: "command:delay",
+                time: 5,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:volume",
+            music: 100,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Angarthing",
+            text: _("Our castle is small, and these masked dwarves are many. This will be a bloody fight."),
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("The masked ones must have raided this place before. Damaging the castle would have made it harder for the peasants to rally a defense."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: 2,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Argh!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "cutscene_retreating_enemies",
+            kill: "no",
+            side: 2,
+          },
+          {
+            tag: "foreach",
+            variable: "cutscene_retreating_enemies",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:scenario_move",
+                id: "$this_item.id",
+                x: 31,
+                y: "$($this_item.y)",
+                raw: "yes",
+              },
+              {
+                tag: "hook",
+                name: "command:kill_unit",
+                unit: "$this_item.id",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("They are defeated!"),
+          },
+          {
+            tag: "message",
+            speaker: "Angarthing",
+            text: _("You have acted in honor. I am a witness."),
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("I do not wish to imagine what could drive dwarves to such depravity. These outlaws must have been desperate; consumed by fear or madness."),
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 15,
+            ys: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "15,12",
+            radius: 4,
+            multiturn: "no",
+          },
+          {
+            tag: "spawn",
+            id: "Ollin",
+            type: "Peasant",
+            side: 3,
+            x: 15,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Ollin",
+          },
+          {
+            tag: "spawn",
+            id: "u_11",
+            type: "Peasant",
+            side: 3,
+            x: 18,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_11",
+          },
+          {
+            tag: "spawn",
+            id: "u_12",
+            type: "Woodsman",
+            side: 3,
+            x: 13,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_12",
+          },
+          {
+            tag: "message",
+            speaker: "Ollin",
+            text: _("Thank you for your help, and for saving us!"),
+          },
+          {
+            tag: "message",
+            speaker: "Ollin",
+            text: _("I do not mean to sound ungrateful, but — the masked ones... they always come back..."),
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("There is a camp of mages not far upriver. If they have not yet departed, they can help you. Travel westways, to lands of the Northern Alliance. There you will be safe, and welcomed."),
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("We dwarves travel east. We must reach Kal Kartha, more urgently now than ever. Before anything terrible happens, if we are lucky..."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22role%22%3A%22masked_speaker%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "masked_speaker",
+            text: _("..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Aiglondur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("I fall!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Angarthing%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Aiglondur",
+            text: _("Oh no! Without a loremaster we cannot complete our mission!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Ratheln%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Ratheln",
+            text: _("Aaarrgh! What will become of my students back home..."),
+          },
+        ],
+      },
+    ],
+  },
+]

@@ -1,0 +1,857 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Desert of Death"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Kapoue",
+        gold: 140,
+        leader: "Kapou_e",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "villains",
+        gold: 60,
+        leader: "Ar-Dant",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "villains",
+      },
+      {
+        tag: "map",
+        id: "scenario_07_The_Desert_of_Death",
+        file: "07_The_Desert_of_Death.map",
+      },
+      {
+        tag: "unit",
+        id: "Kapou_e",
+        type: "Orcish Leader",
+        side: 1,
+        x: 2,
+        y: 2,
+      },
+      {
+        tag: "unit",
+        id: "Ar-Dant",
+        type: "Rogue",
+        side: 2,
+        x: 25,
+        y: 30,
+        name: _("Ar-Dant"),
+      },
+      {
+        tag: "event",
+        id: "carryover_17",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 1.0,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,,,0,3,%7B%22side%22%3A1%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_18",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Resting during the day and doing most of their marching by night, the party moved steadily through the sand for two days."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_19",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("The heat of the day and the chill of the night wore heavily on the orcs. Fortunately, they didn’t encounter any giant scorpions, but neither did they discover any source of food or water."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_20",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("By the dawn of the third day the party was hungry, tired and weary, but according to their map, a good-sized oasis was not far away."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_21",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Just then, however, a strong wind began to blow. It rapidly increased in fury, whipping hot sand up all around them. They could see little further than the reach of their hands and it began to seem they would be buried alive by smothering sand."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_22",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kapou_e,Ar-Dant",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_23",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 24,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Reach the Oasis in the Southeast Defeat the enemy leader"),
+        defeat: _("Death of Kapou’e Death of Grüü Death of a Shaman Turns run out Death of Kapou’e Death of Grüü Death of a Shaman Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "wanderer.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_dangerous_symphony.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 3,
+            ai_type: "simple_attack",
+            action: "add",
+            filter: "%7B%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: ",20-30",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Grüü",
+            unit: "Grüü",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Jetto",
+            unit: "Jetto",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Pirk",
+            unit: "Pirk",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Gork",
+            unit: "Gork",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Vraurk",
+            unit: "Vraurk",
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            portrait: "portraits/kapoue-angry.webp",
+            text: _("Ack! This blasted sand!"),
+          },
+          {
+            tag: "message",
+            speaker: "Grüü",
+            text: _("I’m hungry and we found no giant scorpion yet. I’m sure it would be tasty."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("I hope we won’t find one! They are terrible armored beasts; your hammer would be useless against their heavy shells."),
+          },
+          {
+            tag: "message",
+            speaker: "Vraurk",
+            text: _("I’ve been told the best way to defeat them is to attack their eyes with sharp blades, set them afire, or pierce them with arrows. But I hope too we won’t meet them."),
+          },
+          {
+            tag: "message",
+            speaker: "Pirk",
+            text: _("I wouldn’t worry about the scorpions right now, I would worry about getting out of this sandstorm! These things can last for weeks, and if we aren’t buried alive by all the sand, we will die of hunger and thirst."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Hurry then, break camp, we must get to the oasis!"),
+          },
+          {
+            tag: "message",
+            speaker: "Pirk",
+            text: _("What?! Through all this chaos?!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("We don’t have any other choice. If we remain here, we’ll die."),
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Sand Scuttler",
+            side: 3,
+            x: 7,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Sand Scuttler",
+            side: 3,
+            x: 14,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Sand Scuttler",
+            side: 3,
+            x: 18,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Sand Scuttler",
+            side: 3,
+            x: 12,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Sand Scuttler",
+            side: 3,
+            x: 10,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Sand Scuttler",
+            side: 3,
+            x: 14,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Sand Scuttler",
+            side: 3,
+            x: 25,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Sand Scuttler",
+            side: 3,
+            x: 10,
+            y: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Finally we’ve done it! Now let’s wait out this sandstorm, resupply and get some rest before we continue on our journey."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_6",
+        on: "branch_if_6",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            less_than: 11,
+          },
+          {
+            tag: "condition",
+            variable: "random",
+            less_than: "$scorp_prob",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_0",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%221-38%22%2C%22y%22%3A%221-30%22%2C%22terrain%22%3A%22D*%22%2C%22include_borders%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22radius%22%3A%228%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_2",
+            value: 1,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_2",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_0",
+                variable: "_mwg_random_pick_1",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_2",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "0..99",
+          },
+          {
+            tag: "set_variable",
+            name: "scorp_prob",
+            value: 30,
+          },
+          {
+            tag: "set_variable",
+            name: "scorp_prob",
+            value: 60,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_6",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("There you go, Grüü, there is your giant scorpion!"),
+          },
+          {
+            tag: "message",
+            speaker: "Vraurk",
+            text: _("Oh great, perfect timing."),
+          },
+          {
+            tag: "message",
+            speaker: "Grüü",
+            text: _("Yeah, I am really hungry."),
+          },
+          {
+            tag: "message",
+            speaker: "Vraurk",
+            text: _("That is not what I meant!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Sand%20Scuttler%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22id%22%3A%22Gr%C3%BC%C3%BC%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Grüü",
+            text: _("Ahh, finally! Lunchtime!"),
+          },
+          {
+            tag: "message",
+            speaker: "Vraurk",
+            text: _("You trolls are just sick!"),
+          },
+          {
+            tag: "message",
+            speaker: "Grüü",
+            text: _("<i>Yuck</i>! Disgusting! These things taste horrible!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("I don’t know if you should have eaten that, Grüü, you don’t look so good."),
+          },
+          {
+            tag: "message",
+            speaker: "Grüü",
+            text: _("Ugh... I feel sick."),
+          },
+          {
+            tag: "message",
+            speaker: "Gork",
+            text: _("Hmmm, it seems that scorpions are poisonous."),
+          },
+          {
+            tag: "message",
+            speaker: "Vraurk",
+            text: _("But what about Grüü?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Ahh, he will be fine in a few minutes. He is a troll, after all. Right, Grüü?"),
+          },
+          {
+            tag: "message",
+            speaker: "Grüü",
+            text: _("(<i>Puke</i>)"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "second_unit.status.poisoned",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "second_unit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            y: "18-29",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            recruit: "Thief,Bandit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Hold it right there! This oasis is ours! Begone or you all will be killed!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Look, fool, we are in the middle of a sandstorm, and we are almost completely out of food and water. There is no way we can keep going without stopping at this oasis."),
+          },
+          {
+            tag: "message",
+            text: _("I don’t care, get lost!"),
+          },
+          {
+            tag: "message",
+            speaker: "Pirk",
+            text: _("It’s no use reasoning with them, Kapou’e, they aren’t going to listen."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Yeah, I can see that. Well, I guess we have to clean these rabble out of here."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Grüü",
+            text: _("... Food...!"),
+          },
+          {
+            tag: "message",
+            speaker: "Vraurk",
+            text: _("... Water...!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("... Come... on..., people...! We have... to... keep... going..."),
+          },
+          {
+            tag: "message",
+            speaker: "Pirk",
+            text: _("... Can’t... The... heat... is... too... much..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kapou'e%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Argh! I’m done. My people are doomed!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Orcish%20Shaman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Ouch! This hurts!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("The Council will never be complete again. This is hopeless."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Gr%C3%BC%C3%BC%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Oh no, I am defeated."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "inarix_abandoned",
+            not_equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Inarix",
+            text: _("Ahhh!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Blast it, without Inarix to lead her saurians, we can no longer count on their help."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "got_saurians",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "Saurian Skirmisher, Saurian Augur",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Inarix%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+        ],
+      },
+    ],
+  },
+]

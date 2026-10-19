@@ -1,0 +1,1492 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Dragon"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "dwarves",
+        gold: 250,
+        recruit: "Dwarvish Fighter,Dwarvish Thunderer,Dwarvish Guardsman,Dwarvish Scout,Gryphon Rider",
+        leader: "Rugnur",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "elves",
+        gold: 1000,
+        recruit: "Elvish Avenger,Elvish Marshal,Elvish Champion,Elvish Outrider,Dwarvish Thunderguard,Dwarvish Berserker,Dwarvish Steelclad",
+        leader: "Crintil",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "khrakrahs",
+        gold: 250,
+        recruit: "Cave Wyrmlet,Cave Wyrm,Red Wyrmlet",
+        leader: "Khrakrahs",
+      },
+      {
+        tag: "map",
+        id: "scenario_8_The_Dragon",
+        file: "8_The_Dragon.map",
+      },
+      {
+        tag: "unit",
+        id: "Rugnur",
+        type: "Dwarvish Fighter",
+        side: 1,
+        x: 8,
+        y: 8,
+      },
+      {
+        tag: "unit",
+        id: "Crintil",
+        type: "Elvish Marshal",
+        side: 2,
+        x: 2,
+        y: 10,
+        name: _("Crintil"),
+      },
+      {
+        tag: "unit",
+        id: "Khrakrahs",
+        type: "SOF Fire Dragon",
+        side: 3,
+        x: 5,
+        y: 19,
+        name: _("Khrakrahs"),
+      },
+      {
+        tag: "event",
+        id: "carryover_32",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.9,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: 0.1,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "offensive",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,,,0,2,%7B%22side%22%3A1%7D;goal,,,0,2,%7B%22side%22%3A1%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_33",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Thus, Alanin escaped from his elvish pursuers. But the dwarves were not so lucky, for the section of the old eastern mines that they reached in their flight had become the lair of the dragon Khrakrahs."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_34",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Rugnur,Crintil,Khrakrahs",
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Get all heroes to the end of the tunnel Move Thursagan to the forge Defend Thursagan until the Sceptre of Fire is complete Survive until turns run out"),
+        defeat: _("Death of Rugnur Death of Krawg Death of Thursagan An enemy moves onto the forge"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knalgan_theme.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22type%22%3A%22Cave%20Wyrmlet%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Cave Wyrmlet",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Cave Wyrmlet",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22type%22%3A%22Red%20Wyrmlet%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Red Wyrmlet",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Red Wyrmlet",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22type%22%3A%22Cave%20Wyrm%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Cave Wyrm",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Cave Wyrm",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Rugnur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Gahahh..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Haldric%20II%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("Maghah..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Alanin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Alanin",
+            text: _("Ahhgg..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Baglur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Baglur",
+            text: _("Gaanngh..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Krawg%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Krawg",
+            text: _("Kraa..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("Ayahahh..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_sfe_moveto",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22K*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "rune_customer",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "sof_rune_shop",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_rune_shop_flavor_text",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22K*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("My tools are ready. Step closer, if you want to witness my rune-work."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_sfe_side1turn",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                id: "Thursagan",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "rune_customer",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "sof_rune_shop",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_thursagan_exithex",
+        on: "exit_hex",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22K*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1|",
+            y: "$y1|",
+            item_name: "",
+            image: "rune_shop_overlay",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ex_rune_customer.id",
+            equals: "$this_item.id",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "index_TEMP",
+            value: "$i|",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_sfe_exithex",
+        on: "exit_hex",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22race%22%3A%22dwarf%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22K*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1|",
+            y: "$y1|",
+            item_name: "",
+            image: "rune_shop_overlay",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "ex_rune_customer",
+            kill: "no",
+            id: "$unit.id",
+          },
+          {
+            tag: "foreach",
+            variable: "rune_customer",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_14",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_sfe_2moveto",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22race%22%3A%22dwarf%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22K*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "rune_customer",
+            kill: "no",
+            id: "$unit.id",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "sof_rune_shop",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.variables.no_rune",
+            not_equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$this_item.x|",
+            y: "$this_item.y|",
+            item_name: "rune_shop_overlay",
+            image: "scenery%2Fsummoning-circle%5B4%2C5%2C6%5D.png~CS(80%2C120%2C240)~O(0.6)%3A%5B200%2C250%2C200%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20scenery%2Fsummoning-circle%5B4%2C5%2C6%5D.png~CS(40%2C90%2C200)~O(0.9)%3A%5B150%2C180%2C120%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20scenery%2Fsummoning-circle%5B4%2C5%2C6%5D.png~CS(40%2C90%2C200)~O(0.1)%3A%5B250%2C300%2C250%5D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20scenery%2Fsummoning-circle%5B4%2C5%2C6%5D.png~CS(40%2C90%2C200)~O(0.3)%3A%5B250%2C300%2C250%5D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "rc_select",
+        on: "select",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                any: "yes",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22rune_customer%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "sof_rune_shop",
+        on: "sof_rune_shop",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "",
+            y: "",
+            item_name: "",
+            image: "rune_shop_overlay",
+          },
+          {
+            tag: "foreach",
+            variable: "rune_customer",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_15",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "found_forge",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            experience: 22,
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Khrakrahs%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Khrakrahs",
+            effect_apply_to: "image_mod",
+            effect_add: "CS(-25,-60,-70)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 10,
+            y: 19,
+            item_name: "",
+            image: "items%2Fgold-coins-small.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 20,
+            item_name: "",
+            image: "items%2Fornate1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 7,
+            y: 17,
+            item_name: "",
+            image: "items%2Fchest.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 4,
+            y: 17,
+            item_name: "",
+            image: "items%2Farmor-golden.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 4,
+            y: 18,
+            item_name: "",
+            image: "items%2Fgold-coins-medium.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 8,
+            y: 16,
+            item_name: "",
+            image: "items%2Fgold-coins-small.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 9,
+            y: 25,
+            item_name: "",
+            image: "items%2Fgold-coins-small.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Rugnur",
+            x: 11,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Baglur",
+            unit: "Baglur",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Krawg",
+            unit: "Krawg",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Thursagan",
+            unit: "Thursagan",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Dwarvish Berserker",
+            side: 2,
+            x: 0,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Dwarvish Berserker",
+            side: 2,
+            x: 0,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Dwarvish Berserker",
+            side: 2,
+            x: 0,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Dwarvish Berserker",
+            side: 2,
+            x: 0,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Dwarvish Lord",
+            side: 2,
+            x: 1,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Dwarvish Lord",
+            side: 2,
+            x: 1,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Dwarvish Lord",
+            side: 2,
+            x: 1,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Dwarvish Dragonguard",
+            side: 2,
+            x: 1,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Dwarvish Dragonguard",
+            side: 2,
+            x: 0,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Well, Thursagan, we’ve reached the eastern mine, but the elves are hot on our trail. What do we do now?"),
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("Well, we have two choices. We may either stand and fight, and assuredly die, or run as quickly as possible down this path into the depths of the cave, where we may find something that will help us. Also, remember, the elves can’t run as fast in caves as we can, so we may be able to get ahead of them and perhaps lay a trap."),
+          },
+          {
+            tag: "message",
+            speaker: "Krawg",
+            text: _("Krah! Surrender ruby?"),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("If we give them the ruby, then what? They’ll probably kill us anyway. And, that ruby has the power to do great things, evil things. We can’t let it fall into the wrong hands."),
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("Then we shall run. I suggest calling to arms every last dwarf we possibly can here. This might be the last chance we’ll get to do so."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "13,14-15",
+            y: "13,14",
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: "3-10",
+            ys: "14-20",
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "4-11,15-21",
+            multiturn: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: "$x1",
+            y: "$y1",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "dragon_sighted",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Look, there’s a dragon in these caves!"),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Khrakrahs",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "ne",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("You dare trespass into <i>my</i> lair?"),
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("And which of the great dragons are you?"),
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("I am Khrakrahs, greatest dragon of all time! Haldric killed Shek’kahan my brother, but he was weaker than me, and you will not find me so easy to defeat. Now get out of my volcano!"),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("I’d rather face one powerful dragon than hundreds of mighty elves. Continue!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22level%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "dragon_sighted",
+                equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("Stop that! Leave my pets alone!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 8,
+            y: 24,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 9,
+            y: 25,
+            item_name: "",
+            image: "items%2Fgold-coins-small.png",
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 120,
+          },
+          {
+            tag: "message",
+            text: _("Kraw!"),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("That’s great, we could really use some resources about now."),
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("Thieves! I won’t forget this..."),
+          },
+          {
+            tag: "message",
+            text: _("Haha, you’re making friends all over, you cowards!"),
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("I don’t care about your petty squabbles, I curse all of you! I curse all who invade my lair!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_22",
+        on: "branch_if_22",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.id",
+            equals: "Krawg",
+          },
+          {
+            tag: "message",
+            speaker: "Krawg",
+            text: _("Aww... Melted, stuck!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_23",
+        on: "branch_if_23",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.id",
+            not_equals: "Krawg",
+          },
+          {
+            tag: "message",
+            speaker: "$unit.id",
+            text: _("I can’t pick this up, the gold is stuck!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "9,3,7",
+            y: "18,17,15",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_22",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_23",
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Hrm, I see what you mean. The dragon’s hoard melted into the rock, we can’t just grab those gold coins. Too bad."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24_1",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22race%22%3A%22dwarf%22%2C%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_vision%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: "$x1",
+            y: "$y1",
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("What’s this? A dwarf fighting against us with the elves?!"),
+          },
+          {
+            tag: "message",
+            speaker: "Baglur",
+            text: _("It must be one of those Surghan mercenaries. I’ll bet those elves have hired more of them. That’s bad news for us, for they’ll go as fast in caves as we do."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25_2",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22race%22%3A%22dwarf%22%2C%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_vision%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: "$x1",
+            y: "$y1",
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("What’s this? A dwarf fighting against us with the elves?!"),
+          },
+          {
+            tag: "message",
+            speaker: "Baglur",
+            text: _("It must be one of those Surghan mercenaries. I’ll bet those elves have hired more of them. That’s bad news for us, for they’ll go as fast in caves as we do."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_27",
+        on: "branch_if_27",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.id",
+            equals: "Krawg",
+          },
+          {
+            tag: "message",
+            speaker: "Krawg",
+            text: _("Raaaawww! Loook! Forge heeeere!"),
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("It looks like a forge, heated by the lava. It also looks enchanted... and hot enough to make the Sceptre."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_28",
+        on: "branch_if_28",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.id",
+            not_equals: "Krawg",
+          },
+          {
+            tag: "message",
+            text: _("Look, I’ve found something here. It looks like a forge, heated by the lava. It also looks enchanted... and hot enough to make the sceptre."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 15,
+            y: 24,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_27",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_28",
+          },
+          {
+            tag: "message",
+            speaker: "Khrakrahs",
+            text: _("That’s my rock slab, leave it be!"),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "found_forge",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: "2,3",
+            x: 15,
+            y: 24,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "portraits/thursagan.webp",
+            text: _("You fool, you let the enemy get at me when I was unarmed!"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "portraits/thursagan.webp",
+            text: _("Ayahahh..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "thur",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+            side: 1,
+            clear_variable: "swiftness_rune,accuracy_rune,force_rune",
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22sceptre%20of%20fire%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Thursagan",
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("I have completed my work. Now it is truly the Sceptre of Fire, a powerful magical artifact."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Good! Now, let’s get out of this cave, before the elves, dwarves or wyrms kill us all!"),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 15,
+            y: 24,
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("This forge will work perfectly. Give me a day or two here, and I can reforge the Sceptre of Fire to fulfill its purpose."),
+          },
+          {
+            tag: "hook",
+            name: "command:modify_turns",
+            value: "$($turn_number + 9)",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "thur",
+            kill: "yes",
+            id: "Thursagan",
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+    ],
+  },
+]

@@ -1,0 +1,218 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Hour of Glory"),
+    children: [
+      {
+        tag: "map",
+        id: "scenario_18_Hour_of_Glory",
+        file: "legend-of-wesmere-18.generated.map",
+      },
+      {
+        tag: "event",
+        id: "carryover_3",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_4",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/characters/cleodil.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Kalenz, your mission is complete. The orcish Great Chieftain is dead and you have recaptured your home. Yet I sense there is turmoil in your mind..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_5",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/characters/kalenz.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ It is indeed as you say, Cleodil. It is that potion that gnaws at me. I cannot enjoy our victories, nor can I rest. I am fighting it every single moment."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_6",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/characters/cleodil.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Crelanu warned us this might occur..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_7",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/characters/kalenz.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ There was no other choice. Even if we die, it was worth it."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_8",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/characters/cleodil.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ You will not die. You must fight it. I have faith in you Kalenz... beloved... You will overcome and master it. It will be hard and painful, but you will beat the potion. It is Landar who truly concerns me..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_9",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/characters/kalenz.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ He seems to handle it better than do I..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_10",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/characters/cleodil.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ It does seem so, Kalenz. But I fear things may not be as they seem. Landar’s mind has become dark and clouded to my healing senses."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_11",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/characters/kalenz.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ I understand too well what that may portend, beloved, but I do not wish to believe it. Landar is my friend, near as dear to me as you are."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_12",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/characters/cleodil.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ Some dwarves have been found dead in our camp. Landar is extremely unfriendly towards them, and ill-feeling is growing. I think the dwarves will leave us soon."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_13",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/characters/kalenz.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ I will try to mend matters between them..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_14",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/characters/cleodil.webp"),
+            text: _("<span color='#bcb088'><b></b></span> _ I see I cannot convince you. Go, do as you must; but be careful Kalenz, for I fear for us all..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_15",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _(""),
+        defeat: _(""),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "love_theme.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+    ],
+  },
+]

@@ -1,0 +1,1040 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Raid"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        gold: 0,
+        leader: "Baldras",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 25,
+        leader: "Fal_Khag",
+      },
+      {
+        tag: "map",
+        id: "scenario_01_The_Raid",
+        file: "01_The_Raid.map",
+      },
+      {
+        tag: "unit",
+        id: "Baldras",
+        type: "Bandit_Peasant",
+        side: 1,
+        x: 6,
+        y: 29,
+        name: _("Baldras"),
+      },
+      {
+        tag: "unit",
+        id: "Fal_Khag",
+        type: "Direwolf Rider",
+        side: 2,
+        x: 21,
+        y: 30,
+        name: _("Fal Khag"),
+      },
+      {
+        tag: "event",
+        id: "carryover_22",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_23",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/frontier.webp"),
+            text: _("From the journal of Baldras, 21 Scatterseed, 501 YW Months... seven months it’s been since the Crown did send a single guard here to help us. This Garard II be a pompous stinker, even worser than his pa! Us of these border towns Delwyn and Dallben already be poor and needy, yet alls ‘His Majesty’ can think of is tax, tax, tax, takin’ all our hard earned gold from us. Then he uses our gold to provoke more wars with more orcs just for personal glory and more land for them grubby nobles to lord over."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_24",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/frontier.webp"),
+            text: _("To abbadon with the Crown! We got no armies and we don’t even got real weapons, but we of the Western Marches make do just fine with our slings and clubs. In all Annuvin Province, there won’t be nobody besting us in these swamps. We’re self-reliant out here. We gots our own trade routes and pacts of mutual defense. No need for them Wesnothians. Not a single bit."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_25",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/frontier.webp"),
+            text: _("The sun were out today, but it were raining too. Weird mix of brightness and woe. Reminds me of the day Harper’s pa died in that orc raid. Since my sis Erwen passed when she were young, poor lass had nobody but me. Never wanted no kid of my own but... she’s mine to take care of now. Fine lass, that one, just a bit careless like her pa. I needs to keep a good eye on her now, with all them orcs running round here of late."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_26",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Baldras,Fal_Khag,Harper",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_27",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 17,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat all of the Goblin marauders"),
+        defeat: _("Goblins reach the village of Dallben Death of Baldras Death of Harper Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Baldras",
+            object: "%7B%22id%22%3A%22side_traits_1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increaseDamage%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "nunc_dimittis.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 2,
+            ai_type: "messenger_escort",
+            action: "add",
+            waypoint_x: 11,
+            waypoint_y: 1,
+            filter: "%7B%22id%22%3A%22Fal%20Khag%22%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 3,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 2,
+            y: 3,
+            item_name: "",
+            image: "items%2Fscarecrow.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 8,
+            y: 2,
+            item_name: "",
+            image: "items%2Fstraw-bale1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 9,
+            y: 3,
+            item_name: "",
+            image: "items%2Fstraw-bale2.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 10,
+            item_name: "",
+            image: "items%2Fleather-pack.png",
+          },
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "9,0",
+          },
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "11,0",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Goblin Pillager",
+            side: 2,
+            x: 20,
+            y: 28,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Goblin Pillager",
+            side: 2,
+            x: 18,
+            y: 28,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Goblin Knight",
+            side: 2,
+            x: 18,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Goblin Pillager",
+            side: 2,
+            x: 19,
+            y: 28,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "goodguys_store",
+            kill: "yes",
+            side: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Fal Khag",
+            text: _("I long to burn human cities, but that weaselly witch thinks we’re only good enough for these puny villages. These hapless clods barely have anything, but at least the witch’s gold is good."),
+          },
+          {
+            tag: "message",
+            speaker: "Fal Khag",
+            text: _("Ride, you worms! Let’s finish our raid before their hunters return."),
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "goodguys_store",
+          },
+          {
+            tag: "spawn",
+            id: "Jalak",
+            type: "Footpad_Peasant",
+            side: 1,
+            x: 7,
+            y: 28,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Jalak",
+          },
+          {
+            tag: "spawn",
+            id: "Delurin",
+            type: "Footpad_Peasant",
+            side: 1,
+            x: 6,
+            y: 28,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Delurin",
+          },
+          {
+            tag: "spawn",
+            id: "Red",
+            type: "Footpad_Peasant",
+            side: 1,
+            x: 6,
+            y: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Red",
+          },
+          {
+            tag: "spawn",
+            id: "Ordo",
+            type: "Bandit_Peasant",
+            side: 1,
+            x: 4,
+            y: 28,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Ordo",
+          },
+          {
+            tag: "spawn",
+            id: "Novus",
+            type: "Bandit_Peasant",
+            side: 1,
+            x: 5,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Novus",
+          },
+          {
+            tag: "spawn",
+            id: "Teneor",
+            type: "Thug_Peasant",
+            side: 1,
+            x: 6,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Teneor",
+          },
+          {
+            tag: "spawn",
+            id: "Kembe",
+            type: "Poacher_Peasant",
+            side: 1,
+            x: 4,
+            y: 27,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Kembe",
+          },
+          {
+            tag: "spawn",
+            id: "Treagh",
+            type: "Poacher_Peasant",
+            side: 1,
+            x: 4,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Treagh",
+          },
+          {
+            tag: "spawn",
+            id: "Harper",
+            type: "Footpad_Peasant",
+            side: 1,
+            x: 7,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Harper",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Harper",
+          },
+          {
+            tag: "message",
+            speaker: "Red",
+            text: _("Look, goblin riders approach! You was right, they was going to raid Dallben while we was gone."),
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("We gots to stop them or they’ll burn down the whole village. Damn these goblins and damn the Crown. We always be havin’ to fight for ourselves."),
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("Uncle, we got no time to talk! Them riders are heading full speed straight for Dallben. We’ll need to chase them down through those woods, and fast, or we won’t be able to catch up."),
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("Do it. Hold them beasts back till us old-timers get there to finish ‘em off."),
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("And Harper... don’t be getting reckless on me today. Your old man died like that, charging into a pack of goblins by ‘imself. I won’t lose ya the same way."),
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("I know, I know, no need to worry so much. All right, let’s go!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("These orc raids keep getting harder and harder to hold off. Feels like every new day’s just another chance for us to lose everything..."),
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("That Garard II stopped sendin’ patrols out here a while back. Stinker probably sent his troops on some new war against them orcs. Don’t really matter. Technically Annuvin be under the charge of Elensefar, but you don’t see ‘em coming to help us either."),
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("Then why do we got to pay taxes to the King? Maybe Elensefar doesn’t help us, but at least they don’t take our gold."),
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("We don’t got no choice, lass. If I don’t gives them what they want, they’ll make trouble for everyone in Dallben."),
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("But we can’t keep doing this forever, Uncle. If we stay like this, those orcs will eventually overrun us. What should we do?"),
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("I don’t know, Harper. I just don’t know. Alls I can say is we’re on our own out here."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Harper%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_defender_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22type%22%3A%22Goblin%20Pillager%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("My face kinda itches... I gotta be careful around these big ones."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "attack_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22type%22%3A%22fire%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Fal Khag",
+            text: _("Time to feast on these puny pinkskins."),
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("Hey! Who ya calling puny?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "attack_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22type%22%3A%22fire%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("Ahh! I <i>really</i> don’t like fire..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Fal%20Khag%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Fal Khag",
+            text: _("I was... too weak..?"),
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("Silly goblin."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 0,
+            y: 9,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22Hey%2C%20someone%20left%20their%20pack%20here.%20I%20could%20use%20it%20to%20carry%20some%20heavier%20rocks.%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22sound%22%2C%22attributes%22%3A%7B%22name%22%3A%22sling.ogg%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22object%22%2C%22attributes%22%3A%7B%22id%22%3A%22harper_buff%22%2C%22take_only_once%22%3A%22yes%22%2C%22silent%22%3A%22yes%22%2C%22duration%22%3A%22forever%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%221%22%2C%22y%22%3A%2210%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22attack%22%2C%22range%22%3A%22ranged%22%2C%22increase_damage%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22remove_item%22%2C%22attributes%22%3A%7B%22x%22%3A%221%22%2C%22y%22%3A%2210%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22narrator%22%2C%22image%22%3A%22wesnoth-icon.png%22%2C%22message%22%3A%22Your%20footpad%20has%20gained%20%2B1%20ranged%20damage!%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Hey, someone left their pack here. I could use it to carry some heavier rocks."),
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "sling.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22harper_buff%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22ranged%22%2C%22increaseDamage%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "harper_buff",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 1,
+            y: 10,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Your footpad has gained +1 ranged damage!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 1,
+            y: 2,
+          },
+          {
+            tag: "message",
+            text: _("Spooky."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_unit",
+            kill: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_unit.experience",
+            value: 2,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "stored_unit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2211%22%2C%22y%22%3A%222%22%2C%22radius%22%3A%2212%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "town_guards_awakened",
+                not_equals: "yes",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("They’re getting close to Dallben! What should we do?"),
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("There be a couple guards in the village. Might be able to slow them wolves down if they gets closer."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.side",
+            equals: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Wolmas",
+            text: _("What’s happening here? Why be you running like mad, $unit.name|?"),
+          },
+          {
+            tag: "message",
+            text: _("Goblin riders be on the hunt, headed right for Dallben. We gots to stop them!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.side",
+            not_equals: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Wolmas",
+            text: _("Look! Goblin riders be on the hunt, headed right for Dallben!"),
+          },
+          {
+            tag: "message",
+            speaker: "Remald",
+            text: _("We gots to stop them!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2211%22%2C%22y%22%3A%222%22%2C%22radius%22%3A%229%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "spawn",
+            id: "Remald",
+            type: "Thug_Peasant",
+            side: 1,
+            x: 11,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Remald",
+          },
+          {
+            tag: "spawn",
+            id: "Wolmas",
+            type: "Thug_Peasant",
+            side: 1,
+            x: 9,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Wolmas",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_15",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "town_guards_awakened",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 2,
+            x: "8-12",
+            y: "0-1",
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("The goblins reached the village! Now there’ll be nothing left after they raid our homes..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Baldras%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("I’m coming... Erwen..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Harper%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Harper",
+            text: _("Unngh..."),
+          },
+          {
+            tag: "message",
+            speaker: "Baldras",
+            text: _("Harper, no!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Relana%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Relana",
+            text: _("I’m finished..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lord%20Maddock%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Lord Maddock",
+            text: _("How can this be?"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

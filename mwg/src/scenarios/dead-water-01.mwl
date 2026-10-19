@@ -1,0 +1,1362 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Invasion!"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good guys",
+        gold: 120,
+        recruit: "Merman Citizen, Merman Fighter, Merman Hunter, Mermaid Initiate",
+        leader: "Kai_Krellis",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "bad guys",
+        gold: 150,
+        recruit: "Walking Corpse, Soulless, Vampire Bat, Skeleton Archer, Skeleton",
+        leader: "Mal-Kevek",
+      },
+      {
+        tag: "map",
+        id: "scenario_01_Invasion",
+        file: "Home_1.map",
+      },
+      {
+        tag: "unit",
+        id: "Kai_Krellis",
+        type: "Merman Child King",
+        side: 1,
+        x: 20,
+        y: 9,
+        name: _("Kai Krellis"),
+      },
+      {
+        tag: "unit",
+        id: "Mal-Kevek",
+        type: "Dark Sorcerer",
+        side: 2,
+        x: 35,
+        y: 24,
+        name: _("Mal-Kevek"),
+      },
+      {
+        tag: "event",
+        id: "carryover_39",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "avoid,42,12,0,10;avoid,42,13,0,10;avoid,42,14,0,10;avoid,42,15,0,10;avoid,42,16,0,10;avoid,41,16,0,10;avoid,41,17,0,10;avoid,40,18,0,10;avoid,40,19,0,10;avoid,40,20,0,10;avoid,39,21,0,10;avoid,38,23,0,10;avoid,37,24,0,10;avoid,36,25,0,10;avoid,35,25,0,10;avoid,34,26,0,10;avoid,32,26,0,10;avoid,31,26,0,10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_40",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("In the Far North, where the foothills of the Heart Mountains approach the coast, lies a bay with a narrow mouth. In the calm waters of this bay lies the merfolk city of Jotha. The natural harbor and the prosperity of the dwellers within drew many envious eyes, but none could match the prowess of the merfolk in their aquatic domain. In most years, orcs from the port city of Tirigaz, further north, would raid against Jotha as predictably as the spring rains; always, they were driven back to dry land with heavy losses, the salt water of the bay stinging their wounds."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_41",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("In 626 YW, Jotha was attacked by a larger raiding party than ever before. The king Kai Laudiss led his troops to repel the raiders. They were successful, but merfolk casualties were greater than usual. And numbered with the slain was the wife of Kai Laudiss. The kai’s grief was great, but his wrath was also fearsome to behold. He readied his army to follow the orcs. His stated purpose was not revenge, but the desire to secure the safety of Jotha with a demonstration of force that would teach the orcs to steer well clear of the merfolk. The merfolk army caught up with the orc band as it reached Tirigaz."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_42",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Under the cover of darkness, the merfolk slid into the bay, intending to launch a surprise attack at dawn. But the orcs were prepared for this, and had hastily devised a surprise of their own. Ships at the mouth of the bay that had seemed but derelict hulks disgorged hordes of orcs. More of them poured forth from the city. The merfolk were trapped, and found themselves vastly outnumbered."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_43",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Kai Laudiss’s army fought fiercely, slaying five orcs for every warrior they lost. The kai himself fought with reckless abandon; foes fell with each swing of his great mace. The orcs discovered that trapped merfolk were tougher than they had imagined, and found themselves fleeing into the forest to escape their vengeful spears. As the kai had intended, it was a defeat the orcs would not soon forget; but the cost was heavy. Kai Laudiss was felled by a poisoned orcish dart, and the greater part of his army was destroyed. When the remaining soldiers returned to Jotha, Krellis, the young son of Kai Laudiss, learned that he had become kai."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_44",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Kai Krellis felt too young for the responsibilities of a kingdom, so he relied on the wisdom of a priestess named Cylanna. She had been a friend of his father, and he had known her as long as he could remember. Cylanna mourned the former kai, but believed that his sacrifice would allow Krellis to preside over an age of peace. Unfortunately, that was not to be. A new enemy appeared from under the mountains."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_45",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kai_Krellis,Mal-Kevek,Cylanna,Gwabbo",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_46",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 30,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat enemy leader"),
+        defeat: _("Death of Kai Krellis Death of Cylanna Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_2",
+        on: "branch_if_2",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "recruited_unit_random_variation",
+            not_equals: "none",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prerecruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Walking%20Corpse%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "recruited_unit_random_variation",
+            values: "swimmer",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_4",
+        on: "branch_if_4",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "recruited_unit_random_variation",
+            not_equals: "none",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prerecruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Soulless%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "recruited_unit_random_variation",
+            values: "swimmer",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_4",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "set_variable",
+            name: "side_1_limited_recruits_length",
+            value: -1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "recruit",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Merman%20Hunter%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "side_1_limited_recruits_length",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "side_1_limited_recruits[$side_1_limited_recruits_length|].type",
+            value: "$unit.type",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_10",
+        on: "branch_if_10",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.number_recruited",
+            greater_than_or_equal_to: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "Merman Hunter",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_9",
+        on: "branch_if_9",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.type",
+            equals: "$unit.type",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "this_item.number_recruited",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Merman%20Hunter%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "foreach",
+            variable: "side_1_limited_recruits",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_9",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "set_variable",
+            name: "side_1_limited_recruits_length",
+            value: -1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "recruit",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Merman%20Fighter%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "side_1_limited_recruits_length",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "side_1_limited_recruits[$side_1_limited_recruits_length|].type",
+            value: "$unit.type",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.number_recruited",
+            greater_than_or_equal_to: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "Merman Fighter",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.type",
+            equals: "$unit.type",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "this_item.number_recruited",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Merman%20Fighter%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "foreach",
+            variable: "side_1_limited_recruits",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_15",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "set_variable",
+            name: "side_1_limited_recruits_length",
+            value: -1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "recruit",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Mermaid%20Initiate%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "side_1_limited_recruits_length",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "side_1_limited_recruits[$side_1_limited_recruits_length|].type",
+            value: "$unit.type",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_22",
+        on: "branch_if_22",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.number_recruited",
+            greater_than_or_equal_to: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "Mermaid Initiate",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_21",
+        on: "branch_if_21",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.type",
+            equals: "$unit.type",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "this_item.number_recruited",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_22",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Mermaid%20Initiate%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "foreach",
+            variable: "side_1_limited_recruits",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_21",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_king_is_dead.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "vengeful.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "legends_of_the_north.ogg",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Merman Citizen",
+            side: 1,
+            x: 18,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Merman Citizen",
+            side: 1,
+            x: 20,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Merman Citizen",
+            side: 1,
+            x: 13,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Merman Citizen",
+            side: 1,
+            x: 25,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Merman Citizen",
+            side: 1,
+            x: 18,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Merman Citizen",
+            side: 1,
+            x: 20,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "spawn",
+            id: "Cylanna",
+            type: "Mermaid Priestess",
+            side: 1,
+            x: 20,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Cylanna",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Cylanna",
+          },
+          {
+            tag: "set_variable",
+            name: "number_of_captured_villages",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variables",
+            payload: "%7B%22name%22%3A%22zombie_number_pattern%22%2C%22mode%22%3A%22replace%22%2C%22to_variable%22%3A%22%22%2C%22children%22%3A%5B%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22number%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22number%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22number%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22number%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22value%22%2C%22attributes%22%3A%7B%22number%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "zombie_type",
+            value: "Walking Corpse",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Is something wrong, priestess?"),
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("Maybe. I smell death and decay."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 33,
+            y: 22,
+          },
+          {
+            tag: "spawn",
+            id: "fiend",
+            type: "Skeleton",
+            side: 2,
+            x: 33,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "fiend",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "fiend",
+            x: 34,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "34,19",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "spawn",
+            id: "Gwabbo",
+            type: "Merman Netcaster",
+            side: 1,
+            x: 33,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Gwabbo",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Gwabbo",
+          },
+          {
+            tag: "message",
+            speaker: "Gwabbo",
+            text: _("Back, you fiend! You have not won...I will return to finish this."),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Gwabbo",
+            x: 19,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Gwabbo",
+            text: _("Kai! We are under attack! Fell creatures invaded our village and slew without mercy. I managed to fight my way clear, and have come to seek your aid."),
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("What manner of creatures were they?"),
+          },
+          {
+            tag: "message",
+            speaker: "Gwabbo",
+            text: _("I have never seen their like before in all my years. They were like men, but they had no skin. Our spears went right through them; they <i>laughed</i> at our weapons. And they smelled like nothing in the sea, of dank earth and rottenness."),
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("Undead. This will be your first real test as a leader, Kai Krellis. You must defeat these creatures."),
+          },
+          {
+            tag: "message",
+            speaker: "Gwabbo",
+            text: _("Kai, please lead us against them yourself, it will hearten the folk. And — if you will permit — you now reach the age where a kai must learn battle skills."),
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("Gwabbo speaks wisely. You must fight; I will protect you as much as I can...but when war looms, a kai must lead. It is our way."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You have few trained fighters, so you can only recruit three of each level 1 unit. There is no limit on citizens."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "message",
+            speaker: "Mal-Kevek",
+            text: _("Rise, my slaves! We will create an army for Lord Ravanal."),
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Walking Corpse",
+            side: 2,
+            x: 33,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 200,
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Walking Corpse",
+            side: 2,
+            x: 33,
+            y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 200,
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Walking Corpse",
+            side: 2,
+            x: 34,
+            y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 200,
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("He is raising our dead to fight against us! Even though they were your own citizens, Krellis, show no mercy. Destroy them if you can."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mal-Kevek%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MK",
+            kill: "no",
+            id: "Mal-Kevek",
+          },
+          {
+            tag: "message",
+            text: _("Foolish fish-men. You cannot kill <i>me</i> that easily."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("The merfolk saw a shadowy shape rise from the dead body of the necromancer and disappear under the mountain."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mal-Kevek%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "wail-long.wav",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_30",
+        on: "branch_if_30",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "village_location",
+            equals: "$this_item.location",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "already_zombified",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_32",
+        on: "branch_if_32",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Ww%5EVm%2CSs%5EVm%22%2C%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "zombie_variation",
+            value: "swimmer",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_33",
+        on: "branch_if_33",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "__invalid_if__",
+            not_equals: "",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "zombie_variation",
+            value: "none",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_34",
+        on: "branch_if_34",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "number_of_captured_villages",
+            equals: 2,
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("He is raising the dead from every village!"),
+          },
+          {
+            tag: "message",
+            speaker: "Gwabbo",
+            text: _("This will be a dark day, but we <i>will</i> prevail."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_31",
+        on: "branch_if_31",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "already_zombified",
+            not_equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "zombified_villages[$number_of_captured_villages].location",
+            value: "$x1|_$y1",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_32",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_33",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_repeat_0",
+            value: 0,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_repeat_0",
+                less_than: "$zombie_number_pattern[ $($number_of_captured_villages % 5) ].number",
+              },
+              {
+                tag: "hook",
+                name: "command:spawn_dynamic",
+                type: "$zombie_type",
+                side: "$unit.side",
+                x: "$x1",
+                y: "$y1",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_repeat_0",
+                value: 1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_34",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "number_of_captured_villages",
+            value: 1,
+            mode: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "capture",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_capturer_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "village_location",
+            value: "$x1|_$y1",
+            mode: "value",
+          },
+          {
+            tag: "foreach",
+            variable: "zombified_villages",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_30",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_31",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "zombified_villages[$number_of_captured_villages].location",
+            value: "35_20",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "number_of_captured_villages",
+            value: 1,
+            mode: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kai%20Krellis%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Hey, I did it!"),
+          },
+          {
+            tag: "message",
+            speaker: "Gwabbo",
+            text: _("Good work, Kai, if I may say so."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Cylanna%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kai Krellis",
+            text: _("Cylanna! I need you!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_38",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kai%20Krellis%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Cylanna",
+            text: _("We are lost without our king!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

@@ -1,0 +1,742 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Valley of Death — The Princess’s Revenge"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "elves",
+        gold: 260,
+        leader: "Konrad",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "undead",
+        gold: 240,
+        recruit: "Skeleton,Revenant,Chocobone,Blood Bat,Wraith,Bone Shooter,Dark Adept",
+        leader: "Galga",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "undead",
+        gold: 260,
+        recruit: "Wraith,Walking Corpse",
+        leader: "Na-alga",
+      },
+      {
+        tag: "side",
+        id: 4,
+        team_name: "undead",
+        gold: 220,
+        recruit: "Walking Corpse,Wraith,Bone Shooter,Revenant,Skeleton,Dark Adept",
+        leader: "Selda-Mana",
+      },
+      {
+        tag: "map",
+        id: "scenario_09_The_Valley_of_Death",
+        file: "09_The_Valley_of_Death.map",
+      },
+      {
+        tag: "unit",
+        id: "Konrad",
+        type: "Commander",
+        side: 1,
+        x: 17,
+        y: 30,
+        name: _("Konrad"),
+      },
+      {
+        tag: "unit",
+        id: "Galga",
+        type: "Lich",
+        side: 2,
+        x: 8,
+        y: 46,
+        name: _("Galga"),
+      },
+      {
+        tag: "unit",
+        id: "Na-alga",
+        type: "Lich",
+        side: 3,
+        x: 38,
+        y: 28,
+        name: _("Na-alga"),
+      },
+      {
+        tag: "unit",
+        id: "Selda-Mana",
+        type: "Lich",
+        side: 4,
+        x: 12,
+        y: 7,
+        name: _("Selda-Mana"),
+      },
+      {
+        tag: "event",
+        id: "carryover_26",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 1.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: -5.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_27",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Konrad,Galga,Na-alga,Selda-Mana,Moremirmu,u_1,u_2,u_3",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_28",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 12,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Survive for two days Eradicate the liches<span foreground='white'><small> _(early finish bonus)</small></span>"),
+        defeat: _("Death of Konrad Death of Delfador Death of Kalenz"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_dangerous_symphony.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "northerners.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knalgan_theme.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 4,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: 4,
+            y: 22,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: 30,
+            y: 42,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 20,
+            y: 14,
+            item_name: "",
+            image: "scenery%2Frock1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 8,
+            y: 31,
+            item_name: "",
+            image: "scenery%2Frock2.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 30,
+            y: 34,
+            item_name: "",
+            image: "scenery%2Frock3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 37,
+            y: 39,
+            item_name: "",
+            image: "scenery%2Frock4.png",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Moremirmu",
+            unit: "Moremirmu",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("My lord! This road does not seem as safe as we had hoped. Look around us at the hills — there are undead about!"),
+          },
+          {
+            tag: "message",
+            speaker: "Selda-Mana",
+            text: _("Who are these who approach? Let us kill them all!"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("To arms, men! The undead hordes approach!"),
+          },
+          {
+            tag: "message",
+            speaker: "Moremirmu",
+            text: _("There can be no surrender to these foul beasts of the pit! We fight until victory, or until every one of us is slain!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 3,
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            portrait: "portraits/konrad-human-concerned.webp",
+            text: _("There are just so many! What shall we do?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("My people douse our weapons with holy water when fighting undead. It usually lasts until the end of the battle, and they shrink in utter fear of our blades... if that is possible for an undead minion."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Let us hold them off as long as we can!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "moremirmu",
+          },
+          {
+            tag: "spawn",
+            id: "Moremirmu",
+            type: "Mage of Light",
+            side: 1,
+            x: 19,
+            y: 47,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Moremirmu",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Moremirmu",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "White Mage",
+            side: 1,
+            x: 19,
+            y: 47,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "White Mage",
+            side: 1,
+            x: 19,
+            y: 47,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "White Mage",
+            side: 1,
+            x: 19,
+            y: 47,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_3",
+          },
+          {
+            tag: "message",
+            speaker: "Moremirmu",
+            text: _("I have come once again to aid you, friends!"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("White magi? Come to help us? But what are they doing here?"),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("That is Moremirmu! He helped us fight the undead in the Isles of the Damned, let us hope he can help us once more!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_14",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("The sun rises in the east. Surely the undead do not have the power to continue their onslaught through another day!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Indeed not! I feel we have survived this battle."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            portrait: "portraits/konrad-human-concerned.webp",
+            text: _("Whew! That was a difficult battle, but they are retreating at last!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "victory_dance",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Moremirmu%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "moremirmu",
+            value: 3,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "victory_dance",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "victory_dance",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Yes! We have fought them off!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_20",
+        on: "branch_if_20",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "moremirmu",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22moremirmu%22%2C%22numerical_equals%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Moremirmu",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "u_3",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_20",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Konrad%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("We are vanquished, for I have been defeated!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Li'sar%22%2C%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I can’t believe it should end like this!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Argh! I am finished!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! This is the end! We have been defeated!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Warven%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("At least I die an honorable death."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "have_warven",
+            value: "no",
+            mode: "value",
+          },
+        ],
+      },
+    ],
+  },
+]

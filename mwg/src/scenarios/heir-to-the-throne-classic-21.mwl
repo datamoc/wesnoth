@@ -1,0 +1,511 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("The Elven Council"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "elves",
+        gold: 0,
+        leader: "Konrad",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "elves",
+        leader: "Uradredia",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "elves",
+        leader: "Parandra",
+      },
+      {
+        tag: "map",
+        id: "scenario_21_Elven_Council",
+        file: "21_Elven_Council.map",
+      },
+      {
+        tag: "unit",
+        id: "Konrad",
+        type: "Commander",
+        side: 1,
+        x: 11,
+        y: 13,
+        name: _("Konrad"),
+      },
+      {
+        tag: "unit",
+        id: "Uradredia",
+        type: "Elvish Lord",
+        side: 2,
+        x: 15,
+        y: 11,
+        name: _("Uradredia"),
+      },
+      {
+        tag: "unit",
+        id: "Parandra",
+        type: "Elvish Lady",
+        side: 3,
+        x: 11,
+        y: 9,
+        name: _("Parandra"),
+      },
+      {
+        tag: "event",
+        id: "carryover_6",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_7",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Konrad,Uradredia,Parandra,Delfador,Kalenz,Li_sar",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_8",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _(""),
+        defeat: _(""),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "elf-land.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "silvan_sanctuary.ogg",
+          },
+          {
+            tag: "spawn",
+            id: "Delfador",
+            type: "Elder Mage",
+            side: 1,
+            x: 9,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Delfador",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Delfador",
+          },
+          {
+            tag: "spawn",
+            id: "Kalenz",
+            type: "Elvish Lord",
+            side: 1,
+            x: 9,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Kalenz",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Kalenz",
+          },
+          {
+            tag: "spawn",
+            id: "Li_sar",
+            type: "Princess",
+            side: 1,
+            x: 10,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Li_sar",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Li_sar",
+          },
+          {
+            tag: "spawn",
+            id: "Bellrok",
+            type: "Elvish Champion",
+            side: 3,
+            x: 10,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Bellrok",
+          },
+          {
+            tag: "spawn",
+            id: "Tindolean",
+            type: "Elvish Avenger",
+            side: 2,
+            x: 14,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Tindolean",
+          },
+          {
+            tag: "spawn",
+            id: "Everlore",
+            type: "Elvish Enchantress",
+            side: 2,
+            x: 14,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Everlore",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_4",
+        on: "branch_if_4",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "sceptre",
+            equals: "Konrad",
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("Well, that is why I must take the Sceptre. I will return, and people will accept me as Queen. I will rule justly and fairly. My mother is only Queen Dowager. The throne is rightfully mine, and with the Sceptre I can prove it."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            portrait: "portraits/delfador-mentoring.webp",
+            text: _("Young lady, there is some good in you, but the throne is not yours to claim. Konrad has the Sceptre. He will take the throne."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_5",
+        on: "branch_if_5",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "sceptre",
+            not_equals: "Konrad",
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("Well, I have the Sceptre! I will return and the people will accept me as Queen! My mother is only Queen Dowager. The Throne is rightfully mine, and I will rule from it with justice and fairness. I may even accept you as my adviser and counselor, Delfador."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            portrait: "portraits/delfador-mentoring.webp",
+            text: _("Though you have the Sceptre, Li’sar, it is rightfully Konrad’s. You have it now only because we helped you get it."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("And if I refuse to give it to him?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            portrait: "portraits/delfador-mentoring.webp",
+            text: _("If it is necessary, I will ask Konrad to fight you in a duel for it."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Delfador! Li’sar has become our friend. I don’t want to fight her! As long as she rules well, what does it matter if she becomes queen?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            portrait: "portraits/delfador-mentoring.webp",
+            text: _("You are the rightful heir. You should be king, Konrad."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Uradredia",
+            text: _("Greetings, and welcome to our capital. You should feel honored. It has been half a century — a generation in the way your race counts time — since any man has been considered elf-friend enough to stand here in Elensiria."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("We are indeed honored."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("I might also say that it is you who are honored. It has been so long since you have been graced by the presence of a princess of Wesnoth."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            portrait: "portraits/delfador-mad.webp",
+            text: _("Silence, foolish girl! With such arrogance, is it any surprise that the royal family of Wesnoth long ago saw their ancient alliances fall to pieces?"),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("Yes... you are right, sir. It is I who am honored to be here, and I apologize for my discourtesy."),
+          },
+          {
+            tag: "message",
+            speaker: "Uradredia",
+            text: _("Delfador the Great. As wise with his tongue in advice as he is strong with his staff in battle. A rare combination, especially among men."),
+          },
+          {
+            tag: "message",
+            speaker: "Parandra",
+            text: _("How quickly does the race of men mature! Only twenty-one winters have passed since I last laid eyes on you, Konrad, yet you are now a grown man. A proven warrior stands before me!"),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Forgive me, Elf, but I’m afraid I do not recall meeting you before."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Konrad, this is Parandra. She helped me rescue you from the clutches of Asheviere."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("I had no idea! Thank you, my lady. It is a pleasure to meet you again."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("Rescued him from my mother? But twenty-one years ago Konrad would have been an infant! What is this you are talking about?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Your mother has much blood upon her hands, child. She has had many killed unjustly. When Konrad was an infant, she ordered all the princes put to death, so she could seize control."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("She had them murdered? There were others too, not just Konrad? Surely you do not speak the truth! Parandra, what do you say?"),
+          },
+          {
+            tag: "message",
+            speaker: "Parandra",
+            text: _("When Delfador the Great speaks of the Queen Dowager, Asheviere, ordering the princes of Wesnoth to be put to death, he speaks the truth."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("And what say you, Elf-king?"),
+          },
+          {
+            tag: "message",
+            speaker: "Uradredia",
+            text: _("I did not see it myself, but I have heard many reliable reports. Asheviere indeed has the blood of the princes on her hands. She has also allowed orcs to desecrate the lands, abandoning all respect for the peoples around her."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_4",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_5",
+          },
+          {
+            tag: "message",
+            speaker: "Parandra",
+            text: _("Delfador, you have raised Konrad to be skillful and wise, honorable and just. A warrior who has respect, and appreciates peace. Yet the throne is not the place for him. You know of what I speak, Delfador."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("But I do not! What is your meaning, Parandra?"),
+          },
+          {
+            tag: "message",
+            speaker: "Parandra",
+            text: _("In time, things will be revealed, fair Princess. For the moment, go forth and claim the throne of Wesnoth."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Parandra, what you say may seem right to some, but as long as you and I speak to no-one of what we know, I see no reason why Konrad would not best have the throne."),
+          },
+          {
+            tag: "message",
+            speaker: "Parandra",
+            text: _("In so many things you are right, Delfador, and your wisdom is unmatched in the world of men. But in this, you are mistaken. Li’sar is the heir. She should take the throne. Now that I have met her for myself, I am sure of it."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("She will claim the throne, and not me? What should I do?"),
+          },
+          {
+            tag: "message",
+            speaker: "Parandra",
+            text: _("Li’sar should be Queen, but you will go with her. Indeed, I suspect we could not convince you otherwise. I have seen the way you look at her, Konrad. I think that now you would follow her even to the ends of the earth."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("With all due respect, my lady, she is my cousin! There is nothing between us!"),
+          },
+          {
+            tag: "message",
+            speaker: "Parandra",
+            text: _("Then if it is as you say, Konrad, perhaps you should stay here with us. It would surely be safer for you. The elves could show you things that would amaze you, things that no man has seen before."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("That is a generous offer, my lady, but you are indeed right, I would rather go with Li’sar."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("And what say you, Uradredia?"),
+          },
+          {
+            tag: "message",
+            speaker: "Uradredia",
+            text: _("Tell me, Li’sar, are you willing to fight your own mother for the throne?"),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("It is for the good of the country. If it is necessary, I will fight her, Elf-king."),
+          },
+          {
+            tag: "message",
+            speaker: "Uradredia",
+            text: _("I feel that this lady speaks the truth. Delfador, although I know that you do not concur, the words of Parandra, daughter of Elandria are wise. Rest here for a time, and then go forth with them."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("And you who have been with us for a time, Kalenz son of Kliada, what say you?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Wisdom has been spoken here today, Delfador. We have been with Li’sar in the most trying of times, and risked life and limb with her. Yet we still have both our lives and our limbs. She lacks experience, and has too much of the brashness of youth, but she will make a good queen in time."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("So, the Elven Council has spoken. But which path should we take on our journey? The Ford of Abez will not be passable, for surely it will be watched and guarded by many men."),
+          },
+          {
+            tag: "message",
+            speaker: "Uradredia",
+            text: _("There is another way by which you can return to Wesnoth: past the mountains of the dragons and through the dark valley, to the land of the East. From there you can return to Wesnoth and surprise the Dark Queen, catching her off guard."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Mountains of the dragons? That sounds very dangerous! I didn’t even think there were such things as dragons!"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("No dragon has been sighted in those mountains for many years, but they retain their name of old. Still, that path will be dangerous for us. Is there not another route we might take?"),
+          },
+          {
+            tag: "message",
+            speaker: "Uradredia",
+            text: _("All routes are dangerous, though there is some hope along this path. Rest, and then go forth, friends. Fortune has smiled upon you so far, despite great dangers. Perhaps she will continue to do so."),
+          },
+          {
+            tag: "message",
+            speaker: "Parandra",
+            text: _("Yes, rest. Your soldiers will be tended to and refreshed. We have made sure you will leave our protection with the resources to finish your journey."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+    ],
+  },
+]

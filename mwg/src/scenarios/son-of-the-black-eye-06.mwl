@@ -1,0 +1,768 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Black Flag"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Kapoue",
+        gold: 160,
+        leader: "Kapou_e",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "Humans",
+        gold: 125,
+        recruit: "Swordsman,Fencer,Mage,Heavy Infantryman,Bowman",
+        leader: "Slowhand",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "Humans",
+      },
+      {
+        tag: "side",
+        id: 4,
+        team_name: "Humans",
+        gold: 125,
+        recruit: "Swordsman,Fencer,Mage,Heavy Infantryman,Bowman",
+        leader: "Harman",
+      },
+      {
+        tag: "side",
+        id: 5,
+        team_name: "Kapoue",
+      },
+      {
+        tag: "map",
+        id: "scenario_06_Black_Flag",
+        file: "06_Black_Flag.map",
+      },
+      {
+        tag: "unit",
+        id: "Kapou_e",
+        type: "Orcish Leader",
+        side: 1,
+        x: 25,
+        y: 1,
+      },
+      {
+        tag: "unit",
+        id: "Slowhand",
+        type: "General",
+        side: 2,
+        x: 10,
+        y: 7,
+        name: _("Slowhand"),
+      },
+      {
+        tag: "unit",
+        id: "Harman",
+        type: "General",
+        side: 4,
+        x: 36,
+        y: 30,
+        name: _("Harman"),
+      },
+      {
+        tag: "event",
+        id: "carryover_18",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_19",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kapou_e,Slowhand,Harman",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_20",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 24,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat Slowhand and Harman"),
+        defeat: _("Death of Kapou’e Death of Grüü Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_city_falls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "breaking_the_chains.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "siege_of_laurelmor.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 4,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Orcish Grunt",
+            side: 5,
+            x: 15,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Orcish Archer",
+            side: 5,
+            x: 16,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Orcish Grunt",
+            side: 5,
+            x: 19,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Orcish Archer",
+            side: 5,
+            x: 24,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Orcish Grunt",
+            side: 5,
+            x: 31,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Orcish Archer",
+            side: 5,
+            x: 30,
+            y: 24,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "spawn",
+            id: "Landing_Galleon",
+            type: "Transport Galleon",
+            side: 2,
+            x: 5,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Landing_Galleon",
+          },
+          {
+            tag: "spawn",
+            id: "Affman",
+            type: "Orcish Grunt",
+            side: 5,
+            x: 26,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Affman",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Pirk",
+            unit: "Pirk",
+            x: 26,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Gork",
+            unit: "Gork",
+            x: 27,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Vraurk",
+            unit: "Vraurk",
+            x: 28,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Grüü",
+            unit: "Grüü",
+            x: 25,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Jetto",
+            unit: "Jetto",
+            x: 24,
+            y: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("So, here is Tirigaz. But what’s going on?"),
+          },
+          {
+            tag: "message",
+            speaker: "Pirk",
+            text: _("Looks like humans have attacked here too. You were right, Kapou’e, the humans have declared all-out war on us."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Listen, if we are to meet with the rest of the Great Council, we have to repel this attack. You shamans hide here in the forest until we defeat them. It will be faster and easier for us if we don’t have to worry about protecting you."),
+          },
+          {
+            tag: "message",
+            speaker: "Gork",
+            text: _("This is a wise choice. Good luck, Son of the Black-Eye."),
+          },
+          {
+            tag: "message",
+            speaker: "Slowhand",
+            portrait: "/portraits/humans/general.webp~FL()~RIGHT()",
+            text: _("Haha! Our plan is going well, let’s surround them on land while our allies attack them from sea!"),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_shamans",
+            kill: "yes",
+            id: "Pirk,Gork,Vraurk",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "message",
+            speaker: "Affman",
+            text: _("Look, a party of our kind approaches from the North."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Greetings from Kapou’e, Son of the Black-Eye Karun."),
+          },
+          {
+            tag: "message",
+            speaker: "Affman",
+            text: _("Son of the great Black-Eye Karun?! You do us honor, Chief."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Do not grovel like humans, just tell me what’s going on here."),
+          },
+          {
+            tag: "message",
+            speaker: "Affman",
+            text: _("I don’t really know, one day all was calm and peaceful and the next day a fleet of human ships showed up and began spewing out troops. Did our best to hold them off, but they captured the northern keep. And then human reinforcements arrived from their settlements to the South."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Are the shamans safe?"),
+          },
+          {
+            tag: "message",
+            speaker: "Affman",
+            text: _("When we realized that there was no way we could hold the humans off, we sent them east to a place near the Mourned Hills along with most of our women and children. The majority of our grunts and archers went with them to ensure their safety. The rest of us remained here to buy them some time. It has been three days since their evacuation."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Wise decision. We have actually come to speak to the shamans, but while we are here we must help you out of this scrape. Grüü, fight the humans if you must, but don’t be reckless. Getting me to the Tirigaz keep so I can rally our forces for the counterattack must be our first priority. And, I need you to stay alive. We can’t defeat them by sea without ships, but we can destroy the foothold they have gained on the land."),
+          },
+          {
+            tag: "message",
+            speaker: "Grüü",
+            text: _("I love this strategy, Chief!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_8",
+        on: "branch_if_8",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            less_than: 5,
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Transport Galleon",
+            side: 3,
+            x: 0,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "possible_transport_destinations",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22x%22%3A%2214-28%22%2C%22y%22%3A%2214-29%22%2C%22terrain%22%3A%22Ww%22%2C%22variable%22%3A%22possible_transport_destinations%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22!%2C%20W*%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22already_picked_transport_destination_surroundings%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "transport_destination_index",
+            values: "1..$possible_transport_destinations.length",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "transport_destination_index",
+            value: 1,
+            mode: "sub",
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22x%22%3A%221%22%2C%22y%22%3A%2230%22%7D%2C%22children%22%3A%5B%5D%7D",
+            unit_variables: "%7B%22destination_x%22%3A%22%24possible_transport_destinations%5B%24transport_destination_index%5D.x%22%2C%22destination_y%22%3A%22%24possible_transport_destinations%5B%24transport_destination_index%5D.y%22%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "already_picked_transport_destination_surroundings",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24possible_transport_destinations%5B%24transport_destination_index%5D.x%22%2C%22y%22%3A%22%24possible_transport_destinations%5B%24transport_destination_index%5D.y%22%2C%22radius%22%3A%222%22%2C%22variable%22%3A%22already_picked_transport_destination_surroundings%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_radius%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Ww%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22already_picked_transport_destination_surroundings%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_8",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22type%22%3A%22Transport%20Galleon%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Let’s get those orcs!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            type: "Transport Galleon",
+            x: 0,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "$unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Slowhand%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Aaaargh! I die!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            portrait: "portraits/kapoue-angry.webp",
+            text: _("Finally, you pay for what you did to my orc brothers!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("We are victorious at last. Someone go tell the shamans that they can come out now."),
+          },
+          {
+            tag: "foreach",
+            variable: "stored_shamans",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Gork",
+            text: _("Congratulations on your victory, Kapou’e. You do honor to the memory of your father."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Thanks, but I have news. Since the forces here were certain they were going to be defeated, they sent the shamans to the Mourned Hills. If we want to meet them, we must go after them."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("They most probably took the route through the foothills. The journey is time consuming but much safer compared to the direct route through the Desert of Death."),
+          },
+          {
+            tag: "message",
+            speaker: "Pirk",
+            text: _("Oh, great. That means we have to cross the Desert of Death which is full of poisonous giant scorpions and human outlaws. And bypassing it would take too long! Not to mention after this desert, we’ll have to cross the Silent Forest!"),
+          },
+          {
+            tag: "message",
+            speaker: "Grüü",
+            text: _("Well, we have no choice... I’ve never tasted scorpions but I am sure they are good. This journey will be fun."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kapou'e%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Argh! I’m done. My people are doomed!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Orcish%20Shaman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Ouch! This hurts!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("The Council will never be complete again. This is hopeless."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Gr%C3%BC%C3%BC%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Oh no, I am defeated."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "inarix_abandoned",
+            not_equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Inarix",
+            text: _("Ahhh!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Blast it, without Inarix to lead her saurians, we can no longer count on their help."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "got_saurians",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "Saurian Skirmisher, Saurian Augur",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Inarix%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+        ],
+      },
+    ],
+  },
+]

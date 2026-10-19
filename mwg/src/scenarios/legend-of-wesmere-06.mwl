@@ -1,0 +1,647 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Acquaintance in Need"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "player",
+        gold: 600,
+        leader: "Kalenz",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "null",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "null",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "player",
+        gold: 160,
+      },
+      {
+        tag: "side",
+        id: 5,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 230,
+        recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Wolf Rider, Orcish Crossbowman, Goblin Pillager, Goblin Knight, Orcish Slayer",
+        leader: "Urug-Tar",
+      },
+      {
+        tag: "side",
+        id: 6,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 270,
+        recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Wolf Rider, Orcish Crossbowman, Goblin Knight, Goblin Pillager, Orcish Slayer",
+        leader: "Graur-Tan",
+      },
+      {
+        tag: "side",
+        id: 7,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 175,
+        recruit: "Troll Whelp, Troll",
+        leader: "Traur",
+      },
+      {
+        tag: "map",
+        id: "scenario_06_Acquaintance_in_Need",
+        file: "campaigns/Legend_of_Wesmere/maps/06_Acquaintance_in_Need.map",
+      },
+      {
+        tag: "unit",
+        id: "Kalenz",
+        type: "Elvish Captain",
+        side: 1,
+        x: 16,
+        y: 37,
+        name: _("Kalenz"),
+      },
+      {
+        tag: "unit",
+        id: "Landar",
+        type: "Elvish Ranger",
+        side: 0,
+        x: 21,
+        y: 38,
+      },
+      {
+        tag: "unit",
+        id: "Cleodil",
+        type: "Elvish Shyde",
+        side: 0,
+        x: 13,
+        y: 38,
+      },
+      {
+        tag: "unit",
+        id: "Olurf",
+        type: "Dwarvish Steelclad",
+        side: 0,
+        x: 19,
+        y: 24,
+      },
+      {
+        tag: "unit",
+        id: "Urug-Tar",
+        type: "Orcish Warlord",
+        side: 5,
+        x: 24,
+        y: 31,
+        name: _("Urug-Tar"),
+      },
+      {
+        tag: "unit",
+        id: "Graur-Tan",
+        type: "Orcish Warlord",
+        side: 6,
+        x: 21,
+        y: 5,
+        name: _("Graur-Tan"),
+      },
+      {
+        tag: "unit",
+        id: "Traur",
+        type: "Troll Warrior",
+        side: 7,
+        x: 4,
+        y: 19,
+        name: _("Traur"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_2",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_18",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_19",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("To evade the saurians blocking the eastern approaches to Wesmere, Kalenz and his war-band moved to enter Wesmere Forest from a different direction..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_20",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kalenz,Landar,Cleodil,Urug-Tar,Graur-Tan,Traur",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_21",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 30,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat all enemy leaders"),
+        defeat: _("Death of Kalenz Death of Landar Death of Olurf Death of Cleodil Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "side_recall_filter_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            recall_filter: "%7B%22tag%22%3A%22filter_recall%22%2C%22attributes%22%3A%7B%22type_adv_tree%22%3A%22Elvish%20Fighter%2C%20Elvish%20Archer%2C%20Elvish%20Scout%22%7D%2C%22children%22%3A%5B%5D%2C%22gettext%22%3A%5B%5D%2C%22location%22%3A%7B%22file%22%3A%22C%3A%5C%5CUsers%5C%5Cmiche%5C%5Cdev%5C%5Cwesnoth-1.19.27%5C%5Cdata%5C%5Ccampaigns%5C%5CLegend_of_Wesmere%5C%5Cscenarios%5C%5Cchapter2%5C%5C06_Acquaintance_in_Need.cfg%22%2C%22line%22%3A624%2C%22column%22%3A1%7D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Kalenz",
+            object: "%7B%22id%22%3A%22side_traits_1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22movement%22%2C%22increase%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A%22-5%25%22%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "wanderer.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knalgan_theme.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "legends_of_the_north.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "northerners.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "loyals",
+            kill: "no",
+          },
+          {
+            tag: "foreach",
+            variable: "loyals",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:recall_unit",
+                id: "$this_item.id",
+                unit: "$this_item.id",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "loyals",
+            kill: "no",
+          },
+          {
+            tag: "foreach",
+            variable: "loyals",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:recall_unit",
+                id: "$this_item.id",
+                unit: "$this_item.id",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            text: _("What’s this? It appears the orcs have surrounded a dwarvish enclave. And by the sound of the bellowing I hear, I think our old friend, Olurf, is here."),
+          },
+          {
+            tag: "message",
+            text: _("You again? Maybe ye were not completely wrong when ye predicted the orcs would attack us. We ha’ been forced from our home and are now surrounded."),
+          },
+          {
+            tag: "message",
+            text: _("Let us give them aid — it’s clear they need it!"),
+          },
+          {
+            tag: "message",
+            text: _("Help them? They would not even let us pass through their land to avoid the trolls. You remember, Kalenz?"),
+          },
+          {
+            tag: "message",
+            text: _("Our enemy is the orcs, not the dwarves. Besides, the orcs are in our way. Olurf, we cannot let you have all the fun here!"),
+          },
+          {
+            tag: "message",
+            text: _("For an elf, you think like a dwarf! I think I like you! <small>(_whisper^—For an elf...)</small>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "scenario_end",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "message",
+            text: _("The orcs ha’ been defeated. My lord, we are in your debt."),
+          },
+          {
+            tag: "message",
+            text: _("We must put aside our differences and ally against the orcish menace. Olurf, join us!"),
+          },
+          {
+            tag: "message",
+            text: _("Dwarves, ally with elves? I owe ye a debt, but my kin willna’ be happy at the thought."),
+          },
+          {
+            tag: "message",
+            text: _("The Orcs are advancing on Wesmere, and a great battle will soon be upon us. If you can cover our flank to the north, I will pay you 400 gold."),
+          },
+          {
+            tag: "message",
+            text: _("A proper contract for good money? That’s a different matter; I’m sure I can find some o’ my people willing to fight on those terms!"),
+          },
+          {
+            tag: "message",
+            text: _("What? Kalenz, are you out of your mind? Surely you will not throw away 400 gold on this scheming mercenary!"),
+          },
+          {
+            tag: "message",
+            text: _("Where there’s a contract, our honor is involved. We will be there to cover your northern flank or else I will return your gold!"),
+          },
+          {
+            tag: "message",
+            text: _("I sense no falsity behind his speech, my lord."),
+          },
+          {
+            tag: "message",
+            text: _("I, too, believe him. Dwarves may be... rough... by our standards, but they are not liars. I think he knows that if he does not honor his contract, next time we will not be there to come to his aid."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: -400,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "gold.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I am defeated. Now the orcs will destroy us!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Landar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Farewell, Kalenz!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Nooo! We cannot continue without Landar!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Cleodil%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I’m sorry I failed you, Kalenz... my beloved..."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Nooo! Cleodil! Without you I cannot go on!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Olurf%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I go to join my sires in the Halls of Death"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("I cannot fight the orcs alone! It’s all over!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Uradredia%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Our cause is lost. With Uradredia gone, the North Elves will no longer fight!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Galtrid%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("I cannot fight the orcs alone! It’s all over!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "last_breath",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_wml%22%2C%22attributes%22%3A%7B%22upkeep%22%3A%22loyal%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_side%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22allied_with%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22has_unit%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%2CLandar%2CCleodil%2COlurf%2CUradredia%2CGaltrid%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I grieve that I have failed you, my lord Kalenz..."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Farewell $unit.name. Your loyal service won’t be forgotten."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "$unit.id",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            text: _("Oh, no! We are too late..."),
+          },
+        ],
+      },
+    ],
+  },
+]

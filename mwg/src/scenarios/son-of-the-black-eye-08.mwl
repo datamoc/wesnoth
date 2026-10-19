@@ -1,0 +1,940 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Silent Forest"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Kapoue",
+        gold: 150,
+        leader: "Kapou_e",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "elves",
+        gold: 140,
+        recruit: "Elvish Fighter, Elvish Captain, Elvish Scout, Elvish Shaman, Elvish Druid, Elvish Archer, Wose",
+        leader: "Lucile",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "elves",
+        gold: 150,
+        recruit: "Elvish Fighter, Elvish Hero, Elvish Shaman, Elvish Archer, Elvish Marksman",
+        leader: "Raceme",
+      },
+      {
+        tag: "map",
+        id: "scenario_08_Silent_Forest",
+        file: "08_Silent_Forest.map",
+      },
+      {
+        tag: "unit",
+        id: "Kapou_e",
+        type: "Orcish Leader",
+        side: 1,
+        x: 1,
+        y: 1,
+      },
+      {
+        tag: "unit",
+        id: "Lucile",
+        type: "Elvish Sharpshooter",
+        side: 2,
+        x: 34,
+        y: 22,
+        name: _("Lucile"),
+      },
+      {
+        tag: "unit",
+        id: "Raceme",
+        type: "Elvish Captain",
+        side: 3,
+        x: 2,
+        y: 25,
+        name: _("Raceme"),
+      },
+      {
+        tag: "event",
+        id: "carryover_28",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 1.0,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_29",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("As soon as the sandstorm died down, Kapou’e and his men — eager to escape the searing heat — left the oasis and continued on their trek."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_30",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("It was with great relief that they finally spotted the Silent Forest on the evening of their second day. They quickly made camp in the hope of getting some much needed rest. However, as dawn approached, a thick fog rolled in and all the natural sounds of the forest died away — leaving everything deathly quiet."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_31",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kapou_e,Lucile,Raceme",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_32",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 26,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat the elves"),
+        defeat: _("Death of Kapou’e Death of Grüü Death of a Shaman Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_villages_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_village_owner",
+            side: 1,
+            cells: "4,2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "elvish-theme.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "20-38,",
+          },
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "1-19,7-30",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Wose%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Wose",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Wose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22type%22%3A%22Elvish%20Hero%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Elvish Hero",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Elvish Hero",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "$side_number",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%2C%22type%22%3A%22Elvish%20Marksman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Elvish Marksman",
+                side: "$side_number",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: "$side_number",
+            mode: "disallow",
+            types: "Elvish Marksman",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Grüü",
+            unit: "Grüü",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Jetto",
+            unit: "Jetto",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Pirk",
+            unit: "Pirk",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Gork",
+            unit: "Gork",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Vraurk",
+            unit: "Vraurk",
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("This fog and the silence are starting to unsettle me. What is this place, anyway?"),
+          },
+          {
+            tag: "message",
+            speaker: "Gork",
+            text: _("It has not always been like this. A lot of hunters from the tribes used to hunt here and fish in the River Bork. But that all changed a few years ago. Now, few would enter here unless forced."),
+          },
+          {
+            tag: "message",
+            speaker: "Vraurk",
+            text: _("What happened? Why did people stop coming here?"),
+          },
+          {
+            tag: "message",
+            speaker: "Gork",
+            text: _("The fact is that few people entered this forest and returned home safe. I am not sure, but most likely, this forest is full of elvish renegades."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("What would elves be doing so far into orcish territory? Anyway, we need some rest. We are sufficiently armed to cope with a bunch of elvish poachers. If we meet any, we’ll cut them to pieces."),
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 2,
+            ai_type: "healer_support",
+            action: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 3,
+            ai_type: "healer_support",
+            action: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "second_unit.id",
+            equals: "Gork",
+          },
+          {
+            tag: "message",
+            text: _("Elves! I was right, this place is infested with the skinny weaklings."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "second_unit.id",
+            not_equals: "Gork",
+          },
+          {
+            tag: "message",
+            text: _("Elves! You were right, Gork, this place is infested with the skinny weaklings."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%2C3%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_12",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_13",
+          },
+          {
+            tag: "message",
+            text: _("Blast it, the orcs have discovered us."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("What is your purpose for trespassing on orcish territory?"),
+          },
+          {
+            tag: "message",
+            text: _("Fool, do you really think we are going to tell you?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Men, capture one of these elves and interrogate him. I am sure that will get us some answers."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.gender",
+            equals: "female",
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("As for this weakling, I’ll personally behead her."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.gender",
+            not_equals: "female",
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("As for this weakling, I’ll personally behead him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "second_unit.id",
+            equals: "Kapou'e",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_19",
+        on: "branch_if_19",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.gender",
+            equals: "female",
+          },
+          {
+            tag: "message",
+            text: _("female^With pleasure. But what should I do with this weakling?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Behead her."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_20",
+        on: "branch_if_20",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.gender",
+            not_equals: "female",
+          },
+          {
+            tag: "message",
+            text: _("With pleasure. But what should I do with this weakling?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Behead him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_18",
+        on: "branch_if_18",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "second_unit.id",
+            not_equals: "Kapou'e",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_19",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_20",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Now we’re going to have some answers out of you."),
+          },
+          {
+            tag: "message",
+            text: _("You might as well go ahead and kill me, I’m not telling you anything."),
+          },
+          {
+            tag: "message",
+            text: _("Very well then..."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Some time later..."),
+          },
+          {
+            tag: "message",
+            text: _("So you elves have set up an enclave here have you. Why is that?"),
+          },
+          {
+            tag: "message",
+            text: _("We made an agreement with the humans some time ago. They were planning a major assault on you war-mongers, and the humans pledged that if we assisted them they would give us a large chunk of your territory once the battle was over."),
+          },
+          {
+            tag: "message",
+            text: _("Why would you elves want still more territory? You already have the undisputed rule of the whole elvish forest."),
+          },
+          {
+            tag: "message",
+            text: _("Yes, but our prince has been banished from those lands for collaborating with humans. He now seeks to carve out an empire for himself."),
+          },
+          {
+            tag: "message",
+            text: _("Hmmm, interesting. So you set up a base here to launch your attacks on us. Is that right?"),
+          },
+          {
+            tag: "message",
+            text: _("Yes, that is correct."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Well folks, it looks like we have our work cut out for us. We must destroy this enclave."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_15",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_18",
+          },
+          {
+            tag: "message",
+            text: _("Ahhhhh!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Good work, men, we’ve done it! Now we don’t have to worry about these elves attacking us. Let’s get some rest and continue our journey."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lucile%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Lucile",
+            text: _("Ahhh! Flee; warn the Prince that I have been slain and the enclave destroyed."),
+          },
+          {
+            tag: "spawn",
+            id: "Linduilas",
+            type: "Elvish Scout",
+            side: 3,
+            x: 35,
+            y: 23,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Linduilas",
+          },
+          {
+            tag: "message",
+            speaker: "Linduilas",
+            text: _("As you command, my lady."),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Linduilas",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kapou'e%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Argh! I’m done. My people are doomed!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Orcish%20Shaman%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Ouch! This hurts!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("The Council will never be complete again. This is hopeless."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Gr%C3%BC%C3%BC%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Oh no, I am defeated."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_27",
+        on: "branch_if_27",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "inarix_abandoned",
+            not_equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Inarix",
+            text: _("Ahhh!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Blast it, without Inarix to lead her saurians, we can no longer count on their help."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "got_saurians",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "Saurian Skirmisher, Saurian Augur",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Inarix%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_27",
+          },
+        ],
+      },
+    ],
+  },
+]

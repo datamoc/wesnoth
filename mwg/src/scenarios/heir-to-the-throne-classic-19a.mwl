@@ -1,0 +1,548 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Snow Plains"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "elves",
+        gold: 200,
+        leader: "Konrad",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 225,
+        recruit: "Troll,Troll Warrior,Wolf Rider,Orcish Crossbowman",
+        leader: "Urag-Tifer",
+      },
+      {
+        tag: "map",
+        id: "scenario_19a_Snow_Plains",
+        file: "19a_Snow_Plains.map",
+      },
+      {
+        tag: "unit",
+        id: "Konrad",
+        type: "Commander",
+        side: 1,
+        x: 11,
+        y: 33,
+        name: _("Konrad"),
+      },
+      {
+        tag: "unit",
+        id: "Urag-Tifer",
+        type: "Orcish Warlord",
+        side: 2,
+        x: 24,
+        y: 5,
+        name: _("Urag-Tifer"),
+      },
+      {
+        tag: "event",
+        id: "carryover_18",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_19",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Konrad,Urag-Tifer",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_20",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat the enemy leader"),
+        defeat: _("Death of Konrad Death of Delfador Death of Li’sar Death of Kalenz Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "elvish-theme.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "legends_of_the_north.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "nunc_dimittis.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "wanderer.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Konrad%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("We are vanquished, for I have been defeated!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Li'sar%22%2C%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I can’t believe it should end like this!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kalenz%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Argh! I am finished!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! This is the end! We have been defeated!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Warven%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("At least I die an honorable death."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "have_warven",
+            value: "no",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "A_Choice_Was_Made",
+            value: "a",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("These fields of snow were once the home of my people. We left here centuries ago. Legends say a great sword of fire was left behind."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("This sword may prove useful on our journey ahead. I wonder where it could be hidden."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Who would discard such a wondrous artifact?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("I believe it belonged to Ila’alion, a mighty Marshal of the Wood. It was enchanted as a boon to him by your elvish friends in the south. He was visiting their home as an envoy from us North Elves and was called upon to vanquish some beast or other."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Some boon! All for a beast?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("It must have been an infestation. Regardless, after returning to his own people, the sword was nothing but an invitation to disaster."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("His fellow marshals... well, one could say they were slow to come to Ila’alion’s aid as he held this very plain against an orcish incursion. They resented his arrogance as the bearer of the sword, and indignation is a powerful force amongst my people at times. The sword has been lost in orcish territory ever since."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("He was just someone who couldn’t handle the power given to him."),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("You would do well to learn the lesson he did not."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("Move along, elf, unless you enjoy making camp in this icy waste. I, for one, do not!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kalenz",
+            text: _("Indeed..."),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("Listen, you whose eyes are fair but hide a vacuum, do you think I do not know what power can do to one’s soul? What evils a person is capable of when truth and righteousness are but scrolls that can be rewritten when a queen grows tired of them?"),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("I spent my entire childhood listening to my mother give orders and command armies around. I hid in the throne room as a little girl as she met with her generals. I now know she was having people killed... entire towns of people killed!"),
+          },
+          {
+            tag: "message",
+            speaker: "Li'sar",
+            text: _("I became my mother’s most trusted aide-de-camp. I was sent to quiet the worst of the rebellion. Of course they fought back. I never knew who these people were or why they fought my mother. Konrad, you are lucky. You do not know what Wesnoth has been like these past many years. There is no peace. I have never known peace."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("I do know the cup of bitterness poured out on Wesnoth by your mother, child. The land has been torn apart. The elves know this. The orcs know this. Undead can feel it. Large armies of men march across the plains hunting each other, and when no men remain, outsiders will claim Wesnoth as their home."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            portrait: "portraits/konrad-human-mad.webp",
+            text: _("Enough! I can listen to no more of this. Li’sar, you may want to end your mother’s rule, but I will end her life as she ended the life of my father and my brothers. Asheviere’s masterwork of treachery will end, and it will end by my blade!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+          },
+          {
+            tag: "filter_condition",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Nearby is a clearing with a huge tree standing alone in the center."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 28,
+            y: 8,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("A large tree stands alone in a clearing. Driven into the trunk is a huge sword with flames dancing along its blade. Strangely, while the trunk near the sword is blackened and scorched, the tree seems otherwise unaffected by the flames."),
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 29,
+            y: 9,
+            item_name: "",
+            image: "items%2Fflame-sword.png",
+          },
+          {
+            tag: "set_variable",
+            name: "sword_taken",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16_opt0",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22flame_sword%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%2C%22increaseDamage%22%3A%2225%25%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "flame_sword",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16_opt1",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "sword_taken",
+          },
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "$unit.id|",
+                portrait: "wesnoth-icon.png",
+                text: _(""),
+              },
+              {
+                tag: "choice",
+                text: _("Yes"),
+                event: "if_16_opt0",
+              },
+              {
+                tag: "choice",
+                text: _("No"),
+                event: "if_16_opt1",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "sword_taken",
+            not_equals: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 28,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+        ],
+      },
+    ],
+  },
+]

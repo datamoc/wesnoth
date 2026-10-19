@@ -1,0 +1,831 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Rooting Out a Mage"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good",
+        gold: 25,
+        recruit: "Horseman,Bowman,Spearman,Footpad",
+        leader: "Arvith",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "evil",
+        gold: 200,
+        recruit: "Skeleton,Walking Corpse,Vampire Bat,Ghost,Dark Adept,Ghoul",
+        leader: "Mordak",
+      },
+      {
+        tag: "map",
+        id: "scenario_01_Rooting_Out_a_Mage",
+        file: "01_Rooting_Out_a_Mage.map",
+      },
+      {
+        tag: "unit",
+        id: "Arvith",
+        type: "Knight",
+        side: 1,
+        x: 32,
+        y: 20,
+        name: _("Arvith"),
+      },
+      {
+        tag: "unit",
+        id: "Mordak",
+        type: "Dark Sorcerer",
+        side: 2,
+        x: 9,
+        y: 4,
+        name: _("Mordak"),
+      },
+      {
+        tag: "unit",
+        id: "u_1",
+        type: "Horseman",
+        side: 1,
+        x: 31,
+        y: 20,
+      },
+      {
+        tag: "unit",
+        id: "u_2",
+        type: "Spearman",
+        side: 1,
+        x: 32,
+        y: 20,
+      },
+      {
+        tag: "event",
+        id: "carryover_17",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_18",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "revelation.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("The remote freehold of Maghre in the western reaches of the Kingdom of Wesnoth was once a peaceful place, its inhabitants largely unaware of the comings and goings of the wider world. Wars and the rumor of wars touched them not. Even merchants were rarely seen, although caravans between Aldril and Dan’Tonk might send a wagon when called by the beacon tower."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_19",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/Two_Brothers_M1P1.webp"),
+            text: _("Then came the day that a dark mage settled in the region and began seeking sacrifices for his summonings. Skeletons and zombies killed cattle and fired fields. <i>“Fear and obey Mordak the Mage!”</i> they cried in fell voices as they did their foul deeds. People vanished from isolated farmsteads. Men and women began to fear the night, and their children even the bright day. But the nearest lord was more than a day’s ride distant, and messengers sent to seek his help did not return."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_20",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("portraits/baran.webp"),
+            text: _("There was a man named Baran who had shown talent as a mage when he was young, gone to the great Academy on the Isle of Alduin, and returned to work his magic in the land where he was born. The people looked to him for help and leadership. He found weapons half-forgotten from the times of their sires and grandsires hanging in many houses, and bade the villagers to take them down and clean and oil them. He set the smiths of Maghre to making spearheads and ax-blades for the rest."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_21",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/Two_Brothers_M1P2.webp"),
+            text: _("Now Baran had a brother named Arvith who had also left Maghre to seek his fortune, and had become the leader of a small band of horsemen who hired out as guards to merchant caravans. Fortunate it was for all that, in better times, the brothers had talked of using trade beacons for other signals when in dire need. Baran sent out that call."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_22",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/Two_Brothers_M1P2.webp"),
+            text: _("12 Scryer’s Bloom, 363 YW Excerpt from the journal of Baran of Maghre If I could but face this ‘Mordak’! I think my magic might prove stronger than his. But he bides in the hills, well-guarded by his servants, and I muster frightened peasants to fight his minions with blades and sticks. I need my brother; he always had a better head for battle than I. Yet we have not spoken since that evil day at Toen Caric. If he will not come for me, perhaps he will return to aid our village in its hour of desperate need."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_23",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Heeding the call, Arvith gathered such men as he could and hurried to Maghre to help Baran."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_24",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Arvith,Mordak,Baran,Alwyn,Brent,Cadell,Dannen,Efran,Faren,Tarek,Hann,Magrid",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_25",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 18,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Slay Mordak, the evil mage"),
+        defeat: _("Death of Arvith Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "battle.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "casualties_of_war.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "suspense.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Alwyn",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Brent",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Cadell",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Dannen",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Efran",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Faren",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Tarek",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Hann",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Magrid",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Baran",
+            unit: "Baran",
+            x: 31,
+            y: 21,
+          },
+          {
+            tag: "spawn",
+            id: "Baran",
+            type: "Red Mage",
+            side: 1,
+            x: 30,
+            y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Baran",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Baran",
+          },
+          {
+            tag: "spawn",
+            id: "Alwyn",
+            type: "Spearman",
+            side: 1,
+            x: 29,
+            y: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Alwyn",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Alwyn",
+          },
+          {
+            tag: "spawn",
+            id: "Brent",
+            type: "Spearman",
+            side: 1,
+            x: 29,
+            y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Brent",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Brent",
+          },
+          {
+            tag: "spawn",
+            id: "Cadell",
+            type: "Spearman",
+            side: 1,
+            x: 30,
+            y: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Cadell",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Cadell",
+          },
+          {
+            tag: "spawn",
+            id: "Dannen",
+            type: "Spearman",
+            side: 1,
+            x: 31,
+            y: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Dannen",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Dannen",
+          },
+          {
+            tag: "spawn",
+            id: "Efran",
+            type: "Bowman",
+            side: 1,
+            x: 32,
+            y: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Efran",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Efran",
+          },
+          {
+            tag: "spawn",
+            id: "Faren",
+            type: "Footpad",
+            side: 1,
+            x: 31,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Faren",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Faren",
+          },
+          {
+            tag: "spawn",
+            id: "Tarek",
+            type: "Horseman",
+            side: 1,
+            x: 32,
+            y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Tarek",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Tarek",
+          },
+          {
+            tag: "spawn",
+            id: "Hann",
+            type: "Horseman",
+            side: 1,
+            x: 31,
+            y: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Hann",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Hann",
+          },
+          {
+            tag: "spawn",
+            id: "Magrid",
+            type: "Horseman",
+            side: 1,
+            x: 32,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Magrid",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Magrid",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Baran",
+            text: _("Greetings, brother, and welcome home."),
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("Hail."),
+          },
+          {
+            tag: "message",
+            speaker: "Baran",
+            text: _("Is that all, Arvith? I understand, but..."),
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("You called, and I came; be content with that. What ails Maghre?"),
+          },
+          {
+            tag: "message",
+            speaker: "Baran",
+            text: _("A dark mage has come upon us; his creatures call him Mordak. They have been terrorizing outlying farms, and we fear they may soon attack the village itself! The villagers of Maghre have taken up weapons but they are not trained fighters; we need your men, and you to lead them."),
+          },
+          {
+            tag: "message",
+            speaker: "Baran",
+            text: _("I can feel Mordak’s foul touch on the hidden currents of the earth and air. He is somewhere due north of here, I would say not more than two days’ ride."),
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("All right. I will do this for the village. Can you keep the mage off our backs?"),
+          },
+          {
+            tag: "message",
+            speaker: "Baran",
+            text: _("I will go stealthily with a handful of our best scouts and woodsmen. While you demonstrate against him and kill his creatures, I will try to defeat Mordak himself with magic at an unguarded moment. You shall be the right hand, I the left... aye, brother?"),
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("... Aye. Just make sure you’re there when we need you."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "recruit",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "s1_failed_achievement",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 6,
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("Baran should be in position by now. Press them, distract the adept so Baran can spring his trap!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 10,
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("Baran has not made his attack!"),
+          },
+          {
+            tag: "message",
+            speaker: "Mercenary",
+            text: _("Could he have abandoned us?"),
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("No... No. This is something else. I’m worried about him... but right now it means we have to deal with this Mordak ourselves."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mordak%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Argh!"),
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("Good work, men! But what has become of my brother?"),
+          },
+          {
+            tag: "message",
+            text: _("Worried about him, are you? E-he-he... hergh... gaargh..."),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Mordak",
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("There’s nothing more to be had from this one; we will have to search for Baran ourselves!"),
+          },
+          {
+            tag: "message",
+            speaker: "Reporter",
+            text: _("Sir, our scouts report that Baran was seen captured and carried away further north!"),
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("That they should dare this! We will give chase at once."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "who_slew_mordak",
+            value: "$second_unit.id",
+            mode: "value",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_11",
+        on: "branch_if_11",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "s1_failed_achievement",
+            not_equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:set_achievement",
+            id: "heroes_of_maghre",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "baran_store.id",
+            equals: "Baran",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "baran_store",
+            x: "recall",
+            y: "recall",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_11",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_12",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Mordak",
+            text: _("Your brother’s plan to ambush me has failed. He is our prisoner now."),
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("My brother, kidnapped? I have failed you, Baran! And even now Mordak’s forces descend upon the village!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_defender_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22type%22%3A%22Dark%20Adept%2CDark%20Sorcerer%2CVampire%20Bat%2CBlood%20Bat%2CDread%20Bat%2CNecromancer%2CSoulless%2CWalking%20Corpse%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("I hear these creatures are nigh-immune to our weapons, let us see!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22type%22%3A%22Dark%20Adept%2CDark%20Sorcerer%2CVampire%20Bat%2CBlood%20Bat%2CDread%20Bat%2CNecromancer%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("That was not so hard!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Arvith%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Arvith",
+            text: _("All is lost now that I am dead..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

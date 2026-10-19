@@ -1,0 +1,595 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Schism"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good",
+        gold: 170,
+        recruit: "Walking Corpse,Vampire Bat,Ghost,Ghoul,Skeleton Archer,Skeleton",
+        leader: "Malin_Keshar",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 40,
+        recruit: "Goblin Spearman,Orcish Archer,Orcish Crossbowman,Orcish Grunt,Orcish Warrior",
+        leader: "Borth",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 50,
+        recruit: "Orcish Archer,Goblin Pillager,Orcish Grunt,Wolf Rider,Goblin Knight",
+        leader: "P_Gareth",
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "orcs",
+        gold: 45,
+        recruit: "Orcish Archer,Troll Whelp,Troll,Troll Rocklobber,Orcish Assassin,Orcish Grunt",
+        leader: "K_Vark",
+      },
+      {
+        tag: "map",
+        id: "scenario_05_Schism",
+        file: "05_Schism.map",
+      },
+      {
+        tag: "unit",
+        id: "Malin_Keshar",
+        type: "Malin Keshar",
+        side: 1,
+        x: 21,
+        y: 11,
+        name: _("Malin Keshar"),
+      },
+      {
+        tag: "unit",
+        id: "Borth",
+        type: "Orcish Warlord",
+        side: 2,
+        x: 6,
+        y: 5,
+        name: _("Borth"),
+      },
+      {
+        tag: "unit",
+        id: "P_Gareth",
+        type: "Orcish Warlord",
+        side: 3,
+        x: 10,
+        y: 22,
+        name: _("P’Gareth"),
+      },
+      {
+        tag: "unit",
+        id: "K_Vark",
+        type: "Orcish Warlord",
+        side: 4,
+        x: 36,
+        y: 8,
+        name: _("K’Vark"),
+      },
+      {
+        tag: "event",
+        id: "carryover_14",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,,,0,3,%7B%22id%22%3A%5B%22Malin%20Keshar%22%5D%7D;goal,,,0,3,%7B%22id%22%3A%5B%22Darken%20Volk%22%5D%7D;goal,,,0,3,%7B%22id%22%3A%5B%22Malin%20Keshar%22%5D%7D;goal,,,0,3,%7B%22id%22%3A%5B%22Darken%20Volk%22%5D%7D;goal,,,0,3,%7B%22id%22%3A%5B%22Malin%20Keshar%22%5D%7D;goal,,,0,3,%7B%22id%22%3A%5B%22Darken%20Volk%22%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_15",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("The cycle of the seasons churns and summer and fall roll around once more. Malin’s thoughts turn back to Parthyn frequently, where a year prior, he had still been among family and friends in the rustic little town that he still thinks of as his home. He has since become a forsaken wanderer, he thinks, but the still burning image of his father being cut down amidst the ruins of his home is stamped deep into his thoughts."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_16",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Companionship and peace... perhaps they are but a farce and certainly an impossibility with the threat of the orcish clans still looming. It was a choice to live and suffer the path of solitary vengeance rather than appease the law of his land... and thus watch his home burn. It was a choice, he admits, not destiny, not fate. It is a choice that he oft ponders, but usually comes to the same conclusion. Perhaps there is no point in reminiscing on his once tranquil, pastoral life. He has never been one for regrets."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_17",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Malin turns his attention to the task at hand. Darken Volk leads him through the heart of the Whitefang territory, where they terrorize and murder entire camps of orcs with their undead minions. Word spreads among the orcish towns, which begin to post more guards and dispatch frequent patrols to exterminate the two necromancers. All of their attempts fail."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_18",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("As Malin and Darken Volk continue their raids on the orcs, they eventually force the usually fractious Whitefang chieftains to unite in opposition. The orcs pursue the two necromancers east toward the mouth of the river humans call the Longlier and elves call the Arkan-thoria, where they manage to surround the humans and force a fight."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_19",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Malin_Keshar,Borth,P_Gareth,K_Vark",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_20",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 37,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Kill the orcish leaders"),
+        defeat: _("Death of Malin Keshar Death of Darken Volk Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "northerners.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "northern_mountains.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "siege_of_laurelmor.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 4,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22type%22%3A%22Walking%20Corpse%22%2C%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22variation%22%3A%22drake%2Cdwarf%2Cgoblin%2Cgryphon%2Cmounted%2Csaurian%2Cspider%2Cswimmer%2Ctroll%2Cwose%2Cwolf%2Cbat%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_wml%22%2C%22attributes%22%3A%7B%22experience%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Darken Volk",
+            unit: "Darken Volk",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 1,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Even before the very founding of Wesnoth, you have hounded my people at every turn. You have trampled our fields, slaughtered our livestock, and burned our houses. You have brought war to a place of peace and death to a place of life. You are nothing but remorseless killers and savage beasts. Your kind deserves no mercy and shall receive none. I will crush you into the dust and make you into my slaves for all eternity."),
+          },
+          {
+            tag: "message",
+            speaker: "Borth",
+            text: _("The silly necromancer is trying to talk us to death! You have caused us enough trouble, human. It is time for you to die."),
+          },
+          {
+            tag: "message",
+            speaker: "P'Gareth",
+            text: _("Ummm... unless... you are already dead, like the skeletons?"),
+          },
+          {
+            tag: "message",
+            speaker: "K'Vark",
+            text: _("Then it will be time for you to die again!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%2C3%2C4%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "2,3,4",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("How puny and weak you look in death."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%2C3%2C4%22%2C%22canrecruit%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: "2,3,4",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("You and your kind deserve no eternal rest in death. After this battle, I’ll raise your corpse and make your bones dance for me, orc. But for now, I’ve one last one to take care of—"),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "remaining_orc_leader",
+            kill: "no",
+            side: "2,3,4",
+          },
+          {
+            tag: "switch",
+            variable: "remaining_orc_leader.side",
+            children: [
+              {
+                tag: "case",
+                equals: 2,
+                children: [
+                  {
+                    tag: "set_variable",
+                    name: "escape_to_x",
+                    value: 11,
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "escape_to_y",
+                    value: 1,
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 3,
+                children: [
+                  {
+                    tag: "set_variable",
+                    name: "escape_to_x",
+                    value: 8,
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "escape_to_y",
+                    value: 26,
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: 4,
+                children: [
+                  {
+                    tag: "set_variable",
+                    name: "escape_to_x",
+                    value: 40,
+                  },
+                  {
+                    tag: "set_variable",
+                    name: "escape_to_y",
+                    value: 7,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "$remaining_orc_leader.id",
+            text: _("Retreat!"),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "orc_leader_store",
+            kill: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("He flees! The coward!"),
+          },
+          {
+            tag: "message",
+            speaker: "Darken Volk",
+            text: _("That is no surprise. Orcs may like to make a show of strength, but will always flee in the face of an overwhelming force. Nevertheless, the Whitefangs are still numerous and have some ties to other orcish clans. You must hunt this chieftain down before he can alert the others, else we may soon have dozens more on our tail."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("By ‘you’, you mean... on my own?"),
+          },
+          {
+            tag: "message",
+            speaker: "Darken Volk",
+            text: _("Your apprenticeship is nearly over; you are more than capable of handling a single, half-dead orc on your own. After you have dealt with him, I do have a small favor I will ask of you. It will constitute the last part of your... training. I have some other things that I must attend to in preparation. In a few weeks, meet with me to the west, near the town of Tath."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("It will be done."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: "full",
+            restore_statuses: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Darken%20Volk%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Darken Volk",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "darken_volk_store",
+            kill: "yes",
+            id: "Darken Volk",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Malin%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("I’m not ready to die yet..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Darken%20Volk%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Fool boy! With my demise, none in this world will aid you..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Darken Volk",
+            text: _("Your incompetence at this simple task is appalling. You will never grow strong enough to be of use to me."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

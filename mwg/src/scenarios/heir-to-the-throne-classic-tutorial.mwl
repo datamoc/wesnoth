@@ -1,0 +1,1495 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Wesnoth Tutorial — Part I"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "player",
+        gold: 100,
+        leader: "student",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "null",
+        team_name: "player",
+      },
+      {
+        tag: "map",
+        id: "tutorial",
+        file: "00_Tutorial_part_1.map",
+      },
+      {
+        tag: "unit",
+        id: "student",
+        type: "Tutorial_Fighter",
+        side: 1,
+        x: 9,
+        y: 6,
+        name: _("Konrad"),
+      },
+      {
+        tag: "unit",
+        id: "Delfador",
+        type: "Elder Mage",
+        side: 0,
+        x: 12,
+        y: 4,
+      },
+      {
+        tag: "event",
+        id: "hide_side_2",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_39",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,,,0,10,%7B%22id%22%3A%5B%22student%22%5D%7D;goal,,,0,0.1,%7B%22id%22%3A%5B%22Delfador%22%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_40",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "student,Delfador",
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Destroy a fierce enemy"),
+        defeat: _("Get yourself killed"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "traveling_minstrels.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "silvan_sanctuary.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "loyalists.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2_opt0",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_2_opt1",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            all: "yes",
+          },
+          {
+            tag: "set_variable",
+            name: "__next_scenario",
+            value: "heir-to-the-throne-classic-01",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "dialogue",
+            children: [
+              {
+                tag: "message",
+                speaker: "narrator",
+                text: _("<i>Heir to the Throne, Classic</i> optionally includes the old <i>Battle Training</i> tutorial. Play <i>Battle Training</i>?"),
+              },
+              {
+                tag: "choice",
+                text: _(""),
+                event: "ev_2_opt0",
+              },
+              {
+                tag: "choice",
+                text: _(""),
+                event: "ev_2_opt1",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "student_store",
+            kill: "yes",
+            id: "student",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("This is a two-part tutorial intended for people who are new to the game. Part 1 will teach you the basics about movement, attacking, healing, and recruiting. Firstly, you’ll choose a hero (both heroes play the same)."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: "$student_store.x",
+            y: "$student_store.y",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$student_store.x",
+            y: "$student_store.y",
+            item_name: "",
+            image: "misc%2Funit-marker.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$student_store.x",
+            y: "$student_store.y",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$student_store.x",
+            y: "$student_store.y",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$student_store.x",
+            y: "$student_store.y",
+            item_name: "",
+            image: "misc%2Funit-marker.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$student_store.x",
+            y: "$student_store.y",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$student_store.x",
+            y: "$student_store.y",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$student_store.x",
+            y: "$student_store.y",
+            item_name: "",
+            image: "misc%2Funit-marker.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$student_store.x",
+            y: "$student_store.y",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$student_store.x",
+            y: "$student_store.y",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$student_store.x",
+            y: "$student_store.y",
+            item_name: "",
+            image: "misc%2Funit-marker.png",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "target_loc",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22target_loc%22%2C%22radius%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "enable_undo_messages",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hp_stat_tracking_1",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hp_stat_tracking_2",
+        on: "attack_end",
+        once: false,
+      },
+      {
+        tag: "event",
+        id: "if_6",
+        on: "branch_if_6",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "curr_distance.movement_cost",
+            less_than_or_equal_to: "$moves_left",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "within_reach",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_5",
+        on: "branch_if_5",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "enable_undo_messages",
+            equals: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "student_team",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "moves_left",
+                value: "$this_item.moves",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "student_team_member",
+                value: "$this_item.id",
+                mode: "value",
+              },
+              {
+                tag: "foreach",
+                variable: "all_targets",
+                item: "this_item",
+                children: [
+                  {
+                    tag: "hook",
+                    name: "command:fire_event",
+                    event: "branch_if_6",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_7",
+        on: "branch_if_7",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "within_reach",
+            equals: "no",
+          },
+          {
+            tag: "condition",
+            variable: "enable_undo_messages",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "undo_displayed",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_9",
+        on: "branch_if_9",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "undo_displayed",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "undo_displayed",
+            value: "no",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "on_undo_8",
+        on: "on_undo",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_9",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "check_undo",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "student_team",
+            kill: "no",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "within_reach",
+            value: "no",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "target_enemies",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22radius%22%3A%221%22%2C%22variable%22%3A%22target_enemies%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_5",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_7",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "remove_check_undo",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "select",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "mentor",
+            kill: "no",
+            id: "Delfador",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: "$mentor.x",
+            y: "$mentor.y",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$mentor.x",
+            y: "$mentor.y",
+            item_name: "",
+            image: "misc%2Funit-marker.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$mentor.x",
+            y: "$mentor.y",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$mentor.x",
+            y: "$mentor.y",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$mentor.x",
+            y: "$mentor.y",
+            item_name: "",
+            image: "misc%2Funit-marker.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$mentor.x",
+            y: "$mentor.y",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$mentor.x",
+            y: "$mentor.y",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$mentor.x",
+            y: "$mentor.y",
+            item_name: "",
+            image: "misc%2Funit-marker.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$mentor.x",
+            y: "$mentor.y",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$mentor.x",
+            y: "$mentor.y",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$mentor.x",
+            y: "$mentor.y",
+            item_name: "",
+            image: "misc%2Funit-marker.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent%22%2C%22attributes%22%3A%7B%22id%22%3A%22Delfador%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("Good morning, Delfador! Is it time to attack things?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Um, well..."),
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("Have you found an orc for me to fight, huh? A troll?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Quiet! I will summon an enemy for you..."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Delfador",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "lightning.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 25,
+          },
+          {
+            tag: "spawn",
+            id: "Quintain",
+            type: "Quintain",
+            side: 2,
+            x: 12,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Quintain",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 75,
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("... this quintain!"),
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("A quintain? You want me to fight a dummy?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "attack_end",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "student",
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("Hey! This quintain fights back!"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Hmm, perhaps we should have started with a doll."),
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("Should I retreat?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Good idea!"),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Delfador",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "nw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Unfortunately, you’ve used up your turn attacking the quintain. The quintain now gets to attack."),
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("The <i>dummy</i> gets a turn?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Yes. It’s a magical quintain! If it hits you, it does 3 damage, and has 5 chances. If it hits every time, you’ll drop from $student_hp to $($student_hp-15) hitpoints. Brace yourself!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "turn_refresh",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Quintain",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.moves",
+                value: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "prevent_deadlock",
+        on: "attack_end",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "student",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "turn_end",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "capture",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_capturer_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("Ouch! I need to heal! Only $student_hp hitpoints left!"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("There are two villages within your reach. Visiting villages is a good idea, and ending your turn on one will heal you. To a village!"),
+          },
+          {
+            tag: "hook",
+            name: "command:store_villages",
+            variable: "target_loc",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "prevent_deadlock",
+        on: "attack_end",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "student",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "turn_end",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 8,
+            y: 5,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            recruit: "Elvish Fighter",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "recruit",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                type: "Elvish Fighter",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "enable_undo_messages",
+            value: "no",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "turn_refresh",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 3,
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Since you started your turn on a village, you regained some health! Villages heal units 8 hitpoints per turn, or enough to top off their health, whichever is less. In your case, you regained $student_hp_heal_amount hitpoints."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Now, it’s time to summon some help against that quintain."),
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("I’ll recruit some elves!"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("A splendid idea! It’s probably best not to attempt attacking the quintain this turn. Instead, you should return to the keep and recruit two units; you have plenty of gold for that."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "target_loc",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22target_loc%22%2C%22x%22%3A%229%22%2C%22y%22%3A%226%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "prevent_deadlock",
+        on: "attack_end",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "student",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "turn_end",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "trying_to_be_a_wise_guy",
+        on: "select",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "student",
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("You wouldn’t do anything stupid like charging that quintain yourself again, now would you? Use the fighters you recruited first; they’ll be a lot of help."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Elvish%20Fighter%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "remove_check_undo",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "attack_end",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            type: "Elvish Fighter",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "attack_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22name%22%3A%22sword%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "attack_end",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "attack_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22name%22%3A%22bow%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 4,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                id: "Quintain",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "enable_undo_messages",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "target_loc",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22target_loc%22%2C%22radius%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("Hey, the quintain just healed 2 hitpoints! I’d better attack it at once!"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Yes, if a unit doesn’t do anything for a turn, it will slowly heal."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Before you send your fighters against the quintain, you should know they have two kinds of attacks..."),
+          },
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("I’ll tell them to use the one that does more damage!"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("And which would that be? The sword (5×4; or 5 damage on each hit, with 4 attacks) or the bow (3×3; or 3 damage on each hit, with 3 attacks)? I suppose you’ll find out..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 5,
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Keep attacking with both elves until the quintain is finished!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 6,
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Maybe you should recruit another elf?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 7,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 8,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 9,
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("You had really better finish off that quintain."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 10,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22student%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Agh! This training is too much for me..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22student%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Quintain%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "remove_check_undo",
+          },
+          {
+            tag: "message",
+            text: _("The quintain is destroyed, and I have gained more experience!"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Yes, you gain experience through battle, especially by killing an opponent. Gain enough experience and you’ll become more powerful."),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to_unit",
+            id: "Delfador",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "lightning.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 25,
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Quintain",
+            side: 2,
+            x: 15,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Quintain",
+            side: 2,
+            x: 12,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Quintain",
+            side: 2,
+            x: 8,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            defeat_condition: "no_units_left",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 75,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            id: "Delfador",
+            x: "12,8,8,8,6",
+            y: "7,9,10,11,12",
+            raw: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Delfador",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("These dummies only attack if you are a single tile away. With care, you should be able to kill them one at a time."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "student",
+            text: _("Well, I think I know the basics. Onwards! Maybe I can fight in a real battle next?"),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_38",
+        on: "defeat",
+        once: true,
+      },
+    ],
+  },
+]

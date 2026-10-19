@@ -1,0 +1,379 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("To the Mines"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "rebels",
+        gold: 150,
+        recruit: "Peasant,Woodsman,Thug,Poacher,Dwarvish Fighter,Dwarvish Thunderer,Dwarvish Scout,Footpad",
+        leader: "Tallin",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "goblins",
+        gold: 400,
+        recruit: "Wolf Rider,Goblin Knight,Goblin Pillager",
+        leader: "Pruol",
+      },
+      {
+        tag: "map",
+        id: "scenario_03_To_the_Mines",
+        file: "03_To_the_Mines.map",
+      },
+      {
+        tag: "unit",
+        id: "Tallin",
+        type: "Peasant",
+        side: 1,
+        x: 5,
+        y: 23,
+        name: _("Tallin"),
+      },
+      {
+        tag: "unit",
+        id: "Hamel",
+        type: "Dwarvish Lord",
+        side: 0,
+        x: 5,
+        y: 22,
+      },
+      {
+        tag: "unit",
+        id: "Pruol",
+        type: "Direwolf Rider",
+        side: 2,
+        x: 3,
+        y: 3,
+        name: _("Pruol"),
+      },
+      {
+        tag: "event",
+        id: "carryover_11",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_12",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "traveling_minstrels.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Hoping to bypass the monsters which seemed to lurk at every corner in the caves, the humans and the dwarves returned to the surface hoping to speedily reach the mines. However, once they left the caves they found that they faced a new threat."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_13",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Tallin,Hamel,Pruol",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_14",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 30,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Enter the mines Eliminate the wolf riders<span foreground='white'><small> _(early finish bonus)</small></span>"),
+        defeat: _("Death of Tallin Death of Hamel Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "wanderer.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "nunc_dimittis.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "loyalists.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_time_area",
+            area: "%7B%22tag%22%3A%22time_area%22%2C%22attributes%22%3A%7B%22x%22%3A%220-4%2C0-2%2C5%22%2C%22y%22%3A%2224-26%2C23%2C26%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22underground%22%2C%22name%22%3A%22Underground%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fschedule-underground.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-60%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-25%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Pruol",
+            text: _("Hey look, there is our meat! Come on, boys, lunchtime!"),
+          },
+          {
+            tag: "message",
+            speaker: "Supporter",
+            text: _("I don’t think so, buddy."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Pruol%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Pruol",
+            text: _("Argh! They are stronger than we thought. Someone go tell the Master..."),
+          },
+          {
+            tag: "message",
+            speaker: "Supporter",
+            text: _("What’s with this ‘Master’ business? It’s starting to make me nervous."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Pruol%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 17,
+            y: 2,
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Here is the entrance to the dwarven mines. In we go!"),
+          },
+          {
+            tag: "message",
+            speaker: "Pruol",
+            text: _("Hey, there goes our lunch! Hmmm, they are stronger than we thought, let’s go tell Master."),
+          },
+          {
+            tag: "message",
+            speaker: "Supporter",
+            text: _("What’s with this whole ‘Master’ business? It’s starting to make me nervous."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Tallin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Argh! I am finished, but our campaign must... not end... crush... our... enemies... and... save... our... people..."),
+          },
+          {
+            tag: "message",
+            speaker: "Supporter",
+            text: _("No, Tallin, we can’t do it without you!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Camerin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Camerin",
+            text: _("What... how can this happen?"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("He was stark raving mad, but I am sure going to miss him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Hamel%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("No! Without the dwarvish weapons we have no hope!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22role%22%3A%22Supporter%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]

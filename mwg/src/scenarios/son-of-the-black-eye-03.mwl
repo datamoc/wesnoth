@@ -1,0 +1,640 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Toward Mountains of Haag"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Kapoue",
+        gold: 110,
+        leader: "Kapou_e",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "Dwarves",
+        gold: 170,
+        recruit: "Dwarvish Steelclad, Dwarvish Thunderguard, Dwarvish Pathfinder, Dwarvish Fighter, Dwarvish Thunderer, Dwarvish Scout",
+        leader: "Kwili",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "Kapoue",
+      },
+      {
+        tag: "map",
+        id: "scenario_03_Toward_Mountains_of_Haag",
+        file: "03_Toward_Mountains_of_Haag.map",
+      },
+      {
+        tag: "unit",
+        id: "Kapou_e",
+        type: "Orcish Leader",
+        side: 1,
+        x: 36,
+        y: 23,
+      },
+      {
+        tag: "unit",
+        id: "Kwili",
+        type: "Dwarvish Lord",
+        side: 2,
+        x: 11,
+        y: 20,
+        name: _("Kwili"),
+      },
+      {
+        tag: "unit",
+        id: "u_1",
+        type: "Orcish Grunt",
+        side: 1,
+        x: 34,
+        y: 22,
+      },
+      {
+        tag: "event",
+        id: "carryover_14",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_15",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kapou_e,Kwili,Gr__",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_16",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 25,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Move Kapou’e to the end of the mountains Defeat the enemy leader<span foreground='white'><small> _(early finish bonus)</small></span>"),
+        defeat: _("Death of Kapou’e Death of Grüü Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "breaking_the_chains.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knalgan_theme.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "1-17,",
+          },
+          {
+            tag: "hook",
+            name: "command:micro_ai",
+            side: 3,
+            ai_type: "simple_attack",
+            action: "add",
+            filter: "%7B%22side%22%3A%223%22%2C%22canrecruit%22%3A%22no%22%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("We have almost crossed the mountains. We’re close to the lands of the free tribes. So far so good."),
+          },
+          {
+            tag: "message",
+            speaker: "Kwili",
+            text: _("Halt! Who goes there?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("It is I, Kapou’e, son of the Black-Eye Karun. What do you want, dwarf?"),
+          },
+          {
+            tag: "message",
+            speaker: "Kwili",
+            text: _("Oh, so it’s another group o’ stinkin’ orcs, eh. Begone, or we shall wash our axes in yer blood."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Look, you pint-sized idiot, we aren’t out to kill you so why don’t you just scamper away and hide in a cave or something. We’ll be through here in a few hours."),
+          },
+          {
+            tag: "message",
+            speaker: "Helper",
+            text: _("(<i>Snicker</i>)"),
+          },
+          {
+            tag: "message",
+            speaker: "Kwili",
+            text: _("Your scorn and rudeness shall be your undoing. Dwarves, let no orc pass this way alive!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("It looks like we might have to fight them after all."),
+          },
+          {
+            tag: "message",
+            speaker: "Helper",
+            text: _("Hey, Chief, I was thinking — dwarves are pretty slow; why don’t we just bypass them?"),
+          },
+          {
+            tag: "message",
+            speaker: "Helper",
+            text: _("I mean, we could defeat them easily but it would just slow us down."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("We could, but then again, if we crush them, then we can loot their treasury and their dwellings. The gold will be useful."),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("Whatever else happens, we have to pass through these mountains and I dislike leaving enemies to our rear. Stab, smite, and slay!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 0,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 5,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 1,
+            y: 5,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 5,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 5,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 1,
+            y: 5,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 5,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 5,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 1,
+            y: 5,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 5,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 5,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "21,22,23-25,26,27,28,29,30-31",
+            y: "12-21,13-22,14-22,15-23,14-22,15-23,14-22,15-22",
+          },
+          {
+            tag: "message",
+            text: _("I’ve never pushed so far. We are crossing the border of the Black-Eye lands."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "trolls_appear",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "trolls_appear",
+        once: true,
+        children: [
+          {
+            tag: "spawn",
+            id: "Blemaker",
+            type: "Troll Warrior",
+            side: 3,
+            x: 30,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Blemaker",
+          },
+          {
+            tag: "spawn",
+            id: "Gr__",
+            type: "Troll Hero",
+            side: 3,
+            x: 29,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Gr__",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Gr__",
+          },
+          {
+            tag: "spawn",
+            id: "Toughkon",
+            type: "Troll Whelp",
+            side: 3,
+            x: 31,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Toughkon",
+          },
+          {
+            tag: "spawn",
+            id: "Pe",
+            type: "Troll Whelp",
+            side: 3,
+            x: 32,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Pe",
+          },
+          {
+            tag: "message",
+            speaker: "Blemaker",
+            text: _("Look! Dwarves are fighting orcs!"),
+          },
+          {
+            tag: "message",
+            speaker: "Grüü",
+            text: _("Father, we should help them. Orcs are our allies."),
+          },
+          {
+            tag: "message",
+            speaker: "Blemaker",
+            text: _("I don’t know. Orcs have been our allies in the past, but they treat us as fools."),
+          },
+          {
+            tag: "message",
+            speaker: "Grüü",
+            text: _("But, Father, we don’t know what they are seeking there. Between us, we could squash these dwarves."),
+          },
+          {
+            tag: "message",
+            speaker: "Blemaker",
+            text: _("Right, my son. We help our orcish friends. But you take care... I would be desperate if something happened to you."),
+          },
+          {
+            tag: "hook",
+            name: "command:show_objectives",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Blemaker%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Grüü",
+            text: _("Father! Oh no!"),
+          },
+          {
+            tag: "message",
+            speaker: "Grüü",
+            text: _("Filthy dwarves! Now I’ll kill you to the last!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Gr%C3%BC%C3%BC%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Oh no, I’m defeated."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kwili%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Argh! I die!"),
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("You were warned, dwarf. Riders, spread out over the area and collect what you can from each of these houses. If anyone refuses to pay, tie them up and take what they have anyway. Let them know that they live only on my good graces. I’ll take the army to Barag Gór. Catch up when you’re done."),
+          },
+          {
+            tag: "message",
+            speaker: "doggie",
+            text: _("Sounds like fun. All right boys, let’s go!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "trolls_appear",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 0,
+            y: 4,
+          },
+          {
+            tag: "message",
+            speaker: "Kapou'e",
+            text: _("We’ve succeeded! We’ve passed through the Mountains of Haag! Look at these green hills! The land of the free tribes is near now. I can see the walls of Barag Gór in the distance."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            side: 1,
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Gr%C3%BC%C3%BC%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Grüü",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Kapou'e%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Argh! I’m done. My people are doomed!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

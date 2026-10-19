@@ -1,0 +1,877 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Overlook"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "konrad",
+        gold: 0,
+        leader: "Konrad",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "konrad",
+        gold: 0,
+      },
+      {
+        tag: "map",
+        id: "scenario_",
+        file: "50x_Overlook.map",
+      },
+      {
+        tag: "unit",
+        id: "Konrad",
+        type: "Fighter",
+        side: 1,
+        x: 0,
+        y: 0,
+        name: _("Konrad"),
+      },
+      {
+        tag: "event",
+        id: "carryover_19",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_20",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Konrad’s once-ragged band of refugees had grown to a massive army. The young prince strode among the ranks, visiting and encouraging soldiers: both his and Li’sar’s."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_21",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Many had left behind the safety and peace of their homes to make war — his war. The weight of that thought bore on him. Much had changed since the flight from the Aethenwood."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_22",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "bm_s30_victory",
+            equals: "coward",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Although once mortal enemies, the prince and princess had forged an uneasy alliance; perhaps even a friendship. But the question of succession remained. Li’sar held the Sceptre, but Konrad’s claim was strong. The matter could not lie unresolved; not so near to the throne."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_23",
+        on: "start",
+        children: [
+          {
+            tag: "condition",
+            variable: "bm_s30_victory",
+            not_equals: "coward",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Although once mortal enemies, the prince and princess had forged an uneasy alliance; perhaps even a friendship. But the question of succession remained. Konrad held the Sceptre, but Li’sar’s claim was strong. The matter could not lie unresolved; not so near to the throne."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_24",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("At length, the rebel army came to the northern shore of the river Weldyn, and paused there. To look at the city. To make plans for the battle, and to talk."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_25",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Konrad",
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _(""),
+        defeat: _(""),
+      },
+      {
+        tag: "event",
+        id: "side_traits_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Konrad",
+            object: "%7B%22id%22%3A%22side_traits_1%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22max_experience%22%2C%22increase%22%3A%22-20%25%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "kvothe.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "unit_placed",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_placed_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22ability%22%3A%22transmutation%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "refresh_transmutation",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22ability%22%3A%22transmutation%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "refresh_transmutation",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6_1",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7_2",
+        on: "refresh_transmutation",
+        once: false,
+      },
+      {
+        tag: "event",
+        id: "if_9",
+        on: "branch_if_9",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "status_s43",
+            equals: "completed",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+            income: "$( -2*2 + 2 )",
+          },
+          {
+            tag: "gold",
+            side: "$lisar_side",
+            amount: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "set_variable",
+            name: "lisar_side",
+            value: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            recruit: "Elite Bowman,Elite Fencer,Elite Heavy Infantryman",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_9",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: "$lisar_side",
+            controller: "human",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lisar%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22side%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22have_unit%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lisar%22%2C%22search_recall_list%22%3A%22yes%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22side%22%3A%22%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Lisar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.status.poisoned",
+                value: "no",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Lisar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.status.slowed",
+                value: "no",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "stored_Lisar",
+            kill: "NOT_SIDE=999",
+            id: "Lisar",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_Lisar.hitpoints",
+            value: "$stored_Lisar.max_hitpoints",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "stored_Lisar.moves",
+            value: "$stored_Lisar.max_moves",
+            mode: "value",
+          },
+          {
+            tag: "set_variable",
+            name: "stored_Lisar.attacks_left",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 15,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Konrad",
+            unit: "Konrad",
+            x: 15,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_12",
+          },
+          {
+            tag: "set_variable",
+            name: "stored_Lisar.side",
+            value: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "stored_Lisar",
+            x: 14,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            side: "$lisar_side",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lisar%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Lisar",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Delfador",
+            unit: "Delfador",
+            x: 17,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Konrad",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Lisar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Delfador",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "0-99,0-99",
+          },
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: "$lisar_side",
+            cells: "18,1",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "status_s04",
+            equals: "completed",
+          },
+          {
+            tag: "message",
+            speaker: "Lisar",
+            text: _("—and the outskirts are barely a day’s march away. We should approach along the river, to make use of our merfolk and to cover our flank. She’ll cut off our supply chain if we give her the chance."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "status_s04",
+            not_equals: "completed",
+          },
+          {
+            tag: "message",
+            speaker: "Lisar",
+            text: _("—and the outskirts are barely a day’s march away. We should approach from the northeast, using the river to cover our flank. She’ll cut off our supply chain if we give her the chance."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "bm_turns",
+            equals: "$bm_milestone_finale",
+          },
+          {
+            tag: "message",
+            speaker: "Lisar",
+            text: _("The prisoners could be a problem, if she threatens them to try to force our surrender. But I don’t think it will come to that. She knows we’re not so foolish as to give in."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "bm_met_lintanir",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Parandra was right. Li’sar... Li’sar is the rightful queen. From a long line of kings, stretching all the way back to the seafarers of old from the west."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_18",
+        on: "branch_if_18",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "bm_met_lintanir",
+            not_equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Li’sar... Li’sar is the rightful queen. From a long line of kings, stretching all the way back to the seafarers of old from the west."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_14",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_15",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Konrad",
+            x: 15,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Delfador, what do you think? You’ve been very quiet recently."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Weldyn. The great city. The ancient city. The city of evil. The city of good. The city of men."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("..."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("I have not looked upon that city for seventeen years, Konrad. Seventeen years ago, when I should have been at the height of my power. But my strength failed me. I failed, and I cannot atone for it."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            portrait: "portraits/konrad-$konrad_portrait_base-concerned.webp",
+            text: _("You could not defeat Asheviere, I know. But you rescued me. That was no failure."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("You do not understand."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Delfador",
+            x: 19,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Lisar",
+            x: 16,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("The battle had been long and hard. We had been defeated. Eldred was slain, but I knew that Asheviere’s wrath would be great. That many innocents would be slain. _ I had to save the monarchy. I had to save the princes. I made haste to Weldyn, before the guards of Asheviere could get there, to carry out their evil orders."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("But I failed. I was too late. I entered the chambers of the youngest prince, Prince Konrad, just as one of the evil ones ran him through. _ All was lost. The heirs were slain. Only Asheviere and her daughter had any claim to the throne."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            portrait: "portraits/konrad-$konrad_portrait_base-concerned.webp",
+            text: _("I am not dead, Delfador. What is this you’re saying!?"),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Of course, you are surprised by this, but it is the truth. In haste, I vanquished the evil ones who had committed this foul deed. Then I took the little prince’s broken body, and away I rode. Far away, to the land of the elves."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("By strange and mysterious fortune, the Elf Lady Parandra had come across a human child. She knew not where he had come from, only that the orcs would have eaten him if it weren’t for her intervention. _ The elves felt that great fortune smiled upon this nameless child. Perhaps that is why this most truthful of peoples agreed to my plan."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("After burying the little prince, we agreed never to speak of him again. Instead, this orphan child we would call Konrad, and he would be brought up to be king. _ I would say that I had slain the guards before they had carried out their evil deed, instead of after. No one would ever have to know. And no one did know for certain, until now."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Delfador",
+            x: 17,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("I had thought that we could one day make you king, Konrad. But now I see that fate has made a different choice. That despite all of Asheviere’s evil, this Li’sar is fit for the throne."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_18",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Lisar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Li’sar... The rightful queen..."),
+          },
+          {
+            tag: "message",
+            speaker: "Lisar",
+            text: _("Delfador, I am honored. And Konrad... I’m just as surprised by this revelation as are you. In truth, you’d nearly had me convinced we were of one blood. I can’t call you my cousin any more, now."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("..."),
+          },
+          {
+            tag: "message",
+            speaker: "Konrad",
+            text: _("Then call me a friend. I was ready to be king. But in our time together I have come to agree with Delfador — you will make a good queen."),
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("It is decided."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Delfador",
+            text: _("Now, let us not tarry here any longer! The dawn breaks! The time has come for the heir to the throne to claim it!"),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+    ],
+  },
+]

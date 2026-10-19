@@ -1,0 +1,1699 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Clearwater Port"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "Haldric",
+        gold: 210,
+        leader: "Prince_Haldric",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "Haldric",
+        gold: 50,
+        recruit: "Peasant,Bowman,Spearman",
+        leader: "Commander_Aethyr",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "Haldric",
+      },
+      {
+        tag: "side",
+        id: 4,
+        team_name: "orcs",
+        gold: 225,
+        recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Wolf Rider, Orcish Crossbowman, Goblin Knight, Orcish Slayer, Goblin Spearman",
+        leader: "Tan-Vragar",
+      },
+      {
+        tag: "side",
+        id: 5,
+        team_name: "orcs",
+        gold: 225,
+        recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Wolf Rider, Orcish Crossbowman, Orcish Warrior, Goblin Pillager, Goblin Spearman",
+        leader: "Tan-Burg",
+      },
+      {
+        tag: "side",
+        id: 6,
+        team_name: "orcs",
+        gold: 300,
+        recruit: "Orcish Archer, Orcish Assassin, Orcish Grunt, Wolf Rider, Orcish Crossbowman, Orcish Warrior, Goblin Knight, Goblin Pillager, Orcish Slayer, Goblin Spearman",
+        leader: "Ut_Tan-Vrork",
+      },
+      {
+        tag: "map",
+        id: "scenario_08_Clearwater_Port",
+        file: "08_Clearwater_Port.map",
+      },
+      {
+        tag: "unit",
+        id: "Prince_Haldric",
+        type: "Noble Commander",
+        side: 1,
+        x: 33,
+        y: 19,
+        name: _("Prince Haldric"),
+      },
+      {
+        tag: "unit",
+        id: "Commander_Aethyr",
+        type: "Lieutenant",
+        side: 2,
+        x: 30,
+        y: 20,
+        name: _("Commander Aethyr"),
+      },
+      {
+        tag: "unit",
+        id: "Tan-Vragar",
+        type: "Orcish Warlord",
+        side: 4,
+        x: 14,
+        y: 31,
+        name: _("Tan-Vragar"),
+      },
+      {
+        tag: "unit",
+        id: "Tan-Burg",
+        type: "Orcish Warlord",
+        side: 5,
+        x: 7,
+        y: 20,
+        name: _("Tan-Burg"),
+      },
+      {
+        tag: "unit",
+        id: "Ut_Tan-Vrork",
+        type: "Orcish Warlord",
+        side: 6,
+        x: 15,
+        y: 6,
+        name: _("Ut’Tan-Vrork"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_50",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.75,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: 0.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_51",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Prince_Haldric,Commander_Aethyr,Tan-Vragar,Tan-Burg,Ut_Tan-Vrork,u_4,u_5",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_52",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 32,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Flee on the First Ship Flee on the Second Ship Flee on the Third Ship<span foreground='white'><small> _(early finish bonus)</small></span> Defeat all enemy leaders<span foreground='white'><small> _(early finish bonus)</small></span>"),
+        defeat: _("Death of Prince Haldric Death of Lady Jessene Death of Commander Aethyr Miss the Last Ship"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_city_falls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "undead_siege.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "battle.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Prince%20Haldric%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("I can’t be finished yet... I still have so much more to do."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22King%20Eldaric%20IV%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("It is not yet my time! No!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Jessene%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! I’ll not go so easil—"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Outlaw%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Bah! I’m not dying today! <i>Poof</i>! (<i>The Lady Outlaw vanishes in a puff of smoke.</i>)"),
+          },
+          {
+            tag: "set_variable",
+            name: "have_lady",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "lady_store",
+            kill: "yes",
+            id: "Lady Outlaw",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Burin%20the%20Lost%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("Fool of a boy. I never should have followed him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ruddry%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Hail the Kings, may their bloodlines continue beyond my time!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Sir%20Ladoc%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("For Land and Lord, I sacrifice all!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Minister%20Edren%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("May the Lords of Light protect us all."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lord%20Typhon%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("Without him the bottoms of our ships will be completely vulnerable..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "set_variable",
+            name: "side_2_limited_recruits_length",
+            value: -1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "recruit",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Peasant%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "side_2_limited_recruits_length",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "side_2_limited_recruits[$side_2_limited_recruits_length|].type",
+            value: "$unit.type",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_17",
+        on: "branch_if_17",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.number_recruited",
+            greater_than_or_equal_to: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 2,
+            mode: "disallow",
+            types: "Peasant",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "this_item.type",
+            equals: "$unit.type",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "this_item.number_recruited",
+            value: 1,
+            mode: "add",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_17",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "recruit",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_recruit_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%2C%22type%22%3A%22Peasant%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "foreach",
+            variable: "side_2_limited_recruits",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_16",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "limit_moves_leader2",
+        on: "turn_refresh",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_19",
+        on: "branch_if_19",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "gold",
+            greater_than: 60,
+          },
+          {
+            tag: "hook",
+            name: "command:allow_extra_recruit",
+            id: "Commander Aethyr",
+            types: "Heavy Infantryman,Longbowman,Javelineer,Pikeman,Swordsman",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_20",
+        on: "branch_if_20",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "gold",
+            less_than_or_equal_to: 60,
+          },
+          {
+            tag: "hook",
+            name: "command:allow_extra_recruit",
+            id: "Commander Aethyr",
+            types: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_side",
+            equals: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:store_gold",
+            side: 2,
+            variable: "gold",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_19",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_20",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "victory",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:set_time_area",
+            area: "%7B%22tag%22%3A%22time_area%22%2C%22attributes%22%3A%7B%22x%22%3A%2234%22%2C%22y%22%3A%228%22%2C%22radius%22%3A%222%22%2C%22id%22%3A%22lighthouse%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22morning%22%2C%22name%22%3A%22Morning%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dawn.png~BLIT(misc%2Ftod-bright.png)%22%2C%22lawful_bonus%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22morning%22%2C%22name%22%3A%22Morning%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-morning.png%22%2C%22lawful_bonus%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22afternoon%22%2C%22name%22%3A%22Afternoon%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-afternoon.png%22%2C%22lawful_bonus%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22afternoon%22%2C%22name%22%3A%22Afternoon%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-dusk.png~BLIT(misc%2Ftod-bright.png)%22%2C%22lawful_bonus%22%3A%2225%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dawn%22%2C%22name%22%3A%22Dawn%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-firstwatch.png~BLIT(misc%2Ftod-bright.png)%22%2C%22red%22%3A%22-25%22%2C%22green%22%3A%22-15%22%2C%22blue%22%3A%220%22%2C%22sound%22%3A%22ambient%2Fmorning.ogg%22%2C%22lawful_bonus%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22dawn%22%2C%22name%22%3A%22Dawn%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fdefault%2Fschedule-secondwatch.png~BLIT(misc%2Ftod-bright.png)%22%2C%22red%22%3A%22-25%22%2C%22green%22%3A%22-15%22%2C%22blue%22%3A%220%22%2C%22sound%22%3A%22ambient%2Fmorning.ogg%22%2C%22lawful_bonus%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 34,
+            y: 8,
+            item_name: "",
+            image: "scenery%2Flighthouse.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 33,
+            y: 8,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 8,
+            y: 17,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 10,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 36,
+            y: 18,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Lady Jessene",
+            unit: "Lady Jessene",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Burin the Lost",
+            unit: "Burin the Lost",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sir Ruddry",
+            unit: "Sir Ruddry",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sir Ladoc",
+            unit: "Sir Ladoc",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Minister Edren",
+            unit: "Minister Edren",
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Peasant",
+            side: 2,
+            x: 25,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Peasant",
+            side: 2,
+            x: 27,
+            y: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Peasant",
+            side: 2,
+            x: 28,
+            y: 21,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("Our Prince has arrived at Clearwater Port, with the orcs on his heels. While the orcs haven’t caught up with him yet, the winter snow has, and the ships seem to be missing from the port."),
+          },
+          {
+            tag: "message",
+            speaker: "Sir Ruddry",
+            text: _("Ha! Clearwater Port still stands!"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Lieutenant, who is in command here? And where are the ships? We risk being trapped in this city for the winter if the port freezes over."),
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("I am, my Lord, I command the local garrison. Our whole fishing fleet is evacuating people to Southbay as we speak. The ships should be back in a few days. Our forces engaged the orcs as they exited the Swamp of Esten. At first, we prevailed, and pushed them back into the swamp!"),
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("But our victory did not hold; orc reinforcements quickly overran our positions. We lost most of our forces, my lord, including the King of Clearwater, who died bravely leading a charge."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("That’s horrible!"),
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("The blood of many good soldiers stained the frozen field that day. And still the orcs press on. The king left no heir, but the other nobles have fled to Southbay. We’ve been busy evacuating the rest of the populace. The army bought us enough time to evacuate almost all our people, and most of the winter stores. They’ve gone to Southbay, which is brimming with refugees from all over."),
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("We’re only holding the city until the last of the refugees are gone. You, my lord, are free to retreat to safety when the next ship comes. But, if I may be frank, my lord, our defenses are stretched thin and we could use all the help we can get to hold our walls. Otherwise I fear that we will be overrun before the last of the people can be evacuated."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Well, we are the last of the refugees from our lands, for the orcs are right on our heels! We have Wesfolk with us. They have been of service. They are to be evacuated as well. We have traveled far and bear many wounded, but we will help you defend these walls as long as we can."),
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("I thank you, my lord. But we are to bring these Wesfolk too? It would be... highly irregular. Are you sure, my lord?"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Yes. Be sure that it is understood that these are our allies and friends."),
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("Yes, sir!"),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("Yes sir, indeed! You need us to help hold out until the ships arrive."),
+          },
+          {
+            tag: "message",
+            speaker: "Burin the Lost",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("Ships! Nobody said anything about ships. Will this torture ever end! Ahh, the orcs will help take my mind off things."),
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("To your posts, men! We should be able to evacuate everyone in three more boatloads. Until then, let us make those orcs pay dearly for every inch of our land. For our homes, for our people, for our fallen king!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Peasant%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("You killed my family! Die!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_25",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Lady%20Jessene%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("<i>“Bring these Wesfolk too? It would be... highly irregular.”</i> Bah! I’ll show you irregular..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_26",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 3,
+          },
+          {
+            tag: "message",
+            speaker: "Ut'Tan-Vrork",
+            text: _("Push ’em into the sea! They’re in our winter homes! Heh... Tan-Vragar, I’m sure they will enjoy your little surprise!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 29,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 4,
+            mode: "allow",
+            types: "Naga Fighter",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Naga Fighter",
+            side: 4,
+            x: 30,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_4",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Naga Fighter",
+            side: 4,
+            x: 29,
+            y: 30,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_5",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_27",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 32,
+            y: 7,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "scenery/signpost.png",
+            text: _("An ode to ye, on yer way, I hope you have a brighter day!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_28",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 7,
+            y: 16,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "scenery/signpost.png",
+            text: _("Dead-Man’s Ford"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 0,
+            y: 9,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "scenery/signpost.png",
+            text: _("The River Road — To the Swamp of Esten."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 35,
+            y: 17,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "scenery/signpost.png",
+            text: _("Clearwater Port"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31_1",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 10,
+          },
+          {
+            tag: "gold",
+            side: 4,
+            amount: 50,
+          },
+          {
+            tag: "gold",
+            side: 5,
+            amount: 50,
+          },
+          {
+            tag: "gold",
+            side: 6,
+            amount: 60,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32_2",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 16,
+          },
+          {
+            tag: "gold",
+            side: 4,
+            amount: 50,
+          },
+          {
+            tag: "gold",
+            side: 5,
+            amount: 50,
+          },
+          {
+            tag: "gold",
+            side: 6,
+            amount: 60,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33_3",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 22,
+          },
+          {
+            tag: "gold",
+            side: 4,
+            amount: 50,
+          },
+          {
+            tag: "gold",
+            side: 5,
+            amount: 50,
+          },
+          {
+            tag: "gold",
+            side: 6,
+            amount: 60,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34_4",
+        on: "turn",
+        once: false,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 28,
+          },
+          {
+            tag: "gold",
+            side: 4,
+            amount: 50,
+          },
+          {
+            tag: "gold",
+            side: 5,
+            amount: 50,
+          },
+          {
+            tag: "gold",
+            side: 6,
+            amount: 60,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Tan-Vragar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "amount_gold",
+            value: 75,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You retrieve $amount_gold pieces of gold."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 75,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Tan-Burg%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "amount_gold",
+            value: 75,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You retrieve $amount_gold pieces of gold."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 75,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Ut'Tan-Vrork%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "amount_gold",
+            value: 125,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You retrieve $amount_gold pieces of gold."),
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 125,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_38",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "ambient/ship.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 30,
+            y: 15,
+            item_name: "",
+            image: "units%2Ftransport%2Ftransport-galleon.png~RC(magenta%3Eblue)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 31,
+            y: 16,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("My lord, the first ship has arrived! Prince Haldric, if you and your men must leave for Southbay just go to the pier to board the ship."),
+          },
+          {
+            tag: "set_variable",
+            name: "First_Ship",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_39",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 18,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 31,
+            y: 16,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("My lord, the first ship is departing. But the second ship should arrive shortly."),
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 30,
+            y: 15,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "ambient/ship.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 20,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "ambient/ship.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 31,
+            y: 14,
+            item_name: "",
+            image: "units%2Ftransport%2Ftransport-galleon.png~RC(magenta%3Eblue)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 32,
+            y: 14,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("My lord, the second ship has arrived! Prince Haldric, if you and your men want to leave for Southbay just go to the pier to board the ship."),
+          },
+          {
+            tag: "set_variable",
+            name: "Second_Ship",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_41",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 24,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 32,
+            y: 14,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("My lord, the second ship is departing. But the last ship will be here before long. With your help we can hold on just a while longer."),
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 31,
+            y: 14,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "ambient/ship.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_42",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 26,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "ambient/ship.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 28,
+            y: 15,
+            item_name: "",
+            image: "units%2Ftransport%2Ftransport-galleon.png~RC(magenta%3Eblue)",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 29,
+            y: 16,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("My lord, the last ship has arrived! Finally the last of our people can flee to safety. Prince Haldric, you and your men must go now! Go to the pier to board the ship for Southbay."),
+          },
+          {
+            tag: "set_variable",
+            name: "Third_Ship",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_43",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 29,
+            y: 16,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("My lord, the last ship is departing. We’re trapped!"),
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 28,
+            y: 15,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "ambient/ship.ogg",
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_44",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 30,
+            y: 15,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_45",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 31,
+            y: 13,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_46",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 28,
+            y: 15,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_47",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Commander%20Aethyr%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("Let me have peace in Death! My love, I’ll be there soon—"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            portrait: "portraits/haldric-surprised.webp",
+            text: _("We needed him to get out of here. We’re trapped!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_48",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("We’ve escaped from the orcs before the winter ice could trap us! Now, on to Southbay."),
+          },
+          {
+            tag: "message",
+            speaker: "Burin the Lost",
+            portrait: "portraits/burin-annoyed.webp",
+            text: _("I know I mentioned I can’t float."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("Might I suggest a bit of a detour?"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Why?"),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("You have the Ruby of Fire, but you have no idea what it does, correct? You know that lich you have petrified just outside of Southbay—"),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Yes, Lich Point! Where we first used our magi in battle, and turned the tide of war against your people."),
+          },
+          {
+            tag: "message",
+            speaker: "Lady Jessene",
+            text: _("Erm, yes... He was Caror, the arch rival of our dearly departed Lich-Lord Lenvan. He coveted the ruby, and was studying it. The only copy of his study, the Book of Fire and Darkness, was petrified along with him."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("If we make landfall outside of Southbay, we’ll be trapped. Of that I am sure!"),
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("My family was from Southbay. My father was a soldier there. The city’s sewer entrance is near that fossil of a lich."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Wow, this is beginning to sound dangerously like a plan. Commander Aethyr, will you join us?"),
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("No. These monsters killed my family. My wife, my daughters. There is nothing left for me. I’ll stay. By the time the orcs wrestle Clearwater Port away from me there’ll be nothing but rubble left!"),
+          },
+          {
+            tag: "message",
+            speaker: "Commander Aethyr",
+            text: _("The peasant farmers seem to like you. Who knows, maybe they’ll be of some help."),
+          },
+          {
+            tag: "message",
+            speaker: "Prince Haldric",
+            text: _("Resources are scarce, we need all of the help we can get. Be brave and fight hard, my friend!"),
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "allow",
+            types: "Peasant",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_49",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+    ],
+  },
+]

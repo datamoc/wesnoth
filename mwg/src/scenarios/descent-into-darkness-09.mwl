@@ -1,0 +1,6227 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Descent into Darkness"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "good",
+        gold: 0,
+        leader: "Malin_Keshar",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "monsters",
+        gold: 0,
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "monsters",
+        gold: 0,
+      },
+      {
+        tag: "side",
+        id: 4,
+        controller: "ai",
+        team_name: "fake",
+      },
+      {
+        tag: "map",
+        id: "scenario_09_Descent_into_Darkness",
+        file: "09a_Descent_into_Darkness.map",
+      },
+      {
+        tag: "unit",
+        id: "Malin_Keshar",
+        type: "Malin Keshar",
+        side: 1,
+        x: 5,
+        y: 17,
+        name: _("Malin Keshar"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_2",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 2,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "hide_side_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_86",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 100,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 0.9,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: 0.1,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,,,0,100,%7B%22side%22%3A1%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_87",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("<i>“To become a lich, one must first die.”</i>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_88",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("So reads the book that Malin has reclaimed. <i>“The spells of necromancy can free the spirit from the limitations of the flesh, but only once the soul has been unbound from the body. The necromancer must make the necessary incantations with his dying breaths, then conquer his own spirit in much the same way he binds the spirits of others. Because he retains his own will, however, the lich can call upon the awesome powers of the spirit world.”</i>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_89",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Malin closes the book. After all this time and all that he has struggled for, could he just surrender to despair and perish? He has never been one to simply give up, but then, is there anything left for him to struggle for? Still, the words, that terrifying idea, stick in the back of his mind. Life has offered him nothing; could death be any worse? Death... and not rebirth, but undeath."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_90",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("With all of Wesnoth forbidden to him, Malin finds refuge in a secluded frontier village where few questions are asked. When word eventually filters to the town that Parthyn has been overrun by orcs, Malin rouses himself from his listless state without really knowing why, and heads northward."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_91",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Malin soon finds the track of an enormous orc army and follows them until he reaches their camps. As he sees the number of orcs, he begins to realize the futility of his quest — harassing and harrying one clan of orcs is a far different task than waging a truly meaningful war against them as a whole. Then again, perhaps he is beyond the point of ordinary reason."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_92",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("<i>There is nothing else left for me to do anyway,</i> Malin thinks, and raises his undead to assault the camp. Within mere minutes, nearly his entire army is destroyed and he is badly injured by a poisoned dagger. Malin retreats and finds refuge in a small cave."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_93",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Malin_Keshar",
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Complete the ritual Regain your strength Defeat Xanthric"),
+        defeat: _("Death of Malin Keshar Destruction of Mal Keshar Destruction of Mal Keshar"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "underground.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22type%22%3A%22Walking%20Corpse%22%2C%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22variation%22%3A%22drake%2Cdwarf%2Cgoblin%2Cgryphon%2Cmounted%2Csaurian%2Cspider%2Cswimmer%2Ctroll%2Cwose%2Cwolf%2Cbat%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22filter_wml%22%2C%22attributes%22%3A%7B%22experience%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22movement%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "malin",
+            kill: "yes",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "spawn",
+            id: "Malin_Keshar",
+            type: "Dark Mage",
+            side: 1,
+            x: 4,
+            y: 16,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Malin_Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "",
+          },
+          {
+            tag: "set_variable",
+            name: "scenario_stage",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_4",
+        on: "branch_if_4",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "change_terrain",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Qxu",
+            cells: "$hex[$i].x,$hex[$i].y",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_5",
+        on: "branch_if_5",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "change_terrain",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Qxu",
+            cells: "$hex[$i].x,$hex[$i].y",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Cursed beasts!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Malin Keshar",
+            x: 7,
+            y: 13,
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("I won’t go down like this, felled by an orc’s blade!"),
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Malin Keshar",
+            x: 10,
+            y: 12,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 10,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Malin Keshar",
+            x: 10,
+            y: 11,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 100,
+          },
+          {
+            tag: "hook",
+            name: "command:harm_unit",
+            amount: 1,
+            animate: "no",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Malin%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 400,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 10,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Malin Keshar",
+            x: 10,
+            y: 10,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 100,
+          },
+          {
+            tag: "hook",
+            name: "command:harm_unit",
+            amount: 1,
+            animate: "no",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Malin%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 700,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 11,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Malin Keshar",
+            x: 11,
+            y: 9,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 100,
+          },
+          {
+            tag: "hook",
+            name: "command:harm_unit",
+            amount: 1,
+            animate: "no",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Malin%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 11,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Malin Keshar",
+            x: 11,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 100,
+          },
+          {
+            tag: "hook",
+            name: "command:harm_unit",
+            amount: 2,
+            animate: "no",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Malin%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:harm_unit",
+            amount: 2,
+            animate: "no",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Malin%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "advisor",
+            text: _("Master, you are gravely injured!"),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("So it seems..."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Perhaps it would be a suitable end. The orcs were the ones who provoked this journey of mine. Would it not be fitting for them to end my quest as well?"),
+          },
+          {
+            tag: "message",
+            speaker: "advisor",
+            text: _("There is another way, master. Remember the book!"),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Yes... yes. The book. That half-rotten, tattered tome which I gave my blood and soul for. I forsook my people, my family, my home... to follow that damned necromancer! And in the end, he betrayed me too, just like Drogan, just like Dela..."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Everyone has betrayed me. I am alone. All that is left..."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 700,
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "Malin Keshar",
+            x: 11,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 300,
+          },
+          {
+            tag: "hook",
+            name: "command:harm_unit",
+            amount: 3,
+            animate: "no",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Malin%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Leave me while I prepare."),
+          },
+          {
+            tag: "message",
+            speaker: "advisor",
+            text: _("Yes, master."),
+          },
+          {
+            tag: "hook",
+            name: "command:put_to_recall_list",
+            filter: "%7B%22tag%22%3A%22put_to_recall_list%22%2C%22attributes%22%3A%7B%22role%22%3A%22advisor%22%7D%2C%22children%22%3A%5B%5D%7D",
+            heal: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 11,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Urb",
+            cells: "11,6",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 12,
+            y: 7,
+            item_name: "",
+            image: "misc%2Fmakeshift-altar.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Urb",
+            cells: "10,5;12,5;10,8;12,8;9,6;13,6",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("... I suppose I have never been one for regrets..."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            role: "advisor",
+            unit: "",
+            x: 11,
+            y: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:put_to_recall_list",
+            filter: "%7B%22tag%22%3A%22put_to_recall_list%22%2C%22attributes%22%3A%7B%22role%22%3A%22advisor%22%7D%2C%22children%22%3A%5B%5D%7D",
+            heal: "no",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "silence.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:place_shroud",
+            side: 1,
+            xs: "-1-22",
+            ys: "-1-19",
+            radius: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:replace_schedule",
+            schedule: "%7B%22tag%22%3A%22replace_schedule%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22limbo1%22%2C%22name%22%3A%22Limbo%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fafter-the-fall%2F6shortdark.png%22%2C%22lawful_bonus%22%3A%22-30%22%2C%22red%22%3A%22-50%22%2C%22green%22%3A%22-50%22%2C%22blue%22%3A%22-15%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Xu",
+            cells: "0-8,13-20",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "hex",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22hex%22%2C%22terrain%22%3A%22Uu%5E*%2CUh%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Qxu%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "hex",
+            item: "this_item",
+            index: "i",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "change_terrain",
+                values: "1..4",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_4",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "hex",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22hex%22%2C%22terrain%22%3A%22Uh%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "hex",
+            item: "this_item",
+            index: "i",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "change_terrain",
+                values: "1..3",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_5",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_0",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Uu%5E*%2CUh%5E*%22%2C%22x%22%3A%227-9%2C3-5%2C16-19%22%2C%22y%22%3A%221-3%2C4-6%2C11-14%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_2",
+            value: 1,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_2",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_0",
+                variable: "_mwg_random_pick_1",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_2",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "malin",
+            x: 12,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.profile",
+                value: "portraits/malin_young.webp",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.moves",
+                value: 4,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 13,
+            y: 6,
+            item_name: "",
+            image: "scenery%2Frune4.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 9,
+            item_name: "",
+            image: "scenery%2Frune4.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 14,
+            y: 7,
+            item_name: "",
+            image: "scenery%2Frune3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 10,
+            y: 7,
+            item_name: "",
+            image: "scenery%2Frune3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 6,
+            item_name: "",
+            image: "scenery%2Frune1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 13,
+            y: 9,
+            item_name: "",
+            image: "scenery%2Frune1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "into_the_shadows.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "weight_of_revenge.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "underground.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("I feel... different. Where am I?"),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Why is my body still intact? Am I still alive? Or..."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("... something isn’t quite right."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 400,
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Ghoul",
+            side: 2,
+            x: 14,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("I see, accepting death was not enough. To become a lich, I must master it."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("First comes the flesh, the physical form of life. Blood is the crux of life for mortal creatures, but if I wish to ascend beyond that..."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_3",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Uu%5E*%2CUh%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2218-23%22%2C%22y%22%3A%221-5%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2212%22%2C%22y%22%3A%227%22%2C%22radius%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_5",
+            value: 4,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_5",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_3",
+                variable: "_mwg_random_pick_4",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_5",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_6",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Uu%5E*%2CUh%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2218-23%22%2C%22y%22%3A%221-5%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2212%22%2C%22y%22%3A%227%22%2C%22radius%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_8",
+            value: 6,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_8",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_6",
+                variable: "_mwg_random_pick_7",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_8",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_7",
+        on: "branch_if_7",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "change_terrain",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Qxu",
+            cells: "$hex[$i].x,$hex[$i].y",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_8",
+        on: "branch_if_8",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "change_terrain",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Qxu",
+            cells: "$hex[$i].x,$hex[$i].y",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22MKFlesh%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("The flesh dies, and then..."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 13,
+            y: 6,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 11,
+            y: 9,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 14,
+            y: 7,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 10,
+            y: 7,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 11,
+            y: 6,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 13,
+            y: 9,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 13,
+            y: 6,
+            item_name: "",
+            image: "scenery%2Frune4.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 9,
+            item_name: "",
+            image: "scenery%2Frune4.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 14,
+            y: 7,
+            item_name: "",
+            image: "scenery%2Frune3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 10,
+            y: 7,
+            item_name: "",
+            image: "scenery%2Frune3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 6,
+            item_name: "",
+            image: "scenery%2Frune1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 13,
+            y: 9,
+            item_name: "",
+            image: "scenery%2Frune1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "malin",
+            kill: "yes",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:place_shroud",
+            side: 1,
+            xs: "-1-22",
+            ys: "-1-19",
+            radius: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:replace_schedule",
+            schedule: "%7B%22tag%22%3A%22replace_schedule%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22limbo2%22%2C%22name%22%3A%22Limbo%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fafter-the-fall%2F6shortdark.png%22%2C%22lawful_bonus%22%3A%22-35%22%2C%22red%22%3A%22-60%22%2C%22green%22%3A%22-60%22%2C%22blue%22%3A%22-20%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "hex",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22hex%22%2C%22terrain%22%3A%22Uu%5E*%2CUh%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Qxu%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "hex",
+            item: "this_item",
+            index: "i",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "change_terrain",
+                values: "1..4",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_7",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "hex",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22hex%22%2C%22terrain%22%3A%22Uh%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "hex",
+            item: "this_item",
+            index: "i",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "change_terrain",
+                values: "1..3",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_8",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "malin",
+            x: 12,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: "full",
+            restore_statuses: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Malin%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.attacks_left",
+                value: 1,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.moves",
+                value: 4,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.profile",
+                value: "portraits/malin_old.webp",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Drain the blood, strip away the meat, and all that is left is the bone."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 400,
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Skeleton",
+            side: 2,
+            x: 10,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("I remember a time when I thought skeletons were repulsive, sickening things. I suppose it’s only natural for the living to fear the most prominent figure of death. Even if I grew out of such a naive thought... I suppose I couldn’t have expected Drogan and Dela to follow suit so easily. My family and friends, yes, but they were nothing but simpletons. If only they had tried to understand me instead of shunning me outright."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("I do not really regret following my own path that much."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_9",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Uu%5E*%2CUh%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2218-23%22%2C%22y%22%3A%221-5%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2212%22%2C%22y%22%3A%227%22%2C%22radius%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_11",
+            value: 5,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_11",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_9",
+                variable: "_mwg_random_pick_10",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_11",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_12",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Uu%5E*%2CUh%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2218-23%22%2C%22y%22%3A%221-5%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2212%22%2C%22y%22%3A%227%22%2C%22radius%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_14",
+            value: 4,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_14",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_12",
+                variable: "_mwg_random_pick_13",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_14",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_15",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%228-9%2C6%2C5%2C5-6%2C16-17%2C11-14%22%2C%22y%22%3A%224%2C6%2C7%2C%20%208%2C%20%20%2011%2C%20%20%2012%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_17",
+            value: 1,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_17",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_15",
+                variable: "_mwg_random_pick_16",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_17",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 2,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.attacks_left",
+                value: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 2,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.moves",
+                value: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_10",
+        on: "branch_if_10",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "change_terrain",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Qxu",
+            cells: "$hex[$i].x,$hex[$i].y",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_11",
+        on: "branch_if_11",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "change_terrain",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Qxu",
+            cells: "$hex[$i].x,$hex[$i].y",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "change_terrain",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Qxu",
+            cells: "$hex[$i].x,$hex[$i].y",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "change_terrain",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Qxu",
+            cells: "$hex[$i].x,$hex[$i].y",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_14",
+        on: "branch_if_14",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "change_terrain",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Qxu",
+            cells: "$hex[$i].x,$hex[$i].y",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "change_terrain",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Qxu",
+            cells: "$hex[$i].x,$hex[$i].y",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22MKBone%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("The physical form collapses altogether. What remains?"),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 13,
+            y: 6,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 11,
+            y: 9,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 14,
+            y: 7,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 10,
+            y: 7,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 11,
+            y: 6,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 13,
+            y: 9,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 13,
+            y: 6,
+            item_name: "",
+            image: "scenery%2Frune4.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 9,
+            item_name: "",
+            image: "scenery%2Frune4.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 14,
+            y: 7,
+            item_name: "",
+            image: "scenery%2Frune3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 10,
+            y: 7,
+            item_name: "",
+            image: "scenery%2Frune3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 11,
+            y: 6,
+            item_name: "",
+            image: "scenery%2Frune1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 13,
+            y: 9,
+            item_name: "",
+            image: "scenery%2Frune1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "malin",
+            kill: "yes",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:place_shroud",
+            side: 1,
+            xs: "-1-22",
+            ys: "-1-19",
+            radius: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:replace_schedule",
+            schedule: "%7B%22tag%22%3A%22replace_schedule%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22limbo3%22%2C%22name%22%3A%22Limbo%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fafter-the-fall%2F6shortdark.png%22%2C%22lawful_bonus%22%3A%22-40%22%2C%22red%22%3A%22-70%22%2C%22green%22%3A%22-70%22%2C%22blue%22%3A%22-30%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "hex",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22hex%22%2C%22terrain%22%3A%22Uu%5E*%2CUh%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Qxu%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "hex",
+            item: "this_item",
+            index: "i",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "change_terrain",
+                values: "1..4",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_10",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "hex",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22hex%22%2C%22terrain%22%3A%22Uh%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "hex",
+            item: "this_item",
+            index: "i",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "change_terrain",
+                values: "1..3",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_11",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "hex",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22hex%22%2C%22terrain%22%3A%22Uu%5E*%2CUh%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Qxu%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "hex",
+            item: "this_item",
+            index: "i",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "change_terrain",
+                values: "1..4",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_12",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "hex",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22hex%22%2C%22terrain%22%3A%22Uh%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "hex",
+            item: "this_item",
+            index: "i",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "change_terrain",
+                values: "1..3",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_13",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "hex",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22hex%22%2C%22terrain%22%3A%22Uu%5E*%2CUh%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_adjacent_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Qxu%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "hex",
+            item: "this_item",
+            index: "i",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "change_terrain",
+                values: "1..4",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_14",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "hex",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22hex%22%2C%22terrain%22%3A%22Uh%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "hex",
+            item: "this_item",
+            index: "i",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_rand",
+                variable: "change_terrain",
+                values: "1..3",
+              },
+              {
+                tag: "hook",
+                name: "command:fire_event",
+                event: "branch_if_15",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "malin",
+            x: 12,
+            y: 7,
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: "full",
+            restore_statuses: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Malin%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.attacks_left",
+                value: 1,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.moves",
+                value: 4,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.profile",
+                value: "portraits/malin_old-decay.webp",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 400,
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Ghost",
+            side: 2,
+            x: 13,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("The soul. Dela always said I was a creature without a soul. I suppose she was jesting at the time, but maybe not after I killed Drogan."),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Bah! I don’t deserve this, and I certainly don’t answer to someone like her. I have only ever fought to protect my people and my family, but the only thing I received in return was scorn and exile. My own sister thought I was a monster for using my power to save our town. My people would rather feed themselves to orcs than follow my ‘sorcerous ways’. Drogan, Dela... all of them! They are the ones without souls, not me!"),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("I should not really care anymore. I don’t care anymore. According to them, I have forsaken my soul already. So what does it matter?"),
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("I should not regret anything. I’m not really one for regrets..."),
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_18",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Uu%5E*%2CUh%5E*%2CQxu%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2218-23%22%2C%22y%22%3A%221-5%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2212%22%2C%22y%22%3A%227%22%2C%22radius%22%3A%224%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_20",
+            value: 4,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_20",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_18",
+                variable: "_mwg_random_pick_19",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_20",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_21",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Uu%5E*%2CUh%5E*%2CQxu%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2218-23%22%2C%22y%22%3A%221-5%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%2212%22%2C%22y%22%3A%227%22%2C%22radius%22%3A%224%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_23",
+            value: 2,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_23",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_21",
+                variable: "_mwg_random_pick_22",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_23",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 2,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.attacks_left",
+                value: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 2,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.moves",
+                value: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 2,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.max_moves",
+                value: 2,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_24",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%227-9%2C3-5%2C16-19%22%2C%22y%22%3A%221-3%2C4-6%2C11-14%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_26",
+            value: 1,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_26",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_24",
+                variable: "_mwg_random_pick_25",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_26",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22id%22%3A%22MKFlesh%2CMKBone%2CMKSpirit%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_killer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            amount: 8,
+            animate: "yes",
+            restore_statuses: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Malin%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "heal_on_kill_dialogue",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "heal_on_kill_dialogue",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("These thralls contain only a meager amount of energy, but enough to sustain me."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22MKFlesh%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("The flesh appears, distorted and warped, but somehow strangely familiar."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22MKBone%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("I feel an aching in my bones, as if they are crumbling inside me."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22MKSpirit%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("Cold... it’s so very cold. Not a biting chill, but a numbness, an emptiness that eats at me from within..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_21",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: "12,10",
+            y: "5,8",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "scenery%2Frune4-glow.png",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "magic-dark.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22precision_rune%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "rune_dialogue",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: "12,10",
+            y: "8,5",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "scenery%2Frune1-glow.png",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "petrified.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22carapace_rune%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "rune_dialogue",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_23",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: "13,9",
+            y: "6,6",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x1",
+            y: "$y1",
+            item_name: "",
+            image: "scenery%2Frune3-glow.png",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "magic-missile-1.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22lifeblood_rune%22%2C%22effects%22%3A%5B%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "rune_dialogue",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_26",
+        on: "branch_if_26",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "y2",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "scenery%2Frune4.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_27",
+        on: "branch_if_27",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "y2",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "scenery%2Frune1.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_25",
+        on: "branch_if_25",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "x2",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_26",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_27",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_29",
+        on: "branch_if_29",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "y2",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "scenery%2Frune1.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_30",
+        on: "branch_if_30",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "y2",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "scenery%2Frune4.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_28",
+        on: "branch_if_28",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "x2",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_29",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_30",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_32",
+        on: "branch_if_32",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "y2",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "scenery%2Frune3.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_31",
+        on: "branch_if_31",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "x2",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_32",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_34",
+        on: "branch_if_34",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "y2",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: "$x2",
+            y: "$y2",
+            item_name: "",
+            image: "scenery%2Frune3.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_33",
+        on: "branch_if_33",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "x2",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_34",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_24",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: "0-22",
+            y: "0-19",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_25",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_28",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_31",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_33",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_35",
+        on: "rune_dialogue",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Malin Keshar",
+            text: _("These runes seem to be useful."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22MKSpirit%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "silence.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:harm_unit",
+            amount: 999,
+            kill: "no",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Malin%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Malin Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 13,
+            y: 6,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 11,
+            y: 9,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 14,
+            y: 7,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 10,
+            y: 7,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 11,
+            y: 6,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 13,
+            y: 9,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 12,
+            y: 7,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:place_shroud",
+            side: 1,
+            xs: "-1-22",
+            ys: "-1-19",
+            radius: 0,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("There is darkness..."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("and peace..."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("for a moment."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Then, they are replaced by a pulling, a pain too strong to resist, and then..."),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("... by emptiness."),
+          },
+          {
+            tag: "hook",
+            name: "command:replace_map",
+            terrain: "Xu%2C%20Xos%2C%20Xuc%2C%20Xu%2C%20Xos%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xos%2C%20Xu%2C%20Xos%2C%20Uu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uh%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Re%2C%20Uu%2C%20Rb%5EEs%2C%20Rb%5EEs%2C%20Ur%5EEs%2C%20Uu%2C%20Rb%5EEs%2C%20Ur%2C%20Uu%5EEm%2C%20Uu%2C%20Uu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXos%2C%20Xos%2C%20Isr%2C%20Xuc%2C%20Ur%2C%20Xuc%2C%20Xuc%2C%20Xu%2C%20Xuc%2C%20Xos%2C%20Xos%2C%20Xu%2C%20Uu%5EVu%2C%20Xu%2C%20Uu%5EEm%2C%20Uh%5EEmf%2C%20Uu%2C%20Xu%2C%20Uu%2C%20Xu%2C%20Re%2C%20Re%2C%20Rb%5EEs%2C%20Uu%2C%20Ur%2C%20Uu%2C%20Ur%2C%20Ur%5EEs%2C%20Uu%5EEmf%2C%20Uu%5EEs%2C%20Uh%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXuc%2C%20Ur%2C%20Ur%5EBr%5C%2C%20Isc%2C%20Ur%5EEs%2C%20Ur%5EBr%2F%2C%20Xuc%2C%20Xuc%2C%20Uh%5ETf%2C%20Uu%5EEmf%2C%20Uh%5ETf%2C%20Uh%5EEmf%2C%20Rb%5EEs%2C%20Rb%5EEs%2C%20Re%5EEdb%2C%20Ql%2C%20Ql%2C%20Uu%5EVud%2C%20Rb%5EEs%2C%20Rb%5EEs%2C%20Ql%2C%20Rd%5EEsd%2C%20Uu%5EVu%2C%20Rb%5EEs%2C%20Ur%5EEs%2C%20Ur%5EEs%2C%20Uu%5EEm%2C%20Xu%2C%20Xu%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXuc%2C%20Isr%2C%20Ur%5EEs%2C%20Ur%5EBr%7C%2C%20Xuc%2C%20Isr%5EEbn%2C%20Xuc%2C%20Xuc%2C%20Uh%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Re%5EEdb%2C%20Rb%5EEdb%2C%20Rb%5EEdb%2C%20Rb%5EEdb%2C%20Ql%2C%20Rd%5EEsd%2C%20Rd%5EEdb%2C%20Rd%5EEdb%2C%20Rd%5EEdb%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Uu%5EEdb%2C%20Uh%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Xos%2C%20Urb%2C%20Uu%5EBr%5C%2C%20Uu%5EBr%7C%2C%20Xuc%2C%20Xos%2C%20Xos%2C%20Rb%5EEs%2C%20Xu%2C%20Ur%5EEs%2C%20Ur%5EEs%2C%20Uu%5EEm%2C%20Rd%5EEsd%2C%20Rd%5EEsd%2C%20Ql%5EBs%5C%2C%20Uu%5EVu%2C%20Ur%5EEdb%2C%20Ql%2C%20Rd%5EEdb%2C%20Ql%2C%20Ql%5EBs%5C%2C%20Rd%5EEsd%2C%20Ur%5EEdb%2C%20Rb%5EEs%2C%20Uh%5EEmf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Xu%2C%20Xuc%2C%20Xuc%2C%20Ur%5EEs%2C%20Xos%2C%20Xuc%2C%20Uu%5EEmf%2C%20Uu%5EBr%5C%2C%20Xu%2C%20Ur%5EEs%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Cud%2C%20Ql%2C%20Ql%5EBs%2F%2C%20Rd%5EEsd%2C%20Ql%2C%20Re%5EEdb%2C%20Rb%5EEdb%2C%20Xu%2C%20Xu%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Xu%2C%20Xos%2C%20Xuc%2C%20Rb%5EEs%2C%20Xuc%2C%20Rb%5EEs%2C%20Uu%5EBr%2F%2C%20Ur%5EEs%2C%20Rb%5EBr%5C%2C%20Rd%5EEdb%2C%20Ql%2C%20Ql%2C%20Uu%5EVud%2C%20Ur%5EEdb%2C%20Ql%2C%20Cud%2C%20Ql%2C%20Cud%2C%20Cud%2C%20Ql%2C%20Ql%2C%20Rd%5EEsd%2C%20Rb%5EEdb%2C%20Uu%5EVud%2C%20Xu%2C%20Xu%2C%20Uu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Xu%2C%20Xos%2C%20Cud%2C%20Rb%2C%20Uu%5EBr%2F%2C%20Uu%2C%20Uu%5EEm%2C%20Xuc%2C%20Ur%5EEs%2C%20Ur%5EEdb%2C%20Rd%5EEsd%2C%20Ql%5EBs%2F%2C%20Ur%5EEdb%2C%20Rd%5EEsd%2C%20Cud%2C%20Cud%2C%20Kud%2C%20Cud%2C%20Cud%2C%20Ql%2C%20Ql%2C%20Rd%5EEdb%2C%20Rd%5EEdb%2C%20Uu%5EEdb%2C%20Xu%2C%20Uh%2C%20Rb%5EEs%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Xuc%2C%20Uu%5EBr%7C%2C%20Ur%5EEs%2C%20Xos%2C%20Xuc%2C%20Ur%2C%20Xuc%2C%20Xu%2C%20Xuc%2C%20Uu%5EVu%2C%20Ur%5EEdb%2C%20Xu%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Cud%2C%20Ql%2C%20Ql%2C%20Ur%2C%20Ql%5EBs%5C%2C%20Ql%2C%20Re%5EEdb%2C%20Re%5EEdb%2C%20Ur%5EEs%2C%20Uu%2C%20Xu%2C%20Uh%5EEmf%2C%20Xu%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXuc%2C%20Xuc%2C%20Ur%5EEs%2C%20Xuc%2C%20Uu%2C%20Xuc%2C%20Ur%2C%20Uh%5EEm%2C%20Xu%2C%20Xu%2C%20Xuc%2C%20Rb%2C%20Xu%2C%20Xu%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Ql%2C%20Ur%2C%20Ur%5EEdb%2C%20Re%5EEdb%2C%20Ur%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0ACud%2C%20Ur%2C%20Uu%5EBr%7C%2C%20Uu%5EBr%2F%2C%20Xu%2C%20Rb%5EEs%2C%20Xuc%2C%20Cud%2C%20Xos%2C%20Xu%2C%20Xuc%2C%20Uu%2C%20Uu%2C%20Xu%2C%20Rd%5EEs%2C%20Ql%2C%20Ql%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Ql%2C%20Uu%5EVud%2C%20Uu%5EEdb%2C%20Uu%5EEdb%2C%20Rb%2C%20Xu%2C%20Uu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AUu%2C%20Rb%5EEs%2C%20Ur%5EBr%2F%2C%20Ur%2C%20Xuc%2C%20Xu%2C%20Xos%2C%20Xu%2C%20Xuc%2C%20Xos%2C%20Xu%2C%20Xu%2C%20Uu%2C%20Xu%2C%20Re%5EEs%2C%20Ql%2C%20Rd%5EEsd%2C%20Ql%2C%20Re%5EEs%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uu%5EEm%2C%20Ur%2C%20Ur%5EEs%2C%20Rb%5EEs%2C%20Uu%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Xu%2C%20Uu%5EEm%2C%20Uu%2C%20Uh%5EEm%2C%20Xos%2C%20Cud%2C%20Xuc%2C%20Uu%5EEm%2C%20Rb%5EEs%2C%20Uu%2C%20Uu%2C%20Uu%2C%20Rb%2C%20Uu%5EEmf%2C%20Rd%5EEsd%2C%20Rb%2C%20Re%5EEs%2C%20Uu%5EEm%2C%20Xu%2C%20Uh%5ETf%2C%20Uu%5EEmf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Ur%5EEs%2C%20Xu%2C%20Uh%5EEm%2C%20Uh%5EEmf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXos%2C%20Xos%2C%20Uu%5EEmf%2C%20Xos%2C%20Xos%2C%20Uu%2C%20Rb%5EEs%2C%20Uh%5EEmf%2C%20Xos%2C%20Xu%2C%20Ur%5EEs%2C%20Ur%2C%20Uu%5EEm%2C%20Uh%5EEm%2C%20Uh%5ETf%2C%20Uh%5EEmf%2C%20Xu%2C%20Uu%5EEm%2C%20Uh%5EEm%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uu%2C%20Xu%2C%20Xu%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Uh%5ETf%2C%20Uh%5ETf%2C%20Xos%2C%20Ur%2C%20Rb%5EEs%2C%20Urb%2C%20Uh%5EEm%2C%20Xu%2C%20Xu%2C%20Ur%5EEs%2C%20Xu%2C%20Xu%2C%20Rb%5EEs%2C%20Xu%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Xu%2C%20Uu%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Rb%2C%20Rb%5EEs%2C%20Uu%5EEm%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Xos%2C%20Uh%5EEmf%2C%20Xos%2C%20Uu%5EEm%2C%20Urb%2C%20Urb%5EIi%2C%20Urb%2C%20Ur%5EEs%2C%20Uu%2C%20Xu%2C%20Xos%2C%20Xu%2C%20Rb%5EEs%2C%20Xu%2C%20Xu%2C%20Uh%5ETf%2C%20Xu%2C%20Uu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Ur%5EEs%2C%20Xu%2C%20Rb%2C%20Uh%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Xu%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Uh%5ETf%2C%20Urb%2C%20Rb%2C%20Urb%2C%20Ur%5EEs%2C%20Rb%2C%20Rb%5EEs%2C%20Rb%5EEs%2C%20Uu%5EEm%2C%20Uu%2C%20Uu%5EEm%2C%20Rb%5EEs%2C%20Rb%5EEs%2C%20Uh%5EEmf%2C%20Uu%5EEm%2C%20Xu%2C%20Rb%5EEs%2C%20Ur%5EEs%2C%20Ur%5EEs%2C%20Uu%2C%20Xu%2C%20Uh%5EEmf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AQxu%2C%20Xu%2C%20Uu%5EEm%2C%20Uh%5EEmf%2C%20Xos%2C%20Ur%2C%20Xu%2C%20Rb%5EEs%2C%20Xu%2C%20Ur%2C%20Xu%2C%20Xu%2C%20Rb%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Uh%5EEm%2C%20Urb%2C%20Uu%5EEm%2C%20Xu%2C%20Rb%2C%20Urb%2C%20Urb%2C%20Ur%2C%20Xu%2C%20Uu%5EEm%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AQxu%2C%20Qxu%2C%20Qxu%2C%20Uh%5EEm%2C%20Xu%2C%20Xos%2C%20Xu%2C%20Xos%2C%20Xos%2C%20Ur%5EEs%2C%20Xu%2C%20Xu%2C%20Ur%5EEs%2C%20Xu%2C%20Rb%5EEs%2C%20Ai%2C%20Ur%2C%20Uu%5EEm%2C%20Uh%5ETf%2C%20Xu%2C%20Urb%2C%20Urb%5EEbn%2C%20Urb%2C%20Rb%5EEs%2C%20Rb%5EEs%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AQxu%2C%20Qxu%2C%20Qxu%2C%20Uu%5EEm%2C%20Uu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xos%2C%20Rb%2C%20Uu%5EEm%2C%20Ur%5EEs%2C%20Xu%2C%20Rb%5EEs%2C%20Rb%5EEs%2C%20Ur%2C%20Xu%2C%20Uu%5EEm%2C%20Xu%2C%20Uh%5EEm%2C%20Re%2C%20Urb%2C%20Uu%2C%20Rb%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AQxu%2C%20Qxu%2C%20Qxu%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xos%2C%20Uh%5ETf%2C%20Uu%5EEmf%2C%20Uu%2C%20Xu%2C%20Uu%5EEm%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Uu%5EEm%2C%20Rb%5EEs%2C%20Uu%2C%20Xu%2C%20Uu%5EEm%2C%20Uh%5EEm%2C%20Xu%2C%20Uu%5EEmf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AQxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uh%5ETf%2C%20Uh%5EEmf%2C%20Rb%5EEm%2C%20Urb%2C%20Urb%2C%20Uu%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Rb%5EEs%2C%20Xu%2C%20Rb%5EEs%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Xu%2C%20Uh%5ETf%2C%20Uh%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AQxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uu%5EEm%2C%20Urb%2C%20Urb%5EIi%2C%20Urb%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Uu%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uh%5EEm%2C%20Uh%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Qxu%2C%20Ur%5EEs%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Uh%5EEm%2C%20Xu%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Ur%5EEs%2C%20Rb%2C%20Urb%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Uh%5ETf%2C%20Uu%2C%20Qxu%2C%20Uh%5EEmf%2C%20Uu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Qxu%2C%20Uh%5EEm%2C%20Ur%5EEs%2C%20Uu%2C%20Uu%5EEm%2C%20Xu%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Ur%2C%20Ur%5EEs%2C%20Uu%2C%20Xu%2C%20Uh%5EEmf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uu%5EEm%2C%20Ur%5EEs%2C%20Uh%5EEmf%2C%20Xu%2C%20Uu%5EEm%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Xu%2C%20Xu%2C%20Uu%2C%20Uh%2C%20Xu%2C%20Xu%2C%20Uu%5EEm%2C%20Uu%5EEmf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uh%2C%20Xu%2C%20Rb%5EEs%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uu%5EEm%2C%20Uu%2C%20Ur%5EEs%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uh%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uu%5EEm%2C%20Xu%2C%20Xu%2C%20Ur%5EEs%2C%20Uu%2C%20Uu%5EEm%2C%20Uh%5EEmf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uu%2C%20Rb%5EEs%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AXu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Uh%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Uu%2C%20Uu%2C%20Uu%2C%20Ur%5EEs%2C%20Rb%2C%20Uu%2C%20Uh%5EEm%2C%20Ur%2C%20Ur%5EEs%2C%20Uu%2C%20Rb%2C%20Ur%2C%20Wog%2C%20Wog%2C%20Wog%5EXo%2C%20Wog%5EXo%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AUr%5EEs%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Cud%2C%20Qxu%2C%20Ur%2C%20Cud%2C%20Uu%2C%20Xu%2C%20Uu%5EEm%2C%20Ur%5EEs%2C%20Xu%2C%20Xu%2C%20Wog%2C%20Wog%2C%20Wog%5EBw%5Cr%2C%20Wog%5EBw%5Cr%2C%20Wog%2C%20Wog%5EXo%2C%20Wog%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AUh%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Xu%2C%20Wog%2C%20Wog%5EXo%2C%20Wog%5EXo%2C%20Wog%2C%20Wog%2C%20Wog%2C%20Wog%5EXo%2C%20Wog%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AUh%5ETf%2C%20Uu%5EEs%2C%20Uh%5EEmf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Ur%5EEs%2C%20Qxu%5EBcx%2F%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Uh%5ETf%2C%20Uh%5EEmf%2C%20Uu%5EEm%2C%20Xu%2C%20Uh%5EEmf%2C%20Wog%2C%20Wog%2C%20Wog%5EXo%2C%20Wog%5EXo%2C%20Wog%5EXo%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Wog%2C%20Wog%2C%20Wog%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AUh%5EEm%2C%20Xu%2C%20Uh%5EEm%2C%20Xu%2C%20Uh%2C%20Xu%2C%20Uu%5EEm%2C%20Ur%5EEs%2C%20Uu%5ETf%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Uh%5ETf%2C%20Uh%5EEmf%2C%20Uh%5ETf%2C%20Xu%2C%20Qxu%2C%20Wog%2C%20Wog%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Wog%2C%20Urb%2C%20Wog%2C%20Wog%2C%20Wog%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AUh%5ETf%2C%20Xu%2C%20Uu%2C%20Ur%2C%20Uu%2C%20Ur%5EEs%2C%20Uu%5EEm%2C%20Uh%5EEmf%2C%20Xu%2C%20Qxu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Wog%2C%20Wog%2C%20Urb%5EIi%2C%20Wog%2C%20Wog%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AUu%5EEm%2C%20Uh%5EEmf%2C%20Ur%5EEs%2C%20Ur%2C%20Ur%5EEs%2C%20Ur%5EEs%2C%20Uu%2C%20Uh%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Wog%2C%20Wog%2C%20Wog%2C%20Wog%2C%20Wog%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AUu%5EEdb%2C%20Uu%2C%20Ur%5EEs%2C%20Uu%2C%20Uu%5EEm%2C%20Uu%2C%20Ur%5EEs%2C%20Uu%2C%20Uh%5EEm%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Wog%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AUu%5EEdb%2C%20Ur%5EEdb%2C%20Uu%2C%20Ur%2C%20Uu%2C%20Uu%5EEdb%2C%20Uh%5EEdb%2C%20Ur%5EEs%2C%20Xu%2C%20Uh%5EEm%2C%20Uh%5EEmf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0AGg%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Uu%2C%20Uu%5EEdb%2C%20Uu%5EEdb%2C%20Gg%2C%20Xu%2C%20Uu%5EEm%2C%20Uu%5EEm%2C%20Uh%5ETf%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Qxu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%2C%20Xu%0A",
+            expand: "yes",
+            shrink: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:place_shroud",
+            side: 1,
+            xs: "-1-29",
+            ys: "-1-35",
+            radius: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 13,
+            y: 27,
+            item_name: "",
+            image: "scenery%2Fsignpost.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 6,
+            y: 15,
+            item_name: "",
+            image: "items%2Faltar-evil.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 15,
+            y: 22,
+            item_name: "",
+            image: "items%2Fpotion-clear.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 16,
+            y: 17,
+            item_name: "",
+            image: "items%2Fstone-tablet.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 3,
+            y: 2,
+            item_name: "",
+            image: "items%2Fcoffin-closed.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 1,
+            y: 3,
+            item_name: "",
+            image: "items%2Fbones.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 2,
+            y: 1,
+            item_name: "",
+            image: "items%2Fkey.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 2,
+            y: 4,
+            item_name: "",
+            image: "items%2Fstone-tablet.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 4,
+            y: 19,
+            item_name: "",
+            image: "items%2Fchest-plain-closed.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 28,
+            y: 23,
+            item_name: "",
+            image: "items%2Fchest-plain-closed.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 27,
+            y: 6,
+            item_name: "",
+            image: "items%2Fchest-plain-closed.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 4,
+            y: 26,
+            item_name: "",
+            image: "items%2Fchest-plain-closed.png",
+          },
+          {
+            tag: "hook",
+            name: "command:replace_schedule",
+            schedule: "%7B%22tag%22%3A%22replace_schedule%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22time%22%2C%22attributes%22%3A%7B%22id%22%3A%22underground%22%2C%22name%22%3A%22Underground%22%2C%22image%22%3A%22misc%2Ftime-schedules%2Fschedule-underground.png%22%2C%22lawful_bonus%22%3A%22-25%22%2C%22red%22%3A%22-60%22%2C%22green%22%3A%22-45%22%2C%22blue%22%3A%22-25%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 2,
+            ys: 33,
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "2,33",
+            radius: 3,
+            multiturn: "yes",
+          },
+          {
+            tag: "spawn",
+            id: "Mal_Keshar",
+            type: "Mal Keshar",
+            side: 1,
+            x: 2,
+            y: 33,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Mal_Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 1,
+            user_team_name: "Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_dangerous_symphony.ogg",
+            play_once: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "into_the_shadows.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "underground.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "weight_of_revenge.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("<big>AAAaaiiigghh!!</big>"),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("The cold, it burns!"),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("I need warmth... life..."),
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: "7-8,9",
+            ys: "28-30,28-29",
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "8-9,29-31;9,29-30",
+            multiturn: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 8,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "cave-in.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -11,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: -11,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 10,
+            y: 29,
+            item_name: "",
+            image: "misc%2Fblank-hex.png",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Qxu^Bcx/",
+            cells: "10-11,28",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 10,
+            y: 29,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("I sense some primitive life in that direction. Perhaps I can sustain myself upon them."),
+          },
+          {
+            tag: "hook",
+            name: "command:reset_fog",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_27",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%221-29%22%2C%22y%22%3A%221-24%22%2C%22terrain%22%3A%22Uu%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_29",
+            value: 5,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_29",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_27",
+                variable: "_mwg_random_pick_28",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_29",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_30",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%221-29%22%2C%22y%22%3A%221-24%22%2C%22terrain%22%3A%22Uu%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_32",
+            value: 2,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_32",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_30",
+                variable: "_mwg_random_pick_31",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_32",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_33",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%221-29%22%2C%22y%22%3A%221-24%22%2C%22terrain%22%3A%22Uu%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_35",
+            value: 3,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_35",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_33",
+                variable: "_mwg_random_pick_34",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_35",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            type: "Giant Rat",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.max_moves",
+                value: 3,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_36",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%221-29%22%2C%22y%22%3A%221-24%22%2C%22terrain%22%3A%22Uu%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_38",
+            value: 3,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_38",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_36",
+                variable: "_mwg_random_pick_37",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_38",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_39",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%221-29%22%2C%22y%22%3A%221-24%22%2C%22terrain%22%3A%22Uu%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_41",
+            value: 10,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_41",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_39",
+                variable: "_mwg_random_pick_40",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_41",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_42",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22x%22%3A%221-29%22%2C%22y%22%3A%221-24%22%2C%22terrain%22%3A%22Uu%5E*%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_44",
+            value: 1,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_44",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_42",
+                variable: "_mwg_random_pick_43",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_44",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Dread Bat",
+            side: 3,
+            x: 1,
+            y: 22,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            type: "Giant Spider",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.max_moves",
+                value: 3,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "scenario_stage",
+            value: 2,
+          },
+          {
+            tag: "set_variable",
+            name: "puzzle_coffin",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "puzzle_potion",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 7,
+            y: 35,
+            item_name: "",
+            image: "scenery%2Fblack-monolith.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: 12,
+            y: 26,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("<s><i>Welcome to Zephryn’s laboratory. Please be mindful of ongoing experiments during your visit.</i></s> <big><i><b>This territory is the domain of the mighty Xanthric. All unwelcome intruders shall die.</b></i></big>"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "lair_text",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_38",
+        on: "lair_text",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("That mage’s name is suspiciously... familiar."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_39",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 6,
+            y: 34,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("A monolith of black stone, a fractured surface shrouded by darkened shadow."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "monolith",
+            value: 1,
+            mode: "add",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_40",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Blood%20Bat%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_defender_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Why are these bats chasing me?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_41",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Giant%20Rat%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_defender_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Blasted rats!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_42",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Giant%20Spider%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Dela used to be afraid of spiders. Imagine if she saw something like this..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_43",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Giant%20Spider%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("For a moment, I was a little worried there. To have come so far and conquered death... only to be slain by an oversized arachnid! What a tale that would be."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_44",
+        on: "sighted",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_sighted_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Dread%20Bat%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_seer_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22type%22%3A%22Dread%20Bat%22%7D%2C%22children%22%3A%5B%5D%7D",
+            type: "Dread Bat",
+            effect_apply_to: "status",
+            effect_remove: "guardian",
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("What an unusual bat."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "lich_attacker",
+        on: "attacker_hits",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "Mal Keshar",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "attack_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter_attack%22%2C%22attributes%22%3A%7B%22name%22%3A%22touch%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Yes! I can draw energy from even these insignificant creatures."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "lich_defender",
+        on: "defender_hits",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            unit: "Mal Keshar",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "attack_filter",
+                unit: "$last_defender_id",
+                filter: "%7B%22tag%22%3A%22filter_second_attack%22%2C%22attributes%22%3A%7B%22name%22%3A%22touch%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Yes! I can draw energy from even these insignificant creatures."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_45",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 3,
+            y: 18,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You found some gold!"),
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "gold.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 4,
+            y: 19,
+            item_name: "",
+            image: "items%2Fchest-plain-open.png",
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 20,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_46",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 27,
+            y: 22,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You found some gold!"),
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "gold.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 28,
+            y: 23,
+            item_name: "",
+            image: "items%2Fchest-plain-open.png",
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 20,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_47",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 26,
+            y: 5,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You found some gold!"),
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "gold.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 27,
+            y: 6,
+            item_name: "",
+            image: "items%2Fchest-plain-open.png",
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 40,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_48",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: 3,
+            y: 25,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You found some gold!"),
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "gold.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 4,
+            y: 26,
+            item_name: "",
+            image: "items%2Fchest-plain-open.png",
+          },
+          {
+            tag: "gold",
+            side: 1,
+            amount: 20,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_49",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: 20,
+            y: 17,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22puzzle_potion%22%2C%22numerical_equals%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You picked up a brazier!"),
+          },
+          {
+            tag: "hook",
+            name: "command:unit_overlay",
+            id: "Mal Keshar",
+            image: "misc/fire-icon.png",
+            object_id: "fire_icon",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Urb",
+            cells: "20,17",
+          },
+          {
+            tag: "set_variable",
+            name: "puzzle_potion",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_51",
+        on: "branch_if_51",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "puzzle_potion",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You picked up an empty flask."),
+          },
+          {
+            tag: "hook",
+            name: "command:unit_overlay",
+            id: "Mal Keshar",
+            image: "misc/potion-icon.png",
+            object_id: "potion_icon",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 15,
+            y: 22,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "set_variable",
+            name: "puzzle_potion",
+            value: 3,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_52",
+        on: "branch_if_52",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "puzzle_potion",
+            less_than: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "magic-dark-big-miss.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You should do something else first."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_50",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: 14,
+            y: 21,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_51",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_52",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_54",
+        on: "branch_if_54",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "puzzle_potion",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "flame-big.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You melted the ice."),
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "fire_icon",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Wo",
+            cells: "14,17",
+          },
+          {
+            tag: "set_variable",
+            name: "puzzle_potion",
+            value: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_55",
+        on: "branch_if_55",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "puzzle_potion",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "water-blast.wav",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You filled the flask."),
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "potion_icon",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 14,
+            y: 18,
+            item_name: "",
+            image: "items%2Fpotion-blue.png",
+          },
+          {
+            tag: "set_variable",
+            name: "puzzle_potion",
+            value: 4,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_53",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: 14,
+            y: 17,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_54",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_55",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_57",
+        on: "branch_if_57",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "puzzle_potion",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You picked up the flask of water."),
+          },
+          {
+            tag: "hook",
+            name: "command:unit_overlay",
+            id: "Mal Keshar",
+            image: "misc/potion-blue-icon.png",
+            object_id: "potion_blue_icon",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 14,
+            y: 18,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "set_variable",
+            name: "puzzle_potion",
+            value: 5,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_56",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: 13,
+            y: 17,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_57",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_59",
+        on: "branch_if_59",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "puzzle_potion",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "magic-dark-big.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You created a new potion!"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Mal Keshar drinks the potion and feels energy flow through his skeletal form. The power of death surges in his vacant body, threatening to overflow, to burst free, but at the last moment, he reins it in. The stream of magic trickles down to drops, diminished, tempered, but manageable."),
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "potion_blue_icon",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22ranged%22%2C%22increaseDamage%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 16,
+            y: 17,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 6,
+            y: 15,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "set_variable",
+            name: "puzzle_potion",
+            value: 6,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_60",
+        on: "branch_if_60",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "puzzle_potion",
+            less_than: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "magic-dark-big-miss.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You should do something else first."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_58",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: 5,
+            y: 14,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_59",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_60",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_61",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: 15,
+            y: 16,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22puzzle_potion%22%2C%22less_than%22%3A%226%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("<i>Dark water beneath crystal ice, Unmasked by a lick of flame, Transmuted by the altar of darkness Into pitch black shadow.</i>"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "potion_text",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_62",
+        on: "potion_text",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Someone left their experiment unfinished here."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_63",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: 1,
+            y: 0,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22puzzle_coffin%22%2C%22numerical_equals%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You picked up a key!"),
+          },
+          {
+            tag: "hook",
+            name: "command:unit_overlay",
+            id: "Mal Keshar",
+            image: "misc/key-icon.png",
+            object_id: "key_icon",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 2,
+            y: 1,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "set_variable",
+            name: "puzzle_coffin",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_65",
+        on: "branch_if_65",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "puzzle_coffin",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You found a skeleton."),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("There are some robe scraps stuck to this skeleton. This must have once been a mage."),
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 1,
+            y: 3,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "set_variable",
+            name: "puzzle_coffin",
+            value: 3,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_66",
+        on: "branch_if_66",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "puzzle_coffin",
+            less_than: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "magic-dark-big-miss.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You should do something else first."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_64",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: 0,
+            y: 2,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_65",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_66",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_68",
+        on: "branch_if_68",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "puzzle_coffin",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You picked up a brazier."),
+          },
+          {
+            tag: "hook",
+            name: "command:unit_overlay",
+            id: "Mal Keshar",
+            image: "misc/fire-icon.png",
+            object_id: "brazier_icon",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Isr",
+            cells: "4,2",
+          },
+          {
+            tag: "set_variable",
+            name: "puzzle_coffin",
+            value: 5,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_69",
+        on: "branch_if_69",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "puzzle_coffin",
+            less_than: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "magic-dark-big-miss.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You should do something else first."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_67",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: 4,
+            y: 2,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_68",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_69",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_71",
+        on: "branch_if_71",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "puzzle_coffin",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "open-chest.wav",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You opened the coffin."),
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "key_icon",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 3,
+            y: 2,
+            item_name: "",
+            image: "items%2Fcoffin-open.png",
+          },
+          {
+            tag: "set_variable",
+            name: "puzzle_coffin",
+            value: 2,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_72",
+        on: "branch_if_72",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "puzzle_coffin",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "skeleton-hit-1.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You placed the skeleton in the coffin."),
+          },
+          {
+            tag: "set_variable",
+            name: "puzzle_coffin",
+            value: 4,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_73",
+        on: "branch_if_73",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "puzzle_coffin",
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "flame-big.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: "wesnoth-icon.png",
+            text: _("You cremated the bones!"),
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Ash swirls upward, charred remnants of the once living. Charcoal from bone, embers from flesh, he consumes the pallid cinders, siphoning away the energy with a draining touch."),
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "brazier_icon",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increaseDamage%22%3A2%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 3,
+            y: 2,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_item",
+            x: 2,
+            y: 4,
+            item_name: "",
+            image: "",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Isr",
+            cells: "2,1",
+          },
+          {
+            tag: "set_variable",
+            name: "puzzle_coffin",
+            value: 6,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_70",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: 2,
+            y: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_71",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_72",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_73",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_74",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            x: 1,
+            y: 3,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22puzzle_coffin%22%2C%22less_than%22%3A%226%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("<i>Bones, scattered carelessly onto the floor, Remains laid without rest, Reside outside their coffin, locked away, In eternal wakefulness. Then, the key is found and the lid opened, And the tongue of fire begets ashen repose.</i>"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_75",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mal%20Keshar%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Wog%2CWog%5E*%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "wail-long.wav",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 28,
+            ys: 31,
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "28,31",
+            radius: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "malkeshar",
+            kill: "yes",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:place_shroud",
+            side: 1,
+            xs: 16,
+            ys: 24,
+            radius: 8,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 28,
+            y: 31,
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "malkeshar",
+            x: 29,
+            y: 32,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "nw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("This place seems familiar."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "spawn",
+            id: "Fake_Mal_Keshar",
+            type: "Lich",
+            side: 4,
+            x: 27,
+            y: 30,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Fake_Mal_Keshar",
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("The blood is drained and the flesh is stripped. The bone remains, waiting to be reanimated. A necromancer’s most basic weapon is that, the puppet body of a skeleton."),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("... but that is not what I am looking at, is it? This is... <i>my</i> face. This is what I have become..."),
+          },
+          {
+            tag: "message",
+            speaker: "Fake Mal Keshar",
+            text: _("A skeleton, yourself."),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("A skeleton — a puppet for Darken Volk’s manipulation, yes."),
+          },
+          {
+            tag: "message",
+            speaker: "Fake Mal Keshar",
+            text: _("A puppet of your own machinations."),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("I..."),
+          },
+          {
+            tag: "message",
+            speaker: "Fake Mal Keshar",
+            text: _("From the outset, deep down, you knew. If you followed this path, they would never accept you. Yet, you manipulated yourself into believing the opposite. You could not face the truth."),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("But I was right. My logic was sound. My reasoning was flawless. They should have accepted me..."),
+          },
+          {
+            tag: "message",
+            speaker: "Fake Mal Keshar",
+            text: _("A puppet shackled by the limitations of your own feelings. No matter its faultlessness, logic could not have displaced the reality of your world. A culture of preconception supplanting even the instinct for survival."),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Enough of this."),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Fake Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Wog",
+            cells: "27,30",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "se",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Urb",
+            cells: "29,31",
+          },
+          {
+            tag: "spawn",
+            id: "Fake_Mal_Keshar",
+            type: "Lich",
+            side: 4,
+            x: 29,
+            y: 31,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Fake_Mal_Keshar",
+          },
+          {
+            tag: "message",
+            speaker: "Fake Mal Keshar",
+            text: _("This is what you have become. A decaying soul chained within the puppet form of a skeleton."),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("A rotten soul? I was never concerned with such things to begin with. When you are slain by orcs and decompose into nothing but a maggot-eaten carcass, no ‘soul’ is going to be of any use."),
+          },
+          {
+            tag: "message",
+            speaker: "Fake Mal Keshar",
+            text: _("Better to sacrifice the spirit and live, than to die with dignity?"),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Dignity in death is a notion contrived of by fools. It is an assertion of lies, told by humans to comfort themselves in the face of an immutable force. But not I. By sacrificing my soul, I have conquered death and will live on past all those who tried to destroy me."),
+          },
+          {
+            tag: "message",
+            speaker: "Fake Mal Keshar",
+            text: _("For what purpose? You will persist on, bitter and alone, until the end of time?"),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("..."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Fake Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Wog",
+            cells: "29,31",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Qxu",
+            cells: "",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Qxu^Bcx\\",
+            cells: "20,27;21,27",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "malkeshar",
+            kill: "yes",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:place_shroud",
+            side: 1,
+            xs: 28,
+            ys: 31,
+            radius: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 21,
+            ys: 27,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 21,
+            y: 27,
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "malkeshar",
+            x: 22,
+            y: 28,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("I regret nothing."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_76",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Ql%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_vision%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 16,
+            ys: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 16,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1500,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("I sense the lair of something powerful nearby. Capturing that castle may be a worthwhile endeavor, but I shall have to approach carefully."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_77",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: "6-26",
+            y: "0-17",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22have_location%22%2C%22attributes%22%3A%7B%22x%22%3A%2217%22%2C%22y%22%3A%227%22%2C%22radius%22%3A%222%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_vision%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:clear_shroud",
+            side: 1,
+            xs: 16,
+            ys: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "16,6",
+            radius: 6,
+            multiturn: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.moves",
+                value: 6,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "set_variable",
+                name: "this_item.attacks_left",
+                value: 1,
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "fire_icon",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "potion_icon",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "potion_blue_icon",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "brazier_icon",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:remove_object",
+            object_id: "key_icon",
+            id: "Mal Keshar",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "silence.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 16,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 2000,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "cave-in.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -11,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: -11,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "flame-big.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "cave-in.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -11,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: -11,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "flame-big.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 250,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "flame-big.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 16,
+            y: 6,
+          },
+          {
+            tag: "spawn",
+            id: "Xanthric",
+            type: "Fire Dragon",
+            side: 2,
+            x: 16,
+            y: 6,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Xanthric",
+          },
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "frantic.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "vengeful.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "Xanthric",
+            text: _("<i><big>What manner of vile creature intrudes upon my domain?!</big></i>"),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("<i>I suppose there is some irony in this.</i>"),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("I was not aware that dragons still existed. This was most unexpected. Nevertheless, this shall be a worthwhile test of my new powers."),
+          },
+          {
+            tag: "message",
+            speaker: "Xanthric",
+            text: _("<i><big>A derelict corpse like you has no business challenging a dragon! Even my lowly elementals will be more than a match for you. Rise, my thralls!</big></i>"),
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "_mwg_random_locations_45",
+            filter: "%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Ql%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D",
+          },
+          {
+            tag: "set_variable",
+            name: "_mwg_random_remaining_47",
+            value: 5,
+          },
+          {
+            tag: "while",
+            children: [
+              {
+                tag: "condition",
+                variable: "_mwg_random_remaining_47",
+                greater_than: 0,
+              },
+              {
+                tag: "hook",
+                name: "command:random_location",
+                source: "_mwg_random_locations_45",
+                variable: "_mwg_random_pick_46",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "_mwg_random_remaining_47",
+                value: -1,
+                mode: "add",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Fire magic. Annoying, but you are not the only one who can summon minions to your aid."),
+          },
+          {
+            tag: "message",
+            speaker: "Xanthric",
+            text: _("<i><big>A few decrepit souls will do you no good, necromancer. Your bones shall soon join my garden of carcasses!</big></i>"),
+          },
+          {
+            tag: "hook",
+            name: "command:reset_fog",
+          },
+          {
+            tag: "set_variable",
+            name: "scenario_stage",
+            value: 3,
+          },
+          {
+            tag: "set_variable",
+            name: "runes_activated",
+            value: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 18,
+            y: 3,
+            item_name: "",
+            image: "scenery%2Fsummoning-circle1.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 23,
+            y: 7,
+            item_name: "",
+            image: "scenery%2Fsummoning-circle5.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 10,
+            y: 6,
+            item_name: "",
+            image: "scenery%2Fsummoning-circle3.png",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 13,
+            y: 3,
+            item_name: "",
+            image: "scenery%2Fsummoning-circle6.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_78",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 16,
+            y: 6,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Xanthric",
+            text: _("<i><big>How dare you?! That stone is <b>my</b> throne! I am the king of this domain!</big></i>"),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Peasant, warrior, king, and emperor, all living things are the subjects of death. Eternity will claim your soul as its own if I do not."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_79",
+        on: "new_turn",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+            ],
+          },
+          {
+            tag: "set_variable",
+            name: "runes_activated",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_80",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            unit: "Mal Keshar",
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "scenario_stage",
+              },
+              {
+                tag: "predicate",
+                name: "wml_condition_tree",
+                tree: "%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22runes_activated%22%2C%22numerical_equals%22%3A%220%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_81",
+        on: "raise_undead",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("There are many corpses around here. I can put them to use."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_82",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Xanthric%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22id%22%3A%22Xanthric%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Xanthric",
+            text: _("How could this happen..."),
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("You were not as powerful as you thought."),
+          },
+          {
+            tag: "message",
+            speaker: "Xanthric",
+            text: _("<i>It’s... so... cold...</i>"),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Xanthric",
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("So, the beast dies. I will have to make a few modifications to this lair later. First, I shall have to test the extent to which I can push these new powers."),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "magic-dark.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 250,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "cave-in.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -11,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: -11,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "magic-dark.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 250,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "cave-in.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -11,
+            y: -1,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 4,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: -11,
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: -1,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 1000,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "magic-dark.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 250,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "magic-dark.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 250,
+          },
+          {
+            tag: "hook",
+            name: "command:play_sound",
+            file: "magic-dark-big.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 250,
+          },
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            object: "%7B%22id%22%3A%22%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%7D%2C%7B%22applyTo%22%3A%22attack%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+            id: "Xanthric",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 500,
+          },
+          {
+            tag: "message",
+            speaker: "Mal Keshar",
+            text: _("Excellent! My will is even strong enough to conquer a dragon. None can stand against me any longer! To those who cursed me prior, I spit at thee! For I am Mal Keshar the Damned, he who is spurned by all who live and draw breath! I laugh, for now, you are all naught but remains and dust, and I live on, alone..."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_83",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Malin%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("So this is how it ends..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_84",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "set_variable",
+            name: "timesForever",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "squidVille",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "metInky",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "reflectionPool",
+            value: 0,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_85",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Mal%20Keshar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("... Then my battle against the orcs is lost!"),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]

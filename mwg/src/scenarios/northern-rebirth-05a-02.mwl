@@ -1,0 +1,373 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Dealings"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "rebels",
+        leader: "Tallin",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "rebels",
+        leader: "Hamel",
+      },
+      {
+        tag: "map",
+        id: "scenario_05a_02_Dealings",
+        file: "05a_02_Dealings.map",
+      },
+      {
+        tag: "unit",
+        id: "Tallin",
+        type: "Peasant",
+        side: 1,
+        x: 19,
+        y: 8,
+        name: _("Tallin"),
+      },
+      {
+        tag: "unit",
+        id: "Hamel",
+        type: "Dwarvish Lord",
+        side: 2,
+        x: 8,
+        y: 8,
+        name: _("Hamel"),
+      },
+      {
+        tag: "unit",
+        id: "u_1",
+        type: "Dwarvish Stalwart",
+        side: 2,
+        x: 9,
+        y: 4,
+      },
+      {
+        tag: "unit",
+        id: "u_2",
+        type: "Dwarvish Stalwart",
+        side: 2,
+        x: 12,
+        y: 6,
+      },
+      {
+        tag: "unit",
+        id: "Galim",
+        type: "Dwarvish Steelclad",
+        side: 0,
+        x: 11,
+        y: 10,
+      },
+      {
+        tag: "event",
+        id: "carryover_5",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_6",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "loyalists.ogg",
+          },
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Laden with gold, and filled with both elation at their victory and sadness for their departed comrades, Tallin and his people made their way back to the mines."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_7",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("As they approached they were met with a most welcome sight: new fortifications, looking very much like the legendary impenetrable dwarvish defenses of old, had sprung up everywhere. All of them were manned by alert and well-armed dwarves who hailed them boisterously. Smoke belched from furiously working forges and the heat from the smelters was nearly staggering. New weapons and armor for humans and dwarves alike lay neatly stacked, and the deafening clang of hammers and picks from the dwarves promised more."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_8",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("They found Hamel in a forge hammering away at a new axe. He greeted them warmly and arrangements were quickly made for all their food and accommodations, as well as care for the sick and wounded."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_9",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("When Tallin’s party had shaken the dust of the road from their clothes, the humans and dwarves once again met in council."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_10",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Tallin,Hamel,Galim",
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _(""),
+        defeat: _(""),
+      },
+      {
+        tag: "event",
+        id: "side_traits_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "Hamel",
+            object: "%7B%22id%22%3A%22side_traits_2%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increaseDamage%22%3A1%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "traveling_minstrels.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "revelation.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knalgan_theme.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Camerin",
+            unit: "Camerin",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Abhai",
+            unit: "Abhai",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Krash",
+            unit: "Krash",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Elenia",
+            unit: "Elenia",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Father Morvin",
+            unit: "Father Morvin",
+          },
+          {
+            tag: "hook",
+            name: "command:recall_unit",
+            id: "Sister Thera",
+            unit: "Sister Thera",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            side: 1,
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.facing",
+                value: "sw",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "Peasant,Woodsman",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("It is well, Hamel. Our people prosper."),
+          },
+          {
+            tag: "message",
+            speaker: "Hamel",
+            text: _("Aye. Word ha’ spread, and dwarves who had been living rough in the wilds for fear of the orcs have been coming to join us. Thanks to you, Tallin, Knalga is rising again!"),
+          },
+          {
+            tag: "message",
+            speaker: "Galim",
+            text: _("We have cleared the connecting tunnels from here to the old keep as well as other parts o’ Knalga. It is slow and dangerous work, mostly due to the trolls. But it ha’ been made easier by Malifor’s ending."),
+          },
+          {
+            tag: "message",
+            speaker: "Hamel",
+            text: _("Indeed. The lich’s skeletons were fighting the trolls, but when you destroyed him, they all just fell apart. So, there are many tunnels that are now infested with nothing but piles of old bones."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Great! How about the weapons and armor?"),
+          },
+          {
+            tag: "message",
+            speaker: "Hamel",
+            text: _("As ye can see, Tallin, there be muckle heaps o’ them, all ready to be borne inta battle. And, some o’ us dwarves be experts in the sword, mace, and bow and can aid yer veterans in teaching others."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("I didn’t know you dwarves knew swordplay. I thought you all fought with axes, hammers or those thunder weapons."),
+          },
+          {
+            tag: "message",
+            speaker: "Hamel",
+            text: _("Aye, it’s true we do prefer our axes and hammers, but then again, we make swords. We couldna’ claim to be expert weaponsmiths wi’out kenning how to wield the weapons we make."),
+          },
+          {
+            tag: "message",
+            speaker: "Hamel",
+            text: _("There are some dwarves out there that are bonny fighters wi’ a sword as any ye are like to meet. Belike with bows, maces and any other weapons we fashion. In fact, Galim here is quite skilled in the art."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("That’s great! What is the price of your weapons? We have gathered much gold from Malifor’s treasury and will be able to pay you generously."),
+          },
+          {
+            tag: "message",
+            speaker: "Galim",
+            text: _("Price?! Don’t insult us, Tallin. Ye have done great things to help the dwarves — it’s because of you that we ha’ made a start rebuilding Knalga in the first place. Dinna’ ye speak of price to us."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("But don’t you need the gold to help rebuild Knalga? We have plenty."),
+          },
+          {
+            tag: "message",
+            speaker: "Hamel",
+            text: _("Tallin, Knalga was an extremely rich nation. Malifor’s treasury is hardly a fraction of the riches that we will find, and are finding every day now. So nae! Ye’ll need yon gold to rebuild Dwarven Doors."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Thank you, Hamel."),
+          },
+          {
+            tag: "message",
+            speaker: "Hamel",
+            text: _("Pahhh, thank <i>you</i>!"),
+          },
+          {
+            tag: "message",
+            speaker: "Hamel",
+            text: _("And Tallin, one more thing, I have been leading our people into battle for many years now. As a young dwarf I was trained in the arts of leadership and war. There are things you will need to know..."),
+          },
+          {
+            tag: "message",
+            speaker: "Hamel",
+            text: _("I know you’re impressive wi’ a pitchfork, and you are not half bad with a sword when you choose to use one. But there skills beyond swingin’ a weapon that a general must learn."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("I would be honored, Lord Hamel."),
+          },
+          {
+            tag: "message",
+            speaker: "Hamel",
+            text: _("Ahhhh, quit with the formality, me lad. Now, first things first. One of the most important things about being a leader is..."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+    ],
+  },
+]

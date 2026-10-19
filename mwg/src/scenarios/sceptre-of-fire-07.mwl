@@ -1,0 +1,803 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Outriding the Outriders"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "alanin",
+        gold: 0,
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "elves",
+      },
+      {
+        tag: "map",
+        id: "scenario_7_Outriding_the_Outriders",
+        file: "7_Outriding_the_Outriders.map",
+      },
+      {
+        tag: "event",
+        id: "carryover_18",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_aggression",
+            value: 1.0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: 0,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_grouping",
+            value: "no",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,,,0,1,%7B%22id%22%3A%5B%22Alanin%22%5D%7D;goal,,,0,0.1,%7B%22type%22%3A%5B%22Bowman%22%2C%22Spearman%22%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_19",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Rugnur fled through the hills by the Arkan-thoria, while Alanin went south — back to the Wesnoth border."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_20",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("The elves pursued both of them, but first let us join Alanin in his flight south."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_21",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Hadlin",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_22",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 12,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Reach the Wesnothian outpost in the south"),
+        defeat: _("Death of Alanin Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "vengeful.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "alanin",
+            x: 17,
+            y: 4,
+          },
+          {
+            tag: "hook",
+            name: "command:heal_unit",
+            moves: "full",
+            amount: "full",
+            animate: "no",
+            restore_statuses: "yes",
+            restore_attacks: "yes",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Alanin%22%7D%2C%22children%22%3A%5B%5D%7D",
+            id: "Alanin",
+          },
+          {
+            tag: "hook",
+            name: "command:config_recruit",
+            side: 1,
+            mode: "disallow",
+            types: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Alanin",
+            text: _("Well, the elves are behind me for now, but their riders are fast and will catch up quickly."),
+          },
+          {
+            tag: "message",
+            speaker: "Alanin",
+            text: _("My only hope is to convince the peasants to stop the elves from passing through their land, so I can get ahead of those riders."),
+          },
+          {
+            tag: "spawn",
+            id: "Asaeri",
+            type: "Elvish Outrider",
+            side: 2,
+            x: 17,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Asaeri",
+          },
+          {
+            tag: "spawn",
+            id: "Gaelir",
+            type: "Elvish Outrider",
+            side: 2,
+            x: 17,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Gaelir",
+          },
+          {
+            tag: "spawn",
+            id: "Salira",
+            type: "Elvish Outrider",
+            side: 2,
+            x: 17,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Salira",
+          },
+          {
+            tag: "spawn",
+            id: "Losnin",
+            type: "Elvish Outrider",
+            side: 2,
+            x: 17,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Losnin",
+          },
+          {
+            tag: "spawn",
+            id: "Ealin",
+            type: "Elvish Outrider",
+            side: 2,
+            x: 17,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Ealin",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: 17,
+            y: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Asaeri",
+            text: _("You cannot outride us, horseman of Wesnoth! Whatever message you are carrying, it will not be delivered!"),
+          },
+          {
+            tag: "message",
+            speaker: "Alanin",
+            text: _("We shall see about that!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 2,
+          },
+          {
+            tag: "spawn",
+            id: "Raesil",
+            type: "Elvish Outrider",
+            side: 2,
+            x: 17,
+            y: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Raesil",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "die",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: 2,
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "reinforcements",
+          },
+          {
+            tag: "message",
+            text: _("Is there no end to their numbers?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "have_unit",
+                side: 2,
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Great, now there is no need to worry about those elves anymore!"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "reinforcements",
+          },
+          {
+            tag: "message",
+            speaker: "newcomer",
+            text: _("Did you really think that you could escape us? Don’t underestimate us, inferior humans!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "reinforcements",
+        once: false,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "alanin",
+            kill: "no",
+            id: "Alanin",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "outriders_loc",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Rd%22%2C%22variable%22%3A%22outriders_loc%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22or%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Wwf%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22y%22%3A%22%24(min(%5B%24(max(%5B(%24alanin.y%20-%2012)%2C%201%5D))%2C%2060%5D))%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            id: "",
+            x: 1,
+            y: "$outriders_loc[0].y",
+            raw: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            id: "",
+            x: 18,
+            y: "$outriders_loc[0].y",
+            raw: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            id: "",
+            x: 1,
+            y: "$outriders_loc[0].y",
+            raw: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:lift_fog",
+            side: 1,
+            cells: "",
+            radius: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "capture",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_capturer_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Alanin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Alanin",
+            text: _("The villagers here are loyal to Wesnoth. They should be willing to help me escape these elves!"),
+          },
+          {
+            tag: "message",
+            speaker: "Rolin",
+            text: _("We will certainly help any warrior of Wesnoth in need!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "capture",
+        once: false,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_capturer_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Alanin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "Spearman,Bowman",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$random",
+            side: 1,
+            x: "$x1",
+            y: "$y1",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_rand",
+            variable: "random",
+            values: "Spearman,Bowman",
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_dynamic",
+            type: "$random",
+            side: 1,
+            x: "$x1",
+            y: "$y1",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Alanin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_12",
+        on: "branch_if_12",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "alanin.x",
+            greater_than: 12,
+          },
+          {
+            tag: "set_variable",
+            name: "spawn.x",
+            value: 24,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_13",
+        on: "branch_if_13",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "alanin.x",
+            less_than_or_equal_to: 12,
+          },
+          {
+            tag: "set_variable",
+            name: "spawn.x",
+            value: 1,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            text: _("You slow humans took too long, our detachment has already caught up with you!"),
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 700,
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "alanin",
+            kill: "no",
+            id: "Alanin",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_12",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_13",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "spawn.y",
+            value: "$($alanin.y+2)",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:store_locations",
+            variable: "spawn_hexes",
+            filter: "%7B%22tag%22%3A%22store_locations%22%2C%22attributes%22%3A%7B%22variable%22%3A%22spawn_hexes%22%2C%22include_borders%22%3A%22no%22%2C%22x%22%3A%22%24spawn.x%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22W*%5E*%2CA*%5E*%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22and%22%2C%22attributes%22%3A%7B%22y%22%3A%22%24spawn.y%22%2C%22radius%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            id: "ambusher",
+            x: "$spawn_hexes[0].x",
+            y: "$spawn_hexes[0].y",
+            raw: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:scroll_to",
+            x: "$alanin.x",
+            y: "$alanin.y",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Alanin",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_15",
+        on: "branch_if_15",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.type",
+            equals: "Dragoon",
+          },
+          {
+            tag: "message",
+            speaker: "Alanin",
+            text: _("I’m a dragoon with Haldric II’s personal bodyguard. I was sent on a mission in the Northlands, and now elvish horsemen are chasing me. I barely evaded them."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_16",
+        on: "branch_if_16",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "unit.type",
+            not_equals: "Dragoon",
+          },
+          {
+            tag: "message",
+            speaker: "Alanin",
+            text: _("I’m a cavalier with Haldric II’s personal bodyguard. I was sent on a mission in the Northlands, and now elvish horsemen are chasing me. I barely evaded them."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Alanin%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_location%22%2C%22attributes%22%3A%7B%22terrain%22%3A%22Ce%2CKet%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "MODIFY_UNIT_store",
+            kill: "yes",
+            id: "Alanin",
+          },
+          {
+            tag: "foreach",
+            variable: "MODIFY_UNIT_store",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.profile",
+                value: "portraits/alanin-older.webp",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+          {
+            tag: "spawn",
+            id: "Hadlin",
+            type: "Lieutenant",
+            side: 1,
+            x: 9,
+            y: 62,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Hadlin",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Hadlin",
+          },
+          {
+            tag: "message",
+            speaker: "Hadlin",
+            text: _("Who goes there?"),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_15",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_16",
+          },
+          {
+            tag: "message",
+            speaker: "Hadlin",
+            text: _("I see. Well, come on in. They could never capture this fort, even if they did want to start a war, which I doubt."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "alanin",
+            kill: "yes",
+            id: "Alanin",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22not%22%2C%22attributes%22%3A%7B%22x%22%3A%22recall%22%2C%22y%22%3A%22recall%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D",
+          },
+          {
+            tag: "foreach",
+            variable: "dwarves",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.x",
+                value: "recall",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.y",
+                value: "recall",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.hitpoints",
+                value: "$this_item.max_hitpoints",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.moves",
+                value: "$this_item.max_moves",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:set_variable_dynamic",
+                variable: "this_item.attacks_left",
+                value: "$this_item.max_attacks",
+                mode: "value",
+              },
+              {
+                tag: "hook",
+                name: "command:unstore_unit",
+                variable: "this_item",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]

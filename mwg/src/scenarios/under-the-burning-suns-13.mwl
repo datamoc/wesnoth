@@ -1,0 +1,525 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Epilogue"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        gold: 0,
+        leader: "Kaleh",
+      },
+      {
+        tag: "map",
+        id: "scenario_13_Epilogue",
+        file: "campaigns/Under_the_Burning_Suns/maps/13_Epilogue.map",
+      },
+      {
+        tag: "unit",
+        id: "Kaleh",
+        type: "Quenoth Youth",
+        side: 1,
+        x: 37,
+        y: 44,
+      },
+      {
+        tag: "event",
+        id: "carryover_14",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_15",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Kaleh",
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _(""),
+        defeat: _(""),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "elf-land.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "journeys_end.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "love_theme.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "0-50,0-50",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_4",
+        on: "branch_if_4",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "allies_killed",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("If you had told me at the start of our journey the price I was to pay in blood, I do not know if I would have had the strength to take that first step. I suppose I should have known that my friends would not let me confront Yechnagoth alone. And it is only through Eloh’s grace and a good bit of luck that none of them died in that bloody battle. But so many others that I grew up with were not so lucky. Why did so many of us have to die? I wish I could go back and do it all over again."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_5",
+        on: "branch_if_5",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "allies_killed",
+            not_equals: "",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "sad.ogg",
+            play_once: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_7",
+        on: "branch_if_7",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ally_died_in_final_fight",
+            equals: "yes",
+          },
+          {
+            tag: "switch",
+            variable: "ally_id",
+            children: [
+              {
+                tag: "case",
+                equals: "Grog",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Kaleh",
+                    text: _("If you had told me at the start of our journey the price I was to pay in blood, I do not know if I would have had the strength to take that first step. I suppose I should have known that my friends would not let me confront Yechnagoth alone. But I would gladly give up my life today if I could bring Grog back. He left his homeland to fight faithfully by my side, and then to lose him at the end... I wish I could go back and do it all over again."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Kaleh",
+                    text: _("Although I believe that our battle in the black citadel was our finest hour, I am still haunted by the death of Grog in that dark place. And so every morning at sunrise I come out to the southeastern tip of the island and look out upon the waters, upon the world that we sacrificed so much to preserve. I remind myself what Zhul said, and they all believed, that despite all the death and fighting we saw in our journey, this world was a beautiful and good enough place that Grog was willing to sacrifice his life to save it. Looking out over the waters, and back upon the prosperity of my people, I tell myself it was worth it. But when I think of the desperate war that his people are probably still fighting underground, it seems a small consolation."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "Nog",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Kaleh",
+                    text: _("If you had told me at the start of our journey the price I was to pay in blood, I do not know if I would have had the strength to take that first step. I suppose I should have known that my friends would not let me confront Yechnagoth alone. But I would gladly give up my life today if I could bring Nog back. He left his homeland to fight faithfully by my side, and then to lose him at the end... I wish I could go back and do it all over again."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Kaleh",
+                    text: _("Although I believe that our battle in the black citadel was our finest hour, I am still haunted by the death of Nog in that dark place. And so every morning at sunrise I come out to the southeastern tip of the island and look out upon the waters, upon the world that we sacrificed so much to preserve. I remind myself what Zhul said, and they all believed, that despite all the death and fighting we saw in our journey, this world was a beautiful and good enough place that Nog was willing to sacrifice his life to save it. Looking out over the waters, and back upon the prosperity of my people, I tell myself it was worth it. But when I think of the desperate war that his people are probably still fighting underground, it seems a small consolation."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "Rogrimir",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Kaleh",
+                    text: _("If you had told me at the start of our journey the price I was to pay in blood, I do not know if I would have had the strength to take that first step. I suppose I should have known that my friends would not let me confront Yechnagoth alone. But I would gladly give up my life today if I could bring Rogrimir back. He left his homeland to fight faithfully by my side, and then to lose him at the end... I wish I could go back and do it all over again."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Kaleh",
+                    text: _("Although I believe that our battle in the black citadel was our finest hour, I am still haunted by the death of Rogrimir in that dark place. And so every morning at sunrise I come out to the southeastern tip of the island and look out upon the waters, upon the world that we sacrificed so much to preserve. I remind myself what Zhul said, and they all believed, that despite all the death and fighting we saw in our journey, this world was a beautiful and good enough place that Rogrimir was willing to sacrifice his life to save it. Looking out over the waters, and back upon the prosperity of my people, I tell myself it was worth it. But when I think of the desperate war that his people are probably still fighting underground, it seems a small consolation."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "Jarl",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Kaleh",
+                    text: _("If you had told me at the start of our journey the price I was to pay in blood, I do not know if I would have had the strength to take that first step. I suppose I should have known that my friends would not let me confront Yechnagoth alone. But I would gladly give up my life today if I could bring Jarl back. He left his homeland to fight faithfully by my side, and then to lose him at the end... I wish I could go back and do it all over again."),
+                  },
+                  {
+                    tag: "message",
+                    speaker: "Kaleh",
+                    text: _("Although I believe that our battle in the black citadel was our finest hour, I am still haunted by the death of Jarl in that dark place. And so every morning at sunrise I come out to the southeastern tip of the island and look out upon the waters, upon the world that we sacrificed so much to preserve. I remind myself what Zhul said, and they all believed, that despite all the death and fighting we saw in our journey, this world was a beautiful and good enough place that Jarl was willing to sacrifice his life to save it. Looking out over the waters, and back upon the prosperity of my people, I tell myself it was worth it. But when I think of the desperate war that his people are probably still fighting underground, it seems a small consolation."),
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_6",
+        on: "branch_if_6",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "allies_killed",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_7",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_8",
+        on: "branch_if_8",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "allies_killed",
+            greater_than: 1,
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("If you had told me at the start of our journey the price I was to pay in blood, I do not know if I would have had the strength to take that first step. I suppose I should have known that my friends would not let me confront Yechnagoth alone. But I would gladly give up my life today if I could bring any one of them back. They followed me faithfully and fought by my side for so long, to lose them at the end... I wish I could go back and do it all over again."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Although I believe that our battle in the black citadel was our finest hour, I am still haunted by my friends’ deaths in that dark place. And so every morning at sunrise I come out to the southeastern tip of the island and look out upon the waters, upon the world that we sacrificed so much to preserve. I remind myself what Zhul said, and they all believed, that despite all the death and fighting we saw in our journey, this world was a beautiful and good enough place that they were willing to sacrifice their lives to save it. Looking out over the waters, and back upon the prosperity of my people, I tell myself it was worth it. But I still miss each one of them horribly."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_9",
+        on: "branch_if_9",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "ally_died_in_final_fight",
+            equals: "yes",
+          },
+          {
+            tag: "switch",
+            variable: "ally_id",
+            children: [
+              {
+                tag: "case",
+                equals: "Grog",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Kaleh",
+                    portrait: "portraits/trolls/troll-hero-alt.webp",
+                    text: _("I am saddened by the death of Grog, but by saving my life in the end he did fulfill his life debt to me. I think he also would have been glad to have died in battle. I considered leading an expedition to go back and return his body to his people, but my fellow elves have been weakened by our long journey and I do not want to risk losing any more. Instead I searched all across the islands and at last in the rocky outcroppings to the northwest I found a series of caves. They were not as deep as his homeland but I thought Grog would have appreciated being laid to rest under some solid rock. And so we buried him with much honor and will long remember the service that his kind has done for our people."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "Nog",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Kaleh",
+                    portrait: "portraits/trolls/troll-hero-alt.webp",
+                    text: _("I am saddened by the death of Nog, but by saving my life in the end he did fulfill his life debt to me. I think he also would have been glad to have died in battle. I considered leading an expedition to go back and return his body to his people, but my fellow elves have been weakened by our long journey and I do not want to risk losing any more. Instead I searched all across the islands and at last in the rocky outcroppings to the northwest I found a series of caves. They were not as deep as his homeland but I thought Nog would have appreciated being laid to rest under some solid rock. And so we buried him with much honor and will long remember the service that his kind has done for our people."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "Rogrimir",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Kaleh",
+                    portrait: "portraits/dwarves/fighter-2.webp",
+                    text: _("I am saddened by the death of Rogrimir, but by saving my life in the end he did fulfill his life debt to me. I think he also would have been glad to have died in battle. I considered leading an expedition to go back and return his body to his people, but my fellow elves have been weakened by our long journey and I do not want to risk losing any more. Instead I searched all across the islands and at last in the rocky outcroppings to the northwest I found a series of caves. They were not as deep as his homeland but I thought Rogrimir would have appreciated being laid to rest under some solid rock. And so we buried him with much honor and will long remember the service that his kind has done for our people."),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "Jarl",
+                children: [
+                  {
+                    tag: "message",
+                    speaker: "Kaleh",
+                    portrait: "portraits/dwarves/fighter-2.webp",
+                    text: _("I am saddened by the death of Jarl, but by saving my life in the end he did fulfill his life debt to me. I think he also would have been glad to have died in battle. I considered leading an expedition to go back and return his body to his people, but my fellow elves have been weakened by our long journey and I do not want to risk losing any more. Instead I searched all across the islands and at last in the rocky outcroppings to the northwest I found a series of caves. They were not as deep as his homeland but I thought Jarl would have appreciated being laid to rest under some solid rock. And so we buried him with much honor and will long remember the service that his kind has done for our people."),
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("I stumbled out into the daylight, scarcely believing that we were victorious. Looking out over the island it took me a moment to realize what had changed. The fetid darkness had lifted from the land and I saw the suns shining brightly for what seemed like the first time in ages. Gazing across the bright green trees and sparkling ocean I realized that once this had been a place of beauty. Several of our brethren were waiting for me and I was overjoyed to discover that they were no longer the mindless slaves I had seen before. They too had broken free from their enchantment."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("Indeed with Yechnagoth’s death it seems that all of her minions reverted to their original chaotic tendencies. Luckily we had already destroyed most of the island’s foul inhabitants, and lacking their former discipline we had no trouble exterminating the remaining orcs and undead. The naga too fled before us, and they have not bothered us since. For once we seemed to be safe from imminent danger."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("A few days later Melusand herself appeared and she declared the cleansing of this island a miracle. We made a pact between elf and merfolk and vowed to live together in peace and prosperity. Melusand blessed the island, and named it ‘Quenoth Isle’ in honor of our people. The merfolk have been very helpful in teaching us how to adapt to this strange land, though I still have trouble getting used to being surrounded by water. It used to be more precious than gold. Still, I could hardly imagine a better home for my people. Between the bounty of the sea and the many fruits of the jungle there is no shortage of food. We are isolated from the chaos on the mainland and the merfolk guard the waters. Melusand says now is a time for peace and prosperity. Part of me didn’t think we would survive our journey, there were so many close calls. Coming here almost does seem like a miracle. If only I could forget the price we paid..."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_4",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_5",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_6",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_8",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_9",
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            portrait: "portraits/garak.webp",
+            text: _("So much has happened since we left the desert, but looking back upon our journey I do not want to forget Garak and his sacrifice. I doubt that we would have made it out of the sands alive if it was not for his strength and guidance. I remember how he used to smile when charging into battle, and how he would pray over the bodies of his fallen friends afterwards. I think of him sometimes, buried in the sands with his fellow warriors. I think he would have been proud of us. He was both a great warrior and a great teacher. He will be remembered."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("As for the Black Citadel, after much discussion we decided to go back to the ancient rituals for purifying unclean land, with fire. We filled the entire structure with wood and oil and set the place ablaze to make sure that any remnants of Yechnagoth’s infestation would be purged by holy fire. We then tore the citadel down, stone by stone. I was tempted to save the stones for construction in the future, but I did not know what foul magics might still linger in them, and I did not want to take any chances. So with the help of the merfolk, we carried the stones far out into the water and cast them down to the bottom of the ocean. Once the last stone had been removed, we decided that no matter what we built or grew around it, that area would be left bare as a reminder of the evil that once dwelt here and all those who gave their lives to destroy it."),
+          },
+          {
+            tag: "message",
+            speaker: "Kaleh",
+            text: _("It has been several years since the events that I chronicle here, and I’m not quite as spry and limber as I used to be, so I decided it was about time that I write this all down lest something happen to me. My one wish is that our descendants do not forget all those who made the ultimate sacrifice so that there might be a future for our people. Looking at the ruins of the ancient empires, I know that time erases all things. We have forgotten so much about the Golden Age. Do not let our story suffer the same fate. For as long as the tales of those now departed are still told, in some sense they are still alive and still with us. Honor those who have died. Remember our mistakes so you will not repeat them. And most of all, treasure every day, for it is a gift, from us to you."),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recall_to_correct",
+            kill: "no",
+            side: "1, 2",
+          },
+          {
+            tag: "foreach",
+            variable: "recall_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit_type",
+                variable: "utbs_unit_type",
+                types: "$this_item.type",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                recall_cost: "$($utbs_unit_type.cost*0.70)",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recall_to_correct",
+            kill: "no",
+            side: "1, 2",
+          },
+          {
+            tag: "foreach",
+            variable: "recall_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit_type",
+                variable: "utbs_unit_type",
+                types: "$this_item.type",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                recall_cost: "$($utbs_unit_type.cost*0.55)",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recall_to_correct",
+            kill: "no",
+            side: "1, 2",
+          },
+          {
+            tag: "foreach",
+            variable: "recall_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit_type",
+                variable: "utbs_unit_type",
+                types: "$this_item.type",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                recall_cost: "$($utbs_unit_type.cost*0.40)",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "recall_to_correct",
+            kill: "no",
+            side: "1, 2",
+          },
+          {
+            tag: "foreach",
+            variable: "recall_to_correct",
+            item: "this_item",
+            children: [
+              {
+                tag: "hook",
+                name: "command:store_unit_type",
+                variable: "utbs_unit_type",
+                types: "$this_item.type",
+              },
+              {
+                tag: "hook",
+                name: "command:modify_unit",
+                recall_cost: "$($utbs_unit_type.cost*0.40)",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22find_in%22%3A%22this_item%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]

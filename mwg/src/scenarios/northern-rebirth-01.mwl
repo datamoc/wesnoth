@@ -1,0 +1,827 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("Breaking the Chains"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "rebels",
+        gold: 75,
+        recruit: "Peasant,Woodsman",
+        leader: "Tallin",
+      },
+      {
+        tag: "side",
+        id: 2,
+        controller: "ai",
+        team_name: "slavers",
+        gold: 200,
+        recruit: "Orcish Grunt,Orcish Archer,Wolf Rider",
+        leader: "Al_Tar",
+      },
+      {
+        tag: "side",
+        id: 3,
+        controller: "ai",
+        team_name: "invaders",
+        gold: 200,
+        recruit: "Orcish Grunt,Orcish Archer,Wolf Rider",
+        leader: "Garrugch",
+      },
+      {
+        tag: "side",
+        id: 4,
+      },
+      {
+        tag: "map",
+        id: "scenario_01_Breaking_the_Chains",
+        file: "01_Breaking_the_Chains.map",
+      },
+      {
+        tag: "unit",
+        id: "Tallin",
+        type: "Peasant",
+        side: 1,
+        x: 6,
+        y: 25,
+        name: _("Tallin"),
+      },
+      {
+        tag: "unit",
+        id: "Zlex",
+        type: "Peasant",
+        side: 0,
+        x: 5,
+        y: 23,
+      },
+      {
+        tag: "unit",
+        id: "Al_Tar",
+        type: "Orcish Warlord",
+        side: 2,
+        x: 11,
+        y: 7,
+        name: _("Al’Tar"),
+      },
+      {
+        tag: "unit",
+        id: "Garrugch",
+        type: "Orcish Warrior",
+        side: 3,
+        x: 32,
+        y: 18,
+        name: _("Garrugch"),
+      },
+      {
+        tag: "event",
+        id: "hide_side_4",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 4,
+            hidden: "yes",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "carryover_19",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_caution",
+            value: 0.50,
+          },
+          {
+            tag: "set_variable",
+            name: "carryover_bonus",
+            value: "yes",
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,,,0,3,%7B%22side%22%3A3%7D;goal,,,0,1,%7B%22side%22%3A1%7D;goal,,,0,3,%7B%22side%22%3A2%7D;goal,,,0,1,%7B%22side%22%3A1%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_20",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Far to the north of Wesnoth, and hard by the dwarven caves of Knalga, there was once a thriving mixed community known as Dwarven Doors. Food, wood, and cloth from all over Wesnoth and many elvish lands as well were brought here to be sold to the dwarves, while ores, metals and worked dwarven manufactures were bought here to be traded throughout the surface nations. Dwarves and humans worked and lived side by side; even the elves who came to trade mingled more with the other kindred races than was common elsewhere. Dwarven Doors grew populous and wealthy."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_21",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("The dwarves of Knalga, cannily reckoning the gains from trade, built strong fortifications around Dwarven Doors. The dwarves and humans who called it home knew that the wealth of the city might arouse envy from afar — hence they kept their weapons sharp, and regarded themselves able to fight off any bandit gang or petty warlord."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_22",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("For many years it was indeed so. Dwarven Doors was a peaceful and prosperous place until the orcs came..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_23",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("At first, the incursions were mere rabble that were easily felled. Complacent in their own prowess, the people of the Dwarven Doors ignored the orcs even as the raids grew more numerous and threatening. With time, the raiding parties grew into war bands; then at last, there arose a mighty warlord of the Bloody Sword tribe, Khazg Black-Tusk, who surrounded the entirety of their defenses with a great host of warriors."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_24",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("It was a time of doom and great deeds, of fire and blood and slaughter. The men and dwarves fought valiantly. But there were always, it seemed, more orcs to replace the slain, while the defenders could find no succor. Pleas for help went unheeded in other lands for men, elves, and even dwarves, were wrapped up in their own affairs and struggles or deemed the orcs too far away to bring unto them harm."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_25",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("After a year and a day of grim battle, the city fell. The streets of the Dwarven Doors ran with gore. The dwarves retreated into the caverns Knalga, but the humans who survived were enslaved. Cut off from contact with the surface, the dwarves of Knalga fought on, but knew their subjugation could not be averted forever."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_26",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Dark years passed; human generations grew up and died in slavery, and with every passing year came closer to forgetting that their ancestors had ever been free. They might have completely forgotten were it not for a fateful day. The day that changed the lives of the people of Dwarven Doors — forever."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_27",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("It was an early spring day, in the year 518YW. The humans — joyless beneath the orcish whip — were dispiritedly planting the yearly crop. All at once, the war-drums of the orcs began pounding; harsh war-cries sounded as orcs mustered to gather their weapons and man their posts. Startled, the peasants looked around in alarm, and that was when they saw him."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_28",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("He came charging out of the woods, his cape streaming in the breeze, his sword flashing quicker than thought. All around him, the hated orcs fell. To his right fought an elderly mage whose deep voice boomed incantations over the clamor of the battle. To his left, glowing with faerie fire, was a great lord of the elves. They were followed closely by a small but powerful elvish army."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_29",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Word quickly spread among the humans that this hero was none other than Prince Konrad of Wesnoth, faring to the ruins of Knalga to retrieve the Sceptre of Fire and use it to save his homeland from the rule of a tyrant, and they stood, rooted to their places in awe."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_30",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("As quickly as it had begun, it was over. Konrad reached the entrance to the tunnels and ushered his men through. Then he turned one last time to face the peasants. Raising his sword in salute and farewell, he called out to them: <i>“Hold fast your hope, for one day you shall be free!”</i> Then he was gone."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_31",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("After that day, nothing could be the same. Hope rose in their hearts like a flame long-smothered but rekindled. The brightest and boldest of them began to plan and to train in secret. And the orcish masters, grown stupid from their own arrogance, did not see."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_32",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("There was one among these peasants named Tallin. He had been a little child, barely out of his mother’s arms, when Konrad broke the Orcish host. But he never forgot that day. His father was a weaponsmith, his family used less brutally than most because the orcish masters put more value on that craft. In secret, his mother even taught him letters. As the boy grew to young manhood, he could touch blades, and dream. And he did."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_33",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Then one day Al’Tar, the current ‘master’ of Dwarven Doors, was attacked by a neighboring tribe of orcs. Tallin seized his moment. Using knowledge born of years of watching, listening, and planning, he managed to steal a few weapons and a small amount of Al’Tar’s gold. He fled to an abandoned ruin in the forest to rally his fellow peasants."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_34",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Tallin,Zlex,Al_Tar,Garrugch",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_35",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 31,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Defeat enemy leaders"),
+        defeat: _("Death of Tallin Turns run out"),
+      },
+      {
+        tag: "event",
+        id: "ev_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "breaking_the_chains.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "northerners.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "the_city_falls.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "prestart",
+        once: true,
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("This challenger has made the orcs careless — I managed to sneak in and filch the key to the storerooms. Come with me lads, and grab some weapons! Let them hack at each other, we can use this as our chance to get rid of this scum once and for all. Who’s with me?"),
+          },
+          {
+            tag: "message",
+            speaker: "Zlex",
+            text: _("Brave words, Tallin, but if I didn’t know you better I’d say you were moon-touched. These are not weapons, just pitchforks and hunting bows. We have no armor, no training. Are we supposed to beat them with bad breath and colorful language?"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Well, those things will certainly get their attention, but there’s nothing wrong with pitchforks. We easily outnumber the orcs and they’re even now killing each other."),
+          },
+          {
+            tag: "message",
+            speaker: "Zlex",
+            text: _("But their wolves run faster than we can walk, and their swords are sharper than these farm tools."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Our numbers are our strength. Stay shoulder-to shoulder with the man next to you; never get isolated, especially not on open ground. Swarm them — surround them, five or six to one, and they will go down."),
+          },
+          {
+            tag: "message",
+            speaker: "Zlex",
+            text: _("But still, Tallin, this is going to be a slaughter."),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("But, but, but... Are you full of nothing but doubts? (<i>Sigh</i>) Yes, it will be a massacre. But would you rather live as slaves to the orcs forever?"),
+          },
+          {
+            tag: "message",
+            speaker: "Zlex",
+            text: _("Never! I would rather die!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("Then what choice do we have? This may be the only chance we ever get, it’s time to fight!"),
+          },
+          {
+            tag: "message",
+            speaker: "Al'Tar",
+            text: _("You dare greatly, you miserable excuse for an orc! How dare you step onto my land!"),
+          },
+          {
+            tag: "message",
+            speaker: "Garrugch",
+            text: _("Idle threats. Time as a slavemaster has made you weak. You have the strength of a goblin, and the brains to match. This land now belongs to my master. Surrender now and he might let you be (<i>his</i>) slave."),
+          },
+          {
+            tag: "message",
+            speaker: "Al'Tar",
+            text: _("Pah! Grunts, attack! Whoever brings me the head of Garrugch will be rewarded in gold!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_defender_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22side%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Ack! These bloody slaves are always getting in the way. Cut them down!"),
+          },
+          {
+            tag: "message",
+            speaker: "Garrugch",
+            text: _("Look at that, the weakling Al’Tar can’t even keep his slaves under control. This will prove easier than I thought!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 31,
+            y: 3,
+          },
+          {
+            tag: "message",
+            text: _("This is one of the entrances to the dwarven caves."),
+          },
+          {
+            tag: "message",
+            text: _("Aaaaah! Trolls! The caves are infested with trolls!"),
+          },
+          {
+            tag: "spawn",
+            id: "u_1",
+            type: "Troll Whelp",
+            side: 4,
+            x: 30,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_1",
+          },
+          {
+            tag: "spawn",
+            id: "u_2",
+            type: "Troll Whelp",
+            side: 4,
+            x: 32,
+            y: 3,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "victory",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("<i>Yes</i>! We did it! We are free!"),
+          },
+          {
+            tag: "spawn",
+            id: "Khrulg",
+            type: "Orcish Grunt",
+            side: 3,
+            x: 32,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Khrulg",
+          },
+          {
+            tag: "message",
+            speaker: "Khrulg",
+            text: _("Garrugch failed in mission, but Al’tar dead by peasant slaves. Better tell the Master."),
+          },
+          {
+            tag: "message",
+            speaker: "Khrulg",
+            text: _("Master needs more meat for wolves. Peasants good meat."),
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            unit: "Khrulg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Tallin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("I die now, you orcish scum, but I die free! More will come after me. We will rise again until our vengeance has wiped your stain from our land!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Tallin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Al'Tar",
+            text: _("Pah! Grunts, put the rest of that peasant rabble back in chains."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Al'Tar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "switch",
+            variable: "second_unit.race",
+            children: [
+              {
+                tag: "case",
+                equals: "human",
+                children: [
+                  {
+                    tag: "message",
+                    text: _("What the...? (<i>Gurgle</i>) Killed... by... slaves?"),
+                  },
+                  {
+                    tag: "message",
+                    text: _("(<i>Stab</i>)"),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "orc",
+                children: [
+                  {
+                    tag: "message",
+                    text: _("What the...? (<i>Gurgle</i>) Defeated... by... a grunt?"),
+                  },
+                  {
+                    tag: "message",
+                    text: _("(<i>Stab</i>)"),
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Ugh!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Al'Tar%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "switch",
+            variable: "second_unit.race",
+            children: [
+              {
+                tag: "case",
+                equals: "human",
+                children: [
+                  {
+                    tag: "message",
+                    text: _("Not a very bright one, was he?"),
+                  },
+                ],
+              },
+              {
+                tag: "case",
+                equals: "orc",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Garrugch%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("No! I have failed in my mission!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Garrugch%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Mission? What mission?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "time_over",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("Sounds of drums and horns echo on the mountainsides. A large orc army draws near!"),
+          },
+          {
+            tag: "message",
+            speaker: "Tallin",
+            text: _("If only we were faster escaping into the mines this wouldn’t have happened. At least we will die free..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22role%22%3A%22Supporter%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]

@@ -1,0 +1,1605 @@
+[
+  {
+    tag: "game",
+    schema: 0.1,
+    title: _("A Bargain is Struck"),
+    children: [
+      {
+        tag: "side",
+        id: 1,
+        controller: "human",
+        team_name: "dwarves",
+        gold: 120,
+        recruit: "Dwarvish Fighter,Dwarvish Thunderer,Dwarvish Guardsman,Dwarvish Scout",
+        leader: "Rugnur",
+      },
+      {
+        tag: "side",
+        id: 2,
+        team_name: "dwarves",
+        gold: 125,
+        recruit: "Swordsman,Longbowman,Cavalryman,Red Mage,Mage",
+        leader: "Haldric_II",
+      },
+      {
+        tag: "side",
+        id: 3,
+        team_name: "elves",
+        gold: 150,
+        recruit: "Elvish Fighter,Elvish Scout,Elvish Archer,Elvish Shaman",
+        leader: "leader2",
+      },
+      {
+        tag: "map",
+        id: "scenario_1_A_Bargain_is_Struck",
+        file: "1_A_Bargain_is_Struck.map",
+      },
+      {
+        tag: "unit",
+        id: "Rugnur",
+        type: "Dwarvish Fighter",
+        side: 1,
+        x: 14,
+        y: 10,
+        name: _("Rugnur"),
+      },
+      {
+        tag: "unit",
+        id: "Haldric_II",
+        type: "Haldric II",
+        side: 2,
+        x: 8,
+        y: 30,
+        name: _("Haldric II"),
+      },
+      {
+        tag: "unit",
+        id: "u_1",
+        type: "Royal Guard",
+        side: 2,
+        x: 5,
+        y: 27,
+      },
+      {
+        tag: "unit",
+        id: "u_2",
+        type: "Royal Guard",
+        side: 2,
+        x: 9,
+        y: 27,
+      },
+      {
+        tag: "unit",
+        id: "leader2",
+        type: "Elvish Fighter",
+        side: 3,
+        x: 26,
+        y: 17,
+        name: _("Glildur"),
+      },
+      {
+        tag: "event",
+        id: "carryover_38",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "carryover_percentage",
+            value: 40,
+          },
+          {
+            tag: "set_variable",
+            name: "ai_directives",
+            value: "goal,,,0,25,%7B%22side%22%3A1%2C%22type%22%3A%5B%22Caravan%22%5D%7D;goal,,,0,50,%7B%22type%22%3A%5B%22Haldric%20II%22%5D%7D;goal,,,0,7,%7B%22side%22%3A1%2C%22type%22%3A%5B%22Caravan%22%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_39",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/landscape-castle.webp"),
+            text: _("Ay, the Sceptre of Fire. The Sceptre has a long, glorious, and fearful history. But I am not here to tell you how the jewel within it was brought over the ocean by Haldric the Great, nor will I tell the story of Garard I and the challenge he set, nor that of Konrad, King of Wesnoth by virtue of the Sceptre."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_40",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            text: _("I am here to tell you of its making. Of its crafting, deep in the caverns of dwarfdom. And of the dwarves who made it; for they were great, they were. They are counted among the greatest of the heroes of ancient Knalga."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "story_41",
+        on: "start",
+        children: [
+          {
+            tag: "message",
+            speaker: "narrator",
+            portrait: _("story/landscape-mountains-04.webp"),
+            text: _("Our story begins in a small border outpost in the southern hills of Knalga, with a young dwarf, named Rugnur, in charge of it. And with the second King of Wesnoth, Haldric II, riding up the road from the Ford of Abez with an army behind him..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "loyal_42",
+        on: "start",
+        children: [
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            units: "Rugnur,Haldric_II,u_1,u_2,leader2,u_3,u_4,u_5,u_6,Alanin,u_7,u_8,u_9,u_10",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "clock_43",
+        on: "start",
+        children: [
+          {
+            tag: "set_variable",
+            name: "turn_limit",
+            value: 18,
+          },
+        ],
+      },
+      {
+        tag: "objectives",
+        side: 1,
+        victory: _("Transport 4 caravans full of silver to the dwarvish stronghold in the northeast corner Bring Alanin, who has the Ruby of Fire, to the dwarvish stronghold in the northeast corner"),
+        defeat: _("Death of Rugnur Death of Haldric II Death of Alanin Loss of a caravan Turns run out"),
+        children: [
+          {
+            tag: "defeat",
+            condition: "hook",
+            hook: "predicate:turn_limit",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "side_traits_1",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:apply_object",
+            id: "leader2",
+            object: "%7B%22id%22%3A%22side_traits_3%22%2C%22effects%22%3A%5B%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A4%7D%2C%7B%22applyTo%22%3A%22hitpoints%22%2C%22increaseTotal%22%3A1%7D%2C%7B%22applyTo%22%3A%22max_experience%22%2C%22increase%22%3A%22-20%25%22%7D%5D%2C%22abilities%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_2",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "knolls.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "loyalists.ogg",
+          },
+          {
+            tag: "hook",
+            name: "command:play_music",
+            file: "breaking_the_chains.ogg",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_3",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_4",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 2,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_5",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_6",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Rugnur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Gahahh..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_7",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Haldric%20II%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("Maghah..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_8",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Alanin%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Alanin",
+            text: _("Ahhgg..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_9",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Baglur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Baglur",
+            text: _("Gaanngh..."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_10",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Krawg%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Krawg",
+            text: _("Kraa..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_11",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Thursagan%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Thursagan",
+            text: _("Ayahahh..."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_12",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 13,
+            y: 9,
+            item_name: "rune_shop_overlay",
+            image: "items%2Fchest-plain-closed.png",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "chest_13_9",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_13",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 12,
+            y: 8,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%2C%22first_time_only%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_condition%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22chest_13_9%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22chest_13_9%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22rune_choice%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22This%20is%20part%20of%20our%20stash%20of%20field%20runes%2C%20we%20can%20use%20them%20to%20get%20a%20small%20temporary%20boost.%20We%20don%E2%80%99t%20have%20very%20many%20though%2C%20and%20need%20to%20contribute%20funds%20for%20replacements.%20Should%20I%20take%20this%20one%3F%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22option%22%2C%22attributes%22%3A%7B%22default%22%3A%22yes%22%2C%22image%22%3A%22attacks%2Fblank-attack.png~BLIT(icons%2Funit-groups%2Fcross_30.png~SCALE(60%2C60)%2C0%2C0)%22%2C%22label%22%3A%22No%22%2C%22description%22%3A%22Not%20now.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22command%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22chest_13_9%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22option%22%2C%22attributes%22%3A%7B%22image%22%3A%22misc%2Frune_icon.png~BLIT(scenery%2Fsummoning-circle4.png~CROP(6%2C6%2C60%2C60)%2C0%2C0)%22%2C%22cost%22%3A%228%22%2C%22label%22%3A%22Swiftness%20%3Cspan%20style%3D'italic'%3E%20(_%24cost%7Cg)%3C%2Fspan%3E%22%2C%22description%22%3A%22Adds%201%20MP%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22command%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22unit.variables.swiftness_rune%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22I%20already%20have%20this%20one...%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22store_gold%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22variable%22%3A%22gold_check%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22gold_check%22%2C%22less_than%22%3A%228%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22We%20don%E2%80%99t%20have%20the%20funds...%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22no_funds%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22unit.variables.swiftness_rune%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22unstore_unit%22%2C%22attributes%22%3A%7B%22variable%22%3A%22unit%22%2C%22find_vacant%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22gold%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22amount%22%3A%22-8%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22object%22%2C%22attributes%22%3A%7B%22silent%22%3A%22yes%22%2C%22duration%22%3A%22scenario%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22overlay%22%2C%22add%22%3A%22misc%2Frune_overlay_swiftness.png%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22movement%22%2C%22increase%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22gold_check%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22no_funds%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22chest_13_9%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22remove_item%22%2C%22attributes%22%3A%7B%22x%22%3A%2213%22%2C%22y%22%3A%229%22%2C%22image%22%3A%22items%2Fchest-plain-closed.png%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22item%22%2C%22attributes%22%3A%7B%22x%22%3A%2213%22%2C%22y%22%3A%229%22%2C%22image%22%3A%22items%2Fchest-plain-open.png%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22no_funds%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "chest_13_9",
+                equals: "yes",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_14",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 14,
+            y: 9,
+            item_name: "rune_shop_overlay",
+            image: "items%2Fchest-plain-closed.png",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "chest_14_9",
+            value: "yes",
+            mode: "value",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_15",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            x: 13,
+            y: 8,
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$unit_moved_id",
+                filter: "%7B%22tag%22%3A%22event%22%2C%22attributes%22%3A%7B%22name%22%3A%22moveto%22%2C%22first_time_only%22%3A%22no%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter_condition%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22chest_14_9%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22chest_14_9%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22rune_choice%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22This%20is%20part%20of%20our%20stash%20of%20field%20runes%2C%20we%20can%20use%20them%20to%20get%20a%20small%20temporary%20boost.%20We%20don%E2%80%99t%20have%20very%20many%20though%2C%20and%20need%20to%20contribute%20funds%20for%20replacements.%20Should%20I%20take%20this%20one%3F%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22option%22%2C%22attributes%22%3A%7B%22default%22%3A%22yes%22%2C%22image%22%3A%22attacks%2Fblank-attack.png~BLIT(icons%2Funit-groups%2Fcross_30.png~SCALE(60%2C60)%2C0%2C0)%22%2C%22label%22%3A%22No%22%2C%22description%22%3A%22Not%20now.%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22command%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22chest_14_9%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22option%22%2C%22attributes%22%3A%7B%22image%22%3A%22misc%2Frune_icon.png~BLIT(scenery%2Fsummoning-circle6.png~CROP(6%2C6%2C60%2C60)%2C0%2C0)%22%2C%22cost%22%3A%228%22%2C%22label%22%3A%22Force%20%3Cspan%20style%3D'italic'%3E%20(_%24cost%7Cg)%3C%2Fspan%3E%22%2C%22description%22%3A%22Increases%20melee%20weapon%20damage%20by%202%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22command%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22unit.variables.force_rune%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22I%20already%20have%20this%20one...%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22store_gold%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22variable%22%3A%22gold_check%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22gold_check%22%2C%22less_than%22%3A%228%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22message%22%2C%22attributes%22%3A%7B%22speaker%22%3A%22unit%22%2C%22message%22%3A%22We%20don%E2%80%99t%20have%20the%20funds...%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22no_funds%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22unit.variables.force_rune%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22unstore_unit%22%2C%22attributes%22%3A%7B%22variable%22%3A%22unit%22%2C%22find_vacant%22%3A%22no%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22gold%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22amount%22%3A%22-8%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22object%22%2C%22attributes%22%3A%7B%22silent%22%3A%22yes%22%2C%22duration%22%3A%22scenario%22%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22%24unit.id%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22overlay%22%2C%22add%22%3A%22misc%2Frune_overlay_force.png%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22effect%22%2C%22attributes%22%3A%7B%22apply_to%22%3A%22attack%22%2C%22range%22%3A%22melee%22%2C%22increase_damage%22%3A%222%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22gold_check%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22if%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22no_funds%22%2C%22equals%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22then%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22set_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22chest_14_9%22%2C%22value%22%3A%22yes%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%2C%7B%22tag%22%3A%22else%22%2C%22attributes%22%3A%7B%7D%2C%22children%22%3A%5B%7B%22tag%22%3A%22remove_item%22%2C%22attributes%22%3A%7B%22x%22%3A%2214%22%2C%22y%22%3A%229%22%2C%22image%22%3A%22items%2Fchest-plain-closed.png%22%7D%2C%22children%22%3A%5B%5D%7D%2C%7B%22tag%22%3A%22item%22%2C%22attributes%22%3A%7B%22x%22%3A%2214%22%2C%22y%22%3A%229%22%2C%22image%22%3A%22items%2Fchest-plain-open.png%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%2C%7B%22tag%22%3A%22clear_variable%22%2C%22attributes%22%3A%7B%22name%22%3A%22no_funds%22%7D%2C%22children%22%3A%5B%5D%7D%5D%7D%5D%7D%5D%7D%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "variable",
+                name: "chest_14_9",
+                equals: "yes",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_16",
+        on: "prestart",
+        once: true,
+        children: [
+          {
+            tag: "set_variable",
+            name: "incominggold",
+            value: 5000,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Aa^Fpa",
+            cells: "0,3",
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Aa^Fpa",
+            cells: "2,7",
+          },
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 1,
+            cells: "22,5;29,3",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 16,
+            y: 7,
+            item_name: "",
+            image: "scenery%2Frock-cairn2.png",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "leader2",
+            kill: "yes",
+            id: "leader2",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_17",
+        on: "start",
+        once: true,
+        children: [
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Humans, halt! Who dares bring an army into the dwarvish hills?"),
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("We come to make a bargain with you."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Well, state your business and be done with it. And if we don’t like what you say, you leave!"),
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("Have you heard of the Ruby of Fire?"),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Yes... your first king brought it from over the sea, right? You own it."),
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("Correct. However, we have a problem with it."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("What sort of problem?"),
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("Some form of magical aura makes those around the stone act... strangely. I noticed it with my father. The longer he stayed near the stone, the more arrogant, almost evil, he became."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("So, what do you want me to do? I don’t see how this relates to us dwarves."),
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("When the elves came to Tath, about five years ago, they spoke of a mage named Crelanu, and of his advice about the ruby. He said that the radiance of the stone could be contained, and that doing so would stop the stone’s effect."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("And what... you want us to do this, contain the radiance of the stone? By making an artifact of some kind?"),
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("Exactly. I want you to craft it into a mighty artifact that will not only leverage the stone’s power, but contain it also."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Well... I think we can make a deal, but I’m not sure. I’ll have to ask the clan leaders."),
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("If you are not authorized to make a deal, send out someone who is, and I will bargain with him."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("They would refuse to come. You must come into the caves and go to the city in person, or send a representative."),
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("I can always take my offer to another clan more friendly to its potential patrons. You are not the only smiths in the Northlands!"),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Uh, no, wait! Let’s talk business — how much will you pay us to do this for you?"),
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("Five thousand pieces of silver."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("You said you wanted a powerful magical artifact, not a child’s playtoy! So... twenty thousand, minimum. The crafting of this will take us many years, you must pay us well."),
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("Ten thousand."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Nothing below fifteen!"),
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("Then no deal. I’ll gather my things and go to another dwarvish clan now."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Fine then — ten thousand... now, what exactly do you want us to make the stone into?"),
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("I want you to make it into a sceptre. A gold and ruby sceptre to all appearances. We shall call it the Sceptre of Fire."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("I’ll see what I can do. But I will need five thousand silver in advance to pay for the materials."),
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("Very well. I have the silver here, ready to ship, and I will send someone over with the stone itself. He will stay with you as you make the sceptre, and make sure you get it done on time. I expect it done before my reign as king is ended."),
+          },
+          {
+            tag: "spawn",
+            id: "u_3",
+            type: "Caravan",
+            side: 1,
+            x: 9,
+            y: 28,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_3",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_3",
+          },
+          {
+            tag: "spawn",
+            id: "u_4",
+            type: "Caravan",
+            side: 1,
+            x: 10,
+            y: 28,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_4",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_4",
+          },
+          {
+            tag: "spawn",
+            id: "u_5",
+            type: "Caravan",
+            side: 1,
+            x: 9,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_5",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_5",
+          },
+          {
+            tag: "spawn",
+            id: "u_6",
+            type: "Caravan",
+            side: 1,
+            x: 10,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_6",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_6",
+          },
+          {
+            tag: "spawn",
+            id: "Alanin",
+            type: "Dragoon",
+            side: 1,
+            x: 11,
+            y: 29,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "Alanin",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "Alanin",
+          },
+          {
+            tag: "message",
+            speaker: "Alanin",
+            text: _("That’s right. I’ll be coming over along with the silver."),
+          },
+          {
+            tag: "message",
+            speaker: "Glildur",
+            text: _("Hey! You can’t do that — this road is an elvish road. We’re not letting you transport gold and jewels on it without paying a toll."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("What are you talking about?! This road has always been open to all."),
+          },
+          {
+            tag: "message",
+            speaker: "Glildur",
+            text: _("Yes, we have allowed people to use it, but it is our road."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Not true! This is dwarvish land; if anything, it’s our road!"),
+          },
+          {
+            tag: "message",
+            speaker: "Glildur",
+            text: _("Nevertheless, if you try to move your caravans here, you have to pay the toll or face our wrath!"),
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("We Wesnothians and you elves have a treaty! Do you really mean to break it in defense of a road that is not even yours?!"),
+          },
+          {
+            tag: "message",
+            speaker: "Glildur",
+            text: _("I was never among those who agreed to that treaty. Not all of us elves are as low as Kalenz or make deals with those who betrayed us."),
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("Ah, I see — you are one of the rebels. Our treaty with the elves does not apply to you, so I have no problem with slaying you if you stand in our way. Rugnur, we will proceed with the shipment."),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Very well. Glildur, if the high elvish council has made an alliance with these humans, I would advise you to follow it. But not doing so is your choice."),
+          },
+          {
+            tag: "spawn",
+            id: "u_7",
+            type: "Elvish Hero",
+            side: 3,
+            x: 21,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_7",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_7",
+          },
+          {
+            tag: "spawn",
+            id: "u_8",
+            type: "Elvish Avenger",
+            side: 3,
+            x: 25,
+            y: 19,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_8",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_8",
+          },
+          {
+            tag: "spawn",
+            id: "u_9",
+            type: "Elvish Ranger",
+            side: 3,
+            x: 23,
+            y: 14,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_9",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_9",
+          },
+          {
+            tag: "spawn",
+            id: "u_10",
+            type: "Elvish Ranger",
+            side: 3,
+            x: 22,
+            y: 17,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_10",
+          },
+          {
+            tag: "hook",
+            name: "command:make_loyal",
+            unit: "u_10",
+          },
+          {
+            tag: "hook",
+            name: "command:add_item",
+            x: 24,
+            y: 1,
+            item_name: "",
+            image: "items%2Fgohere.png",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_18",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 3,
+            x: "10-16",
+            y: "24-26",
+          },
+          {
+            tag: "gold",
+            side: 2,
+            amount: 50,
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_19",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            y: "7,17",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "leader2",
+          },
+          {
+            tag: "hook",
+            name: "command:scenario_move",
+            unit: "leader2",
+            x: 10,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Ke",
+            cells: "10,1",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 100,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Ce",
+            cells: "10,2",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 100,
+          },
+          {
+            tag: "spawn",
+            id: "u_11",
+            type: "Elvish Archer",
+            side: 3,
+            x: 10,
+            y: 2,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_11",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 100,
+          },
+          {
+            tag: "hook",
+            name: "command:set_terrain",
+            terrain: "Ce",
+            cells: "11,1",
+          },
+          {
+            tag: "hook",
+            name: "command:delay",
+            time: 100,
+          },
+          {
+            tag: "spawn",
+            id: "u_12",
+            type: "Elvish Archer",
+            side: 3,
+            x: 11,
+            y: 1,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_12",
+          },
+          {
+            tag: "hook",
+            name: "command:capture_village",
+            side: 3,
+            cells: "0,6;4,2",
+          },
+          {
+            tag: "message",
+            speaker: "Alanin",
+            text: _("Oh, the elves are going to cut us off!"),
+          },
+          {
+            tag: "message",
+            speaker: "Glildur",
+            text: _("I told you this was our road."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_21",
+        on: "branch_if_21",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "incominggold",
+            equals: 0,
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("All the silver is there too. Proceed with the task, Rugnur!"),
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "changealanin",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "glildur",
+            kill: "no",
+            id: "Glildur",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_20",
+        on: "moveto",
+        once: true,
+        children: [
+          {
+            tag: "filter",
+            x: "22-26,27-28",
+            y: "0-2,0-1",
+          },
+          {
+            tag: "message",
+            speaker: "Alanin",
+            text: _("Here’s the stone for you dwarves! Now, if you’ll excuse me, I think I’ll be taking refuge here... I don’t much like fighting."),
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "havestone",
+            value: "yes",
+            mode: "value",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "changealanin",
+            kill: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_21",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_24",
+        on: "branch_if_24",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "havestone",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("You only need $incominggold more, then you can begin work."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_25",
+        on: "branch_if_25",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "havestone",
+            not_equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("You only need $incominggold more, and the stone, then you can begin work."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_23",
+        on: "branch_if_23",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "incominggold",
+            greater_than: 0,
+          },
+          {
+            tag: "message",
+            text: _("Cargo unloaded."),
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_24",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_25",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_27",
+        on: "branch_if_27",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "havestone",
+            equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("That’s the last caravan! We will commence work immediately."),
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "changealanin",
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "glildur",
+            kill: "no",
+            id: "Glildur",
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_28",
+        on: "branch_if_28",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "havestone",
+            not_equals: "yes",
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("We have all of the silver, now all we need is the stone."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_26",
+        on: "branch_if_26",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "incominggold",
+            less_than_or_equal_to: 0,
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_27",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_28",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_22",
+        on: "moveto",
+        once: false,
+        children: [
+          {
+            tag: "filter",
+            side: 1,
+            type: "Caravan",
+            x: "22-26,27-28",
+            y: "0-2,0-1",
+          },
+          {
+            tag: "hook",
+            name: "command:set_variable_dynamic",
+            variable: "incominggold",
+            value: 1250,
+            mode: "sub",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_23",
+          },
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_26",
+          },
+          {
+            tag: "hook",
+            name: "command:kill_unit",
+            filter: "%7B%22tag%22%3A%22kill%22%2C%22attributes%22%3A%7B%22x%22%3A%22%24x1%22%2C%22y%22%3A%22%24y1%22%7D%2C%22children%22%3A%5B%5D%7D",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_29",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 7,
+          },
+          {
+            tag: "message",
+            speaker: "Glildur",
+            text: _("Our reinforcements should be here soon. Send those caravans here, we might let you walk away."),
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("That’s a bluff. What sort of reinforcements can this little band of thieves possibly count on?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_30",
+        on: "turn",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "turn_number",
+            equals: 9,
+          },
+          {
+            tag: "spawn",
+            id: "u_13",
+            type: "Elvish Scout",
+            side: 3,
+            x: 25,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_13",
+          },
+          {
+            tag: "spawn",
+            id: "u_14",
+            type: "Elvish Scout",
+            side: 3,
+            x: 27,
+            y: 13,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_14",
+          },
+          {
+            tag: "spawn",
+            id: "u_15",
+            type: "Elvish Rider",
+            side: 3,
+            x: 26,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_15",
+          },
+          {
+            tag: "spawn",
+            id: "u_16",
+            type: "Elvish Rider",
+            side: 3,
+            x: 28,
+            y: 15,
+          },
+          {
+            tag: "hook",
+            name: "command:spawn_unit",
+            unit: "u_16",
+          },
+          {
+            tag: "message",
+            speaker: "Glildur",
+            text: _("Ha! Our reinforcements have arrived. There is no way you can withstand our combined strength!"),
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("We cannot match you above ground, but in the caves, we may still defeat you."),
+          },
+          {
+            tag: "message",
+            speaker: "Glildur",
+            text: _("We will see about that — if you ever get underground, which I doubt. Ha!"),
+          },
+          {
+            tag: "gold",
+            side: 3,
+            amount: 125,
+          },
+          {
+            tag: "hook",
+            name: "command:config_side",
+            side: 3,
+            income: 25,
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("Elvish reinforcements! Where did these come from? I thought the elvish resistance to the treaty was smaller than this. Hurry up and move those caravans!"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_31",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_defender_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22race%22%3A%22human%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Die, humans! In the name of Landar!"),
+          },
+          {
+            tag: "message",
+            text: _("Landar? Who is this ‘Landar’ you speak of?"),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_32",
+        on: "attack",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_attacker_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%223%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_defender_id",
+                filter: "%7B%22tag%22%3A%22filter_second%22%2C%22attributes%22%3A%7B%22race%22%3A%22dwarf%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("Die, dwarvish scum! In the name of Landar!"),
+          },
+          {
+            tag: "message",
+            text: _("Yer precious Landar can kiss my axe."),
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_33",
+        on: "last_breath",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22id%22%3A%22Glildur%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            text: _("This gains you nothing! We will not rest!"),
+          },
+          {
+            tag: "hook",
+            name: "command:store_unit",
+            variable: "glildur",
+            kill: "no",
+            id: "Glildur",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "if_35",
+        on: "branch_if_35",
+        once: true,
+        children: [
+          {
+            tag: "condition",
+            variable: "havestone",
+            equals: "yes",
+          },
+          {
+            tag: "hook",
+            name: "command:unstore_unit",
+            variable: "changealanin",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_34",
+        on: "enemies_defeated",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:fire_event",
+            event: "branch_if_35",
+          },
+          {
+            tag: "message",
+            speaker: "Rugnur",
+            text: _("Good, the road is secured. Let’s move those caravans!"),
+          },
+          {
+            tag: "win",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_36",
+        on: "scenario_end",
+        once: true,
+        children: [
+          {
+            tag: "hook",
+            name: "command:modify_unit",
+            filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%7D%2C%22children%22%3A%5B%5D%7D",
+            side: 1,
+            clear_variable: "swiftness_rune,accuracy_rune,force_rune",
+          },
+        ],
+      },
+      {
+        tag: "event",
+        id: "ev_37",
+        on: "die",
+        once: true,
+        children: [
+          {
+            tag: "filter_condition",
+            children: [
+              {
+                tag: "predicate",
+                name: "wml_filter",
+                unit: "$last_dead_id",
+                filter: "%7B%22tag%22%3A%22filter%22%2C%22attributes%22%3A%7B%22side%22%3A%221%22%2C%22type%22%3A%22Caravan%22%7D%2C%22children%22%3A%5B%5D%7D",
+              },
+            ],
+          },
+          {
+            tag: "message",
+            speaker: "Haldric II",
+            text: _("You just let a caravan, with <i>my</i> money loaded in it, get captured! If I can’t trust you to keep my property secure, the deal’s off."),
+          },
+          {
+            tag: "lose",
+          },
+        ],
+      },
+    ],
+  },
+]
