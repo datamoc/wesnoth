@@ -100,3 +100,11 @@ test('network session accepts a validated late-join snapshot', () => {
   assert.equal((received as { snapshot?: unknown }).snapshot !== undefined, true);
   assert.deepEqual((received as { snapshot: { teams?: unknown[] } }).snapshot.teams, [[1, 'allies'], [2, 'enemies']]);
 });
+
+test('peerOwnsSide binds peer pN to side N only', async () => {
+  const { peerOwnsSide, HOST_PEER } = await import('../src/simulation/network.ts');
+  assert.equal(HOST_PEER, 'p1');
+  assert.equal(peerOwnsSide('p1', 1), true);
+  assert.equal(peerOwnsSide('p2', 1), false);
+  assert.equal(peerOwnsSide('p2', 2), true);
+});

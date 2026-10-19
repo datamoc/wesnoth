@@ -5,7 +5,7 @@ export interface WesnothNetworkOptions {
   url: string;
   createSocket?: (url: string) => WebSocketLike;
   onTick?: (tick: number, actions: Readonly<Record<string, WesnothAction | null>>) => void;
-  onInitialState?: (state: WesnothInitialState) => void;
+  onInitialState?: (state: WesnothInitialState, sender: string) => void;
   onChat?: (peer: string, text: string) => void;
   onStatus?: (status: 'connected' | 'closed' | 'invalid') => void;
 }
@@ -35,6 +35,14 @@ export interface WesnothNetworkSnapshot {
   readonly recallList: readonly unknown[];
   readonly journal: readonly unknown[];
   readonly achievements?: { counts: [string, number][] };
+}
+
+/** The peer whose snapshot is authoritative for a joining client. */
+export const HOST_PEER = 'p1';
+
+/** Peer `pN` plays side N; a peer may only submit actions for the side it owns. */
+export function peerOwnsSide(peer: string, side: number): boolean {
+  return peer === `p${side}`;
 }
 
 /** Typed lockstep transport for the port; game rules remain outside the socket layer. */
@@ -90,7 +98,7 @@ export class WesnothNetworkSession {
         continue;
       }
       if (candidate.protocol === 'mwg-wesnoth-sync' && candidate.version === 1 && isInitialState((candidate as { state?: unknown }).state)) {
-        this.options.onInitialState?.((candidate as { state: WesnothInitialState }).state);
+        this.options.onInitialState?.((candidate as { state: WesnothInitialState }).state, id);
         actions[id] = null;
         continue;
       }

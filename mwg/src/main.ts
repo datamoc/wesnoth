@@ -35,7 +35,7 @@ import { resolveTerrain, splitCode } from './simulation/terrain.ts';
 import { damagePerStrike, chanceToHit, resistanceOf, type CombatExchange } from './simulation/combat.ts';
 import { makeUnit, makeUnitWithTraits, type Unit } from './simulation/unit.ts';
 import type { WesnothData } from './simulation/types.ts';
-import { WesnothNetworkSession, type WesnothNetworkSnapshot } from './simulation/network.ts';
+import { HOST_PEER, WesnothNetworkSession, peerOwnsSide, type WesnothNetworkSnapshot } from './simulation/network.ts';
 import { planSide } from './ai/plan.ts';
 import { applyAspects, policyFor, type AiPolicy, type Difficulty } from './ai/policy.ts';
 import { createReplay, decodeReplay, encodeReplay, replayActions, type WesnothAction, type WesnothEvent } from './simulation/replay.ts';
@@ -296,6 +296,8 @@ class WesnothScene extends Scene2D {
   /** Factions selected in the local MP setup, keyed by Wesnoth side number. */
   private multiplayerFactions = new Map<number, string>();
   private network: WesnothNetworkSession | null = null;
+  /** A joiner accepts the host snapshot once; later ones are ignored. */
+  private networkSynced = false;
   private achievements = createAchievements();
   private readonly statistics = new PlayerStats<WesnothStats>({
     namespace: 'mwg-wesnoth',
@@ -1053,6 +1055,7 @@ class WesnothScene extends Scene2D {
   /** Connect the port's action stream to the framework lockstep transport. */
   private connectNetwork(url: string): void {
     this.network?.close();
+    this.networkSynced = false;
     this.localMultiplayer = true;
     this.network = new WesnothNetworkSession({
       url,
@@ -1060,14 +1063,16 @@ class WesnothScene extends Scene2D {
         let applied = 0;
         for (const [peer, action] of Object.entries(actions)) {
           if (!action || peer === this.network?.id) continue;
+          if (!peerOwnsSide(peer, action.side)) { this.log = `Network action rejected: ${peer} does not own side ${action.side}`; continue; }
           try { this.applyNetworkAction(action); applied += 1; }
           catch (error) { this.log = `Network action rejected: ${(error as Error).message}`; }
         }
         this.log = `Network tick ${tick}: ${applied} remote action(s).`;
         this.refresh();
       },
-      onInitialState: (initial) => {
-        if (initial.snapshot && initial.authority && this.network?.id !== 'p1') {
+      onInitialState: (initial, sender) => {
+        if (initial.snapshot && initial.authority && sender === HOST_PEER && this.network?.id !== HOST_PEER && !this.networkSynced) {
+          this.networkSynced = true;
           try {
             this.applyNetworkSnapshot(initial.snapshot, initial.seed);
             this.log = `Network state synchronized (${initial.scenario}/${initial.seed}).`;
@@ -1088,7 +1093,7 @@ class WesnothScene extends Scene2D {
       onStatus: (status) => {
         this.log = `Network: ${status}.`;
         if (status === 'connected') {
-          const authority = this.network?.id === 'p1';
+          const authority = this.network?.id === HOST_PEER;
           this.network?.submitInitialState({ scenario: this.scenarioName, seed: this.rng.seed, authority, ...(authority ? { snapshot: this.networkSnapshot() } : {}) });
         }
         this.refresh();
@@ -1117,6 +1122,11 @@ class WesnothScene extends Scene2D {
   /** Apply an authoritative snapshot sent by the room host to a late joiner. */
   private applyNetworkSnapshot(snapshot: WesnothNetworkSnapshot, seed: number): void {
     if (!SCENARIOS[snapshot.scenario]) throw new Error('snapshot scenario is not available in this build');
+    for (const [id, unit] of snapshot.units) {
+      const u = unit as Partial<Unit> | null;
+      if (typeof id !== 'string' || !u || typeof u !== 'object' || !Number.isSafeInteger(u.x) || !Number.isSafeInteger(u.y)
+        || !Number.isSafeInteger(u.side) || !Number.isFinite(u.hitpoints)) throw new Error('snapshot contains an invalid unit');
+    }
     this.startScenario(snapshot.scenario, null, seed);
     this.rng.setState(snapshot.rngState as [number, number, number, number]);
     this.runtime.restore(snapshot.runtime);
